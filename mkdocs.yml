@@ -1,0 +1,99 @@
+site_name: Python Mastery Path
+site_description: A structured, module-wise Python training program from entry level to master level.
+site_url: https://sigilipelli.github.io/python-mastery-path/
+repo_url: https://github.com/sigilipelli/python-mastery-path
+repo_name: python-mastery-path
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · Setup & First Program": level-1/01-setup.md
+      - "02 · Variables, Data Types & Operators": level-1/02-variables-data-types.md
+      - "03 · Control Flow": level-1/03-control-flow.md
+      - "04 · Functions & Scope": level-1/04-functions-scope.md
+      - "05 · Core Data Structures": level-1/05-data-structures.md
+      - "06 · Strings & Formatting": level-1/06-strings-formatting.md
+      - "07 · File I/O Basics": level-1/07-file-io.md
+      - "08 · Error Handling Basics": level-1/08-error-handling.md
+      - "09 · Modules, Packages & pip": level-1/09-modules-packages.md
+      - "10 · Project — CLI To-Do App": level-1/10-project-todo-app.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Object-Oriented Programming": level-2/01-oop.md
+      - "02 · Comprehensions & Generators": level-2/02-comprehensions-generators.md
+      - "03 · Functional Programming": level-2/03-functional-programming.md
+      - "04 · Custom Exceptions & Context Managers": level-2/04-exceptions-context-managers.md
+      - "05 · Data Formats (CSV/JSON/XML)": level-2/05-data-formats.md
+      - "06 · Regular Expressions": level-2/06-regular-expressions.md
+      - "07 · Dates & Times": level-2/07-dates-times.md
+      - "08 · Virtual Environments & Dependencies": level-2/08-venvs-dependencies.md
+      - "09 · Testing Basics (pytest)": level-2/09-testing-basics.md
+      - "10 · Project — Weather/Data CLI": level-2/10-project-weather-cli.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Advanced OOP": level-3/01-advanced-oop.md
+      - "02 · Iterators, Generators & Coroutines": level-3/02-iterators-generators-coroutines.md
+      - "03 · Advanced Decorators & Descriptors": level-3/03-decorators-descriptors.md
+      - "04 · Concurrency I — Threading & Multiprocessing": level-3/04-concurrency-threading-multiprocessing.md
+      - "05 · Concurrency II — Asyncio": level-3/05-concurrency-asyncio.md
+      - "06 · Databases (SQLite & SQLAlchemy)": level-3/06-databases.md
+      - "07 · Consuming APIs": level-3/07-consuming-apis.md
+      - "08 · Building APIs (Flask/FastAPI)": level-3/08-building-apis.md
+      - "09 · Packaging & Distribution": level-3/09-packaging-distribution.md
+      - "10 · Profiling & Performance": level-3/10-profiling-performance.md
+      - "11 · Project — REST API + Database": level-3/11-project-rest-api-db.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Design Patterns in Python": level-4/01-design-patterns.md
+      - "02 · Advanced Asyncio Patterns": level-4/02-advanced-asyncio.md
+      - "03 · Metaprogramming": level-4/03-metaprogramming.md
+      - "04 · Production-Grade APIs": level-4/04-production-apis.md
+      - "05 · Testing at Scale": level-4/05-testing-at-scale.md
+      - "06 · Data Engineering": level-4/06-data-engineering.md
+      - "07 · ML Foundations": level-4/07-ml-foundations.md
+      - "08 · Deployment & DevOps": level-4/08-deployment-devops.md
+      - "09 · Security Best Practices": level-4/09-security-best-practices.md
+      - "10 · Capstone Project": level-4/10-capstone-project.md

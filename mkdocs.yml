@@ -6,6 +6,7 @@ repo_name: python-mastery-path
 
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -48,6 +49,7 @@ extra_css:
 
 nav:
   - Home: index.md
+  - Privacy Policy: privacy.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · Setup & First Program": level-1/01-setup.md

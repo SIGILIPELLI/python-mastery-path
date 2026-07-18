@@ -2,6 +2,14 @@
 
 {% block extrahead %}
   {{ super() }}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Python Mastery Path">
+  <meta property="og:title" content="{{ page.title | default('Python Mastery Path') }}">
+  <meta property="og:description" content="A structured, module-wise Python training program from entry level to master level — free, with runnable code in every module.">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ page.title | default('Python Mastery Path') }}">
+  <meta name="twitter:description" content="A structured, module-wise Python training program from entry level to master level — free, with runnable code in every module.">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
      crossorigin="anonymous"></script>
 {% endblock %}

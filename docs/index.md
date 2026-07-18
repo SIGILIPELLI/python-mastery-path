@@ -22,3 +22,11 @@ snippets in every module and a hands-on project at the end of each level.
 - Use the search bar (top of the page) to jump straight to a topic.
 
 Start here → [Level 1 · Entry](level-1/index.md)
+
+## More from the Mastery Path series
+
+Free, module-wise, entry-to-master training for other languages:
+
+- [Java Mastery Path](https://sigilipelli.github.io/java-mastery-path/)
+- [JavaScript Mastery Path](https://sigilipelli.github.io/javascript-mastery-path/)
+- [Shell Mastery Path](https://sigilipelli.github.io/shell-mastery-path/)

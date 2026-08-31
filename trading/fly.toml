@@ -1,0 +1,31 @@
+# Fly.io deployment. One always-on machine: the scheduler must not be
+# suspended, or the 08:45 IST re-auth never fires and the day is lost.
+app = "paytm-multi-agent-trader"
+primary_region = "sin"   # Singapore: closest low-latency region to NSE
+
+[build]
+
+[env]
+  PORT = "8000"
+  TZ = "Asia/Kolkata"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = false
+  min_machines_running = 1
+
+[[http_service.checks]]
+  interval = "60s"
+  timeout = "5s"
+  method = "GET"
+  path = "/health"
+
+[mounts]
+  source = "trader_data"
+  destination = "/srv/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

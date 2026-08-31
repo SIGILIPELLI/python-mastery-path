@@ -1,0 +1,11 @@
+services:
+  trader:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports: ["8000:8000"]
+    volumes:
+      - trader-data:/srv/data   # the encrypted vault + audit trail must outlive the container
+
+volumes:
+  trader-data:

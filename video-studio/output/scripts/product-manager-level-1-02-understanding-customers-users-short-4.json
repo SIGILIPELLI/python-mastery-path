@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Your user persona is quietly lying to you",
+  "description": "A persona is a composite sketch of a user type built from real research — useful shared shorthand for \"who are we building for.\" But it only ever answers who, never why. This Short shows how interviews, Jobs-to-be-Done, and personas actually fit together, and why teams over-rely on the persona.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n\n#Shorts",
+  "tags": ["product management", "personas", "user persona", "jobs to be done", "jtbd", "customer interviews", "user research", "product discovery"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/"],
+  "beats": [
+    {
+      "narration": "Your user persona is quietly lying to you. Not on purpose. It's just built to answer the wrong question.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "The persona trap",
+        "subheading": "who, not why"
+      }
+    },
+    {
+      "narration": "A persona is a composite sketch of a user type, built from real research. It keeps the team aligned on who we're building for. Handy shorthand: would Erin actually use this button?",
+      "display": {
+        "kind": "text",
+        "heading": "Personas — and their limits",
+        "subheading": "a composite sketch from research"
+      }
+    },
+    {
+      "narration": "Here's the catch. A persona describes who. It never tells you why. Why someone hires your product, the progress they want, that's Jobs-to-be-Done.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Who vs. why",
+        "subheading": "personas can't answer why"
+      }
+    },
+    {
+      "narration": "Think of it as a pipeline. Interviews are the raw method. Jobs-to-be-Done is the lens you listen with. The persona is just the artifact you write down afterward.",
+      "display": {
+        "kind": "text",
+        "heading": "How the three fit",
+        "subheading": "method, lens, artifact"
+      }
+    },
+    {
+      "narration": "So keep the list short. Two to four, revisited whenever new research contradicts them. And never let a persona replace asking why.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Keep it honest",
+        "subheading": "short list, revisit often"
+      }
+    },
+    {
+      "narration": "Full breakdown's in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/"
+      }
+    }
+  ]
+}

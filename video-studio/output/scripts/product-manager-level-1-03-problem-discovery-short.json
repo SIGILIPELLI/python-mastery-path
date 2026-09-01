@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "The One-Sentence PM Template That Fixes Vague Problem Statements",
+  "description": "Most 'problem statements' in a PRD are just vague vibes dressed up as a document -- and vague statements produce scattered, mismatched solutions. Here's the four-part template (who, pain, situation, consequence, plus evidence) that makes two different engineers design roughly the same fix. Pulled from Module 3 of the Product Manager Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n\n#Shorts",
+  "tags": ["product management", "product manager", "problem statement", "PRD", "PM skills", "product discovery"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"],
+  "beats": [
+    {
+      "narration": "Most 'problem statements' PMs write are just vague vibes dressed up as a doc. Here's the one-sentence template that fixes it.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Problem Discovery",
+        "subheading": "The vague problem statement trap"
+      }
+    },
+    {
+      "narration": "Take this weak one: 'Users find onboarding confusing.' Sounds reasonable -- but two different engineers reading it would design two totally different fixes.",
+      "display": {
+        "kind": "text",
+        "heading": "Weak version",
+        "subheading": "\"Users find onboarding confusing.\""
+      }
+    },
+    {
+      "narration": "Now the strong version: new admins abandon setup at the permissions step, because the roles shown don't match their job titles -- and thirty percent of workspaces never invite a second user.",
+      "display": {
+        "kind": "text",
+        "heading": "Strong version",
+        "subheading": "\"...causing 30% of new workspaces to never invite a second user.\""
+      }
+    },
+    {
+      "narration": "See the difference? It names the exact user, the trigger, the consequence, and the evidence behind it. That specificity is what makes two engineers build the same thing.",
+      "display": {
+        "kind": "text",
+        "heading": "Who + pain + situation + consequence",
+        "subheading": "Plus evidence -- that's what makes it actionable"
+      }
+    },
+    {
+      "narration": "Grab the full template and more examples in the lesson below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"
+      }
+    }
+  ]
+}

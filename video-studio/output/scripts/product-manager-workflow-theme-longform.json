@@ -1,0 +1,281 @@
+{
+  "type": "longform",
+  "language": "product-manager",
+  "title": "A PM's Full Workflow: From Discovery to Roadmap",
+  "description": "Five Product Manager Mastery Path lessons, followed as one continuous workflow instead of five separate topics. This video traces a single thread — from spotting a raw signal, through validating it into a real problem, ranking it against everything else on the backlog, defining the metric that proves it worked, putting it on an honest roadmap, and defending that roadmap when a stakeholder pushes back. If you've already watched the Level 1 survey or the PRD deep-dive, this is the version that shows how discovery, prioritization, metrics, roadmapping, and stakeholder communication actually chain together in real PM work.\n\nLessons covered in this video:\n- Problem Discovery: https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Metrics & KPIs Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n- Roadmapping Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n- Stakeholder Communication Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/",
+  "tags": ["product management", "product manager", "prioritization", "roadmapping", "stakeholder management", "metrics", "KPIs", "RICE framework", "product discovery", "PM workflow"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+  ],
+  "beats": [
+    {
+      "narration": "You've probably seen problem discovery, prioritization, metrics, roadmapping, and stakeholder communication taught as five separate lessons. Today we're chaining them together — following one real workflow from a raw signal all the way to a roadmap update a sales lead pushes back on.",
+      "display": {
+        "kind": "title_card",
+        "heading": "A PM's Full Workflow",
+        "subheading": "From Discovery to Roadmap — Product Manager Mastery Path, Level 1"
+      }
+    },
+    {
+      "narration": "Skip a link and the whole chain breaks. Prioritize before you've validated a real problem, and you rank noise. Roadmap before you've picked a metric, and you can't tell if you succeeded. Let's walk the chain end to end.",
+      "display": {
+        "kind": "text",
+        "heading": "Why the chain matters",
+        "subheading": "Each skill is the input to the next one"
+      }
+    },
+    {
+      "narration": "Every workflow starts with a signal, not a solution. A support ticket, a churn spike, a stakeholder request — none of those are problems yet. The discovery job is figuring out which signals point at something real.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Link 1: Problem Discovery",
+        "subheading": "Turning raw signals into a validated problem statement"
+      }
+    },
+    {
+      "narration": "A signal is raw evidence — one support ticket, one churn comment. A problem is the underlying, validated pain a cluster of signals points to. Confuse the two and you build whatever was loudest or most recent, not what actually matters.",
+      "display": {
+        "kind": "text",
+        "heading": "Signal vs. problem",
+        "subheading": "A signal is raw evidence; a problem is the validated pain behind it"
+      }
+    },
+    {
+      "narration": "A good problem statement names a specific user, a specific trigger, a specific consequence, and the evidence behind it. 'Users find onboarding confusing' is a vibe. 'New admins abandon setup at the permissions step because roles don't match their job titles, confirmed by eighteen session replays' is actionable.",
+      "display": {
+        "kind": "text",
+        "heading": "Writing a strong problem statement",
+        "subheading": "Who, what pain, what situation, what consequence, what evidence"
+      }
+    },
+    {
+      "narration": "Collect signals for a week or two without committing to a fix. Cluster the ones pointing at the same issue. Validate the top clusters with real interviews or data. Only then write the problem statement — before anyone proposes a solution.",
+      "display": {
+        "kind": "text",
+        "heading": "A workflow that avoids solution-jumping",
+        "subheading": "Collect signals, cluster, validate, then write the statement"
+      }
+    },
+    {
+      "narration": "Before anything moves forward, size it roughly — how many accounts are affected, what's the business impact if it stays unsolved, how confident are we this is the real cause. That rough estimate is what feeds straight into prioritization next.",
+      "display": {
+        "kind": "text",
+        "heading": "Is it worth solving?",
+        "subheading": "A lightweight sizing pass before committing resources"
+      }
+    },
+    {
+      "narration": "So discovery hands off one validated problem statement, sized and evidenced. Next: how do you decide if this problem beats everything else competing for the team's time?",
+      "display": {
+        "kind": "text",
+        "heading": "From validated problem to ranked backlog",
+        "subheading": "Recap: discovery's output becomes prioritization's input"
+      }
+    },
+    {
+      "narration": "Now you've got a real, sized problem — but so do a dozen other backlog items. Prioritization is where you decide which validated problems actually get resourced first.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Link 2: Prioritization",
+        "subheading": "Ranking the validated problem against everything else on the backlog"
+      }
+    },
+    {
+      "narration": "RICE scores each candidate on reach, impact, confidence, and effort, then combines them into one number. A high-impact idea like SSO can still lose to a low-effort fix with huge reach — that counter-intuitive result is exactly what RICE is built to surface.",
+      "display": {
+        "kind": "text",
+        "heading": "RICE — scoring for a defensible ranking",
+        "subheading": "Reach times Impact times Confidence, divided by Effort"
+      }
+    },
+    {
+      "narration": "RICE answers 'which idea.' MoSCoW answers a different question: once you know what you're building, what's actually required in this release versus nice-to-have. Writing an explicit 'won't have' list heads off scope-creep arguments before they start.",
+      "display": {
+        "kind": "text",
+        "heading": "MoSCoW — scoping one release",
+        "subheading": "Must, should, could, won't have — for what you already decided to build"
+      }
+    },
+    {
+      "narration": "When you're staring down twenty backlog items and don't have time for full RICE math, plot them on value versus effort. High value, low effort are your quick wins. It's intentionally rough — meant for fast triage, not the final call.",
+      "display": {
+        "kind": "text",
+        "heading": "Value vs. Effort — the fast gut-check",
+        "subheading": "A rough 2x2 for triaging a long backlog quickly"
+      }
+    },
+    {
+      "narration": "In practice these stack: triage a big backlog with value versus effort, RICE-score the survivors, then MoSCoW-scope whichever one gets greenlit. That final ranked, scoped initiative is what gets a real success metric next.",
+      "display": {
+        "kind": "text",
+        "heading": "How the frameworks actually chain",
+        "subheading": "Triage with value/effort, RICE the finalists, MoSCoW the winner"
+      }
+    },
+    {
+      "narration": "Prioritization hands off one ranked, scoped initiative. But 'ranked highest' doesn't mean anything until you define what success actually looks like.",
+      "display": {
+        "kind": "text",
+        "heading": "From ranked initiative to a real metric",
+        "subheading": "Recap: prioritization's output becomes the metrics step's input"
+      }
+    },
+    {
+      "narration": "You've got a prioritized initiative. Before a single story gets written, you need to know what number will tell you it worked — and how that number ties back to the product's bigger picture.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Link 3: Metrics & KPIs",
+        "subheading": "Defining what success actually looks like before you build"
+      }
+    },
+    {
+      "narration": "A North Star metric captures the core value the product delivers — and it should be a leading indicator, not revenue or signups. For a ride-share app, that's weekly active riders who complete a ride, not total downloads.",
+      "display": {
+        "kind": "text",
+        "heading": "North Star metric",
+        "subheading": "A leading indicator of value delivered, not a lagging business outcome"
+      }
+    },
+    {
+      "narration": "AARRR breaks the user lifecycle into five stages so you can localize exactly where growth stalls. Strong signups but weak activation is a completely different problem — and a different fix — than strong activation but weak retention.",
+      "display": {
+        "kind": "text",
+        "heading": "AARRR — the pirate metrics funnel",
+        "subheading": "Acquisition, activation, retention, referral, revenue"
+      }
+    },
+    {
+      "narration": "Leading metrics, like onboarding completion, predict what's coming and you can act on them now. Lagging metrics, like quarterly churn, only confirm what already happened. Obsessing over a lagging number week to week means you're reacting to decisions that are months old.",
+      "display": {
+        "kind": "text",
+        "heading": "Leading vs. lagging metrics",
+        "subheading": "Track leading metrics to steer; report lagging metrics for context"
+      }
+    },
+    {
+      "narration": "Every initiative needs its own metric: can you actually measure it, is there a baseline before launch, does moving it plausibly move the North Star, and is the target a real number — not just 'improve engagement.'",
+      "display": {
+        "kind": "text",
+        "heading": "Picking the metric for this initiative",
+        "subheading": "Measurable, has a baseline, moves the North Star, has a real target"
+      }
+    },
+    {
+      "narration": "Now the initiative has a name, a scope, and a specific number it's accountable to. Time to tell the rest of the company when it's actually happening.",
+      "display": {
+        "kind": "text",
+        "heading": "From a defined metric to a public roadmap",
+        "subheading": "Recap: metrics feed straight into how you roadmap the work"
+      }
+    },
+    {
+      "narration": "The initiative is defined and its success metric is set. Now it needs to go on a roadmap — the tool that tells the rest of the company what's coming, and when, without turning into a promise you can't keep.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Link 4: Roadmapping",
+        "subheading": "Communicating priority and timing without over-promising"
+      }
+    },
+    {
+      "narration": "A feature list with dates reads as a fixed commitment that becomes painful the moment priorities shift, which they always do. A theme like 'reduce onboarding friction' communicates priority while leaving room for discovery to shape the actual solution.",
+      "display": {
+        "kind": "text",
+        "heading": "Theme-based vs. feature-list roadmaps",
+        "subheading": "Communicate intent and priority, not a fixed feature with a fixed date"
+      }
+    },
+    {
+      "narration": "Now, this quarter, is high confidence — named projects, rough dates. Next is themes with maybe a candidate or two. Later is directional only. This structure makes the confidence level itself visible instead of faking precision on something two years out.",
+      "display": {
+        "kind": "text",
+        "heading": "Now, Next, Later",
+        "subheading": "Match the specificity of the roadmap to how knowable it actually is"
+      }
+    },
+    {
+      "narration": "Engineering needs enough specificity to plan capacity. Sales needs themes that set honest customer expectations, not a specific ship date they'll repeat to a prospect. A roadmap is a communication tool, not a contract — and every audience will eventually try to treat it like one.",
+      "display": {
+        "kind": "text",
+        "heading": "One roadmap, different audiences",
+        "subheading": "Engineering needs capacity planning; sales needs honest themes, not dates"
+      }
+    },
+    {
+      "narration": "When a sales rep asks if SSO lands by a specific renewal date, the honest answer is naming the horizon out loud: that's a Next theme, not a committed date — I'll flag your timeline, but I can't commit today. Harder to say live, but it keeps the roadmap trustworthy.",
+      "display": {
+        "kind": "text",
+        "heading": "Holding the line live",
+        "subheading": "'That's a Next-horizon theme, not a committed Now item'"
+      }
+    },
+    {
+      "narration": "The roadmap communicates the plan at the right level of confidence. But roadmaps get pushback — and how you handle that pushback is the last link.",
+      "display": {
+        "kind": "text",
+        "heading": "From roadmap to relationship",
+        "subheading": "Recap: a shared roadmap is where stakeholder pushback actually starts"
+      }
+    },
+    {
+      "narration": "The initiative is discovered, prioritized, measured, and roadmapped. The last link is keeping every stakeholder — engineering, sales, support, leadership — genuinely informed as reality unfolds, especially when someone pushes back.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Link 5: Stakeholder Communication",
+        "subheading": "Keeping everyone aligned as the initiative actually moves"
+      }
+    },
+    {
+      "narration": "A single generic status update to 'everyone' under-serves all of them. Engineering needs confirmed requirements and blockers. Sales needs an honest confidence level. Leadership needs progress against the success metric and how it ties to company goals.",
+      "display": {
+        "kind": "text",
+        "heading": "Mapping who needs what",
+        "subheading": "Engineering wants scope clarity; sales wants honest timing; execs want the 'why'"
+      }
+    },
+    {
+      "narration": "Plot stakeholders on influence versus interest to decide how much time each relationship deserves. A VP with high influence but low daily interest wants a two-line summary. An engineer executing the plan daily often deserves far more detail.",
+      "display": {
+        "kind": "text",
+        "heading": "The influence/interest grid",
+        "subheading": "High influence, low interest gets two lines, not a ten-slide deck"
+      }
+    },
+    {
+      "narration": "Lead with the status — on track, at risk, or blocked — so a busy reader gets the headline in one sentence. Then what changed, what's next, and an explicit ask, even if the ask is 'nothing, just flagging this.'",
+      "display": {
+        "kind": "text",
+        "heading": "The four-question status update",
+        "subheading": "Status, what changed, what's next, what you need from the reader"
+      }
+    },
+    {
+      "narration": "When a stakeholder disagrees, restate their concern in your own words, share the reasoning behind the current call, and name what new data would actually change your mind. If it's still unresolved, escalate transparently instead of letting it quietly fester.",
+      "display": {
+        "kind": "text",
+        "heading": "Handling pushback",
+        "subheading": "Restate the concern, share the reasoning, name what would change your mind"
+      }
+    },
+    {
+      "narration": "That's the full loop closed — a raw signal, sized and validated, prioritized against everything else, given a real metric, put on an honest roadmap, and defended in a status update. Same five skills, one continuous workflow.",
+      "display": {
+        "kind": "text",
+        "heading": "The chain, closed",
+        "subheading": "Discovery to prioritization to metrics to roadmap to stakeholder comms"
+      }
+    },
+    {
+      "narration": "If you want the full detail behind any link in this chain, all five lessons are free on the Product Manager Mastery Path, in the order we covered them: problem discovery, prioritization basics, metrics and KPIs basics, roadmapping basics, and stakeholder communication basics.",
+      "display": {
+        "kind": "text",
+        "heading": "Sources for every lesson covered",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/ — modules 03, 04, 07, 08, 09"
+      }
+    }
+  ]
+}

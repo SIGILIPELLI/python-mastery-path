@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Why Your User Story Isn't Actually \"Done\"",
+  "description": "A user story sounds finished the moment the template is filled in -- but without acceptance criteria, \"done\" is just a guess. This Short breaks down the Given/When/Then format for acceptance criteria, straight from the Writing Requirements lesson in the Product Manager Mastery Path, and why skipping it is where scope arguments quietly start.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
+  "tags": ["product manager", "product management", "user stories", "acceptance criteria", "PRD", "agile", "requirements gathering"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"],
+  "beats": [
+    {
+      "narration": "Your user story sounds finished. Template filled in, sounds good. But ask three people on your team what 'done' means, and you'll get three different answers.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Writing Requirements",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "This is acceptance criteria, written as Given, When, Then. It takes a vague feature request and turns it into one specific, testable condition anyone can check off.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "Given a team lead is on the reports page with 15+ team members shown\nWhen they select a specific team member from the new filter\nThen only that person's rows are shown, and a \"Clear filter\" control appears"
+      }
+    },
+    {
+      "narration": "The export button gets the same treatment: it has to respect the active filter, open cleanly in Excel and Sheets, and stamp the filename with the export date.",
+      "display": {
+        "kind": "text",
+        "heading": "Every story gets this treatment",
+        "subheading": "Respects the active filter - Opens in Excel & Sheets - Filename includes the export date"
+      }
+    },
+    {
+      "narration": "Skip this step, and 'done' becomes a matter of opinion, and that gap is exactly where scope arguments happen late in a sprint.",
+      "display": {
+        "kind": "text",
+        "heading": "No acceptance criteria = no shared \"done\"",
+        "subheading": "That gap is where scope disagreements happen late in a sprint"
+      }
+    },
+    {
+      "narration": "Full breakdown of writing stories, acceptance criteria, and PRDs is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"
+      }
+    }
+  ]
+}

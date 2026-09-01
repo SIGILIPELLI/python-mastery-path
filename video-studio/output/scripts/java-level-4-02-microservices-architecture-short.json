@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "One Java Annotation Stops Cascading Microservice Failures",
+  "description": "When a downstream microservice starts failing, hammering it with retries just makes things worse. Spring's circuit breaker annotation from Resilience4j trips once failures cross a threshold, skipping the network entirely and routing straight to a fallback -- giving the failing service room to recover. This is one pattern from the microservices architecture lesson in the Java Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/\n\n#Shorts",
+  "tags": ["java", "microservices", "circuit breaker", "resilience4j", "spring boot", "software architecture", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/"],
+  "beats": [
+    {
+      "narration": "Picture a downstream service going down. Your app keeps calling it, again and again, burning threads while nothing comes back.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Circuit Breaker",
+        "subheading": "Java Mastery Path -- Microservices Architecture"
+      }
+    },
+    {
+      "narration": "One annotation fixes this: circuit breaker. Wrap the risky call, and if it starts failing, Java reroutes it to a fallback method automatically.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@Service\npublic class InventoryService {\n\n    private final InventoryClient inventoryClient;\n\n    public InventoryService(InventoryClient inventoryClient) {\n        this.inventoryClient = inventoryClient;\n    }\n\n    @CircuitBreaker(name = \"inventoryService\", fallbackMethod = \"fallbackStock\")\n    public int checkStock(String sku) {\n        return inventoryClient.getStockLevel(sku);   // may throw if the service is down\n    }\n\n    // Fallback signature must match + accept the Throwable\n    private int fallbackStock(String sku, Throwable t) {\n        return -1;   // sentinel meaning \"unknown, service is degraded\"\n    }\n}"
+      }
+    },
+    {
+      "narration": "Once half of the last twenty calls fail, the circuit trips open. Every call after that skips the network completely and goes straight to the fallback.",
+      "display": {
+        "kind": "editor",
+        "lang": "yaml",
+        "code": "resilience4j:\n  circuitbreaker:\n    instances:\n      inventoryService:\n        sliding-window-size: 20\n        failure-rate-threshold: 50   # percent\n        wait-duration-in-open-state: 10s"
+      }
+    },
+    {
+      "narration": "That's the whole point: stop hammering a service that's already struggling, and give it room to recover before you try again.",
+      "display": {
+        "kind": "text",
+        "heading": "Fail fast. Recover faster.",
+        "subheading": "No cascading failures upstream"
+      }
+    },
+    {
+      "narration": "Full breakdown of gateways, sagas, and circuit breakers is in the microservices lesson, link below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/"
+      }
+    }
+  ]
+}

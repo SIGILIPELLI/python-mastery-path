@@ -1,0 +1,1752 @@
+{
+  "c-level-1-01-setup-short": [
+    {
+      "question": "In `gcc hello.c -o hello`, what does the -o flag do?",
+      "options": [
+        "-o",
+        "-bin",
+        "-out",
+        "-n"
+      ],
+      "answerIndex": 0,
+      "explanation": "The -o flag tells the compiler what to name the output binary, so here it produces a file named \"hello\"."
+    },
+    {
+      "question": "What does this program print when compiled and run?\nint main(void) {\n    printf(\"Hello, world!\\n\");\n    return 0;\n}",
+      "options": [
+        "nothing, it only compiles",
+        "\"Hello, world!\\n\" printed literally including backslash-n",
+        "\"Hello, world!\" followed by a newline",
+        "\"Hello world\" without punctuation"
+      ],
+      "answerIndex": 2,
+      "explanation": "printf writes the text to standard output and \\n is a newline escape sequence, not a literal backslash-n."
+    },
+    {
+      "question": "Why does hello.c start with `#include <stdio.h>`?",
+      "options": [
+        "It links the program to the operating system kernel",
+        "It defines the main function's entry point",
+        "It is required to declare integer variables",
+        "It pulls in declarations for standard I/O functions like printf before compilation"
+      ],
+      "answerIndex": 3,
+      "explanation": "The #include directive is a preprocessor step that pulls in declarations for functions like printf before compilation proper begins."
+    }
+  ],
+  "c-level-1-02-variables-data-types-short": [
+    {
+      "question": "Why is reading an uninitialized variable in C considered undefined behavior?",
+      "options": [
+        "C requires every variable to be declared inside a function",
+        "C does not zero out variables for you, so an uninitialized one holds garbage until assigned",
+        "Uninitialized variables always default to -1",
+        "The compiler refuses to compile programs with uninitialized variables"
+      ],
+      "answerIndex": 1,
+      "explanation": "The compiler doesn't automatically zero out variables, so an uninitialized one holds whatever garbage was already in that memory."
+    },
+    {
+      "question": "What does this print?\nint a = 7, b = 2;\nprintf(\"%d\\n\", a / b);",
+      "options": [
+        "A compile error, since dividing ints requires an explicit cast",
+        "4, because C rounds to the nearest integer",
+        "3, because integer division discards the fractional part",
+        "3.5, because C always performs real division"
+      ],
+      "answerIndex": 2,
+      "explanation": "Since both operands are int, this is integer division and the fractional part is discarded, not rounded, giving 3."
+    },
+    {
+      "question": "Which operator lets you ask the compiler for a type's size, like `sizeof(int)`?",
+      "options": [
+        "typeof",
+        "alignof",
+        "lengthof",
+        "sizeof"
+      ],
+      "answerIndex": 3,
+      "explanation": "sizeof lets you ask the compiler for a type's size at compile time instead of assuming a fixed width."
+    }
+  ],
+  "c-level-1-03-control-flow-short": [
+    {
+      "question": "What happens if you forget a `break` statement inside a switch case?",
+      "options": [
+        "The switch statement is skipped entirely",
+        "The compiler raises an error",
+        "Only the default case executes",
+        "Execution falls through into the next case"
+      ],
+      "answerIndex": 3,
+      "explanation": "Omitting break causes execution to fall through into the next case instead of exiting the switch, which trips up most C beginners at least once."
+    },
+    {
+      "question": "What does this print?\nint i = 10;\ndo {\n    printf(\"%d\\n\", i);\n    i++;\n} while (i < 5);",
+      "options": [
+        "It prints 5, then stops",
+        "It prints 10 once, since do-while checks the condition after the body runs",
+        "It loops forever printing increasing numbers",
+        "It prints nothing, since 10 < 5 is false"
+      ],
+      "answerIndex": 1,
+      "explanation": "A do-while loop always runs its body at least once before checking the condition, so it prints 10 even though 10 < 5 is false."
+    },
+    {
+      "question": "Which keyword skips the rest of the current loop iteration and jumps to the next one?",
+      "options": [
+        "skip",
+        "break",
+        "next",
+        "continue"
+      ],
+      "answerIndex": 3,
+      "explanation": "continue skips the remaining code in the current iteration and moves on to the next one, unlike break which exits the loop entirely."
+    }
+  ],
+  "c-level-1-04-functions-short": [
+    {
+      "question": "Why does a function often need a prototype declared before it's called earlier in the file, like before main?",
+      "options": [
+        "Without a prototype, the linker deletes the function",
+        "C requires functions to be declared in alphabetical order",
+        "The compiler reads top to bottom and needs the function's signature to check a call before seeing its definition",
+        "Prototypes make the program run faster at runtime"
+      ],
+      "answerIndex": 2,
+      "explanation": "The compiler reads a file top to bottom, so a prototype lets it verify a call's correctness before it has seen the actual function definition."
+    },
+    {
+      "question": "What does this print for the \"Outside\" line?\nvoid increment(int n) {\n    n = n + 1;\n}\nint main(void) {\n    int x = 5;\n    increment(x);\n    printf(\"Outside: %d\\n\", x);\n}",
+      "options": [
+        "Outside: 5, because C passes arguments by value so increment only modifies its own local copy",
+        "A compile error, because n is reused as a parameter name",
+        "Outside: 5, due to a compiler bug",
+        "Outside: 6, because increment permanently changes x"
+      ],
+      "answerIndex": 0,
+      "explanation": "C copies each argument's value into the function's parameter, so changes inside increment never affect the caller's original variable x."
+    },
+    {
+      "question": "Which keyword makes a local variable keep its value between function calls instead of resetting each time?",
+      "options": [
+        "extern",
+        "register",
+        "const",
+        "static"
+      ],
+      "answerIndex": 3,
+      "explanation": "Marking a local variable static makes it persist between calls while still staying scoped to its own function."
+    }
+  ],
+  "c-level-1-06-pointers-basics-short": [
+    {
+      "question": "Why is it good practice to initialize a pointer to NULL and check it before dereferencing?",
+      "options": [
+        "The compiler requires all pointers to start at NULL",
+        "NULL pointers make code run faster",
+        "Dereferencing an uninitialized pointer holding a garbage address is undefined behavior and a common cause of crashes",
+        "Assigning NULL automatically frees the pointer's memory"
+      ],
+      "answerIndex": 2,
+      "explanation": "An uninitialized pointer holds a garbage address, and dereferencing it is undefined behavior that commonly crashes programs."
+    },
+    {
+      "question": "What does this print?\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\nint main(void) {\n    int x = 5, y = 10;\n    swap(&x, &y);\n    printf(\"x=%d, y=%d\\n\", x, y);\n}",
+      "options": [
+        "x=10, y=10, because both parameters point to the same variable",
+        "x=5, y=10, because C is always pass-by-value and swap can't change x and y",
+        "x=10, y=5, because passing addresses lets swap modify the caller's actual variables",
+        "A compile error, since swap expects int arguments, not pointers"
+      ],
+      "answerIndex": 2,
+      "explanation": "By passing &x and &y, swap receives the addresses of x and y and can dereference them to modify the caller's actual variables."
+    },
+    {
+      "question": "Which operator both declares a variable as a pointer and means \"dereference\" in an expression?",
+      "options": [
+        "**",
+        "*",
+        "&",
+        "->"
+      ],
+      "answerIndex": 1,
+      "explanation": "The * symbol marks a pointer declaration like `int *p`, and in an expression like `*p` it means dereference the address p holds."
+    }
+  ],
+  "c-level-1-fundamentals-longform": [
+    {
+      "question": "What is the purpose of writing `typedef struct {...} Point;` instead of just `struct Point {...};`?",
+      "options": [
+        "typedef allocates memory for the struct's members",
+        "typedef is required only for structs with nested structs inside them",
+        "Struct definitions are invalid without typedef",
+        "typedef creates an alias so you can write just the type name instead of repeating \"struct\" every time"
+      ],
+      "answerIndex": 3,
+      "explanation": "typedef creates a type alias, so code can write Point instead of struct Point everywhere it's used."
+    },
+    {
+      "question": "What does this print?\nint numbers[] = {10, 20, 30, 40};\nprintf(\"%d\\n\", *(numbers + 1));",
+      "options": [
+        "30, because +1 skips two elements",
+        "A compile error, since pointer arithmetic isn't allowed on arrays",
+        "10, because *(numbers + 1) is the same as numbers[0]",
+        "20, because numbers[i] and *(numbers + i) are equivalent ways to access the same element"
+      ],
+      "answerIndex": 3,
+      "explanation": "An array name decays to a pointer to its first element, so *(numbers + 1) is equivalent to numbers[1], which is 20."
+    },
+    {
+      "question": "In a recursive factorial function, what stops the recursive calls from continuing forever?",
+      "options": [
+        "The int return type",
+        "The semicolon at the end of the function body",
+        "The compiler automatically halts after 10 recursive calls",
+        "The base case, where n <= 1 returns 1 instead of making another recursive call"
+      ],
+      "answerIndex": 3,
+      "explanation": "The base case (n <= 1 returning 1) stops the recursion; without a reachable base case the calls would continue until a stack overflow."
+    }
+  ],
+  "go-level-1-01-setup-short": [
+    {
+      "question": "Why does every runnable Go program need a func main() inside package main?",
+      "options": [
+        "It declares the module's version",
+        "It's the entry point the Go runtime looks for",
+        "It enables garbage collection",
+        "It registers the file with gofmt"
+      ],
+      "answerIndex": 1,
+      "explanation": "Go programs execute starting from func main() in package main, which produces an executable."
+    },
+    {
+      "question": "Given `go run main.go` prints \"Hello, world!\", what did that command actually do?",
+      "options": [
+        "Compiled to a temporary binary, ran it, then cleaned up",
+        "Formatted the file and exited without running it",
+        "Only checked the syntax without executing anything",
+        "Compiled to a permanent binary and left it on disk"
+      ],
+      "answerIndex": 0,
+      "explanation": "go run is for quick iteration: it builds a temporary binary, executes it, and removes it afterward."
+    },
+    {
+      "question": "Which command rewrites a Go file in place using Go's standard formatting style?",
+      "options": [
+        "go run main.go",
+        "gofmt -w main.go",
+        "go build main.go",
+        "go version"
+      ],
+      "answerIndex": 1,
+      "explanation": "gofmt -w rewrites the given file in place so it matches Go's one true formatting style."
+    }
+  ],
+  "go-level-1-02-variables-types-operators-short": [
+    {
+      "question": "Why must you write float64(i) + f instead of i + f when i is an int and f is a float64?",
+      "options": [
+        "Go never converts types implicitly, so mixing them is a compile error",
+        "The + operator only works on strings by default",
+        "float64 values cannot be added to anything",
+        "Go automatically rounds ints to match floats"
+      ],
+      "answerIndex": 0,
+      "explanation": "Go requires explicit conversion between numeric types; mismatched types in an expression fail to compile."
+    },
+    {
+      "question": "Given `const ( StatusPending = iota; StatusActive; StatusDone )`, what value does StatusActive hold?",
+      "options": [
+        "0",
+        "3",
+        "2",
+        "1"
+      ],
+      "answerIndex": 3,
+      "explanation": "iota starts at 0 and increases by one per line, so the second constant, StatusActive, becomes 1."
+    },
+    {
+      "question": "Which declaration keyword is required for a variable declared at package level?",
+      "options": [
+        ":=",
+        "iota",
+        "range",
+        "var"
+      ],
+      "answerIndex": 3,
+      "explanation": "The short declaration := only works inside function bodies, so package-level variables must use var."
+    }
+  ],
+  "go-level-1-03-control-flow-short": [
+    {
+      "question": "Why does Go get by with only one looping keyword, for?",
+      "options": [
+        "for is required only for range expressions",
+        "while loops are handled by a separate keyword",
+        "for covers every case other languages split across for/while/do-while",
+        "Go doesn't allow loops without labels"
+      ],
+      "answerIndex": 2,
+      "explanation": "Go unifies classic, while-style, and infinite loops under the single for keyword."
+    },
+    {
+      "question": "With day := \"Tue\", what does this switch print?\nswitch day {\ncase \"Sat\", \"Sun\":\n  fmt.Println(\"Weekend\")\ncase \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\":\n  fmt.Println(\"Weekday\")\ndefault:\n  fmt.Println(\"Unknown\")\n}",
+      "options": [
+        "Weekday",
+        "Tue",
+        "Unknown",
+        "Weekend"
+      ],
+      "answerIndex": 0,
+      "explanation": "\"Tue\" matches the second case listing weekdays, so \"Weekday\" is printed."
+    },
+    {
+      "question": "Which keyword must you add to a switch case to make it fall into the next case?",
+      "options": [
+        "fallthrough",
+        "continue",
+        "break",
+        "default"
+      ],
+      "answerIndex": 0,
+      "explanation": "Go switch cases don't fall through automatically; fallthrough opts into that behavior explicitly."
+    }
+  ],
+  "go-level-1-04-functions-multiple-returns-short": [
+    {
+      "question": "Why is the blank identifier _ needed when calling divide(10, 0) and ignoring the numeric result?",
+      "options": [
+        "Go forces you to either use every declared variable or explicitly discard it",
+        "error values must always be paired with _",
+        "Go requires _ for all float64 return values",
+        "_ makes the function run faster"
+      ],
+      "answerIndex": 0,
+      "explanation": "Go won't let a declared variable go unused, so _ explicitly discards the value you don't need."
+    },
+    {
+      "question": "What order do these lines print in?\nfmt.Println(\"start\")\ndefer fmt.Println(\"cleanup (runs last)\")\nfmt.Println(\"middle\")",
+      "options": [
+        "middle, start, cleanup",
+        "cleanup, start, middle",
+        "start, cleanup, middle",
+        "start, middle, cleanup"
+      ],
+      "answerIndex": 3,
+      "explanation": "defer schedules the call to run right before the function returns, so it prints after \"middle\"."
+    },
+    {
+      "question": "In what order do multiple defer statements in the same function execute?",
+      "options": [
+        "FIFO: first deferred, first executed",
+        "Alphabetically by function name",
+        "In random order",
+        "LIFO: last deferred, first executed"
+      ],
+      "answerIndex": 3,
+      "explanation": "Deferred calls stack up and run in LIFO order when the surrounding function returns."
+    }
+  ],
+  "go-level-1-05-arrays-slices-maps-short": [
+    {
+      "question": "Why does modifying view[0] after view := original[1:4] also change original?",
+      "options": [
+        "append rewrote the original array",
+        "Slices are always sorted before use",
+        "Slicing doesn't copy data, so both slices share the same backing array",
+        "Go copies slices by value automatically"
+      ],
+      "answerIndex": 2,
+      "explanation": "A slice is a view over an underlying array, so two slices from the same source can share memory."
+    },
+    {
+      "question": "If ages has no \"Eve\" key, what does `value, ok := ages[\"Eve\"]; fmt.Println(value, ok)` print?",
+      "options": [
+        "it panics",
+        "0 true",
+        "0 false",
+        "nil false"
+      ],
+      "answerIndex": 2,
+      "explanation": "A missing key returns the zero value silently, and ok is false to signal the key wasn't present."
+    },
+    {
+      "question": "What idiom distinguishes a map key that's absent from one present with a zero value?",
+      "options": [
+        "Checking len(m) before and after",
+        "The nil check on the map itself",
+        "The comma-ok idiom: value, ok := m[key]",
+        "Calling delete(m, key) first"
+      ],
+      "answerIndex": 2,
+      "explanation": "The second return value, ok, is the only reliable signal that a key actually exists in the map."
+    }
+  ],
+  "go-level-1-fundamentals-longform": [
+    {
+      "question": "Why does original stay {1 2} after calling tryToModify(original) on a Point struct?",
+      "options": [
+        "Assigning or passing a struct copies it, so the function modifies a copy",
+        "Structs are always passed by reference in Go",
+        "Struct fields are immutable once set",
+        "The function must return a value for changes to persist"
+      ],
+      "answerIndex": 0,
+      "explanation": "Go structs are value types, so passing one to a function copies it and leaves the caller's original untouched."
+    },
+    {
+      "question": "What does this print?\nx := 42\np := &x\n*p = 100\nfmt.Println(x)",
+      "options": [
+        "a memory address like 0xc0000140a0",
+        "100",
+        "a compile error",
+        "42"
+      ],
+      "answerIndex": 1,
+      "explanation": "Writing through the pointer with *p = 100 changes the value x actually points to, so x becomes 100."
+    },
+    {
+      "question": "What does iota do inside a const (...) block?",
+      "options": [
+        "Generates a random constant value each run",
+        "Resets to 0 at each const block and increments by one per line",
+        "Must be manually incremented on every line",
+        "Only works when constants are strings"
+      ],
+      "answerIndex": 1,
+      "explanation": "iota is the standard idiom for auto-numbering a set of related constants starting from zero."
+    }
+  ],
+  "java-level-1-01-setup-short": [
+    {
+      "question": "Why is Java's main method declared static?",
+      "options": [
+        "So it can be overloaded with different parameter lists",
+        "So it can return a value to the caller",
+        "So it can directly access private instance fields",
+        "So the JVM can call it without creating an instance of the class first"
+      ],
+      "answerIndex": 3,
+      "explanation": "static means the method belongs to the class itself, so the JVM can invoke main without instantiating an object."
+    },
+    {
+      "question": "Given `public class Hello { public static void main(String[] args) { System.out.println(\"Hello, world!\"); } }`, what does running `java Hello` after compiling print?",
+      "options": [
+        "A compile error",
+        "Hello.class",
+        "public class Hello",
+        "Hello, world!"
+      ],
+      "answerIndex": 3,
+      "explanation": "System.out.println prints the given text followed by a newline to standard output."
+    },
+    {
+      "question": "Which command compiles a Hello.java source file into JVM bytecode?",
+      "options": [
+        "java",
+        "javac",
+        "javap",
+        "jar"
+      ],
+      "answerIndex": 1,
+      "explanation": "javac compiles .java source into .class bytecode files, while java runs the already-compiled bytecode."
+    }
+  ],
+  "java-level-1-02-variables-data-types-short": [
+    {
+      "question": "What does declaring a variable as `final`, like `final double PI_APPROX = 3.14159;`, mean?",
+      "options": [
+        "It can only be used inside loops",
+        "It becomes a static member of the class",
+        "It cannot be reassigned after initialization",
+        "It is automatically boxed into a wrapper class"
+      ],
+      "answerIndex": 2,
+      "explanation": "final marks a variable as unmodifiable once it has been assigned a value."
+    },
+    {
+      "question": "Given `int a = 10, b = 3; System.out.println(a / b);`, what does this print?",
+      "options": [
+        "3.3",
+        "1",
+        "3.3333333333333335",
+        "3"
+      ],
+      "answerIndex": 3,
+      "explanation": "Dividing two ints performs integer division, which truncates the fractional part instead of rounding."
+    },
+    {
+      "question": "What is it called when you convert a larger type to a smaller one (e.g., double to int) and must do so explicitly because data can be lost?",
+      "options": [
+        "Overloading",
+        "Narrowing",
+        "Widening",
+        "Autoboxing"
+      ],
+      "answerIndex": 1,
+      "explanation": "Narrowing conversions go from a bigger type to a smaller one and require an explicit cast since precision or range can be lost."
+    }
+  ],
+  "java-level-1-03-control-flow-short": [
+    {
+      "question": "Why does a do-while loop always execute its body at least once?",
+      "options": [
+        "Because the body executes during compilation",
+        "Because do-while loops ignore their condition entirely",
+        "Because the condition is checked after the body runs",
+        "Because Java requires every loop to run at least once"
+      ],
+      "answerIndex": 2,
+      "explanation": "do-while runs the body first and only checks the condition afterward, so the body always executes at least once."
+    },
+    {
+      "question": "Given `for (int i = 0; i < 10; i++) { if (i == 5) { break; } if (i % 2 == 0) { continue; } System.out.println(i); }`, what numbers does this print?",
+      "options": [
+        "0, 2, and 4",
+        "0, 1, 2, 3, and 4",
+        "1 and 3",
+        "1, 3, 5, 7, and 9"
+      ],
+      "answerIndex": 2,
+      "explanation": "continue skips even numbers, and break exits the loop entirely once i reaches 5, leaving only 1 and 3 printed."
+    },
+    {
+      "question": "In a classic Java switch statement, which keyword prevents execution from falling through into the next case?",
+      "options": [
+        "break",
+        "yield",
+        "continue",
+        "return"
+      ],
+      "answerIndex": 0,
+      "explanation": "Classic switch falls through to the next case unless a break statement stops it."
+    }
+  ],
+  "java-level-1-04-methods-parameters-short": [
+    {
+      "question": "What allows multiply(int,int), multiply(double,double), and multiply(int,int,int) to all share the same method name in one class?",
+      "options": [
+        "Java allows any methods to freely share a name",
+        "Method overloading, since their parameter lists differ",
+        "Static binding, since all the methods are static",
+        "Method overriding, since they're in different classes"
+      ],
+      "answerIndex": 1,
+      "explanation": "Overloading lets multiple methods share a name as long as their parameter lists differ in count or type, resolved at compile time."
+    },
+    {
+      "question": "Given the overloaded methods `multiply(int,int)`, `multiply(double,double)`, and `multiply(int,int,int)`, what does `System.out.println(multiply(2, 3));` print?",
+      "options": [
+        "6",
+        "24",
+        "6.0",
+        "A compile error due to ambiguous overloads"
+      ],
+      "answerIndex": 0,
+      "explanation": "Two int arguments match the int,int overload, which returns 2 * 3 = 6."
+    },
+    {
+      "question": "Which kind of method can be called directly as ClassName.method() without first creating an object?",
+      "options": [
+        "instance",
+        "static",
+        "final",
+        "private"
+      ],
+      "answerIndex": 1,
+      "explanation": "A static method belongs to the class itself and doesn't require an instance to be called."
+    }
+  ],
+  "java-level-1-05-arrays-collections-short": [
+    {
+      "question": "Why would you use an ArrayList instead of an array when you don't know how many elements you'll need in advance?",
+      "options": [
+        "Because ArrayList elements are always faster to access by index",
+        "Because arrays cannot be looped over with a for-each loop",
+        "Because arrays cannot store numeric values",
+        "Because arrays have a fixed size once created, while ArrayList grows and shrinks dynamically"
+      ],
+      "answerIndex": 3,
+      "explanation": "Arrays are fixed-size once created, but ArrayList can grow or shrink as elements are added or removed."
+    },
+    {
+      "question": "Given `int[] numbers = {10, 20, 30, 40}; System.out.println(numbers.length);`, what does this print?",
+      "options": [
+        "4",
+        "40",
+        "3",
+        "A compile error because length needs parentheses"
+      ],
+      "answerIndex": 0,
+      "explanation": "length is a field on arrays (not a method call), and this array holds 4 elements."
+    },
+    {
+      "question": "When you call `scores.add(95)` on a `List<Integer>`, what happens to the primitive int 95?",
+      "options": [
+        "It is auto-boxed into an Integer object",
+        "It is truncated to a byte",
+        "It is stored as a primitive directly in the list",
+        "It is converted to a String"
+      ],
+      "answerIndex": 0,
+      "explanation": "Collections like List only hold objects, so a primitive int is automatically auto-boxed into its Integer wrapper."
+    }
+  ],
+  "java-level-1-fundamentals-longform": [
+    {
+      "question": "Why can multiply(2, 3) and multiply(2.5, 4.0) both compile and run correctly in the same program?",
+      "options": [
+        "Java converts all arguments to double automatically before calling",
+        "The compiler always picks the last method defined with that name",
+        "Only one multiply method actually exists at runtime",
+        "Method overloading resolves which version to call based on argument types"
+      ],
+      "answerIndex": 3,
+      "explanation": "Overloaded methods with the same name but different parameter types are resolved at compile time based on the arguments passed."
+    },
+    {
+      "question": "Given `public class Circle { private double radius; public Circle(double radius) { this.radius = radius; } double area() { return Math.PI * radius * radius; } }` and `Circle c1 = new Circle(2.0); System.out.printf(\"%.2f%n\", c1.area());`, what does this print?",
+      "options": [
+        "78.54",
+        "6.28",
+        "12.57",
+        "4.00"
+      ],
+      "answerIndex": 2,
+      "explanation": "Each Circle object has its own radius, and Math.PI * 2.0 * 2.0 formatted to two decimal places is 12.57."
+    },
+    {
+      "question": "Starting in which Java version can `switch` be used as an expression with arrow syntax that returns a value directly and has no fall-through?",
+      "options": [
+        "Java 8",
+        "Java 17",
+        "Java 14",
+        "Java 11"
+      ],
+      "answerIndex": 2,
+      "explanation": "Java 14 introduced switch expressions with arrow syntax, which return a value and don't fall through between cases."
+    }
+  ],
+  "javascript-level-1-01-setup-short": [
+    {
+      "question": "Why does the hello.js script run correctly in both Node and the browser?",
+      "options": [
+        "Because index.html automatically converts the code",
+        "Because console.log only works in Node",
+        "Because it doesn't use any Node-only or browser-only APIs",
+        "Because Node and browsers share the same file system"
+      ],
+      "answerIndex": 2,
+      "explanation": "The same JavaScript works in both environments as long as it avoids environment-specific APIs."
+    },
+    {
+      "question": "Given `function greet(name) { return `Hello, ${name}!`; } console.log(greet(\"world\"));`, what does `node hello.js` print?",
+      "options": [
+        "undefined",
+        "Hello, world!",
+        "Hello, name!",
+        "greet is not defined"
+      ],
+      "answerIndex": 1,
+      "explanation": "The template literal substitutes the argument \"world\" into the greeting string."
+    },
+    {
+      "question": "What command do you type in a terminal to start Node's interactive REPL shell?",
+      "options": [
+        "node --interactive",
+        "npm run node",
+        "node",
+        "node -i"
+      ],
+      "answerIndex": 2,
+      "explanation": "Typing `node` alone with no file argument drops you into the Read-Eval-Print Loop."
+    }
+  ],
+  "javascript-level-1-02-variables-data-types-short": [
+    {
+      "question": "Why should you prefer `===` over `==` when comparing values in JavaScript?",
+      "options": [
+        "Because `===` is required when comparing strings",
+        "Because `==` performs type coercion, which is a frequent source of bugs",
+        "Because `===` runs noticeably faster",
+        "Because `==` only works with numbers"
+      ],
+      "answerIndex": 1,
+      "explanation": "Loose equality (`==`) coerces types before comparing, while `===` checks type too, avoiding surprising results."
+    },
+    {
+      "question": "Given `const nothing = null; console.log(typeof nothing);`, what gets printed?",
+      "options": [
+        "\"undefined\"",
+        "\"null\"",
+        "\"object\"",
+        "\"boolean\""
+      ],
+      "answerIndex": 2,
+      "explanation": "`typeof null` returns \"object\" \u2014 a well-known long-standing quirk of JavaScript."
+    },
+    {
+      "question": "Which keyword declares a block-scoped variable that cannot be reassigned?",
+      "options": [
+        "let",
+        "const",
+        "var",
+        "function"
+      ],
+      "answerIndex": 1,
+      "explanation": "`const` creates a block-scoped binding, and reassigning it throws a TypeError."
+    }
+  ],
+  "javascript-level-1-03-control-flow-short": [
+    {
+      "question": "Why does the do...while loop in the lesson log \"runs at least once\" even though its condition (n < 0) is false?",
+      "options": [
+        "Because do...while always executes its body once before checking the condition",
+        "Because n is reset to 0 automatically",
+        "Because the condition is secretly evaluated as true",
+        "Because while loops never check their condition"
+      ],
+      "answerIndex": 0,
+      "explanation": "Unlike a plain while loop, do...while runs the body first and checks the condition afterward."
+    },
+    {
+      "question": "Given the `describeDay` switch statement where \"Sat\" and \"Sun\" share a case, what does `describeDay(\"Sat\")` return?",
+      "options": [
+        "\"weekend\"",
+        "\"unknown\"",
+        "\"weekday\"",
+        "\"Sat\""
+      ],
+      "answerIndex": 0,
+      "explanation": "\"Sat\" falls through to the same case as \"Sun\", which returns \"weekend\"."
+    },
+    {
+      "question": "Which keyword immediately exits a loop, as used to stop at the first multiple of 7?",
+      "options": [
+        "return",
+        "continue",
+        "break",
+        "exit"
+      ],
+      "answerIndex": 2,
+      "explanation": "`break` stops the loop entirely once the condition is met."
+    }
+  ],
+  "javascript-level-1-04-functions-scope-short": [
+    {
+      "question": "Why does `console.log(hoisted())` work even though it's called before the function appears in the file?",
+      "options": [
+        "Because var variables keep their assigned value when hoisted",
+        "Because hoisted() is defined as an arrow function",
+        "Because function declarations are hoisted with their entire body",
+        "Because JavaScript files execute from bottom to top"
+      ],
+      "answerIndex": 2,
+      "explanation": "Function declarations are fully hoisted, so they can be called before their line in the source."
+    },
+    {
+      "question": "Given nested functions each declaring their own `let x`, what does `inner()` log when called from within `outer()`?",
+      "options": [
+        "\"local\"",
+        "\"global\"",
+        "\"enclosing\"",
+        "undefined"
+      ],
+      "answerIndex": 0,
+      "explanation": "`inner()` has its own `x` set to \"local\", which shadows the enclosing and global variables."
+    },
+    {
+      "question": "What syntax gathers extra function arguments into a real array, as in `function total(...numbers)`?",
+      "options": [
+        "Object destructuring",
+        "Rest parameters",
+        "Template literals",
+        "The arguments keyword"
+      ],
+      "answerIndex": 1,
+      "explanation": "Rest parameters use `...` in the parameter list to collect remaining arguments into an array."
+    }
+  ],
+  "javascript-level-1-05-arrays-objects-short": [
+    {
+      "question": "Why don't `map`, `filter`, and `reduce` mutate the original array?",
+      "options": [
+        "Because they return new arrays or values instead of modifying the original",
+        "Because JavaScript arrays are immutable by default",
+        "Because they throw an error if the array is changed",
+        "Because they only work on copies made with the spread operator"
+      ],
+      "answerIndex": 0,
+      "explanation": "These methods are designed to produce new results, which is why they're preferred over manual mutating loops."
+    },
+    {
+      "question": "Given `const nested = { profile: { social: null } }; console.log(nested.profile?.social?.twitter);`, what is logged?",
+      "options": [
+        "TypeError",
+        "\"none\"",
+        "null",
+        "undefined"
+      ],
+      "answerIndex": 3,
+      "explanation": "Optional chaining short-circuits to undefined instead of throwing when a nested property doesn't exist."
+    },
+    {
+      "question": "Which data structure is best for storing unique values with fast membership tests?",
+      "options": [
+        "Set",
+        "Map",
+        "Object",
+        "Array"
+      ],
+      "answerIndex": 0,
+      "explanation": "The lesson's comparison table recommends a Set for unique values and fast membership checks."
+    }
+  ],
+  "javascript-level-1-longform": [
+    {
+      "question": "Why is `var` considered legacy and best avoided in new JavaScript code?",
+      "options": [
+        "Because it's function-scoped rather than block-scoped, which can cause bugs",
+        "Because it can't be reassigned",
+        "Because it can't hold numeric values",
+        "Because it only works inside the Node REPL"
+      ],
+      "answerIndex": 0,
+      "explanation": "var ignores block boundaries and is function-scoped, which is a common source of bugs compared to let/const."
+    },
+    {
+      "question": "Given `function safeParseInt(value) { const parsed = Number(value); if (Number.isNaN(parsed)) { console.log(...); return null; } return parsed; }`, what happens when calling `safeParseInt(\"abc\")`?",
+      "options": [
+        "It throws a TypeError",
+        "It logs 42 and returns 42",
+        "It returns \"abc\" unchanged",
+        "It logs that \"abc\" is not a valid number and returns null"
+      ],
+      "answerIndex": 3,
+      "explanation": "Since Number(\"abc\") is NaN, the function logs a message and returns null instead of a number."
+    },
+    {
+      "question": "Which keyword causes a loop to skip the rest of the current iteration and move to the next one?",
+      "options": [
+        "break",
+        "continue",
+        "return",
+        "skip"
+      ],
+      "answerIndex": 1,
+      "explanation": "continue skips the remaining code in the current loop iteration, as shown when skipping odd numbers."
+    }
+  ],
+  "shell-level-1-01-setup-short": [
+    {
+      "question": "Why does plain `hello.sh` (without `./`) fail to run even after `chmod +x hello.sh`?",
+      "options": [
+        "The current directory isn't normally on your PATH",
+        "The file is missing a shebang line",
+        "Only root can execute any script",
+        "chmod +x only applies to directories, not files"
+      ],
+      "answerIndex": 0,
+      "explanation": "Bash only looks for bare commands on PATH, and the current directory isn't on it by default, so you need `./hello.sh` to point at it explicitly."
+    },
+    {
+      "question": "Given `chmod +x hello.sh` then `ls -l hello.sh` shows `-rwxr-xr-x`, what do the three 'x' characters mean?",
+      "options": [
+        "The file has been run exactly three times",
+        "The file is executable only by root",
+        "The file is hidden from normal listings",
+        "Owner, group, and other can all execute the file"
+      ],
+      "answerIndex": 3,
+      "explanation": "Each 'x' in the permission string grants execute access to owner, group, and other respectively."
+    },
+    {
+      "question": "What is the special first line `#!/usr/bin/env bash` in a script called?",
+      "options": [
+        "The header comment",
+        "The preamble",
+        "The shebang",
+        "The bash directive"
+      ],
+      "answerIndex": 2,
+      "explanation": "This line is called the shebang, and it tells the OS which interpreter to use when the script is run directly."
+    }
+  ],
+  "shell-level-1-02-variables-data-types-short": [
+    {
+      "question": "Why does writing `name = \"Ada\"` (with spaces around `=`) cause a syntax error in Bash?",
+      "options": [
+        "Variable assignment requires the `local` keyword",
+        "Bash parses it as running a command named `name` with arguments `=` and `Ada\"`",
+        "Spaces are reserved for defining arrays",
+        "Bash requires all variable names to be uppercase"
+      ],
+      "answerIndex": 1,
+      "explanation": "Bash treats the spaces as argument separators, so it tries to run `name` as a command instead of assigning a variable."
+    },
+    {
+      "question": "For `food=\"fried rice\"`, what is the risk of writing `echo $food` instead of `echo \"$food\"`?",
+      "options": [
+        "Bash may word-split the value into multiple separate arguments",
+        "It permanently deletes the variable",
+        "It prints the literal text \"$food\"",
+        "It throws a syntax error immediately"
+      ],
+      "answerIndex": 0,
+      "explanation": "Without quotes, Bash word-splits the value on spaces before passing it along, so \"fried rice\" can become two separate words."
+    },
+    {
+      "question": "Inside `$(( a % b ))`, what does the `%` operator compute?",
+      "options": [
+        "A percentage of a relative to b",
+        "The remainder of a divided by b",
+        "a raised to the power of b",
+        "The average of a and b"
+      ],
+      "answerIndex": 1,
+      "explanation": "In Bash arithmetic expansion, `%` is the modulo operator, returning the remainder of integer division."
+    }
+  ],
+  "shell-level-1-03-control-flow-short": [
+    {
+      "question": "Why is `[[ ]]` generally preferred over `[ ]` in Bash scripts?",
+      "options": [
+        "It avoids unquoted word-splitting issues and supports pattern/regex matching",
+        "It is required for numeric arithmetic comparisons",
+        "It is portable to plain POSIX `sh`, unlike `[ ]`",
+        "It always executes faster than any other test method"
+      ],
+      "answerIndex": 0,
+      "explanation": "`[[ ]]` is a bash extension that safely handles unquoted variables and adds pattern and regex matching that `[ ]` lacks."
+    },
+    {
+      "question": "What does this print?\ncount=5\nif (( count % 2 == 0 )); then\n    echo \"even\"\nelse\n    echo \"odd\"\nfi",
+      "options": [
+        "5",
+        "odd",
+        "It prints an error",
+        "even"
+      ],
+      "answerIndex": 1,
+      "explanation": "5 % 2 equals 1, which is not 0, so the else branch runs and prints \"odd\"."
+    },
+    {
+      "question": "What symbol must terminate each branch inside a `case` statement in Bash?",
+      "options": [
+        "break",
+        "done",
+        "esac",
+        ";;"
+      ],
+      "answerIndex": 3,
+      "explanation": "Each case branch ends with `;;`, while `esac` closes the entire case statement."
+    }
+  ],
+  "shell-level-1-04-loops-short": [
+    {
+      "question": "Why does the idiomatic file-reading pattern `while IFS= read -r line; do ... done < file` set `IFS=`?",
+      "options": [
+        "To split each line on commas automatically",
+        "To enable regular expression matching on the line",
+        "To prevent leading and trailing whitespace from being stripped from each line",
+        "To make the loop execute noticeably faster"
+      ],
+      "answerIndex": 2,
+      "explanation": "Setting IFS to empty stops Bash from trimming whitespace, so each line is read exactly as it appears in the file."
+    },
+    {
+      "question": "What does this loop print?\nfor i in {1..10}; do\n    if (( i == 5 )); then\n        break\n    fi\n    echo \"$i\"\ndone",
+      "options": [
+        "1 2 3 4 5",
+        "1 3 5 7 9",
+        "Just 5",
+        "1 2 3 4"
+      ],
+      "answerIndex": 3,
+      "explanation": "The loop breaks entirely as soon as i reaches 5, so only 1 through 4 get printed."
+    },
+    {
+      "question": "Which keyword skips the rest of the current loop iteration and moves on to the next one?",
+      "options": [
+        "continue",
+        "break",
+        "skip",
+        "next"
+      ],
+      "answerIndex": 0,
+      "explanation": "`continue` skips whatever code remains in the current iteration and jumps straight to the next one."
+    }
+  ],
+  "shell-level-1-05-functions-arguments-short": [
+    {
+      "question": "Why should you use `local` for variables assigned inside a Bash function?",
+      "options": [
+        "It is required syntax for every variable in a function",
+        "Without it, variables assigned inside a function are global by default, risking bugs",
+        "It makes the function execute faster",
+        "It automatically makes the variable readonly"
+      ],
+      "answerIndex": 1,
+      "explanation": "Bash function variables leak into the global scope unless declared with `local`, which can silently overwrite outer variables."
+    },
+    {
+      "question": "What does the final line print?\ncounter=0\nbump() {\n    local counter=100\n    ((counter++))\n    echo \"inside: $counter\"\n}\nbump\necho \"outside: $counter\"",
+      "options": [
+        "outside: 0",
+        "outside: 101",
+        "outside: 1",
+        "outside: 100"
+      ],
+      "answerIndex": 0,
+      "explanation": "The `local counter=100` inside bump() shadows the outer counter, so the global counter stays untouched at 0."
+    },
+    {
+      "question": "Which form correctly forwards all positional arguments while preserving arguments that contain spaces as separate words?",
+      "options": [
+        "$@ (unquoted)",
+        "\"$@\"",
+        "\"$*\"",
+        "$* (unquoted)"
+      ],
+      "answerIndex": 1,
+      "explanation": "Quoted \"$@\" expands each positional parameter as its own separately-quoted word, unlike \"$*\" which joins them into one string."
+    }
+  ],
+  "shell-level-1-fundamentals-longform": [
+    {
+      "question": "What must be true about the shebang line for it to correctly tell the OS which interpreter to use?",
+      "options": [
+        "It must include the `set -e` option",
+        "It must be the very first line of the file, with no blank line before it",
+        "It must appear right before the `main` function",
+        "It must be written as a regular comment anywhere in the script"
+      ],
+      "answerIndex": 1,
+      "explanation": "The shebang only works if it's the literal first line of the file; any blank line before it breaks the mechanism."
+    },
+    {
+      "question": "What happens when you run this?\nreadonly PI=3.14159\nPI=3",
+      "options": [
+        "Bash starts a new subshell",
+        "PI is successfully changed to 3",
+        "Bash prints an error: PI: readonly variable",
+        "PI silently stays 3.14159 with no error"
+      ],
+      "answerIndex": 2,
+      "explanation": "Once a variable is declared readonly, any later attempt to reassign it produces an error instead of changing its value."
+    },
+    {
+      "question": "Why can't `return` be used to hand back a computed string value from a Bash function?",
+      "options": [
+        "return always resets the value to 0 regardless of what's given",
+        "return only sets a numeric exit status (0-255), not arbitrary data",
+        "return is not supported inside functions at all",
+        "return can only be used in the top-level script, never in a function"
+      ],
+      "answerIndex": 1,
+      "explanation": "To hand back an actual value like a string or number, you print it with echo/printf and capture it with command substitution instead of return."
+    }
+  ],
+  "sql-level-1-01-setup-first-queries-short": [
+    {
+      "question": "Why doesn't running `sqlite3 school.db` on a brand-new filename create the file right away?",
+      "options": [
+        "The file is created only after you run .quit",
+        "SQLite only writes the file to disk the moment you write data to it",
+        "You must explicitly run CREATE DATABASE before opening it",
+        "SQLite requires you to run .tables first"
+      ],
+      "answerIndex": 1,
+      "explanation": "Opening the file alone doesn't touch the disk \u2014 SQLite creates it the moment data is actually written."
+    },
+    {
+      "question": "What do `.mode column` and `.headers on` do when run inside the sqlite3 shell?",
+      "options": [
+        "They pretty-print query results in aligned columns with column names shown above them",
+        "They create a new table to store query history",
+        "They enable case-insensitive text comparisons",
+        "They turn on logging of every SQL statement to a file"
+      ],
+      "answerIndex": 0,
+      "explanation": "Column mode aligns the output and headers-on labels each column, making results far easier to read than the raw default."
+    },
+    {
+      "question": "In the sqlite3 shell, what actually marks the end of a SQL statement?",
+      "options": [
+        "A newline",
+        "A closing parenthesis",
+        "The word END",
+        "A semicolon"
+      ],
+      "answerIndex": 3,
+      "explanation": "SQL statements can span multiple lines; it's the semicolon, not the newline, that ends them."
+    }
+  ],
+  "sql-level-1-02-select-basics-data-types-short": [
+    {
+      "question": "Why is listing exact column names preferred over `SELECT *` in real application code?",
+      "options": [
+        "It's explicit about what's needed and won't silently change behavior if a column is added later",
+        "It always executes faster than SELECT *",
+        "It automatically removes duplicate rows",
+        "It enforces strict data types on the columns"
+      ],
+      "answerIndex": 0,
+      "explanation": "Naming columns explicitly protects application code from unexpectedly picking up new columns added to the table later."
+    },
+    {
+      "question": "What would `SELECT title || ' by ' || author AS citation FROM books;` return for the row with title 'Dune' and author 'Frank Herbert'?",
+      "options": [
+        "Dune, Frank Herbert",
+        "Frank Herbert by Dune",
+        "DuneFrank Herbert",
+        "Dune by Frank Herbert"
+      ],
+      "answerIndex": 3,
+      "explanation": "The `||` operator concatenates strings, so the literal text ' by ' is inserted between title and author."
+    },
+    {
+      "question": "Which keyword explicitly converts a value to a different type, as in `CAST('42' AS INTEGER)`?",
+      "options": [
+        "CONVERT",
+        "AFFINITY",
+        "CAST",
+        "TYPEOF"
+      ],
+      "answerIndex": 2,
+      "explanation": "CAST is the portable, explicit way to convert types rather than relying on SQLite's implicit type coercion."
+    }
+  ],
+  "sql-level-1-03-filtering-where-short": [
+    {
+      "question": "Why does `WHERE genre = NULL` fail to match rows even when a genre column is actually NULL?",
+      "options": [
+        "The comparison causes a SQL syntax error",
+        "NULL represents 'unknown,' so nothing can be known to equal an unknown value",
+        "= NULL only works in Postgres, not SQLite",
+        "NULL is stored internally as the empty string"
+      ],
+      "answerIndex": 1,
+      "explanation": "You must use IS NULL because equality comparisons against an unknown value never evaluate to true."
+    },
+    {
+      "question": "What does `WHERE author LIKE '_ea%'` match?",
+      "options": [
+        "Authors whose name starts with 'ea'",
+        "Authors whose name contains 'ea' anywhere",
+        "Authors whose name ends in 'ea'",
+        "Authors whose 2nd character is 'e' and 3rd character is 'a'"
+      ],
+      "answerIndex": 3,
+      "explanation": "The underscore matches exactly one character, so '_ea%' requires any first letter, then 'e', then 'a', then anything."
+    },
+    {
+      "question": "Which clause tests whether a value falls inclusively within a range, equivalent to combining >= and <= with AND?",
+      "options": [
+        "IN",
+        "HAVING",
+        "LIKE",
+        "BETWEEN"
+      ],
+      "answerIndex": 3,
+      "explanation": "BETWEEN x AND y includes both endpoints, matching the same rows as `>= x AND <= y`."
+    }
+  ],
+  "sql-level-1-04-sorting-limiting-short": [
+    {
+      "question": "Why should LIMIT almost always be paired with an ORDER BY clause?",
+      "options": [
+        "LIMIT only works on tables that are already sorted on disk",
+        "Without ORDER BY, the specific rows LIMIT returns are arbitrary",
+        "ORDER BY must be written before LIMIT is legal SQL",
+        "LIMIT throws an error if ORDER BY is missing"
+      ],
+      "answerIndex": 1,
+      "explanation": "LIMIT just caps the row count from whatever order the rows arrive in, so without ORDER BY there's no guarantee which rows you get."
+    },
+    {
+      "question": "What does `SELECT title, price FROM books ORDER BY price DESC LIMIT 3 OFFSET 3;` return?",
+      "options": [
+        "The 3 highest-priced books",
+        "The 3 lowest-priced books",
+        "Rows 3 through 6 in alphabetical order by title",
+        "It skips the 3 highest-priced books, then returns the next 3"
+      ],
+      "answerIndex": 3,
+      "explanation": "OFFSET 3 skips the first 3 rows of the descending price order before LIMIT 3 takes the next batch."
+    },
+    {
+      "question": "In the fixed clause order of a query, which clause must appear immediately before ORDER BY?",
+      "options": [
+        "LIMIT",
+        "HAVING",
+        "WHERE",
+        "GROUP BY"
+      ],
+      "answerIndex": 2,
+      "explanation": "The query is written as SELECT ... FROM ... WHERE ... ORDER BY ... LIMIT ..., so WHERE precedes ORDER BY."
+    }
+  ],
+  "sql-level-1-05-aggregates-group-by-short": [
+    {
+      "question": "Why is `SELECT genre, COUNT(*) FROM books WHERE COUNT(*) > 2 GROUP BY genre;` invalid?",
+      "options": [
+        "GROUP BY must come before WHERE in the statement",
+        "Aggregate results like COUNT(*) don't exist yet at the point WHERE is evaluated",
+        "COUNT(*) is not a real SQL function",
+        "WHERE only accepts string comparisons"
+      ],
+      "answerIndex": 1,
+      "explanation": "WHERE filters rows before grouping happens, so it can't see aggregate values that are only computed afterward \u2014 that's what HAVING is for."
+    },
+    {
+      "question": "If some rows in `books` have a NULL genre, what's the difference between COUNT(*) and COUNT(genre) in `SELECT COUNT(*) AS all_rows, COUNT(genre) AS rows_with_genre FROM books;`?",
+      "options": [
+        "They always return the same number",
+        "COUNT(genre) counts only distinct genre values",
+        "COUNT(*) counts every row including NULL genres, while COUNT(genre) skips rows where genre is NULL",
+        "COUNT(*) throws an error when any column contains NULL"
+      ],
+      "answerIndex": 2,
+      "explanation": "COUNT(*) counts rows regardless of NULLs, but COUNT(column) only counts rows where that column is not NULL."
+    },
+    {
+      "question": "Which clause filters groups after aggregation, rather than filtering individual rows beforehand?",
+      "options": [
+        "WHERE",
+        "GROUP BY",
+        "ORDER BY",
+        "HAVING"
+      ],
+      "answerIndex": 3,
+      "explanation": "HAVING runs after GROUP BY has produced aggregate values, letting you filter on things like COUNT(*) or AVG(price)."
+    }
+  ],
+  "sql-level-1-fundamentals-longform": [
+    {
+      "question": "Because a SQLite database is just a plain file, what happens to your data after you `.quit` and then reopen that same file?",
+      "options": [
+        "You must re-run every CREATE TABLE statement again",
+        "The data is lost unless you explicitly saved it first",
+        "Only the table schema persists, not the rows",
+        "All the data persists and is still there"
+      ],
+      "answerIndex": 3,
+      "explanation": "Closing the shell doesn't erase the file \u2014 reopening it shows everything you previously created and inserted."
+    },
+    {
+      "question": "A `demo` table has column `e` declared as NUMERIC but a string `'still works'` is inserted into it. What does `SELECT typeof(e) FROM demo;` report?",
+      "options": [
+        "text",
+        "real",
+        "integer",
+        "numeric"
+      ],
+      "answerIndex": 0,
+      "explanation": "SQLite uses flexible type affinity rather than strict column types, so it stores and reports the string as text even though the column is NUMERIC."
+    },
+    {
+      "question": "Which clause splits rows into buckets so that aggregate functions like COUNT() or AVG() are computed separately for each bucket?",
+      "options": [
+        "HAVING",
+        "WHERE",
+        "GROUP BY",
+        "ORDER BY"
+      ],
+      "answerIndex": 2,
+      "explanation": "GROUP BY buckets rows by column value, and each aggregate function then runs once per bucket instead of once for the whole table."
+    }
+  ],
+  "python-concurrency-and-performance-longform": [
+    {
+      "question": "Why can `multiprocessing` achieve true parallel speedup for CPU-bound code while `threading` cannot?",
+      "options": [
+        "multiprocessing disables the GIL for the current thread",
+        "Threads cannot execute CPU-bound functions at all",
+        "Each process has its own Python interpreter and GIL, so processes can run on separate cores",
+        "Threads are limited to a single CPU core by the operating system"
+      ],
+      "answerIndex": 2,
+      "explanation": "Each process gets its own interpreter and GIL, so multiple processes can truly run in parallel across CPU cores, unlike threads which share one GIL."
+    },
+    {
+      "question": "Given `await asyncio.gather(task(\"A\", 1), task(\"B\", 1), task(\"C\", 1))` where each task awaits a 1-second sleep, about how long does `main()` take?",
+      "options": [
+        "~0 seconds, because gather skips the sleeps",
+        "~3 seconds, because gather runs tasks one at a time",
+        "~2 seconds, because only two tasks overlap",
+        "~1 second, because the tasks run concurrently"
+      ],
+      "answerIndex": 3,
+      "explanation": "asyncio.gather runs the coroutines concurrently on the event loop, so with 1s sleeps each, the total is about 1s, not 3s."
+    },
+    {
+      "question": "Which built-in module is best suited for precisely timing how long a small code snippet takes to run?",
+      "options": [
+        "cProfile",
+        "line_profiler",
+        "memory_profiler",
+        "timeit"
+      ],
+      "answerIndex": 3,
+      "explanation": "timeit runs a snippet many times and reports the average, avoiding the noise of a single time.time() measurement."
+    }
+  ],
+  "python-control-flow-for-else-short": [
+    {
+      "question": "What is the purpose of the `else` clause attached to a `for` loop in Python?",
+      "options": [
+        "It runs only if the loop completes without hitting a `break`",
+        "It runs after every iteration of the loop",
+        "It replaces the loop body if the sequence is empty",
+        "It runs only if the loop body raises an exception"
+      ],
+      "answerIndex": 0,
+      "explanation": "The for...else clause executes only when the loop finishes naturally, without being interrupted by break."
+    },
+    {
+      "question": "In `for n in range(2, 20): if n % 7 == 0: print(f\"first multiple of 7: {n}\"); break` (with an else printing 'no multiple of 7 found'), what gets printed?",
+      "options": [
+        "first multiple of 7: 7",
+        "no multiple of 7 found",
+        "first multiple of 7: 21",
+        "first multiple of 7: 14"
+      ],
+      "answerIndex": 0,
+      "explanation": "7 is the first multiple of 7 in range(2, 20), so the loop prints it and breaks before the else clause can run."
+    },
+    {
+      "question": "Which keyword, if executed inside the loop body, prevents a for loop's `else` clause from running?",
+      "options": [
+        "return None",
+        "continue",
+        "break",
+        "pass"
+      ],
+      "answerIndex": 2,
+      "explanation": "break exits the loop early, which causes the attached else block to be skipped entirely."
+    }
+  ],
+  "python-is-vs-equals-short": [
+    {
+      "question": "Why does `5 is 5.0` evaluate to False even though `5 == 5.0` evaluates to True?",
+      "options": [
+        "`is` only works on strings, not numbers",
+        "`5.0` is not a valid Python value",
+        "`is` and `==` are just different syntax for the same comparison",
+        "`is` compares object identity/type, while `==` compares value equality"
+      ],
+      "answerIndex": 3,
+      "explanation": "== checks whether two values are equal, while is checks whether they are the exact same object of the same type \u2014 an int and a float are never the same object."
+    },
+    {
+      "question": "What do these two lines print?\nprint(5 == 5.0)\nprint(5 is 5.0)",
+      "options": [
+        "False, then False",
+        "True, then True",
+        "True, then False",
+        "False, then True"
+      ],
+      "answerIndex": 2,
+      "explanation": "5 == 5.0 is True because the values are equal, but 5 is 5.0 is False because an int and a float are different objects/types."
+    },
+    {
+      "question": "Which operator checks whether two names refer to the exact same object, rather than comparing values?",
+      "options": [
+        "is",
+        "==",
+        "not",
+        "in"
+      ],
+      "answerIndex": 0,
+      "explanation": "The is operator tests object identity, unlike == which tests value equality."
+    }
+  ],
+  "python-legb-scope-short": [
+    {
+      "question": "What does Python's LEGB rule describe?",
+      "options": [
+        "The order Python searches scopes when resolving a name: Local, Enclosing, Global, Built-in",
+        "The four types of Python data structures",
+        "The order functions are called in a recursive program",
+        "The order exceptions are checked in a try block"
+      ],
+      "answerIndex": 0,
+      "explanation": "LEGB stands for Local, Enclosing, Global, Built-in \u2014 the sequence Python searches through to resolve a variable name."
+    },
+    {
+      "question": "Given nested functions where `inner()` sets x = \"local\" and prints it, `outer()` sets x = \"enclosing\" and prints it after calling inner(), and the module sets x = \"global\" and prints it after calling outer(), in what order are the three values printed?",
+      "options": [
+        "local, global, enclosing",
+        "global, enclosing, local",
+        "local, enclosing, global",
+        "global, local, enclosing"
+      ],
+      "answerIndex": 2,
+      "explanation": "inner() prints its own local x first, then outer() prints its enclosing x, and finally the module-level global x is printed last."
+    },
+    {
+      "question": "Which keyword lets a function reassign a variable defined in the module's global scope?",
+      "options": [
+        "static",
+        "nonlocal",
+        "local",
+        "global"
+      ],
+      "answerIndex": 3,
+      "explanation": "The global keyword tells Python that an assignment inside the function should modify the global variable instead of creating a new local one."
+    }
+  ],
+  "python-level-1-07-file-io-short": [
+    {
+      "question": "Why is it recommended to always open files using a `with` statement?",
+      "options": [
+        "It automatically converts the file to binary mode",
+        "It guarantees the file is closed even if an error occurs inside the block",
+        "It prevents the file from being modified by other programs",
+        "It makes the file read-only"
+      ],
+      "answerIndex": 1,
+      "explanation": "The with statement ensures the file's close() is called automatically, even if an exception is raised while working with it."
+    },
+    {
+      "question": "According to the file modes cheat sheet, what happens if you open an existing file with mode `\"w\"`?",
+      "options": [
+        "The file is overwritten, erasing its existing content",
+        "Python raises an error because the file already exists",
+        "New content is appended to the end of the file",
+        "The file is opened for reading only"
+      ],
+      "answerIndex": 0,
+      "explanation": "\"w\" mode creates the file if needed but overwrites any existing content, unlike \"a\" which appends."
+    },
+    {
+      "question": "Which standard library module is preferred over plain string paths for working with files and directories?",
+      "options": [
+        "glob",
+        "pathlib",
+        "os.system",
+        "shutil"
+      ],
+      "answerIndex": 1,
+      "explanation": "pathlib provides an object-oriented Path class (e.g. Path(\"data\") / \"notes.txt\") that's preferred over manipulating path strings directly."
+    }
+  ],
+  "python-level-1-08-error-handling-short": [
+    {
+      "question": "In a try/except/else/finally block, when does the `else` clause run?",
+      "options": [
+        "Only if the finally block also runs",
+        "Only if an exception is caught",
+        "Only if the try block completes without raising an exception",
+        "Every time, regardless of whether an exception occurred"
+      ],
+      "answerIndex": 2,
+      "explanation": "The else clause executes only when the try block succeeds with no exception raised."
+    },
+    {
+      "question": "What does this print for `number = int(\"42\")`?\ntry: number = int(\"42\")\nexcept ValueError: print(\"conversion failed\")\nelse: print(f\"conversion succeeded: {number}\")\nfinally: print(\"this always runs\")",
+      "options": [
+        "conversion failed, then this always runs",
+        "conversion succeeded: 42 only",
+        "conversion succeeded: 42, then this always runs",
+        "this always runs, then conversion succeeded: 42"
+      ],
+      "answerIndex": 2,
+      "explanation": "Since int(\"42\") doesn't raise, the else block runs first printing the success message, then finally always runs afterward."
+    },
+    {
+      "question": "Which built-in exception does `int(\"abc\")` raise?",
+      "options": [
+        "TypeError",
+        "IndexError",
+        "ValueError",
+        "KeyError"
+      ],
+      "answerIndex": 2,
+      "explanation": "ValueError is raised when a value has the right type but an inappropriate value, such as a non-numeric string passed to int()."
+    }
+  ],
+  "python-level-1-09-modules-packages-short": [
+    {
+      "question": "Why should every Python project use its own virtual environment?",
+      "options": [
+        "To make the project's code run faster",
+        "So each project's dependencies stay isolated and don't clash with other projects",
+        "Because pip requires a virtual environment to install any package",
+        "Because Python cannot run without a virtual environment"
+      ],
+      "answerIndex": 1,
+      "explanation": "A virtual environment isolates a project's installed packages, preventing version conflicts between different projects' dependencies."
+    },
+    {
+      "question": "What does running `pip freeze > requirements.txt` accomplish?",
+      "options": [
+        "It deletes unused packages from the virtual environment",
+        "It saves the exact versions of installed dependencies so the environment can be recreated elsewhere",
+        "It upgrades all installed packages to their latest versions",
+        "It installs every package listed in requirements.txt"
+      ],
+      "answerIndex": 1,
+      "explanation": "pip freeze lists installed packages with their exact versions, and redirecting it to requirements.txt lets you later run pip install -r requirements.txt to recreate the same environment."
+    },
+    {
+      "question": "Which file marks a folder as a Python package so it can be imported with dotted notation?",
+      "options": [
+        "__init__.py",
+        "setup.py",
+        "main.py",
+        "package.json"
+      ],
+      "answerIndex": 0,
+      "explanation": "__init__.py marks a directory as a package, even when left empty, enabling imports like `from myapp import shapes`."
+    }
+  ],
+  "python-level-1-10-project-todo-app-short": [
+    {
+      "question": "Why does load_tasks() catch json.JSONDecodeError and return an empty list instead?",
+      "options": [
+        "So a corrupted or empty tasks.json file doesn't crash the app on startup",
+        "Because JSON files can't store lists of dictionaries",
+        "Because save_tasks() always leaves the file in an invalid state",
+        "Because Python requires every exception to be caught before printing"
+      ],
+      "answerIndex": 0,
+      "explanation": "Catching the decode error lets the app fall back to an empty task list instead of crashing on a bad file."
+    },
+    {
+      "question": "In delete_task, what happens if you call delete_task(tasks, 99) but there are only 2 tasks?",
+      "options": [
+        "It prints \"No task with number 99\" because the IndexError is caught",
+        "It silently deletes the last task instead",
+        "It adds a new empty task at position 99",
+        "It raises an unhandled IndexError and crashes the program"
+      ],
+      "answerIndex": 0,
+      "explanation": "delete_task wraps tasks.pop(index - 1) in a try/except IndexError, printing a friendly message instead of crashing."
+    },
+    {
+      "question": "Which standard library module does storage.py use to persist tasks between runs?",
+      "options": [
+        "shelve",
+        "pickle",
+        "csv",
+        "json"
+      ],
+      "answerIndex": 3,
+      "explanation": "storage.py uses json.loads/json.dumps to read and write tasks.json."
+    }
+  ],
+  "python-level-2-01-oop-short": [
+    {
+      "question": "What is the purpose of dunder methods like __add__ and __eq__ on a class?",
+      "options": [
+        "They are required for every Python class to be instantiated",
+        "They convert instance attributes into class attributes",
+        "They let custom objects integrate with Python's built-in syntax such as + and ==",
+        "They speed up attribute access through caching"
+      ],
+      "answerIndex": 2,
+      "explanation": "Dunder methods hook your objects into built-in operators and functions like +, ==, len(), and print()."
+    },
+    {
+      "question": "Given v1 = Vector(1, 2) and v2 = Vector(3, 4), what does print(v1 + v2) output?",
+      "options": [
+        "Vector(1, 2)Vector(3, 4)",
+        "Vector(4, 6)",
+        "TypeError: unsupported operand",
+        "(4, 6)"
+      ],
+      "answerIndex": 1,
+      "explanation": "__add__ returns a new Vector(self.x + other.x, self.y + other.y), and __repr__ formats it as Vector(4, 6)."
+    },
+    {
+      "question": "Which dunder method is triggered when you call len(obj) on an instance?",
+      "options": [
+        "__iter__",
+        "__size__",
+        "__len__",
+        "__count__"
+      ],
+      "answerIndex": 2,
+      "explanation": "__len__ defines what len() returns for a custom object, like Vector returning int((x**2+y**2)**0.5)."
+    }
+  ],
+  "python-level-4-mastery-longform": [
+    {
+      "question": "Why is a plain Python module often the simplest way to implement a Singleton?",
+      "options": [
+        "Because a module is only ever imported once and cached in sys.modules",
+        "Because modules automatically call __new__ exactly one time",
+        "Because classes cannot share state across instances",
+        "Because Python modules compile to a single bytecode object"
+      ],
+      "answerIndex": 0,
+      "explanation": "A module is cached the first time it's imported, so every import sees the same shared state without needing a class at all."
+    },
+    {
+      "question": "In the SQL injection example, what happens if an attacker submits username = \"' OR '1'='1\" into an f-string query?",
+      "options": [
+        "The database raises a syntax error and blocks the query",
+        "The query returns every row in the users table",
+        "The ORM automatically escapes the input and blocks the injection",
+        "Only the attacker's own row is returned"
+      ],
+      "answerIndex": 1,
+      "explanation": "Building SQL with an f-string lets the injected condition '1'='1' make the WHERE clause always true, returning every row."
+    },
+    {
+      "question": "Which pytest fixture scope creates the fixture once per test file, shared across all tests in it?",
+      "options": [
+        "function",
+        "class",
+        "module",
+        "session"
+      ],
+      "answerIndex": 2,
+      "explanation": "A module-scoped fixture is created once per test file, useful for expensive setup that multiple tests in that file can safely share."
+    }
+  ],
+  "python-level2-pythonic-toolkit-longform": [
+    {
+      "question": "Why does a generator expression use less memory than the equivalent list comprehension?",
+      "options": [
+        "It produces values lazily, one at a time, instead of building the full sequence upfront",
+        "Python automatically compiles generator expressions to C code",
+        "It stores values as bytes instead of integers",
+        "It deletes each value from memory right after printing it"
+      ],
+      "answerIndex": 0,
+      "explanation": "A generator expression builds nothing until values are requested, unlike a list comprehension which builds the entire list immediately."
+    },
+    {
+      "question": "What value does reduce(lambda acc, n: acc * n, [1, 2, 3, 4, 5], 1) produce?",
+      "options": [
+        "15",
+        "120",
+        "1",
+        "5"
+      ],
+      "answerIndex": 1,
+      "explanation": "reduce multiplies the numbers together starting from the explicit start value 1, giving 1*1*2*3*4*5 = 120."
+    },
+    {
+      "question": "Which two dunder methods must a class define to be usable with a `with` statement?",
+      "options": [
+        "__open__ and __close__",
+        "__init__ and __del__",
+        "__enter__ and __exit__",
+        "__start__ and __stop__"
+      ],
+      "answerIndex": 2,
+      "explanation": "Any object with __enter__ and __exit__ can act as a context manager, and __exit__ can also decide whether to suppress an exception."
+    }
+  ],
+  "python-setup-main-guard-short": [
+    {
+      "question": "Why do Python scripts commonly use the `if __name__ == \"__main__\":` guard?",
+      "options": [
+        "So the interpreter can detect syntax errors before running",
+        "So the code inside only runs when the file is executed directly, not when it's imported",
+        "So function definitions are hidden from other files",
+        "So the script runs faster"
+      ],
+      "answerIndex": 1,
+      "explanation": "The guard lets a file be safely imported as a module elsewhere without automatically running its top-level script logic."
+    },
+    {
+      "question": "Given hello.py defines greet() and calls print(greet(\"world\")) inside the __main__ guard, what does `python3 hello.py` print?",
+      "options": [
+        "world",
+        "Nothing, because greet is never called",
+        "Hello, world!",
+        "__main__"
+      ],
+      "answerIndex": 2,
+      "explanation": "Running the file directly sets __name__ to \"__main__\", so the guarded print(greet(\"world\")) executes and outputs Hello, world!."
+    },
+    {
+      "question": "Which special variable does Python set to \"__main__\" only when a file is run directly?",
+      "options": [
+        "__module__",
+        "__name__",
+        "__main_module__",
+        "__file__"
+      ],
+      "answerIndex": 1,
+      "explanation": "Python sets __name__ to \"__main__\" for the directly executed file, and to the module's name when it's imported instead."
+    }
+  ],
+  "python-string-immutability-short": [
+    {
+      "question": "Why must you write s = s.upper() instead of just s.upper() to keep the change?",
+      "options": [
+        "Because Python discards return values from string methods otherwise",
+        "Because strings are immutable, so methods return a new string rather than modifying the original",
+        "Because s.upper() runs asynchronously",
+        "Because upper() is a static method that requires assignment"
+      ],
+      "answerIndex": 1,
+      "explanation": "Strings can't be modified in place, so every string method returns a brand-new string that must be reassigned to keep it."
+    },
+    {
+      "question": "After running s = \"hello\" then s.upper() without reassigning, what is the value of s?",
+      "options": [
+        "\"hello\"",
+        "None",
+        "\"HELLO\"",
+        "\"Hello\""
+      ],
+      "answerIndex": 0,
+      "explanation": "s.upper() returns a new string but doesn't change s in place, so s still holds the original \"hello\"."
+    },
+    {
+      "question": "Which string method removes leading and trailing whitespace, returning a new string?",
+      "options": [
+        "clean()",
+        "trim()",
+        "strip()",
+        "dedent()"
+      ],
+      "answerIndex": 2,
+      "explanation": "strip() returns a new string with leading and trailing whitespace removed, leaving the original string untouched."
+    }
+  ],
+  "python-tuples-dict-keys-short": [
+    {
+      "question": "Why can tuples be used as dictionary keys while lists cannot?",
+      "options": [
+        "Tuples store only numbers, which are always hashable",
+        "Dictionaries only accept keys that support indexing",
+        "Tuples are immutable and therefore hashable, while lists are mutable and unhashable",
+        "Lists are too large to hash efficiently"
+      ],
+      "answerIndex": 2,
+      "explanation": "Tuples are hashable when their contents are, which is what makes them usable as dict keys or set members, unlike mutable lists."
+    },
+    {
+      "question": "What does `locations = {(0, 0): \"origin\", (1, 1): \"corner\"}` demonstrate about tuples?",
+      "options": [
+        "Tuples must be converted to strings before use as keys",
+        "Tuples can be used directly as dictionary keys",
+        "Dictionaries can only have tuple keys, never strings",
+        "Tuples automatically unpack into separate keys"
+      ],
+      "answerIndex": 1,
+      "explanation": "Because tuples are hashable, they can be used directly as dictionary keys, as shown by the (0, 0) and (1, 1) keys."
+    },
+    {
+      "question": "Per the 'choosing the right structure' guidance, which type should you use for ordered data that allows duplicates and will change?",
+      "options": [
+        "dict",
+        "set",
+        "list",
+        "tuple"
+      ],
+      "answerIndex": 2,
+      "explanation": "A list is ordered, allows duplicates, and is mutable, making it the right choice when the data needs to change."
+    }
+  ]
+}

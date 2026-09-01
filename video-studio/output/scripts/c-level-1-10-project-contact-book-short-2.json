@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "Why a tiny C project still needs a header file",
+  "description": "This C contact book is split across three files, and the header is the part beginners find confusing. contacts.h holds only the Contact struct and the function prototypes -- no logic. contacts.c holds the bodies. That's the interface/implementation split that every large C codebase is built on.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/\n\n#Shorts",
+  "tags": ["c", "c programming", "header files", "multi-file c", "contacts.h", "interface implementation", "programming tutorial", "learn c"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"],
+  "beats": [
+    {
+      "narration": "One contact book, three files. Feels like overkill, until you see what each file is actually for. The header is the part that trips people up.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Three files?",
+        "subheading": "one small project"
+      }
+    },
+    {
+      "narration": "contacts dot h holds zero logic. Just the Contact struct and five function prototypes. It's a promise: here's what exists and how to call it.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// contacts.h\n#ifndef CONTACTS_H\n#define CONTACTS_H\n\n#define MAX_CONTACTS 100\n#define NAME_LEN 50\n#define PHONE_LEN 20\n\ntypedef struct {\n    char name[NAME_LEN];\n    char phone[PHONE_LEN];\n} Contact;\n\nint load_contacts(Contact contacts[], int max);\nvoid save_contacts(const Contact contacts[], int count);\nvoid add_contact(Contact contacts[], int *count, const char *name, const char *phone);\nvoid list_contacts(const Contact contacts[], int count);\nint find_contact(const Contact contacts[], int count, const char *name);\n\n#endif"
+      }
+    },
+    {
+      "narration": "contacts dot c is where the bodies live. Same signature as the header, now with the real loop doing the work. Rewrite this and nothing else has to change.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// contacts.c\nint find_contact(const Contact contacts[], int count, const char *name) {\n    for (int i = 0; i < count; i++) {\n        if (strcmp(contacts[i].name, name) == 0) {\n            return i;   // found -- return its index\n        }\n    }\n    return -1;   // not found\n}"
+      }
+    },
+    {
+      "narration": "You hand both C files to gcc. main dot c only ever included the header, so it built against the promise, not the details.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "gcc -Wall -Wextra -o contacts main.c contacts.c\n./contacts",
+        "output": "1. Add  2. List  3. Search  4. Save & Quit\n> "
+      }
+    },
+    {
+      "narration": "That's the interface and implementation split. The header is the contract, the C file is how it's kept. Big C codebases are just this, repeated.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Header = contract",
+        "subheading": "c file = how"
+      }
+    },
+    {
+      "narration": "Build the whole contact book yourself with the link below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"
+      }
+    }
+  ]
+}

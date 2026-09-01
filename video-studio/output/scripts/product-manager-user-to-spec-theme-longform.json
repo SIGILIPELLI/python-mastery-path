@@ -1,0 +1,272 @@
+{
+  "type": "longform",
+  "language": "product-manager",
+  "title": "From User to Spec: How a PM Decides What to Build",
+  "description": "Four Product Manager Mastery Path Level 1 lessons, sequenced as one continuous arc: the craft of turning user understanding into a buildable, well-handed-off spec. We start with what a PM is actually accountable for — the what and the why, outcomes over output — then move into understanding customers through behavioral interviews, Jobs-to-be-Done, and personas that don't calcify. From there we write it down: user stories, Given/When/Then acceptance criteria, and the anatomy of a PRD, including why non-goals earn a section every time. We close on the handoff itself — progressive involvement instead of a document over the wall, running a design review against fixed questions, navigating tradeoffs out loud, and the anti-patterns that quietly erode a team's trust. This is deliberately the other half of the Level 1 material from 'A PM's Full Workflow: From Discovery to Roadmap' — no prioritization, metrics, or roadmapping retread here, just user to spec.\n\nLessons covered in this video:\n- 01 · What Is Product Management? — https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n- 02 · Understanding Customers & Users — https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n- 05 · Writing Requirements — https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n- 06 · Working with Design & Engineering — https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/",
+  "tags": ["product management", "product manager", "user stories", "PRD", "acceptance criteria", "jobs to be done", "customer interviews", "product requirements document", "design review", "working with engineering"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"
+  ],
+  "beats": [
+    {
+      "narration": "Most product management advice tells you to talk to your users, and then separately tells you to write a spec. This video connects those two halves — how a product manager turns what they learn from users into something a team can actually build and ship.",
+      "display": {
+        "kind": "title_card",
+        "heading": "From User to Spec",
+        "subheading": "How a PM decides what to build and hands it off — Product Manager Mastery Path, Level 1"
+      }
+    },
+    {
+      "narration": "We'll follow four Level 1 lessons as one arc: what a PM actually owns, how to understand customers, how to write requirements, and how to hand that work to design and engineering. This is the craft of turning user understanding into a buildable, well-handed-off spec.",
+      "display": {
+        "kind": "text",
+        "heading": "The arc of this video",
+        "subheading": "Role, then user, then written spec, then the handoff"
+      }
+    },
+    {
+      "narration": "Start with the role itself. If you're not clear on what a PM is accountable for, every decision downstream — what to research, what to spec, what to cut — gets fuzzy.",
+      "display": {
+        "kind": "title_card",
+        "heading": "01 · What Is Product Management?",
+        "subheading": "The PM owns the what and the why, so engineering can own the how"
+      }
+    },
+    {
+      "narration": "Product management is the discipline of deciding what gets built and why, so engineering can focus on how. A PM doesn't write the code or draw the pixels, but they're accountable for the product's outcome in a way no one else on the team is.",
+      "display": {
+        "kind": "text",
+        "heading": "The PM owns the what and the why",
+        "subheading": "Not the code, not the pixels — but accountable for the outcome"
+      }
+    },
+    {
+      "narration": "Day to day, that's understanding the customer through interviews and usage data, turning vague pain into a specific, testable problem statement, setting priorities — including what the team won't do — writing requirements, aligning stakeholders, and making the tradeoff calls between speed, quality, and scope.",
+      "display": {
+        "kind": "text",
+        "heading": "The responsibilities that define the job",
+        "subheading": "Understand, define the problem, prioritize, write requirements, align, measure"
+      }
+    },
+    {
+      "narration": "One distinction to hold onto: a PM is accountable for outcomes, not output. Shipping ten features isn't the goal — moving the metric you defined is. That's why the job includes defining success metrics before launch and honestly checking them afterward, not just clearing the backlog.",
+      "display": {
+        "kind": "text",
+        "heading": "Outcomes, not output",
+        "subheading": "Define success before launch; check it after"
+      }
+    },
+    {
+      "narration": "Three roles get confused constantly. The product manager owns the what and why — should we build this. The project manager owns the when — is it on track, what's blocking it. The designer owns how it feels and works. If the decision is whether to build something, that's a PM call.",
+      "display": {
+        "kind": "text",
+        "heading": "PM vs. project manager vs. designer",
+        "subheading": "Whether to build it, when it ships, how it feels"
+      }
+    },
+    {
+      "narration": "There's no typical day — that's part of the job. Most are a mix of meetings that gather information, like user interviews and support escalations, meetings that align people, like sprint planning and design reviews, solo thinking and writing time, and reactive firefighting when a metric suddenly drops.",
+      "display": {
+        "kind": "text",
+        "heading": "A day in the life",
+        "subheading": "Gather information, align people, think and write, firefight"
+      }
+    },
+    {
+      "narration": "Picture a PM on a SaaS product's notifications area. Monday, they review weekend tickets about duplicate email digests. Tuesday, an interview with a user who churned. Wednesday, a one-page problem statement. Thursday, a PRD draft reviewed with the engineer and designer. Friday, they present the plan. No code, no final pixels.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example: a mid-sized SaaS team",
+        "subheading": "A noisy signal turned into a defined, buildable plan"
+      }
+    },
+    {
+      "narration": "So the PM holds the why and turns it into a plan the team can execute. That translation is the rest of this video — and it starts with getting the people you're building for right.",
+      "display": {
+        "kind": "text",
+        "heading": "From the role to the user",
+        "subheading": "Recap: the PM translates need into a plan"
+      }
+    },
+    {
+      "narration": "You can't spec what you don't understand. Before requirements come real conversations with the people who'll actually use the thing you're planning to build.",
+      "display": {
+        "kind": "title_card",
+        "heading": "02 · Understanding Customers & Users",
+        "subheading": "Interviews, personas, and Jobs-to-be-Done"
+      }
+    },
+    {
+      "narration": "A good interview surfaces what someone actually did and struggled with — not what they think they'd want. The biggest beginner mistake is asking leading, hypothetical questions. Instead of 'would you use a dashboard for this,' ask 'walk me through the last time you needed that — what did you do.'",
+      "display": {
+        "kind": "text",
+        "heading": "Customer interviews done right",
+        "subheading": "People are unreliable about the future, reliable about the past"
+      }
+    },
+    {
+      "narration": "Structure it simply: a short warm-up about their role, then ten to fifteen minutes on one recent, specific story — that's where most of the value is. When they mention frustration or relief, follow the emotion and dig in. Once four or five people describe the same problem independently, you likely have a real pattern.",
+      "display": {
+        "kind": "text",
+        "heading": "A reliable interview structure",
+        "subheading": "Warm-up, one recent story, follow the emotion, wrap up"
+      }
+    },
+    {
+      "narration": "A persona is a composite sketch of a user type, built from real research, keeping the team aligned on who they're building for. Useful as shorthand — 'would Erin actually use this button.' Dangerous when they harden into stereotypes or multiply until 'for whom' stops meaning anything. Keep the list to two to four.",
+      "display": {
+        "kind": "text",
+        "heading": "Personas — and their limits",
+        "subheading": "Shared shorthand, not a stereotype disconnected from research"
+      }
+    },
+    {
+      "narration": "Where personas describe who, Jobs-to-be-Done describes why someone hires a product — the progress they're trying to make. The framing: when this situation happens, I want to do something, so I can reach some outcome. It explains why customers switch between products that look nothing alike — a paper planner and a project tool hired for the same job.",
+      "display": {
+        "kind": "text",
+        "heading": "Jobs-to-be-Done",
+        "subheading": "When [situation], I want to [motivation], so I can [outcome]"
+      }
+    },
+    {
+      "narration": "These aren't competing. Interviews are the raw research method. Jobs-to-be-Done is the lens you listen through, to hear the motivation behind a stated request. Personas are the artifact you build afterward. Skipping interviews and writing personas from guesswork is the most common failure — it manufactures false certainty.",
+      "display": {
+        "kind": "text",
+        "heading": "How interviews, JTBD, and personas fit",
+        "subheading": "Method, lens, and output artifact — in that order"
+      }
+    },
+    {
+      "narration": "In the lesson's example, a team building an expense tool interviews five people and hears one story: they don't submit expenses because the app makes them hunt for the project code every time. Framed as a job — log it before I forget, so reimbursement isn't a month-end scramble. Now that understanding becomes a written spec.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example, then onward to the spec",
+        "subheading": "Recap: a validated job and pattern feeds the requirements"
+      }
+    },
+    {
+      "narration": "This is where understanding becomes a document. Requirements written well leave room for a better solution. Written badly, they quietly lock in the wrong one before anyone notices.",
+      "display": {
+        "kind": "title_card",
+        "heading": "05 · Writing Requirements",
+        "subheading": "User stories, acceptance criteria, and PRD anatomy"
+      }
+    },
+    {
+      "narration": "A user story captures a need from the user's point of view: as a type of user, I want to do an action, so that I get a benefit. 'Add a filter dropdown' just names a UI element. 'As a team lead, I want to filter reports by person, so I can check their numbers' names the need — and leaves room for design to propose something better.",
+      "display": {
+        "kind": "text",
+        "heading": "User stories",
+        "subheading": "Describe the need, not a specific UI element"
+      }
+    },
+    {
+      "narration": "Every story needs acceptance criteria — the specific, testable conditions for 'done.' Without them, done is a matter of opinion, and that's where scope disagreements happen late in a sprint. Given, When, Then works well: a starting state, an action, and one specific expected result.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "Given a team lead is on the reports page with 15+ team members shown\nWhen they select a specific team member from the new filter\nThen only that person's rows are shown, and a \"Clear filter\" control appears"
+      }
+    },
+    {
+      "narration": "Concretely, for filtering reports: selecting a name filters the table instantly with no page reload, an active filter shows a visible 'Clear filter' chip, and the selection persists if the user navigates away and comes back in the same session. Specific and testable — no room for 'I thought done meant something else.'",
+      "display": {
+        "kind": "text",
+        "heading": "What good acceptance criteria look like",
+        "subheading": "Instant filter, visible clear control, selection persists in-session"
+      }
+    },
+    {
+      "narration": "A PRD is the container that gives those stories shared context. Standard sections: a short problem statement, goals with quantified metrics, non-goals, the user stories with their acceptance criteria, open questions — known unknowns to resolve during the build — and a launch plan. Short enough that engineering and design read the whole thing.",
+      "display": {
+        "kind": "text",
+        "heading": "PRD anatomy",
+        "subheading": "Problem, goals, non-goals, stories, open questions, launch plan"
+      }
+    },
+    {
+      "narration": "Non-goals deserve their own section in every PRD. Explicitly writing 'this will not support X' prevents the most common late-sprint argument — someone assuming a feature is in scope because it was never ruled out. A blank non-goals section is a sign scope hasn't really been thought through.",
+      "display": {
+        "kind": "text",
+        "heading": "Non-goals earn their place",
+        "subheading": "Write down what you're explicitly not building"
+      }
+    },
+    {
+      "narration": "In the worked example, the problem is team leads scanning a whole table to find one person's numbers. Goal: cut that from four minutes to under fifteen seconds. Non-goals: a comparison view, saved filter presets. Launch: behind a flag to twenty percent of accounts for a week, check the metric, then roll out. Now it needs a team.",
+      "display": {
+        "kind": "text",
+        "heading": "Mini-PRD, then the handoff",
+        "subheading": "Recap: a scoped spec with a measurable goal and a rollout plan"
+      }
+    },
+    {
+      "narration": "A finished PRD handed over the wall is the classic mistake. The best PMs pull design and engineering in while the spec is still taking shape.",
+      "display": {
+        "kind": "title_card",
+        "heading": "06 · Working with Design & Engineering",
+        "subheading": "Progressive involvement, design reviews, tradeoffs, anti-patterns"
+      }
+    },
+    {
+      "narration": "The most common collaboration mistake is bringing design and engineering in too late — after the PRD feels finished — so their first move becomes pushback on a locked document. The fix is progressive involvement: anyone who'll be asked to execute a plan should get to shape it before it's final, not just review it after.",
+      "display": {
+        "kind": "text",
+        "heading": "When to loop in design and engineering",
+        "subheading": "Progressive involvement, not a document handoff"
+      }
+    },
+    {
+      "narration": "It has a shape. During discovery, design and engineering are informal sounding boards. As you draft stories, design starts sketching flows in parallel and engineering starts flagging feasibility and complexity. Acceptance criteria and scope are co-written with them, not handed over. By build, engineering owns the technical calls and design checks the work against intent.",
+      "display": {
+        "kind": "text",
+        "heading": "What progressive involvement looks like",
+        "subheading": "Informal early, active by story-drafting, co-written at scope"
+      }
+    },
+    {
+      "narration": "Design reviews go badly when the PM rubber-stamps everything, or reopens the problem statement at the mockup stage. Review against fixed questions, in order: does this solve the problem statement, does it meet the acceptance criteria, are edge cases like empty and error states handled, is anything scope creep — and only then, subjective polish.",
+      "display": {
+        "kind": "text",
+        "heading": "Running a good design review",
+        "subheading": "Fixed questions in order; taste feedback comes last"
+      }
+    },
+    {
+      "narration": "Nearly every build surfaces a tradeoff the PRD didn't anticipate. The PM's job isn't to have every answer — it's to make the tradeoff explicit and get the right people deciding together: speed versus scope, quality versus speed, one segment's needs versus another's. Don't settle it alone in a hallway — bring it back to whoever has context, and document the decision so it doesn't get relitigated.",
+      "display": {
+        "kind": "text",
+        "heading": "Navigating tradeoff conversations",
+        "subheading": "Make it explicit, decide it together, write down the reasoning"
+      }
+    },
+    {
+      "narration": "Four anti-patterns that erode trust: specifying pixel-level UI in the PRD, which undermines the designer; dictating the technical implementation, which undermines the engineer; changing scope mid-sprint without discussion, which breaks the team's ability to commit; and being the only person who ever talks to users.",
+      "display": {
+        "kind": "text",
+        "heading": "Common PM anti-patterns",
+        "subheading": "Pixel-speccing, dictating implementation, silent scope changes, hoarding user contact"
+      }
+    },
+    {
+      "narration": "A PM drafting a notification center brings the problem and stories to the designer first, not a rough mockup — and the designer proposes a slide-out panel the PM wouldn't have imagined. In review, the PM catches a missing empty state. Mid-build, engineering flags that real-time updates cost three extra days; the PM checks the problem statement, sees instant isn't required, and greenlights polling — written into the open questions.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example, and the full path",
+        "subheading": "Recap: understand the role, the user, the spec, then build it with the team"
+      }
+    },
+    {
+      "narration": "Everything here comes from four free Level 1 lessons on the Product Manager Mastery Path, in the order we covered them: what is product management, understanding customers and users, writing requirements, and working with design and engineering. All four links are in the description.",
+      "display": {
+        "kind": "text",
+        "heading": "Sources — the four lessons, in order",
+        "subheading": "product-manager-mastery-path/level-1/ — modules 01, 02, 05, 06"
+      }
+    }
+  ]
+}

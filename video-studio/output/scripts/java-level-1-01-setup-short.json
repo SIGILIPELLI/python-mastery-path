@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Java Doesn't Need a Build Step Anymore",
+  "description": "Think Java always means compile-then-run? Since Java 11, you can launch a .java file directly with a single command -- no javac step required. This is lesson 1 of the Java Mastery Path: install the JDK, write your first Hello World, and use the single-file launch shortcut for quick tests.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/\n\n#Shorts",
+  "tags": ["java", "java tutorial", "learn java", "java hello world", "programming tutorial", "coding for beginners"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/"],
+  "beats": [
+    {
+      "narration": "Everyone thinks Java needs a build step before you can run a single line of code. It doesn't anymore.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Java's Hidden Shortcut",
+        "subheading": "Java Mastery Path -- Setup & First Program"
+      }
+    },
+    {
+      "narration": "Here's the classic Hello World: a public class matching the file name, and a main method the JVM looks for first.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// Hello.java\npublic class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, world!\");\n    }\n}"
+      }
+    },
+    {
+      "narration": "Normally, you compile it into bytecode with javac, then run the class file with java. Two separate steps.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "javac Hello.java\njava Hello",
+        "output": "Hello, world!"
+      }
+    },
+    {
+      "narration": "But since Java 11, you can skip all that. Just run java Hello dot java, and it compiles in memory and runs instantly.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "java Hello.java",
+        "output": "Hello, world!"
+      }
+    },
+    {
+      "narration": "No project, no build file, just one line to try Java out. Full setup guide's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/01-setup/"
+      }
+    }
+  ]
+}

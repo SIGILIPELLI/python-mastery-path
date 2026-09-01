@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Kill a third of your backlog in 5 minutes, no spreadsheet",
+  "description": "Before you build a RICE spreadsheet, run the fastest prioritization framework there is: a value vs. effort 2x2. Plot every backlog item, then delete the entire low-value, high-effort quadrant with zero further analysis. In the lesson's worked example, a team drops 6 of 20 items that way and only RICE-scores what survives. Rough triage first, precision later.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
+  "tags": ["product management", "prioritization", "value vs effort", "backlog grooming", "RICE", "roadmap planning", "product manager"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"],
+  "beats": [
+    {
+      "narration": "You can kill a third of your backlog in five minutes, no spreadsheet. Here's the trick most teams skip.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "Value vs. Effort",
+        "subheading": "fast gut-check"
+      }
+    },
+    {
+      "narration": "When you need to prioritize fast, in a backlog grooming or a roadmap workshop, you skip the RICE spreadsheet and plot every item on a two by two. Value on one axis, effort on the other.",
+      "display": {
+        "kind": "text",
+        "heading": "The fastest framework",
+        "subheading": "a first-pass 2x2, not a final call"
+      }
+    },
+    {
+      "narration": "That leaves four quadrants. High value, low effort are your quick wins. High value, high effort are major projects you plan deliberately.",
+      "display": {
+        "kind": "stick",
+        "scene": "prioritize",
+        "heading": "Four quadrants",
+        "subheading": "sort the whole backlog"
+      }
+    },
+    {
+      "narration": "A team finishes a discovery sprint with twenty backlog items. They sort all twenty into the quadrants, then throw out the low value, high effort pile, six items, without further analysis.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example",
+        "subheading": "20 items in, 6 discarded"
+      }
+    },
+    {
+      "narration": "Those six were never getting built. The remaining fourteen go on to get RICE scored. Rough triage first, precision later.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Triage, then refine",
+        "subheading": "RICE the survivors"
+      }
+    },
+    {
+      "narration": "The full breakdown of all three frameworks is in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"
+      }
+    }
+  ]
+}

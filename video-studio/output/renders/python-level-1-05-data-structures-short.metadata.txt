@@ -1,0 +1,14 @@
+Title: Python Sets: Union, Intersection & Difference in 1 Line
+
+Description:
+Lists and dicts get all the attention, but Python sets quietly do math-class set operations with a single symbol -- no loops required. In this Short we compare two sets with |, &, and -, then show why membership checks on a set beat scanning a list every time.
+
+Source lesson:
+- https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/
+
+#Shorts
+
+Tags: python, sets, data structures, python tips, set operations, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/

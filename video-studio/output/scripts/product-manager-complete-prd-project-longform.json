@@ -1,0 +1,179 @@
+{
+  "type": "longform",
+  "language": "product-manager",
+  "title": "Product Manager Capstone: Writing a Complete PRD From Scratch, Step by Step",
+  "description": "This is a dedicated, full-length walkthrough of the Product Manager Mastery Path's Level 1 capstone project: writing one complete PRD, start to finish, the way you'd actually hand it to engineering and design. Where the Level 1 roundup video touched this project briefly alongside nine other lessons, this video gives it the room it deserves -- working through the sample ListUp scenario across all six required steps: discovery, prioritization, requirements, collaboration notes, roadmap context, and stakeholder communication, then closing with the self-review checklist a real design/engineering review would actually hold it to. If you want to see what a defensible, buildable PRD looks like section by section, and why each section exists, this is the video.\n\nLessons covered in this video:\n- 10 · Project — Write a Complete PRD: https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/",
+  "tags": ["product management", "PRD", "product requirements document", "product manager tutorial", "RICE prioritization", "stakeholder management", "product management capstone", "how to write a PRD"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"],
+  "beats": [
+    {
+      "narration": "This is a dedicated deep dive into product management's Level one capstone: writing one complete PRD, start to finish, the exact way you'd hand it to engineering and design before a real build begins.",
+      "display": { "kind": "title_card", "heading": "The Complete PRD Project", "subheading": "Product Manager Mastery Path -- Level 1 Capstone" }
+    },
+    {
+      "narration": "We covered this project briefly inside the Level one roundup video. Today it gets full room to breathe -- every step, in order, applied to one real scenario from start to finish.",
+      "display": { "kind": "text", "heading": "A dedicated deep dive", "subheading": "Full room to breathe -- one scenario, start to finish" }
+    },
+    {
+      "narration": "Every module before this one taught a single skill in isolation. This project forces you to use discovery, prioritization, requirements, collaboration, metrics, roadmapping, and stakeholder communication together, on one real initiative.",
+      "display": { "kind": "text", "heading": "Why this project matters", "subheading": "Every earlier module taught one skill -- this one uses all nine together" }
+    },
+    {
+      "narration": "The deliverable is one PRD document, covering every section we're about to walk through, for a feature on a product you pick -- something real you already use, or one you invent with a clear description.",
+      "display": { "kind": "text", "heading": "What you'll produce", "subheading": "One PRD document containing every section in this lesson" }
+    },
+    {
+      "narration": "You're free to substitute your own product and your own signal if you already have one in mind.",
+      "display": { "kind": "text", "heading": "Choose your own product, or use the sample", "subheading": "Substitute your own product and signal if you already have one" }
+    },
+    {
+      "narration": "Whichever path you take, the six steps ahead map directly onto modules three through nine -- so this project is really a fluency check across everything Level one taught, not a brand-new skill.",
+      "display": { "kind": "text", "heading": "The six steps map onto modules 3-9", "subheading": "This project is a fluency check, not a new skill" }
+    },
+    {
+      "narration": "The scenario is ListUp -- a B2B tool that helps small e-commerce sellers manage product listings across their own site plus two third-party marketplaces.",
+      "display": { "kind": "title_card", "heading": "Sample Scenario: ListUp", "subheading": "A B2B tool for sellers managing listings across three marketplaces" }
+    },
+    {
+      "narration": "Three signals came in this month. Seven support tickets ask why a price update didn't show up on Marketplace B -- it turns out the sync has an undocumented four-to-six-hour delay nobody had documented anywhere.",
+      "display": { "kind": "text", "heading": "The signals received this month", "subheading": "Seven support tickets, all asking the same question" }
+    },
+    {
+      "narration": "A churn-exit interview cited losing trust in the tool because prices looked wrong to customers. And weekly active usage is flat among sellers on two or more marketplaces, even while it keeps growing for single-marketplace sellers.",
+      "display": { "kind": "text", "heading": "More signals", "subheading": "A churn-exit interview and a usage split by marketplace count" }
+    },
+    {
+      "narration": "None of those three signals is a problem statement on its own. That's the job of step one, discovery: turning scattered tickets, one exit interview, and a usage chart into a single validated claim worth building for.",
+      "display": { "kind": "text", "heading": "Why signals matter", "subheading": "Raw material -- discovery turns it into a problem statement" }
+    },
+    {
+      "narration": "Step one goes back to Module three's discovery framework and applies it directly to the ListUp signals.",
+      "display": { "kind": "title_card", "heading": "Step 1 -- Discovery", "subheading": "Module 3: problem statement and opportunity sizing" }
+    },
+    {
+      "narration": "The template asks five things: who's affected, what pain they feel, what situation triggers it, what the consequence is if it stays unsolved, and what evidence backs it up -- here, the tickets and the exit interview.",
+      "display": { "kind": "text", "heading": "The problem statement template", "subheading": "Who's affected, what pain, what situation, what consequence, what evidence" }
+    },
+    {
+      "narration": "Then a rough sizing pass: how many accounts are affected by the sync delay, what's the business risk if it goes unsolved, and honestly -- how confident are you that the delay is really driving the churn.",
+      "display": { "kind": "text", "heading": "Opportunity sizing", "subheading": "How many accounts, what business risk, how confident in the cause" }
+    },
+    {
+      "narration": "A well-sized problem doesn't automatically win a spot on the roadmap. It has to compete against everything else ListUp could build instead -- which is exactly what step two forces you to confront honestly.",
+      "display": { "kind": "text", "heading": "From discovery to prioritization", "subheading": "A well-sized problem still has to earn its spot on the roadmap" }
+    },
+    {
+      "narration": "Step two invents two or three competing initiatives ListUp could pursue instead of the sync fix -- say, a new marketplace integration, a bulk-editing tool, or a mobile app.",
+      "display": { "kind": "title_card", "heading": "Step 2 -- Prioritization", "subheading": "Module 4: RICE-score the honest field of options" }
+    },
+    {
+      "narration": "You RICE-score all of them side by side with the sync-delay fix, using the same Reach, Impact, Confidence, and Effort inputs for every row, so the comparison actually holds up instead of being wishful thinking.",
+      "display": { "kind": "text", "heading": "RICE-score everything, including your favorite", "subheading": "Reach, Impact, Confidence, Effort -- same inputs for every row" }
+    },
+    {
+      "narration": "Then you justify, in a sentence or two, why your initiative should -- or honestly, maybe shouldn't -- win the top spot. It's fine if the scoring doesn't rank it first, as long as the reasoning is real.",
+      "display": { "kind": "text", "heading": "Let the score be honest", "subheading": "It's fine if your favorite initiative doesn't win first place" }
+    },
+    {
+      "narration": "Step three is where the actual PRD gets written, using the standard sections from Module five -- this is the longest and most important part of the whole project.",
+      "display": { "kind": "title_card", "heading": "Step 3 -- Requirements", "subheading": "Module 5: the PRD itself, section by section" }
+    },
+    {
+      "narration": "It opens with the problem statement from step one, followed by goals and success metrics -- and those metrics have to tie back to a North Star metric or an AARRR funnel stage from Module seven, not just sound good.",
+      "display": { "kind": "text", "heading": "Problem statement and goals", "subheading": "Success metrics tie back to a North Star metric or an AARRR stage" }
+    },
+    {
+      "narration": "Next come at least three non-goals, and they have to be specific -- not vague filler, but explicit enough that when someone asks 'what about X' three weeks into the build, the document has already answered them.",
+      "display": { "kind": "text", "heading": "Non-goals: at least three", "subheading": "Specific enough to prevent a real scope-creep argument" }
+    },
+    {
+      "narration": "Then at least three user stories, each with Given, When, Then acceptance criteria -- specific enough that an engineer could actually test against it, not just a vague description of how the feature should feel.",
+      "display": { "kind": "text", "heading": "User stories with acceptance criteria", "subheading": "At least three stories, each with Given, When, Then" }
+    },
+    {
+      "narration": "The PRD's core closes with at least two open questions -- real unknowns, not rhetorical ones -- and a launch plan describing exactly how the rollout happens, staged release or full cutover.",
+      "display": { "kind": "text", "heading": "Open questions and launch plan", "subheading": "At least two genuine unknowns, plus a rollout approach" }
+    },
+    {
+      "narration": "Six required pieces in total: problem statement, goals, non-goals, user stories, open questions, and a launch plan -- skip any one of them and the document stops functioning as something engineering can actually build from.",
+      "display": { "kind": "text", "heading": "Six required pieces, no shortcuts", "subheading": "Skip one and the document stops being buildable" }
+    },
+    {
+      "narration": "Put together, that's a document precise enough that two different engineers reading it would build roughly the same thing -- which is really the entire point of writing requirements down in the first place.",
+      "display": { "kind": "text", "heading": "A PRD two engineers could build the same thing from", "subheading": "That's the actual bar this document gets held to" }
+    },
+    {
+      "narration": "Step four adds two short collaboration notes drawn straight from Module six.",
+      "display": { "kind": "title_card", "heading": "Step 4 -- Collaboration Notes", "subheading": "Module 6: what you'd hand a designer before they sketch anything" }
+    },
+    {
+      "narration": "First, a three-to-five-sentence design brief -- the context and constraints you'd actually hand a designer before they start sketching, not after they've already guessed wrong.",
+      "display": { "kind": "text", "heading": "The design brief", "subheading": "Three to five sentences handed to a designer before they sketch anything" }
+    },
+    {
+      "narration": "Second, one tradeoff you anticipate coming up during the build -- speed versus scope is the classic one -- plus exactly who you'd loop in to help decide it when it comes up mid-sprint.",
+      "display": { "kind": "text", "heading": "Name a tradeoff in advance", "subheading": "Speed versus scope, and who you'd loop in to decide it" }
+    },
+    {
+      "narration": "Step five is a single paragraph placing this initiative on a Now, Next, Later roadmap, using the framework from Module eight.",
+      "display": { "kind": "title_card", "heading": "Step 5 -- Roadmap Context", "subheading": "Module 8: placing this on a Now, Next, Later theme" }
+    },
+    {
+      "narration": "It names which theme the initiative belongs to and what horizon and confidence level it sits at -- because a roadmap that's just a list of dates isn't actually communicating anything useful to stakeholders.",
+      "display": { "kind": "text", "heading": "Which theme, and what confidence", "subheading": "Horizon and confidence level, not just a due date" }
+    },
+    {
+      "narration": "Placing the fix on a roadmap theme also becomes evidence itself -- if the same sync complaint keeps resurfacing next quarter, that theme's confidence level is the first thing worth revisiting.",
+      "display": { "kind": "text", "heading": "A roadmap theme is evidence too", "subheading": "A recurring complaint next quarter should revisit that confidence level" }
+    },
+    {
+      "narration": "Step six turns to Module nine, mapping out exactly who needs to hear about this project and how.",
+      "display": { "kind": "title_card", "heading": "Step 6 -- Stakeholder Plan", "subheading": "Module 9: the influence-interest grid and a status update" }
+    },
+    {
+      "narration": "It's a stakeholder map with at least four people plotted on the influence-and-interest grid, so you know upfront who needs deep involvement and who just needs a quick heads-up email now and then.",
+      "display": { "kind": "text", "heading": "Stakeholder map", "subheading": "At least four stakeholders, plotted on the influence/interest grid" }
+    },
+    {
+      "narration": "Then a sample status update, written as if you're two weeks into the build, using the same four-question structure from Module nine, so stakeholders get a consistent, predictable update instead of a surprise.",
+      "display": { "kind": "text", "heading": "A sample status update", "subheading": "The four-question structure, written as if two weeks into the build" }
+    },
+    {
+      "narration": "Before the PRD counts as done, it gets run through a self-review checklist -- the same bar a real design and engineering review would actually hold it to.",
+      "display": { "kind": "title_card", "heading": "Self-Review Checklist", "subheading": "The same bar a real design and engineering review would hold it to" }
+    },
+    {
+      "narration": "Would two different engineers reading this build roughly the same thing, or is there room for wildly different interpretations? And does every user story have acceptance criteria specific enough to actually test against?",
+      "display": { "kind": "text", "heading": "Would two engineers build the same thing?", "subheading": "And does every story have testable acceptance criteria?" }
+    },
+    {
+      "narration": "Are the non-goals specific enough to actually prevent a scope-creep argument, or are they just generic filler dressed up as decisions? And is the success metric numeric, with a real baseline stated, not just an arrow pointing up?",
+      "display": { "kind": "text", "heading": "Are the non-goals doing real work?", "subheading": "And is the success metric numeric, with a stated baseline?" }
+    },
+    {
+      "narration": "Last question: could someone with zero backstory read the problem statement and understand why this matters, without you explaining it out loud in the room? If the answer's no, it goes back for a rewrite.",
+      "display": { "kind": "text", "heading": "Does the problem statement stand alone?", "subheading": "Readable by someone who never heard the backstory out loud" }
+    },
+    {
+      "narration": "Five checkpoints in total, and any PRD that fails even one of them isn't ready for a design or engineering review yet -- it goes back for another pass before anyone else sees it.",
+      "display": { "kind": "text", "heading": "Five checkpoints, no partial credit", "subheading": "Fail one and it's not ready for review yet" }
+    },
+    {
+      "narration": "The exercise is simply assembling everything from steps one through six into one finished document.",
+      "display": { "kind": "title_card", "heading": "Exercise -- Assemble the Complete PRD", "subheading": "Steps one through six, into a single finished document" }
+    },
+    {
+      "narration": "Any editor works fine -- Google Docs, Notion, plain markdown, whatever you already use day to day. Assemble the full PRD, then run it against the self-review checklist and revise anything that doesn't hold up.",
+      "display": { "kind": "text", "heading": "Assemble, then check yourself", "subheading": "Any editor works -- Google Docs, Notion, or plain markdown" }
+    },
+    {
+      "narration": "Completing this project is the actual finish line for Level one. It means you're ready to move into Level two, Intermediate, with a real, defensible PRD already sitting in your portfolio.",
+      "display": { "kind": "text", "heading": "What finishing this means", "subheading": "You're ready for Level 2 -- Intermediate" }
+    },
+    {
+      "narration": "That's the complete PRD project, start to finish -- discovery, prioritization, requirements, collaboration, roadmap, and stakeholders, all folded into one document. The full lesson and project brief is linked below if you want to build your own.",
+      "display": { "kind": "text", "heading": "Full lesson + source:", "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/" }
+    }
+  ]
+}

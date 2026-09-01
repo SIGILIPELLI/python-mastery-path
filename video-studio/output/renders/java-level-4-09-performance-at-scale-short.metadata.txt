@@ -1,0 +1,14 @@
+Title: @Cacheable: The Java Annotation That Skips the DB
+
+Description:
+Spring's @Cacheable annotation lets a Java service check an in-memory cache before ever touching the database -- and @CacheEvict keeps it from serving stale data after a write. Swap the cache provider to Redis and every replica of your service shares the same cache, with zero changes to the annotations themselves. This is one piece of the Java Mastery Path's guide to performance at scale, covering JVM tuning, HikariCP connection pools, and caching strategies.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/09-performance-at-scale/
+
+#Shorts
+
+Tags: java, spring boot, caching, performance, software engineering, programming tutorial, system design
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/09-performance-at-scale/

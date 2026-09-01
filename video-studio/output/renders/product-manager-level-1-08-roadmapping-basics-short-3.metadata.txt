@@ -1,0 +1,14 @@
+Title: One Roadmap, Four Very Different Conversations
+
+Description:
+The same roadmap has to be told differently to every audience, or you promise something you never meant to. Engineering and design need enough specificity to plan capacity a quarter or two out, but no firm commitments on "Later" items. Sales need honest themes, never ship dates on unbuilt features. Leadership need the tie to company OKRs, and public customers get quarters, never exact dates. A roadmap is a communication tool, not a contract.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+
+#Shorts
+
+Tags: product management, roadmapping, product roadmap, stakeholder communication, now next later, product manager, pm skills, career
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/

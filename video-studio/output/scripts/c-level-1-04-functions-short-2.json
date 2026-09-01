@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "The one C keyword that makes a local variable remember",
+  "description": "A local variable in C resets every single time its function is called. Mark it `static` and it keeps its value between calls instead — persistence without turning it into a global that any function can touch. Here's a call counter that remembers how many times it ran, straight from Level 1 of the C Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/\n\n#Shorts",
+  "tags": ["c", "c programming", "static keyword", "static local variable", "functions", "c tutorial", "programming tutorial", "learn c"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/"],
+  "beats": [
+    {
+      "narration": "A local variable in C forgets everything the moment its function returns. Call the function again, and it starts back at zero. But add one keyword, and it remembers.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "It forgot?",
+        "subheading": "locals reset each call"
+      }
+    },
+    {
+      "narration": "Here's a call counter. The variable calls is marked static, so it's initialized just once. After that it holds onto its value between calls instead of resetting every time.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n\nvoid call_counter(void) {\n    static int calls = 0;   // initialized once, persists across calls\n    calls++;\n    printf(\"Called %d time(s)\\n\", calls);\n}\n\nint main(void) {\n    call_counter();   // Called 1 time(s)\n    call_counter();   // Called 2 time(s)\n    call_counter();   // Called 3 time(s)\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "Call it three times in a row and the count climbs. One, two, three. Same variable, still alive between calls.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "call_counter();\ncall_counter();\ncall_counter();",
+        "output": "Called 1 time(s)\nCalled 2 time(s)\nCalled 3 time(s)"
+      }
+    },
+    {
+      "narration": "That's the trick. Unlike a global, a static local is still only visible inside its own function. You get persistence without exposing it to the rest of the file.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "static local",
+        "subheading": "persist, stay private"
+      }
+    },
+    {
+      "narration": "Full lesson and runnable code are linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/04-functions/"
+      }
+    }
+  ]
+}

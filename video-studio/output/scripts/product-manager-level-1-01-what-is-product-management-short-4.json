@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "A Product Manager Has Almost No Authority - That's the Job",
+  "description": "A PM can't order engineers to build anything, can't draw the pixels, and can't run anyone's performance review. So what do they actually do? They own the \"what\" and the \"why\" of the product, and drive outcomes through influence instead of authority: turning vague pain into a specific, testable problem statement and a prioritized plan the rest of the team can build from. This Short breaks down what a product manager is really responsible for.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
+  "tags": ["product manager", "product management", "what is product management", "influence without authority", "pm career", "associate product manager", "tech careers", "product owner"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"],
+  "beats": [
+    {
+      "narration": "A product manager has almost no direct authority. They can't make engineers build anything, can't draw the pixels, can't run anyone's review. And that's the whole job.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "No Authority",
+        "subheading": "that's the job"
+      }
+    },
+    {
+      "narration": "Product management is deciding what gets built and why, so engineering can focus on how. The PM doesn't write the code, but they're accountable for the product's outcome like no one else on the team.",
+      "display": {
+        "kind": "text",
+        "heading": "What a PM owns",
+        "subheading": "the what and the why"
+      }
+    },
+    {
+      "narration": "So how do you drive anything with no authority? Influence. You sit in interviews and support escalations to understand the problem, then get sales, support, leadership, and legal rowing the same way.",
+      "display": {
+        "kind": "stick",
+        "scene": "discuss",
+        "heading": "Influence, Not Authority",
+        "subheading": "aligning stakeholders"
+      }
+    },
+    {
+      "narration": "You hold the why. You turn vague pain, like users churn a lot, into a specific, testable problem statement and a plan the team can build from. That translation is the job.",
+      "display": {
+        "kind": "stick",
+        "scene": "write",
+        "heading": "Signal Into Plan",
+        "subheading": "problem statement to PRD"
+      }
+    },
+    {
+      "narration": "Full lesson's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "C structs pass by value -- your function edits a copy",
+  "description": "In C, handing a struct to a function copies the whole thing, member by member. So when the function changes its parameter, the caller's struct never moves. This Short shows the classic tryToMove gotcha from the Structs lesson and the one-line fix: pass a pointer instead.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/\n\n#Shorts",
+  "tags": ["c", "c programming", "structs", "pass by value", "pointers", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/"],
+  "beats": [
+    {
+      "narration": "You pass your struct into a function, the function changes it, and back in main it's completely unchanged. Like the function ignored you. Here's why.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "It didn't change",
+        "subheading": "struct went in unchanged"
+      }
+    },
+    {
+      "narration": "Point is a simple x and y struct. The function tryToMove takes a Point and adds a hundred to its x. Looks like it should move the point.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "typedef struct {\n    int x;\n    int y;\n} Point;\n\nvoid tryToMove(Point p) {\n    p.x += 100;   // modifies the local copy only\n}"
+      }
+    },
+    {
+      "narration": "We print origin, call tryToMove, then print again. Both times it's zero, zero. The change just vanished.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "int main(void) {\n    Point origin = {0, 0};\n\n    printPoint(origin);   // (0, 0)\n    tryToMove(origin);\n    printPoint(origin);   // still (0, 0) -- tryToMove only changed its own copy\n\n    return 0;\n}",
+        "output": "(0, 0)\n(0, 0)"
+      }
+    },
+    {
+      "narration": "In C, a struct is passed by value. The function gets a full copy, member by member. It edited that copy, then threw it away.",
+      "display": {
+        "kind": "stick",
+        "scene": "handoff",
+        "heading": "A full copy",
+        "subheading": "member by member"
+      }
+    },
+    {
+      "narration": "Want the real struct changed? Pass a pointer to it instead. Copying is cheap and fine for small structs, and something you'll want to skip for big ones.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Pass a pointer",
+        "subheading": "to modify the caller"
+      }
+    },
+    {
+      "narration": "The full lesson has the pointer version and runnable code.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/07-structs/"
+      }
+    }
+  ]
+}

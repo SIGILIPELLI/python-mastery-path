@@ -1,0 +1,60 @@
+=== RENDERING java-level-2-06-file-io-nio-short ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 43.1s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-06-file-io-nio-short.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-06-file-io-nio-short.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~43s
+=== EXIT CODE: 0 ===
+=== RENDERING java-level-2-07-junit-testing-short ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 44.7s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-07-junit-testing-short.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-07-junit-testing-short.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~45s
+=== EXIT CODE: 0 ===
+=== RENDERING java-level-2-08-build-tools-short ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 58.4s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-08-build-tools-short.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-08-build-tools-short.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~58s
+=== EXIT CODE: 0 ===
+=== RENDERING java-level-2-09-enums-records-sealed-short ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 57.7s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-09-enums-records-sealed-short.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-09-enums-records-sealed-short.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~58s
+=== EXIT CODE: 0 ===
+=== RENDERING java-level-2-10-project-inventory-system-short ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 38.8s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-10-project-inventory-system-short.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-2-10-project-inventory-system-short.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~39s
+=== EXIT CODE: 0 ===
+=== RENDERING java-level-4-master-longform ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 28 beats...
+      -> total narration: 578.0s across 28 beats
+[2/3] Rendering horizontal (long-form) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-4-master-longform.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/java-level-4-master-longform.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~578s
+=== EXIT CODE: 0 ===

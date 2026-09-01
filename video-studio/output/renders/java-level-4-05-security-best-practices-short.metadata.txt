@@ -1,0 +1,14 @@
+Title: The SQL Injection Bug Hiding in Plain Java Code
+
+Description:
+One string concatenation is all it takes for a login form to leak your entire users table. This Short breaks down how SQL injection actually works in Java, and the one-line fix (PreparedStatement / Spring Data parameter binding) that closes it for good. Full lesson covers the rest of the OWASP Top 10 -- XSS, CSRF, and secrets management.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/05-security-best-practices/
+
+#Shorts
+
+Tags: java, sql injection, security best practices, prepared statement, spring data jpa, web security, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/05-security-best-practices/

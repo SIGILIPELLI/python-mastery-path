@@ -1,0 +1,14 @@
+Title: The RICE math that kills your highest-impact feature
+
+Description:
+In this lesson's worked example, SSO support scores the maximum on per-user impact and still loses the priority fight. We walk the actual RICE numbers: how low reach and high effort drag a strong bet below a small, cheap fix that reaches everyone. Then the caveat that matters -- RICE informs the call, it doesn't make it.
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+
+#Shorts
+
+Tags: product management, prioritization, RICE framework, product manager, roadmap, backlog, product strategy
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/

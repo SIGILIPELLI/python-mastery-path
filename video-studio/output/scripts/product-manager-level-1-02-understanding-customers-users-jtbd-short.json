@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Why Your Real Competitor Isn't Who You Think",
+  "description": "Two totally different products can be fighting for the exact same customer -- because people don't buy products, they hire them for a job. This is the Jobs-to-be-Done lens from Level 1 of the Product Manager Mastery Path, and it explains why your real competition is often not who you'd assume. The full lesson also covers behavioral customer interviews and building personas the right way.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n\n#Shorts",
+  "tags": ["product management", "jobs to be done", "JTBD", "product manager", "customer research", "user research", "PM career"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/"
+  ],
+  "beats": [
+    {
+      "narration": "What if your real competitor isn't another app at all?",
+      "display": {
+        "kind": "title_card",
+        "heading": "Your Competitor Isn't Who You Think",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Jobs-to-be-Done says people don't buy products -- they hire them to make progress on something, in a specific situation.",
+      "display": {
+        "kind": "text",
+        "heading": "Jobs-to-be-Done",
+        "subheading": "\"When [situation], I want to [motivation], so I can [outcome].\""
+      }
+    },
+    {
+      "narration": "A paper planner, a phone reminder app, and a full project management tool can all get hired for the exact same job -- making sure you don't forget something important.",
+      "display": {
+        "kind": "text",
+        "heading": "Same Job, Totally Different Products",
+        "subheading": "Paper planner. Reminder app. Project tool."
+      }
+    },
+    {
+      "narration": "That's the real power of JTBD -- it explains why customers jump ship to a product that looks completely different on the surface, which means your real competition often isn't who you'd assume.",
+      "display": {
+        "kind": "text",
+        "heading": "That's Why Customers Switch",
+        "subheading": "Even to a product that looks nothing like yours"
+      }
+    },
+    {
+      "narration": "Full lesson on interviews, personas, and Jobs-to-be-Done is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/"
+      }
+    }
+  ]
+}

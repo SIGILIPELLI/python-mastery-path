@@ -1,0 +1,12 @@
+Title: Build a Multi-File CLI Contact Book in C — Full Project Walkthrough, Header to Binary
+
+Description:
+This is the Level 1 project of the C Mastery Path, built end to end as a single narrative: a command-line contact book that adds contacts, lists them, searches by name, and saves everything to a text file so your data survives between runs. We design the shared header first — include guard, size constants, and the Contact struct — then write the implementation file function by function (load, save, add, list, find), then the main.c menu loop that reads keyboard input safely with fgets and strcspn, then compile all three files into one binary with gcc, and finish with the lesson's own three stretch goals: delete, sort, and input validation. Every line of code shown is pulled verbatim from the lesson — nothing invented, nothing skipped.
+
+Lessons covered in this video:
+- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/
+
+Tags: c, c programming, contact book project, cli application, multi-file compilation, structs in c, file io in c, gcc, pointers in c, c project tutorial, programming tutorial, beginner c
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/

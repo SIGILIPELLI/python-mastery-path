@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "This Java Class Won't Let You Cancel Twice",
+  "description": "Inside the Java Mastery Path capstone — a real Order Management REST API — the Order entity itself blocks a double-cancel, and a global exception handler turns that violation into the exact HTTP status a REST client expects. It's layered architecture in miniature: domain guards, service translation, and a global handler, each doing one job.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/\n\n#Shorts",
+  "tags": ["java", "spring boot", "rest api", "exception handling", "java mastery path", "programming tutorial", "backend development"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"],
+  "beats": [
+    {
+      "narration": "In this capstone Order Management API, you literally cannot cancel the same order twice. Here's the tiny bit of Java that enforces it.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Cancel Twice? Not So Fast.",
+        "subheading": "Java Mastery Path — Level 4 Capstone: Order Management Service"
+      }
+    },
+    {
+      "narration": "The order entity guards its own state. Cancel it once, fine. Try again, and it throws, right there in the domain model, no controller code needed.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "public void cancel() {\n    if (status == OrderStatus.CANCELLED) {\n        throw new IllegalStateException(\"Order is already cancelled\");\n    }\n    this.status = OrderStatus.CANCELLED;\n}"
+      }
+    },
+    {
+      "narration": "The service layer catches that exception and turns it into a typed one — InvalidOrderStateException — instead of leaking a generic runtime error up to the API.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "public Order cancel(Long id) {\n    Order order = findById(id);\n    try {\n        order.cancel();\n    } catch (IllegalStateException e) {\n        throw new InvalidOrderStateException(e.getMessage());\n    }\n    return orderRepository.save(order);\n}"
+      }
+    },
+    {
+      "narration": "And this global handler maps it straight to an HTTP 409 Conflict — the exact status code REST clients expect when they retry a bad action.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@ExceptionHandler(InvalidOrderStateException.class)\npublic ResponseEntity<Map<String, Object>> handleInvalidState(InvalidOrderStateException e) {\n    return ResponseEntity.status(HttpStatus.CONFLICT).body(errorBody(e.getMessage()));\n}"
+      }
+    },
+    {
+      "narration": "That's the whole capstone in miniature: domain logic, a service layer, and a global handler, each doing exactly one job.",
+      "display": {
+        "kind": "text",
+        "heading": "One state check, three layers deep",
+        "subheading": "Layered architecture, validated input, global error handling — the same shape as real production Java services"
+      }
+    },
+    {
+      "narration": "Full Order Management capstone — layered API, tests, Docker, and CI — link in the lesson below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"
+      }
+    }
+  ]
+}

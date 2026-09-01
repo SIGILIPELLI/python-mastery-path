@@ -1,0 +1,14 @@
+Title: Why Every Python File Has That Weird __main__ Line
+
+Description:
+That guard clause at the bottom of every real Python script isn't boilerplate -- it's the difference between a reusable module and a script that fires itself the moment it's imported. This Short breaks down what if __name__ == "__main__": actually checks, using the exact hello.py example from the Setup & First Program lesson. Full walkthrough -- installing Python, the REPL, and picking an editor -- is linked below.
+
+Source lesson:
+- https://sigilipelli.github.io/python-mastery-path/level-1/01-setup/
+
+#Shorts
+
+Tags: python, python setup, name main guard, python basics, learn python, python tutorial, coding shorts
+
+Source lesson(s):
+- https://sigilipelli.github.io/python-mastery-path/level-1/01-setup/

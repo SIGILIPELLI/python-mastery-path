@@ -1,0 +1,14 @@
+Title: The PRD Section Everyone Skips (And Regrets Mid-Sprint)
+
+Description:
+Most last-minute sprint blowups trace back to one missing paragraph: the non-goals section of the PRD. This Short walks a real mini-PRD and shows why explicitly writing "this will NOT support X" prevents the most common scope-creep argument. A blank non-goals section isn't clean scope, it's a warning sign.
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+
+#Shorts
+
+Tags: product management, PRD, non-goals, scope creep, requirements, product manager, agile, sprint planning
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/

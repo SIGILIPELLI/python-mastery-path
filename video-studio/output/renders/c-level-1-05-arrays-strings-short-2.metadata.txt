@@ -1,0 +1,14 @@
+Title: The C input line that opens a security hole (use fgets)
+
+Description:
+C never checks how much text you type into a buffer. Read a name with the old gets() function and a long enough input writes straight past the end of your array and corrupts memory — a classic real-world security bug. This Short shows the safe replacement from the C Mastery Path Arrays & Strings lesson: fgets with an explicit buffer size, plus the trailing-newline quirk you have to strip.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/
+
+#Shorts
+
+Tags: c, c programming, fgets, gets, buffer overflow, c strings, input handling, memory safety, programming tutorial, learn c
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/

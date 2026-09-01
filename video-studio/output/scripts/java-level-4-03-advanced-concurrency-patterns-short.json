@@ -1,0 +1,43 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Java can now run 10,000 threads without breaking a sweat",
+  "description": "Platform threads cost real OS memory -- a few thousand and your JVM starts choking. Java 21's virtual threads change the math entirely: millions of them can exist at once because they only occupy a real OS thread while actively running. Ordinary blocking code, like Thread.sleep or a JDBC call, just works with no reactive rewrite. This is one slice of a full lesson on advanced Java concurrency, covering CompletableFuture chaining and structured concurrency too.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/03-advanced-concurrency-patterns/\n\n#Shorts",
+  "tags": ["java", "virtual threads", "java 21", "concurrency", "programming tutorial", "java mastery path"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/03-advanced-concurrency-patterns/"],
+  "beats": [
+    {
+      "narration": "A single OS thread costs real memory. Spin up more than a few thousand platform threads and your JVM starts choking. Java's virtual threads change that completely.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Virtual Threads",
+        "subheading": "Java Mastery Path -- Level 4"
+      }
+    },
+    {
+      "narration": "Here's ten thousand tasks, each one running on its own virtual thread, each one calling a blocking Thread.sleep. In the old world, that alone would crash your JVM.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "public class VirtualThreadDemo {\n    public static void main(String[] args) throws InterruptedException {\n        // One virtual thread PER TASK -- cheap enough that this is fine even for 100,000 tasks\n        try (ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor()) {\n            for (int i = 0; i < 10_000; i++) {\n                int taskId = i;\n                executor.submit(() -> {\n                    simulateBlockingCall(taskId);   // e.g. an HTTP call or DB query\n                    return null;\n                });\n            }\n        } // executor.close() waits for all submitted tasks to finish\n    }\n\n    static void simulateBlockingCall(int id) {\n        try {\n            Thread.sleep(100);   // blocking sleep -- fine, the carrier thread is freed meanwhile\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n}"
+      }
+    },
+    {
+      "narration": "The trick: when a virtual thread blocks on I/O, the JVM unmounts it from the real OS thread underneath, and that thread goes and runs someone else's work. Ordinary blocking code, like a database call or an HTTP request, just works, no reactive rewrite needed.",
+      "display": {
+        "kind": "text",
+        "heading": "Unmounted while blocked, remounted when ready",
+        "subheading": "The JVM frees the carrier thread the moment a virtual thread blocks on I/O"
+      }
+    },
+    {
+      "narration": "That's how you get millions of lightweight threads instead of thousands of expensive ones. Full lesson and code below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/03-advanced-concurrency-patterns/"
+      }
+    }
+  ]
+}

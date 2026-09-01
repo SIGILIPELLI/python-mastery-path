@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "The C file mode that erases your file instantly",
+  "description": "Opening a file with \"w\" in C truncates it to zero length the instant fopen succeeds -- before fprintf writes a single byte. If your program crashes first, the old data is just gone. Here's how to pick between \"w\" and \"a\" on purpose so you never wipe a file by accident.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/\n\n#Shorts",
+  "tags": ["c", "file io", "fopen", "file modes", "fprintf", "c programming", "c tutorial", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/"],
+  "beats": [
+    {
+      "narration": "You open a file in write mode. Your program crashes before it writes anything. The file is now empty. Not corrupted. Empty.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Where'd it go?",
+        "subheading": "file wiped, nothing written"
+      }
+    },
+    {
+      "narration": "Here's why. This opens the file with the w flag. The moment fopen succeeds, the old contents are truncated to zero length, before fprintf ever runs.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n\nint main(void) {\n    FILE *file = fopen(\"greeting.txt\", \"w\");   // \"w\" = write mode\n\n    if (file == NULL) {\n        printf(\"Could not open file for writing.\\n\");\n        return 1;\n    }\n\n    fprintf(file, \"Hello, file!\\n\");\n    fclose(file);\n\n    printf(\"Wrote greeting.txt\\n\");\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "The lesson says it plainly. Modes w and w plus silently erase any existing content the moment fopen succeeds.",
+      "display": {
+        "kind": "text",
+        "heading": "Straight from the lesson",
+        "subheading": "\"w\" erases existing content the moment fopen succeeds"
+      }
+    },
+    {
+      "narration": "So pick the mode on purpose. Use w when you truly want a fresh file. Reach for a, append mode, when you want to keep what's already there.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "w vs a",
+        "subheading": "replace vs keep"
+      }
+    },
+    {
+      "narration": "Before every fopen in write mode, ask one question. Am I replacing this file, or adding to it? The wrong letter wipes the whole thing.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "One question first",
+        "subheading": "replace or append"
+      }
+    },
+    {
+      "narration": "Full breakdown of every file mode is in the C Mastery Path lesson on File I/O.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/08-file-io/"
+      }
+    }
+  ]
+}

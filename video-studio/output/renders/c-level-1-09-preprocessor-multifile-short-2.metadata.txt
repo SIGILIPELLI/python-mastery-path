@@ -1,0 +1,14 @@
+Title: This C macro squares 1+2 and gets 5
+
+Description:
+A function-like macro in C is not a function. It is pure text substitution done by the preprocessor before the compiler ever runs. Define SQUARE(x) as x * x with no parentheses and SQUARE(1 + 2) expands to 1 + 2 * 1 + 2, which is 5, not 9. This Short shows the classic unparenthesised macro bug from the C Mastery Path preprocessor lesson and the parenthesised fix.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/
+
+#Shorts
+
+Tags: c, c programming, preprocessor, macros, define, programming tutorial, c macro bug, learn c
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/

@@ -1,0 +1,14 @@
+Title: Java's switch fall-through bug -- and how to kill it
+
+Description:
+One missing `break` in a classic Java switch statement silently falls through to the next case -- a bug that's tripped up developers for decades. Java 14's switch expression with arrow syntax fixes it for good: no fall-through, and it hands back a value directly. Quick look at both, straight from the Control Flow lesson.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/
+
+#Shorts
+
+Tags: java, switch statement, switch expression, control flow, java tutorial, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/

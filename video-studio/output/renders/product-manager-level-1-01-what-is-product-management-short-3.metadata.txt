@@ -1,0 +1,14 @@
+Title: A Product Manager's Real Week: One Support Ticket to a Buildable Plan
+
+Description:
+What does a product manager actually do all week? We walk through one real Monday-to-Friday on a SaaS product's notifications area: reading support tickets, interviewing a churned user, writing a one-page problem statement, fighting for engineering time, and drafting the spec. Notice what never happens: no code, no final design, no sprint timeline. The PM's job is turning a noisy signal into a defined, prioritized, buildable plan.
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/
+
+#Shorts
+
+Tags: product manager, product management, day in the life, PM career, tech careers, SaaS, product management tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/

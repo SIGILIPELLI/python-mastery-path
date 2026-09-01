@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "The C switch bug that compiles clean: missing break",
+  "description": "In C, forgetting a break inside a switch doesn't cause an error. Execution falls through into the next case and quietly runs code you never asked for. Here's how fall-through works, why one matched case can print two lines, and the one time you actually want it.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+  "tags": ["c", "c programming", "switch statement", "fallthrough", "break", "control flow", "programming tutorial", "c bugs"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/"],
+  "beats": [
+    {
+      "narration": "Here's a C bug that compiles clean and still burns you. You write a switch, one case matches, and somehow two lines print. No warning, no error.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "One case, two lines",
+        "subheading": "no compiler error"
+      }
+    },
+    {
+      "narration": "The value is one, so the first case runs. But there's no break after it, so execution just keeps going, straight down into case two. That's fall-through.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "#include <stdio.h>\n\nint main(void) {\n    int n = 1;\n\n    switch (n) {\n        case 1:\n            printf(\"one\\n\");\n            // no break -- falls through!\n        case 2:\n            printf(\"two\\n\");\n            break;\n        case 3:\n            printf(\"three\\n\");\n            break;\n    }\n    // Output:\n    // one\n    // two\n    return 0;\n}",
+        "output": "one\ntwo"
+      }
+    },
+    {
+      "narration": "It's not always a bug. Stacked cases with no break let A, B, and C share one handler. When you do that on purpose, leave a fallthrough comment so the next reader knows.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "switch (grade) {\n    case 'A':\n    case 'B':\n    case 'C':\n        printf(\"Passing\\n\");   // A, B, and C all fall into this one line\n        break;\n    default:\n        printf(\"Not passing\\n\");\n}"
+      }
+    },
+    {
+      "narration": "So the rule: every case ends with break, unless you meant to fall through and said so. Miss one, and the compiler stays quiet.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "End every case with break"
+      }
+    },
+    {
+      "narration": "Full lesson with runnable code is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/"
+      }
+    }
+  ]
+}

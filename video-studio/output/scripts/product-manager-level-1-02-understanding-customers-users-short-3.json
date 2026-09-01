@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "The Interview Question That Makes Customers Lie to You",
+  "description": "The fastest way to ruin a customer interview is to ask people to predict their own future behavior. \"Would you use a feature that does X?\" feels productive, but people are unreliable narrators of what they'll do next -- and reliable narrators of what they already did. This Short shows the swap from leading, hypothetical questions to behavioral ones, plus why 4-5 consistent stories are enough to act on.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n\n#Shorts",
+  "tags": ["product management", "customer interviews", "user research", "product discovery", "jobs to be done", "pm skills"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/"],
+  "beats": [
+    {
+      "narration": "Every answer from that customer interview might be worthless. Not because they lied on purpose. Because you asked them to predict the future.",
+      "display": {
+        "kind": "text",
+        "heading": "\"Would you use this?\"",
+        "subheading": "The question that quietly ruins interviews"
+      }
+    },
+    {
+      "narration": "People are unreliable predictors of their own future behavior, but reliable narrators of their past. So asking would you use a dashboard that shows X tells you almost nothing.",
+      "display": {
+        "kind": "text",
+        "heading": "Don't ask",
+        "subheading": "\"Would you use a dashboard that shows X?\""
+      }
+    },
+    {
+      "narration": "Ask about what actually happened instead. Walk me through the last time you needed to check X. What did you do? Real situation, real behavior, no guessing.",
+      "display": {
+        "kind": "text",
+        "heading": "Ask instead",
+        "subheading": "\"Walk me through the last time you needed X -- what did you do?\""
+      }
+    },
+    {
+      "narration": "And when they mention frustration or relief, follow the emotion and dig in. Once four or five people describe the same struggle unprompted, you've found a real pattern.",
+      "display": {
+        "kind": "text",
+        "heading": "Follow the emotion",
+        "subheading": "4-5 people, same story, unprompted = a real pattern"
+      }
+    },
+    {
+      "narration": "The full lesson breaks down the whole interview structure, warm-up to wrap-up. The link is right here.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson: running interviews that work",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/"
+      }
+    }
+  ]
+}

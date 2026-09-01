@@ -1,0 +1,193 @@
+{
+  "id": "kiko-tries-new-foods",
+  "format": "kids-short",
+  "target_age_range": "3-7",
+  "duration_seconds_target": 90,
+
+  "moral_or_theme": "Trying new things can be fun — you'll never know until you try.",
+
+  "characters": [
+    {
+      "id": "kiko",
+      "name_en": "Kiko",
+      "name_te": "కికో",
+      "visual_description": "small reddish-brown squirrel, big fluffy tail with a cream stripe, round brown eyes, tiny leaf-green scarf tied around his neck",
+      "personality": "curious but a little cautious about new things; becomes brave once encouraged"
+    },
+    {
+      "id": "bibbo",
+      "name_en": "Bibbo",
+      "name_te": "బిబ్బో",
+      "visual_description": "white bunny with one floppy ear tipped pink, a sky-blue bow on the other ear, big friendly smile",
+      "personality": "adventurous, warm, encouraging without pushing"
+    }
+  ],
+
+  "voices": {
+    "en": "en-US-AnaNeural",
+    "te": "te-IN-ShrutiNeural"
+  },
+
+  "scenes": [
+    {
+      "scene_number": 1,
+      "setting": "sunny forest clearing, a big oak tree, a tidy little pile of nuts, soft morning light",
+      "action": "Kiko sits by his pile of nuts, munching happily and patting his round tummy.",
+      "dialogue": [
+        {
+          "character": "kiko",
+          "line_en": "Yummy nuts for breakfast, yummy nuts for lunch! Nuts, nuts, nuts — that's all I munch!",
+          "line_te": "అల్పాహారానికి రుచికరమైన గింజలు, భోజనానికి కూడా గింజలే! గింజలు, గింజలు, గింజలే నేను తినేది!"
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "light playful ukulele, birds chirping, cheerful morning tone"
+    },
+    {
+      "scene_number": 2,
+      "setting": "same forest clearing",
+      "action": "Bibbo hops in holding a shiny red berry on a leaf and offers it to Kiko, who leans back and puffs up his tail nervously.",
+      "dialogue": [
+        {
+          "character": "bibbo",
+          "line_en": "Kiko, look! A juicy red berry! Want to try it?",
+          "line_te": "కికో, చూడు! రసవంతమైన ఎర్రటి బెర్రీ! రుచి చూస్తావా?"
+        },
+        {
+          "character": "kiko",
+          "line_en": "A berry? No, no! What if I don't like it?",
+          "line_te": "బెర్రీనా? వద్దు వద్దు! నాకు నచ్చకపోతే?"
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "music softens slightly, a light comic 'uh-oh' sting on Kiko's line"
+    },
+    {
+      "scene_number": 3,
+      "setting": "same forest clearing",
+      "action": "Bibbo smiles and holds the berry a little closer; Kiko shuffles backward and wraps his big tail around himself like a blanket.",
+      "dialogue": [
+        {
+          "character": "bibbo",
+          "line_en": "You'll never know... until you try!",
+          "line_te": "ప్రయత్నించే వరకూ నీకు తెలియదు కదా!"
+        },
+        {
+          "character": "kiko",
+          "line_en": "New food is scary. I like my same old nuts.",
+          "line_te": "కొత్త తిండి భయంగా ఉంటుంది. నాకు నా పాత గింజలే ఇష్టం."
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "gentle, patient musical phrase, nothing tense or scary"
+    },
+    {
+      "scene_number": 4,
+      "setting": "same forest clearing",
+      "action": "Bibbo takes a big happy bite of the berry, twirls with delight, and does a little happy dance.",
+      "dialogue": [
+        {
+          "character": "bibbo",
+          "line_en": "Mmm! Sweet and juicy! I love it!",
+          "line_te": "మ్మ్! తీపి, రసంగా ఉంది! నాకు చాలా నచ్చింది!"
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "playful sparkle sound effect, bouncy upbeat music"
+    },
+    {
+      "scene_number": 5,
+      "setting": "same forest clearing",
+      "action": "Kiko peeks out from behind his tail and leans forward, nose twitching as he sniffs the berry from a distance.",
+      "dialogue": [
+        {
+          "character": "kiko",
+          "line_en": "Hmm... it does smell sweet.",
+          "line_te": "హ్మ్... తీపిగా వాసన వస్తోంది."
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "curious, tiptoe-style pizzicato strings"
+    },
+    {
+      "scene_number": 6,
+      "setting": "same forest clearing",
+      "action": "Kiko squeezes his eyes shut tight and takes one tiny, brave nibble of the berry. His eyes pop wide open with surprise.",
+      "dialogue": [
+        {
+          "character": "kiko",
+          "line_en": "Wow! It's sweet! It's yummy! I LIKE it!",
+          "line_te": "వావ్! ఇది తీపిగా ఉంది! చాలా బాగుంది! నాకు నచ్చింది!"
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "big joyful musical swell, cheerful chime"
+    },
+    {
+      "scene_number": 7,
+      "setting": "same forest clearing",
+      "action": "Kiko and Bibbo hop and twirl together, laughing happily, little berry-juice sparkles around them.",
+      "dialogue": [
+        {
+          "character": "kiko",
+          "line_en": "You'll never know... until you try!",
+          "line_te": "ప్రయత్నించే వరకూ తెలియదు కదా!"
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "full bouncy celebration music, both characters laughing"
+    },
+    {
+      "scene_number": 8,
+      "setting": "same forest clearing, the next morning",
+      "action": "Kiko spots a small round orange mushroom cap and walks toward it confidently — no hesitation this time — while Bibbo cheers beside him.",
+      "dialogue": [
+        {
+          "character": "kiko",
+          "line_en": "New food? Let's try it! You'll never know until you try!",
+          "line_te": "కొత్త తిండా? ప్రయత్నిద్దాం పద! ప్రయత్నించే వరకూ తెలియదు కదా!"
+        },
+        {
+          "character": "bibbo",
+          "line_en": "That's my brave friend, Kiko!",
+          "line_te": "అదీ నా ధైర్యస్తుడు స్నేహితుడు కికో!"
+        }
+      ],
+      "on_screen_text_en": null,
+      "on_screen_text_te": null,
+      "sound_music_notes": "confident, upbeat marching-style tune, light and fun"
+    },
+    {
+      "scene_number": 9,
+      "setting": "same forest clearing, golden afternoon light",
+      "action": "Kiko and Bibbo sit together with a colorful little spread of nuts, berries, and mushrooms, smiling out at the viewer.",
+      "dialogue": [],
+      "on_screen_text_en": "Trying new things can be fun!",
+      "on_screen_text_te": "కొత్త విషయాలు ప్రయత్నించడం సరదాగా ఉంటుంది!",
+      "sound_music_notes": "warm closing musical theme, soft fade out"
+    }
+  ],
+
+  "compliance": {
+    "checklist_file": "kids-video-studio/COMPLIANCE_CHECKLIST.md",
+    "status": "pass",
+    "notes": "All content-level checklist items are satisfied: original characters/names/designs (Kiko and Bibbo are invented, not based on any existing IP), tone stays mild and consequence-free (Kiko's hesitation is framed as ordinary shyness, never scary imagery or real danger), no violence, no romance, no substances, no bullying, no off-platform CTAs, no brand mentions, no data-collection prompts, made_for_kids is set true, and the moral is stated explicitly and lands identically in both language tracks. One item cannot be fully closed from the script alone: the sound_music_notes describe mood/instrumentation only (e.g. 'playful ukulele') — no specific track has been sourced yet, so at production time the chosen music must be confirmed original or royalty-free (or licensed) before use, per checklist section 3."
+  },
+
+  "metadata": {
+    "title_en": "Kiko the Squirrel Tries Something New",
+    "title_te": "కికో ఉడత కొత్తది ప్రయత్నిస్తుంది",
+    "description_en": "Kiko the squirrel only ever eats nuts — until his brave bunny friend Bibbo shows him that trying new foods can be fun! A gentle, encouraging story for little ones about facing the unknown, one small nibble at a time.",
+    "description_te": "కికో ఉడత ఎప్పుడూ గింజలే తింటుంది — కానీ ధైర్యవంతురాలైన స్నేహితురాలు బిబ్బో కుందేలు కొత్త ఆహారాలు ప్రయత్నించడం సరదాగా ఉంటుందని చూపిస్తుంది! కొత్త విషయాలను ఎదుర్కోవడం గురించి చిన్నారుల కోసం ఒక సున్నితమైన, ప్రోత్సాహకరమైన కథ.",
+    "tags": ["kids", "animated story", "squirrel", "bunny", "trying new foods", "courage for kids", "bilingual kids story", "telugu kids story", "moral story"],
+    "thumbnail_concept": "Kiko the squirrel wide-eyed and curious, sniffing a bright red berry held out by Bibbo the bunny; both smiling; sunny forest background; no text clutter",
+    "made_for_kids": true
+  }
+}

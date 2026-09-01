@@ -1,0 +1,14 @@
+Title: The One-Sentence PM Template That Fixes Vague Problem Statements
+
+Description:
+Most 'problem statements' in a PRD are just vague vibes dressed up as a document -- and vague statements produce scattered, mismatched solutions. Here's the four-part template (who, pain, situation, consequence, plus evidence) that makes two different engineers design roughly the same fix. Pulled from Module 3 of the Product Manager Mastery Path.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+
+#Shorts
+
+Tags: product management, product manager, problem statement, PRD, PM skills, product discovery
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/

@@ -6,3 +6,6 @@ __pycache__/
 CLAUDE.md
 TASKS.md
 .claude/
+linkedin-content/profile.json
+linkedin-content/.env
+linkedin-content/drafts/

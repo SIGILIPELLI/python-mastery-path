@@ -1,0 +1,72 @@
+{
+  "type": "short",
+  "language": "python",
+  "title": "Why adding threads didn't speed up your Python",
+  "description": "STYLE SAMPLE -- stick-figure animation test. You added threading and got zero speedup. The Global Interpreter Lock is why, and multiprocessing is the fix.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n\n#Shorts",
+  "tags": ["python", "python tutorial", "concurrency", "threading", "multiprocessing", "gil"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/"],
+  "beats": [
+    {
+      "narration": "You added threading to make your Python code faster, and it ran exactly as slowly as before. Here's why that happens.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Threads, but no speedup?",
+        "subheading": ""
+      }
+    },
+    {
+      "narration": "Python has one lock, called the GIL. Only the thread holding it can run Python code. The others just wait their turn.",
+      "display": {
+        "kind": "stick",
+        "scene": "gil",
+        "heading": "The Global Interpreter Lock",
+        "subheading": ""
+      }
+    },
+    {
+      "narration": "So four threads on a pure counting loop don't split that work four ways. They politely take turns holding the very same lock.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "def cpu_bound(n):\n    count = 0\n    for _ in range(n):\n        count += 1\n    return count\n\nthreads = [threading.Thread(target=cpu_bound, args=(20_000_000,))\n           for _ in range(4)]"
+      }
+    },
+    {
+      "narration": "Four threads, and barely faster than doing it one at a time.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "print(f\"threaded: {time.perf_counter() - start:.2f}s\")",
+        "output": "threaded: 3.71s   # not much faster than sequential"
+      }
+    },
+    {
+      "narration": "The fix is multiprocessing. Separate processes, each with its own interpreter and its own lock, genuinely running across your cores.",
+      "display": {
+        "kind": "stick",
+        "scene": "parallel",
+        "heading": "multiprocessing",
+        "subheading": ""
+      }
+    },
+    {
+      "narration": "Same function, a process pool instead of threads, and now it actually scales with your core count.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "with multiprocessing.Pool(processes=4) as pool:\n    results = pool.map(cpu_bound, [20_000_000] * 4)"
+      }
+    },
+    {
+      "narration": "So: threading for waiting on input and output, multiprocessing for real CPU work. Full lesson is linked below.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "threading → I/O · multiprocessing → CPU",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-3/"
+      }
+    }
+  ]
+}

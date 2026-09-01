@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "The PM tradeoff trap: don't decide it in a hallway",
+  "description": "Nearly every build surfaces a tradeoff the PRD never anticipated — speed vs. scope, quality vs. speed, one segment's needs vs. another's. A PM's job isn't to have the answer. It's to make the tradeoff explicit and get the right people deciding it together, then document the decision so it isn't relitigated later. This Short uses the \"ship in 1 week without multi-select vs. 3 weeks with it\" example from Level 1 of the Product Manager Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n\n#Shorts",
+  "tags": ["product management", "product manager", "tradeoffs", "working with engineering", "working with design", "PRD", "decision making", "PM skills", "cross functional teams"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"],
+  "beats": [
+    {
+      "narration": "Nearly every build hits a tradeoff the PRD never saw coming. The worst move? Deciding it yourself in a hallway.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Navigating tradeoff conversations",
+        "subheading": "Product Manager Mastery Path · Level 1"
+      }
+    },
+    {
+      "narration": "The shift: your job isn't to have the answer. It's to make the tradeoff explicit and get the right people deciding it together.",
+      "display": {
+        "kind": "text",
+        "heading": "The PM's actual job here",
+        "subheading": "Make the tradeoff explicit — then get the right people deciding it together."
+      }
+    },
+    {
+      "narration": "Engineering says: we can ship in one week if we drop multi-select, or three weeks with it. That's not yours to call alone. You know the cost of cutting it; engineering knows the time saved.",
+      "display": {
+        "kind": "text",
+        "heading": "Speed vs. scope",
+        "subheading": "\"Ship in 1 week without multi-select, or 3 weeks with it.\" PM weighs impact; Eng weighs time."
+      }
+    },
+    {
+      "narration": "So don't settle it one-on-one with the engineer. Bring in whoever else has context, even a ten-minute sync, and document what you chose and why.",
+      "display": {
+        "kind": "text",
+        "heading": "Don't decide it in a hallway",
+        "subheading": "Loop in whoever has context. Write down the decision and the reasoning so it doesn't re-litigate later."
+      }
+    },
+    {
+      "narration": "The full lesson maps every tradeoff type to who should weigh in.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"
+      }
+    }
+  ]
+}

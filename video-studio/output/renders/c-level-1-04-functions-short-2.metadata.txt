@@ -1,0 +1,14 @@
+Title: The one C keyword that makes a local variable remember
+
+Description:
+A local variable in C resets every single time its function is called. Mark it `static` and it keeps its value between calls instead — persistence without turning it into a global that any function can touch. Here's a call counter that remembers how many times it ran, straight from Level 1 of the C Mastery Path.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/
+
+#Shorts
+
+Tags: c, c programming, static keyword, static local variable, functions, c tutorial, programming tutorial, learn c
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/

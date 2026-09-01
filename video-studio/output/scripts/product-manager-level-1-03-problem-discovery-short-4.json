@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "One angry support ticket is not a problem. It's a signal.",
+  "description": "New PMs treat every loud request as a problem to solve, then wonder why they keep shipping fixes for symptoms. This Short breaks down the difference between a signal (one piece of raw evidence) and a problem (the validated pain a cluster of signals points to), using the B2B analytics worked example from Level 1's Problem Discovery lesson: two support tickets, a return-rate drop, and one lost renewal that all cluster into a single real problem. Collect signals, cluster them, then write the problem statement before anyone proposes a solution.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n\n#Shorts",
+  "tags": ["product management", "problem discovery", "product discovery", "signals vs problems", "problem statement", "pm skills", "product manager", "user research"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"],
+  "beats": [
+    {
+      "narration": "One angry support ticket is not a problem. It's a signal. So is a churn comment, a metric drop, a stakeholder request.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Just a signal",
+        "subheading": "not the problem"
+      }
+    },
+    {
+      "narration": "A signal is one piece of raw evidence. A problem is the validated pain a cluster of signals points to. Confuse them and you spend your sprint fixing symptoms.",
+      "display": {
+        "kind": "text",
+        "heading": "Signal vs. problem",
+        "subheading": "raw evidence vs. validated pain"
+      }
+    },
+    {
+      "narration": "So you collect signals for a week or two without committing to a fix. Then you cluster the ones pointing at the same underlying issue.",
+      "display": {
+        "kind": "stick",
+        "scene": "search",
+        "heading": "Collect, then cluster",
+        "subheading": "no fix yet"
+      }
+    },
+    {
+      "narration": "Two tickets about finding last month's report. A twelve percent drop in seven day return rate. One lost renewal. Three loose signals, one real problem: monthly users have no reason to come back between report cycles.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example",
+        "subheading": "B2B analytics tool"
+      }
+    },
+    {
+      "narration": "Validate the cluster, then write the problem statement before anyone proposes a solution. Fix the pattern, not the loudest ticket.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Fix the cluster",
+        "subheading": "not the loudest ticket"
+      }
+    },
+    {
+      "narration": "The full lesson has the worked example and the problem statement template.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"
+      }
+    }
+  ]
+}

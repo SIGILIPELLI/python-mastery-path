@@ -1,0 +1,12 @@
+Title: Build a JWT-Authenticated Task API From Scratch — Full Node.js + SQLite Capstone Walkthrough
+
+Description:
+This is the JavaScript Mastery Path capstone, built stage by stage: a Task Tracker API where users register, log in, and manage their own tasks through a JWT-protected REST API backed by SQLite. We go through the project layout and environment-driven config, the SQLite connection and schema, a clean repository layer for users and tasks, JWT signing and an auth middleware, register/login routes with bcrypt password hashing, a protected tasks resource with per-user ownership checks, a full Jest + supertest integration test suite running against an in-memory database, and finally a Dockerfile, docker-compose.yml, and a two-job GitHub Actions CI pipeline that lints, tests, and builds a Docker image on every push. Every line of code shown is pulled directly from the capstone lesson — nothing invented, nothing skipped.
+
+Lessons covered in this video:
+- https://sigilipelli.github.io/javascript-mastery-path/level-4/10-capstone-project/
+
+Tags: javascript, node.js, express, jwt authentication, sqlite, rest api tutorial, jest testing, supertest, docker, github actions ci/cd, programming tutorial, backend development
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-4/10-capstone-project/

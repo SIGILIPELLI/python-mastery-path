@@ -1,0 +1,14 @@
+Title: Why a tiny C project still needs a header file
+
+Description:
+This C contact book is split across three files, and the header is the part beginners find confusing. contacts.h holds only the Contact struct and the function prototypes -- no logic. contacts.c holds the bodies. That's the interface/implementation split that every large C codebase is built on.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/
+
+#Shorts
+
+Tags: c, c programming, header files, multi-file c, contacts.h, interface implementation, programming tutorial, learn c
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/

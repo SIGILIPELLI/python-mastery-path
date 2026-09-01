@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Stop Shipping Maven Into Production (Multi-Stage Docker)",
+  "description": "Most Java Dockerfiles accidentally ship the entire Maven build toolchain into production. This Short shows the two-stage fix: compile in a throwaway Maven/JDK stage, then copy just the finished jar into a slim JRE image running as a non-root user. Same app, a fraction of the image size, way less attack surface.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/\n\n#Shorts",
+  "tags": ["java", "docker", "multi-stage build", "containerization", "devops", "spring boot", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/"],
+  "beats": [
+    {
+      "narration": "Here's a Docker mistake almost every Java developer makes: shipping the entire Maven toolchain straight into production.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Containerization & Deployment",
+        "subheading": "Java Mastery Path -- Level 4"
+      }
+    },
+    {
+      "narration": "The build stage compiles with a full Maven and JDK image -- fine, because this bulky stage never actually ships.",
+      "display": {
+        "kind": "editor",
+        "lang": "dockerfile",
+        "code": "# ---- Build stage ----\nFROM maven:3.9-eclipse-temurin-21 AS build\nWORKDIR /app\n\nCOPY pom.xml .\nRUN mvn dependency:go-offline -B\n\nCOPY src ./src\nRUN mvn package -DskipTests -B"
+      }
+    },
+    {
+      "narration": "A second stage starts completely fresh: just a slim JRE Alpine image, and it copies in only the finished jar file.",
+      "display": {
+        "kind": "editor",
+        "lang": "dockerfile",
+        "code": "# ---- Runtime stage ----\nFROM eclipse-temurin:21-jre-alpine\nWORKDIR /app\n\nRUN addgroup -S app && adduser -S app -G app\nUSER app\n\nCOPY --from=build /app/target/order-service-*.jar app.jar\n\nEXPOSE 8080\nENTRYPOINT [\"java\", \"-jar\", \"app.jar\"]"
+      }
+    },
+    {
+      "narration": "One command builds the image, another runs it and maps the port -- no build tools, no dependency drama, no 'works on my machine.'",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "docker build -t order-service:latest .\n\ndocker run -p 8080:8080 \\\n  -e DB_PASSWORD='SuperSecret123!' \\\n  order-service:latest"
+      }
+    },
+    {
+      "narration": "That's a multi-stage Dockerfile in about twenty lines, and it cuts your production image down to a fraction of the size. Full breakdown's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + docker-compose setup:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/"
+      }
+    }
+  ]
+}

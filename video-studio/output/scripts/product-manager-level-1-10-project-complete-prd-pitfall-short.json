@@ -1,0 +1,31 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "PM Pitfall: Sellers Weren't Churning Over a Bug",
+  "description": "Seven support tickets and a churn-exit interview all pointed at the same 'broken' feature -- but the real cause wasn't a bug, it was an undocumented delay nobody told users about. This is the pitfall hiding inside the sample scenario from the Product Manager Mastery Path's Level 1 capstone project: writing a complete PRD. Before you write a single requirement, your problem statement has to name the real problem -- and it's rarely the one users think they're reporting.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/\n\n#Shorts",
+  "tags": ["product management", "PRD", "product manager tutorial", "problem discovery", "customer churn", "product management shorts", "how to write a PRD"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"],
+  "beats": [
+    {
+      "narration": "Seven support tickets and one churn interview, all pointing at the same 'bug.'",
+      "display": { "kind": "title_card", "heading": "The Tickets All Said 'Broken'", "subheading": "Product Manager Mastery Path -- Level 1 Capstone" }
+    },
+    {
+      "narration": "Turns out Marketplace B's price sync just runs four to six hours late -- and nobody ever told the sellers that.",
+      "display": { "kind": "text", "heading": "The real cause", "subheading": "A 4-6 hour sync delay, completely undocumented" }
+    },
+    {
+      "narration": "So sellers weren't churning over a slow sync. They were churning because prices looked wrong with zero explanation -- and that's what killed their trust.",
+      "display": { "kind": "text", "heading": "The pitfall", "subheading": "Not a speed problem -- a trust problem" }
+    },
+    {
+      "narration": "Jump straight to 'fix the delay' and you've fixed the wrong problem. A real problem statement has to prove which one it actually is before anyone writes a requirement.",
+      "display": { "kind": "text", "heading": "Before you write one requirement", "subheading": "Name the real problem, not the reported symptom" }
+    },
+    {
+      "narration": "The full complete-PRD capstone project, sample scenario and all, is one link away.",
+      "display": { "kind": "text", "heading": "Full project + source:", "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/" }
+    }
+  ]
+}

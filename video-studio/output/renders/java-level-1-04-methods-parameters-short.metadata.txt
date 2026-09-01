@@ -1,0 +1,14 @@
+Title: Same Name, 3 Methods -- How Java Overloading Works
+
+Description:
+Java lets you define multiple methods with the exact same name, as long as their parameter lists differ in count or type -- it's called overloading, and the compiler picks the right one automatically at compile time. This Short breaks down multiply(int, int), multiply(double, double), and multiply(int, int, int) living side by side in the same class, and shows exactly which one runs for each call. Part of the Methods & Parameters lesson in the Java Mastery Path, Level 1.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/
+
+#Shorts
+
+Tags: java, method overloading, java methods, programming tutorial, java mastery path, learn java
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/

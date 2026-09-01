@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Why Product Teams Ship Features Nobody Uses (The Discovery Fix)",
+  "description": "The fastest way to waste a quarter: a stakeholder says \"build X,\" and two weeks later an engineer is building X, with nobody checking whether X solves a real problem. This Short walks through the discovery workflow that stops solution-jumping: collect signals for a week or two, cluster them, validate the top clusters with interviews, and only then write the problem statement. Includes the analytics-team worked example from the lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n\n#Shorts",
+  "tags": ["product management", "product discovery", "problem discovery", "solution jumping", "user research", "pm skills", "product manager"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"],
+  "beats": [
+    {
+      "narration": "Here's how product teams ship features nobody uses. A stakeholder says build this, and two weeks later an engineer is building it. Nobody validated it's a real problem.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Problem Discovery",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "The fix is a discovery workflow. For one to two weeks, you just collect signals and commit to nothing.",
+      "display": {
+        "kind": "text",
+        "heading": "Step 1: collect signals, commit to nothing",
+        "subheading": "Tickets, interview notes, metrics, sales and CS feedback"
+      }
+    },
+    {
+      "narration": "Then cluster the signals pointing at the same issue, and validate the top clusters with a few interviews or a data pull.",
+      "display": {
+        "kind": "text",
+        "heading": "Step 2: cluster, then validate",
+        "subheading": "Confirm the top 2-3 clusters are real -- and roughly how big"
+      }
+    },
+    {
+      "narration": "One analytics team saw three unrelated signals. Instead of building notifications, they interviewed three at-risk accounts and found the real issue: users had no reason to return between report cycles.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example",
+        "subheading": "Cluster first, interview, then name the actual problem"
+      }
+    },
+    {
+      "narration": "Only then do you write the problem statement, before anyone proposes a solution. Skip these steps and you build the loudest request, not the biggest one.",
+      "display": {
+        "kind": "text",
+        "heading": "Solutioning comes last",
+        "subheading": "Write the problem statement before anyone pitches a fix"
+      }
+    },
+    {
+      "narration": "The full workflow and worked example are in the lesson. Link below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"
+      }
+    }
+  ]
+}

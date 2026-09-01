@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "python",
+  "title": "Python Scope: Same Variable, 3 Different Values",
+  "description": "One variable name, three totally different printed values -- and it's not a bug. This Short breaks down Python's LEGB scope rule (Local, Enclosing, Global, Built-in) and shows why you need the `global` keyword if you actually want to change an outer variable from inside a function.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
+  "tags": ["python", "python scope", "LEGB", "global keyword", "programming tutorial", "python functions"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/"],
+  "beats": [
+    {
+      "narration": "Same variable name, three completely different values printed in the same run. This is Python's LEGB scope rule at work.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Functions & Scope",
+        "subheading": "Python Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Local beats enclosing beats global beats built-in. Inside inner, x is local. Back in outer, x is enclosing. Outside everything, x is still global -- untouched.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "x = \"global\"\n\ndef outer():\n    x = \"enclosing\"\n\n    def inner():\n        x = \"local\"\n        print(x)  # local\n\n    inner()\n    print(x)  # enclosing\n\nouter()\nprint(x)  # global"
+      }
+    },
+    {
+      "narration": "Want to change a global from inside a function instead of shadowing it? You need the global keyword -- say Python: don't create a new local, use the outer one.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "counter = 0\n\ndef increment():\n    global counter\n    counter += 1"
+      }
+    },
+    {
+      "narration": "Skip global and increment() just creates a throwaway local variable -- your global counter never moves.",
+      "display": {
+        "kind": "text",
+        "heading": "No `global`? No update.",
+        "subheading": "counter += 1 silently creates a new local variable instead"
+      }
+    },
+    {
+      "narration": "Scope rules like this are exactly why your variables sometimes 'don't update' -- go see the full breakdown in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/"
+      }
+    }
+  ]
+}

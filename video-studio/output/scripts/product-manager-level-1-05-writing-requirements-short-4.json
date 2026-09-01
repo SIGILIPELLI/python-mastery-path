@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "If Your User Story Names a Dropdown, It's Not a User Story",
+  "description": "A user story captures a piece of functionality from the user's point of view, focused on why they want it, not a technical implementation spec. The moment it names a specific dropdown, table, or button, it has stopped being a user story and started locking in one solution. This Short shows the weak-versus-strong example straight from the lesson and the template that keeps you honest: as a type of user, I want to do some action, so that a benefit.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
+  "tags": ["product management", "user stories", "PRD", "writing requirements", "product manager", "agile", "acceptance criteria", "product owner"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"],
+  "beats": [
+    {
+      "narration": "If your user story names a dropdown menu, it's not a user story anymore. It's an implementation spec wearing a costume.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Not a user story",
+        "subheading": "just a UI spec"
+      }
+    },
+    {
+      "narration": "Weak version: add a filter dropdown to the reports page. That's a UI element, not a need. The strong one names who wants it, and why.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "Weak:   \"Add a filter dropdown to the reports page.\"\n\nStrong: \"As a team lead reviewing weekly reports,\n         I want to filter results by team member,\n         so that I can check one person's numbers\n         without scanning the whole list.\""
+      }
+    },
+    {
+      "narration": "A user story captures a need from the user's point of view, focused on why they want it, not how you build it.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Why, not how",
+        "subheading": "the user's point of view"
+      }
+    },
+    {
+      "narration": "This template keeps you honest. It leaves room for design and engineering to propose something better. Maybe a saved filter beats a dropdown entirely.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "As a [type of user],\nI want to [do some action],\nso that [benefit/outcome]."
+      }
+    },
+    {
+      "narration": "So name the user, the action, and the benefit. Let the team name the dropdown.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Describe the need",
+        "subheading": "not the widget"
+      }
+    },
+    {
+      "narration": "Full breakdown, plus how a PRD ties your stories together, in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + worked mini-PRD:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Title: The C hello world, line by line (what each piece does)
+
+Description:
+Everyone copies the six-line C hello world, but almost nobody explains what each line is for. This Short walks the "Anatomy of the program" breakdown from the C Mastery Path setup lesson: what #include <stdio.h> does before compilation, why int main returns an exit status, what return 0 signals to the shell, and why gcc names your binary a.out when you forget the -o flag.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/
+
+#Shorts
+
+Tags: c, c programming, hello world, gcc, int main, return 0, learn to code, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/

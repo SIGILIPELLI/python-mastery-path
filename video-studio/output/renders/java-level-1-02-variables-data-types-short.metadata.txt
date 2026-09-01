@@ -1,0 +1,14 @@
+Title: Java Silently Truncates Integer Division (Here's the Fix)
+
+Description:
+Divide two ints in Java and the decimal just disappears -- no warning, no error. In under a minute, see why int / int always truncates, how casting to double fixes it, and why casting a double to int never rounds either.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/
+
+#Shorts
+
+Tags: java, integer division, casting, java basics, programming tutorial, coding shorts
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/

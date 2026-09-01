@@ -1,0 +1,14 @@
+Title: If Your User Story Names a Dropdown, It's Not a User Story
+
+Description:
+A user story captures a piece of functionality from the user's point of view, focused on why they want it, not a technical implementation spec. The moment it names a specific dropdown, table, or button, it has stopped being a user story and started locking in one solution. This Short shows the weak-versus-strong example straight from the lesson and the template that keeps you honest: as a type of user, I want to do some action, so that a benefit.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+
+#Shorts
+
+Tags: product management, user stories, PRD, writing requirements, product manager, agile, acceptance criteria, product owner
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/

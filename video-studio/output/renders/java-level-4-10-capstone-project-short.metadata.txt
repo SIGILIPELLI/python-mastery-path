@@ -1,0 +1,14 @@
+Title: This Java Class Won't Let You Cancel Twice
+
+Description:
+Inside the Java Mastery Path capstone — a real Order Management REST API — the Order entity itself blocks a double-cancel, and a global exception handler turns that violation into the exact HTTP status a REST client expects. It's layered architecture in miniature: domain guards, service translation, and a global handler, each doing one job.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/
+
+#Shorts
+
+Tags: java, spring boot, rest api, exception handling, java mastery path, programming tutorial, backend development
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/

@@ -1,0 +1,14 @@
+Title: Spring Boot Queries With Zero SQL (It's Not Magic)
+
+Description:
+Spring Data JPA can generate a real database query just from how you name a Java method — no SQL, no annotations. We break down how findByEmailAndActiveTrue and its siblings get parsed into a real query at startup, and why a typo fails the build instead of hiding in production.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/
+
+#Shorts
+
+Tags: java, spring boot, spring data jpa, programming tutorial, backend development, java mastery path
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/

@@ -1,0 +1,14 @@
+Title: Python Scope: Same Variable, 3 Different Values
+
+Description:
+One variable name, three totally different printed values -- and it's not a bug. This Short breaks down Python's LEGB scope rule (Local, Enclosing, Global, Built-in) and shows why you need the `global` keyword if you actually want to change an outer variable from inside a function.
+
+Source lesson:
+- https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/
+
+#Shorts
+
+Tags: python, python scope, LEGB, global keyword, programming tutorial, python functions
+
+Source lesson(s):
+- https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/

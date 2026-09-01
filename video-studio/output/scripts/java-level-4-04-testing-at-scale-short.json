@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Java Tests Can Spin Up a Real Database (Then Delete It)",
+  "description": "Mockito fakes your dependencies for millisecond-fast unit tests, but sometimes you need to know your code works against a real database engine. Testcontainers spins up an actual disposable Postgres instance in Docker just for the test run, then tears it down when it's done. See the full breakdown of unit tests, Spring MockMvc integration tests, and Testcontainers in the Java Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/\n\n#Shorts",
+  "tags": ["java", "testing", "mockito", "testcontainers", "spring boot", "unit testing", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/"],
+  "beats": [
+    {
+      "narration": "Real senior engineers don't test against fake databases forever. There's a way to spin up an actual Postgres instance, just for one test, then throw it away.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Real Postgres. Just for one test.",
+        "subheading": "Testing at Scale -- Java Mastery Path"
+      }
+    },
+    {
+      "narration": "Mockito fakes your dependencies so a unit test runs in milliseconds -- no real database, just verify the right method got called.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@Mock\nprivate OrderRepository orderRepository;\n\n@Test\nvoid cancelOrder_marksOrderCancelled() {\n    when(orderRepository.findById(1L)).thenReturn(Optional.of(existing));\n\n    Order result = orderService.cancel(1L);\n\n    assertEquals(\"CANCELLED\", result.status());\n    verify(orderRepository).save(argThat(o -> o.status().equals(\"CANCELLED\")));\n}"
+      }
+    },
+    {
+      "narration": "But sometimes you need to know your queries work against a real engine. Testcontainers boots an actual disposable Postgres in Docker, before your test class runs, and tears it down after.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@Container\nstatic PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(\"postgres:16-alpine\")\n        .withDatabaseName(\"orders_test\")\n        .withUsername(\"test\")\n        .withPassword(\"test\");\n\n@Test\nvoid savesAndReadsBackFromRealPostgres() {\n    Order saved = orderRepository.save(new Order(null, \"PENDING\", 150.0));\n\n    Order found = orderRepository.findById(saved.id()).orElseThrow();\n\n    assertEquals(\"PENDING\", found.status());\n}"
+      }
+    },
+    {
+      "narration": "Mocks for speed, MockMvc for the HTTP layer, Testcontainers for the real database -- three layers, three different guarantees, and none of them slow you down.",
+      "display": {
+        "kind": "text",
+        "heading": "Unit, integration, real DB -- pick the right layer",
+        "subheading": "Mockito -> MockMvc -> Testcontainers"
+      }
+    },
+    {
+      "narration": "Full lesson with all three test types and the exercise is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/"
+      }
+    }
+  ]
+}

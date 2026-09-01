@@ -1,0 +1,14 @@
+Title: Why "When Will This Ship?" Is a Trap for PMs
+
+Description:
+A sales lead puts you on the spot in an all-hands: "Will SSO be ready by our renewal date?" The wrong answer turns your roadmap into a broken promise. This Short breaks down the Now/Next/Later confidence structure and the exact line a PM uses to answer honestly without over-committing.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+
+#Shorts
+
+Tags: product management, roadmapping, product manager, PM tips, stakeholder management, PRD
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/

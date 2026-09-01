@@ -1,0 +1,14 @@
+Title: The C file mode that erases your file instantly
+
+Description:
+Opening a file with "w" in C truncates it to zero length the instant fopen succeeds -- before fprintf writes a single byte. If your program crashes first, the old data is just gone. Here's how to pick between "w" and "a" on purpose so you never wipe a file by accident.
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/
+
+#Shorts
+
+Tags: c, file io, fopen, file modes, fprintf, c programming, c tutorial, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/

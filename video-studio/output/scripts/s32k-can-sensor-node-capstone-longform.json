@@ -1,0 +1,218 @@
+{
+  "type": "longform",
+  "language": "s32k",
+  "title": "Design a CAN Sensor Node \u2014 Real-Time Embedded Systems Capstone (S32K, CAN Bus, Watchdog)",
+  "description": "This is the Level 1 capstone of the S32K Mastery Path, walked through step by step: a real automotive-style CAN sensor node built on a hard 10-millisecond cooperative scheduler. We go through the precise requirement, the tick-driven architecture, the exact bit layout of both CAN frames (a 0x310 status frame out and a 0x311 command frame in), the INIT-safe-state-first state machine, the non-blocking main loop, the individual task functions for sensing, transmitting, receiving, and driving PWM with slew limiting, a full bench-test plan using a real CAN adapter, and the lesson's own closing question \u2014 an unguarded race between the CAN RX callback and the main loop's read of the shared command variable. Every line of code and every bit-table value shown is pulled directly from the capstone lesson; nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/s32k-mastery-path/level-1/10-capstone-can-sensor-node/",
+  "tags": [
+    "s32k",
+    "automotive embedded systems",
+    "can bus",
+    "real-time firmware",
+    "embedded c programming",
+    "watchdog timer",
+    "pwm control",
+    "nxp s32k",
+    "embedded systems tutorial",
+    "automotive ecu",
+    "functional safety",
+    "firmware capstone project"
+  ],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/s32k-mastery-path/level-1/10-capstone-can-sensor-node/"
+  ],
+  "beats": [
+    {
+      "narration": "This is the Level 1 capstone of the S32K Mastery Path, and it's the real thing: a CAN sensor node running on a 10-millisecond real-time schedule, transmitting a live status frame, accepting commands over the bus, and enforcing a genuine safety timeout in firmware. We're going to walk it step by step -- the requirement, the architecture, the exact CAN bit layout, the state machine, the code, the bench-test plan, and a race condition the lesson itself leaves you to solve.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Capstone: Design a CAN Sensor Node",
+        "subheading": "S32K Mastery Path \u2014 Level 1, Module 10"
+      }
+    },
+    {
+      "narration": "Here's the spec, stated precisely, the way a real requirements document would: sample a temperature sensor over ADC every 10 milliseconds, filter it and run plausibility checks, transmit a CAN frame with a defined signal layout every 100 milliseconds including a validity flag and an alive counter, receive a command frame that sets a target PWM duty, drive that PWM output toward the target with safe clamping, and feed a watchdog -- but only when every task reports healthy.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Requirement, Restated Precisely",
+        "subheading": "Six real-time obligations, one firmware image"
+      }
+    },
+    {
+      "narration": "Everything in this node hangs off a single 10-millisecond hardware tick from the LPIT timer -- the same cooperative-scheduler pattern from the timers and PWM module, now carrying a real payload. The sensor task, the command-watch task, and the output task all run on every tick; the CAN status transmit only runs on every tenth tick, giving you the 100-millisecond cadence without a second timer.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Architecture: One Tick Drives Everything",
+        "subheading": "10 ms cooperative scheduler, 100 ms CAN cadence"
+      }
+    },
+    {
+      "narration": "This is the actual data flow: ADC into the sensor task, into a shared app_state struct holding temperature, validity, the alive counter, and the PWM target. The CAN transmit task reads that state out to the bus every hundred milliseconds, a CAN receive path writes commands back into it, the output task drives the PWM peripheral, and only if sensor, command, and output health are all true does the loop feed the watchdog.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "                    \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                    \u2502              CAN Sensor Node             \u2502\n                    \u2502                                           \u2502\n  Thermistor \u2500\u2500ADC\u2500\u2500\u25b6  sensor_task_10ms()                       \u2502\n   (module 6)        \u2502        \u2502 filtered temp, valid flag       \u2502\n                    \u2502        \u25bc                                 \u2502\n                    \u2502  app_state (temp_dC, valid, alive_ctr,    \u2502\n                    \u2502             pwm_target_pm, cmd_fresh)     \u2502\n                    \u2502        \u2502              \u25b2                   \u2502\n                    \u2502        \u25bc              \u2502                   \u2502\n   CAN bus \u25c0\u2500\u2500TX\u2500\u2500\u2500\u2500\u2524  can_tx_task_100ms()  \u2502  can_rx_isr()  \u25c0\u2500\u2500\u2500\u2500 CAN bus\n   (0x310, status)  \u2502                        \u2502  (0x311, command)   \u2502\n                    \u2502                        \u2502                   \u2502\n                    \u2502        \u25bc                                   \u2502\n                    \u2502  output_task_10ms() \u2500\u2500PWM\u2500\u2500\u25b6 FTM \u2500\u2500\u25b6 Fan/actuator\n                    \u2502        \u2502                                   \u2502\n                    \u2502        \u25bc                                   \u2502\n                    \u2502  health = AND of all task results          \u2502\n                    \u2502        \u2502                                   \u2502\n                    \u2502        \u25bc                                   \u2502\n                    \u2502  if (health) wdog_feed()                   \u2502\n                    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                             \u25b2\n                        LPIT0 10 ms tick (module 8)\n                        drives the whole schedule"
+      }
+    },
+    {
+      "narration": "Now the part that makes this a real vehicle network node, not a toy: the exact bit layout of both CAN frames. Get this table wrong in a real vehicle program and you don't get a compiler error -- you get a bus full of nodes silently misinterpreting each other's bytes.",
+      "display": {
+        "kind": "title_card",
+        "heading": "CAN Message Layout",
+        "subheading": "0x310 status out, 0x311 command in"
+      }
+    },
+    {
+      "narration": "The status frame, ID 0x310, goes out every 100 milliseconds on 8 bytes: bits 0 to 15 carry CoolantTemp as a signed 16-bit value scaled by 0.1 degrees Celsius, bits 16 to 31 carry SupplyVoltage in millivolts, bit 32 is a SensorValid flag straight from the plausibility check, and bits 36 to 39 are a 4-bit AliveCounter that wraps 0 through 15 -- the receiver's proof that this node hasn't frozen and is re-sending stale bytes.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "Status frame \u2014 ID 0x310, node -> bus, every 100 ms, DLC 8\n\nBits    Signal          Type     Scale/Offset       Range              Notes\n0-15    CoolantTemp     int16    0.1 C, offset 0     -40.0..150.0 C     From module 6's NTC lookup\n16-31   SupplyVoltage   uint16   1 mV                0..20000 mV        Node's own rail health\n32      SensorValid     bool     -                   0/1                Plausibility result\n33      WatchdogOK      bool     -                   0/1                Set 0 the tick before a deliberate non-feed\n36-39   AliveCounter    uint4    -                   0..15, wraps       Increments every transmission\n40-47   PwmActualPct    uint8    1%                  0..100             What the node is actually driving"
+      }
+    },
+    {
+      "narration": "The command frame, ID 0x311, comes in from the bus: byte 0 is PwmTargetPct, 0 to 100 percent, and bits 8 to 11 are the sender's own CmdAliveCounter. And here's the safety-critical line in the spec: the node treats that command as stale after 300 milliseconds without a new alive-counter value -- three missed 100-millisecond cycles -- and falls back to a safe state. That one sentence is the whole reason this capstone is interesting.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "Command frame \u2014 ID 0x311, bus -> node, DLC 8\n\nBits    Signal            Type     Scale/Offset   Range      Notes\n0-7     PwmTargetPct      uint8    1%             0..100     Desired output\n8-11    CmdAliveCounter   uint4    -              0..15      Sender's alive counter\n\nRule: command is stale after 300 ms without a new CmdAliveCounter\nvalue (3 missed 100 ms cycles) -> fall back to the safe state."
+      }
+    },
+    {
+      "narration": "The state machine makes that safe-state rule concrete. INIT runs once: clocks, pins, ADC, CAN, and timers come up, and outputs are forced to the safe state before any of that -- PWM at zero percent -- so there's no window where an uninitialized peripheral could drive something. Only after that does the tick start driving tasks.",
+      "display": {
+        "kind": "title_card",
+        "heading": "State Machine",
+        "subheading": "INIT forces safe state before anything else runs"
+      }
+    },
+    {
+      "narration": "From NORMAL, three consecutive implausible sensor samples drop the node into FAULT, forcing output to zero percent; it takes five stable samples to earn its way back. And separately, if the command goes stale past 300 milliseconds, the node enters CMD_STALE and holds the last known-good target, clamped -- a distinct failure mode from a sensor fault, with its own recovery path.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "        power-on\n           \u2502\n           \u25bc\n     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   sensor implausible          \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n     \u2502   INIT    \u2502\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u25b6\u2502   FAULT    \u2502\n     \u2514\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2518   3+ consecutive samples       \u2514\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n           \u2502 clocks/pins/adc/can/timers OK               \u2502 output = safe\n           \u25bc                                              \u2502 (PWM = 0%)\n     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   sensor valid again (5 stable)        \u2502\n     \u2502  NORMAL   \u2502\u25c0\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n     \u2514\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2518\n           \u2502 command stale > 300 ms\n           \u25bc\n     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n     \u2502 CMD_STALE \u2502  PWM holds last-known-good target, clamped;\n     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518  status frame's WatchdogOK-style visibility\n                    lets the bus see this state (add a bit if\n                    you extend the layout)"
+      }
+    },
+    {
+      "narration": "Here's the main loop that actually implements that schedule in C. Notice what it does not do: it doesn't block, it doesn't call delay functions, it just checks whether the tick counter has advanced since last time through the loop, and if it has, it runs exactly one 10-millisecond slice of work.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Main-Loop Pseudocode",
+        "subheading": "A non-blocking scheduler off one tick counter"
+      }
+    },
+    {
+      "narration": "app_state_t is the single struct every task reads and writes -- temperature, validity, PWM target and actual, and the command's alive tracking. main forces outputs safe before init even finishes, then loops forever: each new tick runs sensor, command-watch, and output tasks, every tenth tick also transmits the CAN status frame, and the watchdog only gets fed if sensor, command, and output all came back healthy on that same tick.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "typedef struct {\n    int16_t  temp_dC;\n    bool     temp_valid;\n    uint8_t  pwm_target_pct;   /* from last valid command       */\n    uint8_t  pwm_actual_pct;   /* what we're actually driving    */\n    uint8_t  cmd_alive_last;\n    uint32_t cmd_age_ticks;    /* 10 ms units since last new cmd */\n    uint8_t  tx_alive;         /* our own outgoing alive counter */\n} app_state_t;\n\nstatic app_state_t st;\n\nint main(void)\n{\n    clocks_init();\n    pins_init();\n    outputs_force_safe();      /* PWM = 0% before anything else  */\n    uart_init(); adc_init(); can_init(); lpit_init(); wdog_init();\n\n    uint32_t last_tick = 0;\n    uint8_t  div100 = 0;\n\n    for (;;) {\n        if (g_tick_10ms != last_tick) {\n            last_tick = g_tick_10ms;\n\n            bool ok_sensor = sensor_task_10ms(&st);   /* module 6 logic  */\n            bool ok_cmd    = command_watch_task_10ms(&st);\n            bool ok_output = output_task_10ms(&st);    /* module 8 PWM    */\n\n            if (++div100 >= 10u) {\n                div100 = 0;\n                can_tx_status_task_100ms(&st);          /* module 7        */\n            }\n\n            if (ok_sensor && ok_cmd && ok_output) {\n                wdog_feed();                            /* module 9 rule   */\n            }\n        }\n        can_rx_poll(&st);      /* or: handled in a FlexCAN RX interrupt */\n        console_poll();        /* module 5, for bring-up visibility     */\n    }\n}"
+      }
+    },
+    {
+      "narration": "command_watch_task_10ms is where the 300-millisecond timeout actually lives. If the RX handler updated the alive counter this tick, it resets the age counter to zero and adopts the new target, clamped to 0 through 100. If not, it increments that age counter, and once it passes 30 ticks -- 30 times 10 milliseconds is 300 milliseconds -- it forces the PWM target to zero and reports itself unhealthy. That's the module 7 signal-timeout habit, made concrete in one function.",
+      "display": {
+        "kind": "text",
+        "heading": "The 300 ms Timeout, Concretely",
+        "subheading": "cmd_age_ticks > 30 forces pwm_target_pct = 0"
+      }
+    },
+    {
+      "narration": "Now the actual task implementations. Three functions, each one owning exactly one responsibility, each one returning a bool the main loop uses to decide whether it's safe to feed the watchdog.",
+      "display": {
+        "kind": "title_card",
+        "heading": "SDK-Style Code Skeleton",
+        "subheading": "sensor_task, can_tx_status_task, output_task"
+      }
+    },
+    {
+      "narration": "sensor_task_10ms reads the ADC channel; if the raw value falls outside the plausible range, it counts consecutive faults and only marks the reading invalid after more than five in a row -- so one noisy sample doesn't trip a fault, but a genuinely dead sensor does. Otherwise it resets the fault counter and runs the reading through the NTC lookup and filter from the ADC module.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "/* --- sensor.c (module 6 pattern) --- */\nbool sensor_task_10ms(app_state_t *s)\n{\n    uint16_t raw = adc0_read(ADC_CH_TEMP);\n    if (raw < RAW_MIN_PLAUSIBLE || raw > RAW_MAX_PLAUSIBLE) {\n        if (++s_fault_count > 5u) { s->temp_valid = false; }\n    } else {\n        s_fault_count = 0u;\n        s->temp_dC   = ntc_temp_dC(adc_filtered(raw));\n        s->temp_valid = true;\n    }\n    return s->temp_valid;\n}"
+      }
+    },
+    {
+      "narration": "can_tx_status_task_100ms packs temperature and voltage into little-endian bytes, and packs the valid flag and the incrementing alive counter into a single byte using a bitmask and shift, exactly matching the bit table from earlier. And can_on_command_received -- the RX callback -- rejects any target above 100 percent outright, then writes the new target and alive value into globals and sets a flag the command-watch task consumes on its next pass.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "/* --- can_app.c --- */\nvoid can_tx_status_task_100ms(app_state_t *s)\n{\n    uint8_t data[8] = {0};\n    int16_t  t   = s->temp_dC;\n    uint16_t vbat = vbat_mV(adc0_read(ADC_CH_VSENSE));\n\n    data[0] = (uint8_t)(t & 0xFF);         data[1] = (uint8_t)(t >> 8);\n    data[2] = (uint8_t)(vbat & 0xFF);      data[3] = (uint8_t)(vbat >> 8);\n    data[4] = (uint8_t)((s->temp_valid ? 1u : 0u)\n                       | ((uint8_t)(++s->tx_alive & 0x0Fu) << 4));\n    data[5] = s->pwm_actual_pct;\n\n    can_send_status(data);                 /* FLEXCAN_DRV_Send, ID 0x310 */\n}\n\nvoid can_on_command_received(const uint8_t data[8])   /* RX ISR/callback */\n{\n    uint8_t target = data[0];\n    uint8_t alive  = data[1] & 0x0Fu;\n    if (target > 100u) { return; }         /* reject implausible frame  */\n    g_cmd_target = target;\n    g_cmd_alive  = alive;\n    g_cmd_updated = true;                  /* consumed by command_watch */\n}"
+      }
+    },
+    {
+      "narration": "output_task_10ms is the last line of defense: it computes a safe target of zero whenever temp_valid is false, no matter what the command frame asked for, then slew-limits the actual PWM by exactly one percent per 10-millisecond tick toward that target -- so the actuator never jumps instantly -- and it always returns true, because an output stage that reliably reaches a defined state is, by this design's own logic, healthy.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "/* --- outputs.c (module 8 pattern) --- */\nbool output_task_10ms(app_state_t *s)\n{\n    uint8_t target = s->temp_valid ? s->pwm_target_pct : 0u;  /* safe state */\n    /* Slew-limit toward target so the actuator never steps instantly    */\n    if (s->pwm_actual_pct < target)      s->pwm_actual_pct++;\n    else if (s->pwm_actual_pct > target) s->pwm_actual_pct--;\n    pwm_set_permille((uint16_t)s->pwm_actual_pct * 10u);\n    return true;   /* an output stage that always reaches a defined state\n                       is, itself, \"healthy\" for watchdog purposes        */\n}"
+      }
+    },
+    {
+      "narration": "A design isn't done until you know how you'd prove it works on real hardware, with a real CAN adapter -- a PCAN-USB, a candleLight dongle, or a second S32K board -- actually on the bus.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Bench-Test Plan",
+        "subheading": "Proving every safety claim, not assuming it"
+      }
+    },
+    {
+      "narration": "You log the bus with candump and confirm 0x310 arrives every 100 milliseconds with its alive counter cycling 1 through 15 without skips. You send a cansend command with target 50 to request a 50 percent duty and watch PwmActualPct slew up over successive status frames. Then, the test that matters most: stop sending 0x311 entirely, and confirm PWM decays to zero within exactly 300 milliseconds of the last accepted command.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "# Bench test \u2014 CAN adapter (PCAN-USB / candleLight) on the bus\n\n# 1. Status frame timing: confirm 0x310 every 100 ms, AliveCounter\n#    incrementing 1 -> 15 -> 0 without skips\ncandump -t z\n\n# 2. Command -> output: target 50% (0x32), alive nibble in low bits\n#    of byte 1; watch PwmActualPct slew toward 50 over successive\n#    0x310 frames\ncansend can0 311#320F\n\n# 3. Command timeout: stop sending 0x311 entirely\n#    -> PWM must decay to 0% within 300 ms of the last accepted command"
+      }
+    },
+    {
+      "narration": "Two more steps close the loop: disconnect the thermistor and confirm SensorValid flips to zero within five samples, forcing PWM to zero regardless of the command; then, in a debug build, deliberately stall the sensor task for over 100 milliseconds and confirm the board actually resets, with the reset-cause register reporting watchdog -- not power-on. That's proof the supervision chain is really wired, not just present in the source.",
+      "display": {
+        "kind": "text",
+        "heading": "Fault Injection and Watchdog Proof",
+        "subheading": "Six bench steps, each one a real safety claim"
+      }
+    },
+    {
+      "narration": "The cheat sheet distills it to one page: one 10-millisecond tick drives sensor, output, and watchdog, every tenth tick drives CAN transmit; command timeout is 300 milliseconds sharp; outputs are forced safe at boot and on any sensor or command fault; slew limiting caps actual PWM movement to one percent per tick; and the watchdog only gets fed when every task -- not just some -- reports healthy.",
+      "display": {
+        "kind": "text",
+        "heading": "Cheat Sheet",
+        "subheading": "The whole design, one table"
+      }
+    },
+    {
+      "narration": "The lesson closes with an exercise, and it's not busywork -- it's the real skill this whole level was building toward. It asks you to write a one-page design note: the CAN table, the state diagram, and, most importantly, a known-limitations section that answers one uncomfortable question honestly.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Exercise \u2014 and the Real Question",
+        "subheading": "The design note every team writes before code review"
+      }
+    },
+    {
+      "narration": "Is there a race between the RX callback and the main loop reading g_cmd_target? Look back at the code: can_on_command_received can fire from a CAN interrupt at any point mid-tick, writing g_cmd_target and g_cmd_alive as plain globals with no lock, while command_watch_task_10ms reads them from the main loop. On a Cortex-M with aligned word writes that's often benign in practice -- but 'often benign' is not the same as 'proven safe,' and the lesson deliberately leaves that gap open. The second question is just as real: what happens if two nodes on the same bus get accidentally flashed with the same CAN ID? Answering both honestly, in writing, before anyone reviews your code, is the actual discipline this capstone is testing.",
+      "display": {
+        "kind": "text",
+        "heading": "The Race Condition",
+        "subheading": "RX ISR vs. main-loop read of shared state -- no lock"
+      }
+    },
+    {
+      "narration": "This capstone is small enough to build in a weekend and honest enough to teach the real shape of automotive firmware: a fixed real-time schedule, a precisely specified bus protocol, a safe state that's genuine, not decorative, and a bench-test plan that proves every one of those claims instead of assuming them. From here, Level 2 picks up exactly where this capstone's rough edges are -- FlexCAN mailboxes, FreeRTOS, and UDS diagnostics -- to go close them properly.",
+      "display": {
+        "kind": "text",
+        "heading": "You've Reached the Capstone",
+        "subheading": "One CAN sensor node, built to a real-time spec"
+      }
+    },
+    {
+      "narration": "Full lesson, the complete CAN layout tables, and every line of code shown here are at the link on screen -- go build it, then go find the race condition yourself.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + source code:",
+        "subheading": "sigilipelli.github.io/s32k-mastery-path/level-1/10-capstone-can-sensor-node/"
+      }
+    }
+  ]
+}

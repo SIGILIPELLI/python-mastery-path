@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Why \"When Will This Ship?\" Is a Trap for PMs",
+  "description": "A sales lead puts you on the spot in an all-hands: \"Will SSO be ready by our renewal date?\" The wrong answer turns your roadmap into a broken promise. This Short breaks down the Now/Next/Later confidence structure and the exact line a PM uses to answer honestly without over-committing.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n\n#Shorts",
+  "tags": ["product management", "roadmapping", "product manager", "PM tips", "stakeholder management", "PRD"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"],
+  "beats": [
+    {
+      "narration": "Picture this: you're in an all-hands, and a sales lead puts you on the spot. \"Will SSO be ready by our renewal date?\" The room goes quiet.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Question That Puts PMs On The Spot",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Your roadmap only labels this a Next theme -- a likely priority, but no firm date yet. Now is locked in. Later is just a directional bet.",
+      "display": {
+        "kind": "text",
+        "heading": "Now / Next / Later",
+        "subheading": "Now: named, mostly locked. Next: themes, no firm dates. Later: directional only, subject to change."
+      }
+    },
+    {
+      "narration": "Here's the trap: every stakeholder will eventually try to hold a roadmap item to its literal wording as a promise.",
+      "display": {
+        "kind": "text",
+        "heading": "A roadmap is a communication tool, not a contract",
+        "subheading": "Stating the confidence level out loud, every time, heads this off before it becomes a trust problem later."
+      }
+    },
+    {
+      "narration": "The right answer: \"That's a Next-horizon theme, not a committed item. I can flag your timeline need, but I can't commit a date today.\"",
+      "display": {
+        "kind": "text",
+        "heading": "The PM's actual line",
+        "subheading": "\"I can flag your specific timeline need to prioritization, but I can't commit a date today.\""
+      }
+    },
+    {
+      "narration": "It's a harder thing to say live than a vague \"probably.\" But it's what keeps your roadmap trustworthy the next time you share it.",
+      "display": {
+        "kind": "text",
+        "heading": "Harder to say. Worth it.",
+        "subheading": "Trust compounds -- or erodes -- one roadmap conversation at a time."
+      }
+    },
+    {
+      "narration": "Full breakdown of roadmapping, link in the description.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"
+      }
+    }
+  ]
+}

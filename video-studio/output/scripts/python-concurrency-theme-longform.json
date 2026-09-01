@@ -1,0 +1,264 @@
+{
+  "type": "longform",
+  "language": "python",
+  "title": "Python Concurrency Explained: Threading, Multiprocessing & Asyncio (Full Guide)",
+  "description": "Python gives you three different ways to run work concurrently, and each one solves a different problem. This video walks through the full picture: why the Global Interpreter Lock makes threading great for I/O but useless for CPU-heavy code, why multiprocessing is the real fix for CPU-bound work, how asyncio's single-threaded event loop handles thousands of I/O tasks without any threads at all, and how Python 3.11's structured concurrency -- TaskGroup, except*, and asyncio.timeout -- makes async code safe to run in production instead of silently losing failed tasks. Every code example is pulled directly from the Python Mastery Path curriculum, in the order covered below.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/\n- https://sigilipelli.github.io/python-mastery-path/level-4/02-advanced-asyncio/\n\nSource lesson(s):\n- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/\n- https://sigilipelli.github.io/python-mastery-path/level-4/02-advanced-asyncio/",
+  "tags": ["python", "python concurrency", "threading", "multiprocessing", "asyncio", "python asyncio tutorial", "GIL", "python tutorial", "structured concurrency", "TaskGroup"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/",
+    "https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/",
+    "https://sigilipelli.github.io/python-mastery-path/level-4/02-advanced-asyncio/"
+  ],
+  "beats": [
+    {
+      "narration": "Python gives you three different ways to do many things at once, and picking the wrong one can make your code slower, not faster. In this video we'll walk through threading and multiprocessing for classic concurrency, then dive into asyncio's event loop, and finish with the structured concurrency patterns that make asyncio safe to use in real production code.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Python Concurrency: Threading, Multiprocessing & Asyncio",
+        "subheading": "Python Mastery Path -- Level 3 & Level 4"
+      }
+    },
+    {
+      "narration": "Let's start with the two oldest tools in Python's concurrency toolbox: threads and processes. The key to using either one well is understanding a single piece of CPython internals -- the Global Interpreter Lock.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Threading & Multiprocessing",
+        "subheading": "Level 3 -- Concurrency I"
+      }
+    },
+    {
+      "narration": "CPython's Global Interpreter Lock lets only one thread run Python bytecode at a time, even on a machine with eight cores. So if you spin up four threads to crunch through a CPU-heavy loop like this one, you won't see much speedup at all -- they're all fighting over that same lock.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import threading\nimport time\n\ndef cpu_bound(n):\n    count = 0\n    for _ in range(n):\n        count += 1\n    return count\n\nstart = time.perf_counter()\nthreads = [threading.Thread(target=cpu_bound, args=(20_000_000,)) for _ in range(4)]\nfor t in threads:\n    t.start()\nfor t in threads:\n    t.join()\nprint(f\"threaded: {time.perf_counter() - start:.2f}s\")   # not much faster than sequential"
+      }
+    },
+    {
+      "narration": "But the GIL gets released the moment a thread is waiting on something -- a network call, a disk read, or here, a simulated sleep. Fire off five of these simulated downloads on separate threads and they wait together, so the whole batch finishes in about one second instead of five.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import threading\nimport time\n\ndef download_simulated(name, delay):\n    print(f\"{name}: starting\")\n    time.sleep(delay)         # simulates waiting on a network response -- GIL is released here\n    print(f\"{name}: done\")\n\n\nstart = time.perf_counter()\nthreads = [\n    threading.Thread(target=download_simulated, args=(f\"file-{i}\", 1))\n    for i in range(5)\n]\nfor t in threads:\n    t.start()\nfor t in threads:\n    t.join()   # wait for all threads to finish\n\nprint(f\"total: {time.perf_counter() - start:.2f}s\")   # ~1s, not ~5s -- they waited concurrently"
+      }
+    },
+    {
+      "narration": "Threads sharing state is where things get dangerous. Two threads incrementing the same counter can read and write at overlapping times and lose updates in between. Wrapping the increment in a lock, like this, forces one thread at a time through that critical section, so the final count comes out exactly right.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import threading\n\ncounter = 0\nlock = threading.Lock()\n\ndef increment(n):\n    global counter\n    for _ in range(n):\n        with lock:      # only one thread can hold the lock at a time\n            counter += 1\n\n\nthreads = [threading.Thread(target=increment, args=(100_000,)) for _ in range(4)]\nfor t in threads:\n    t.start()\nfor t in threads:\n    t.join()\n\nprint(counter)",
+        "output": "400000"
+      }
+    },
+    {
+      "narration": "For CPU-bound work, multiprocessing is the real fix. Each process gets its own interpreter and its own GIL, so a pool of four processes actually runs on four cores in parallel. Notice the if-name-equals-main guard -- it's required, because worker processes re-import your script and would otherwise try to spawn their own pools recursively.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import multiprocessing\nimport time\n\ndef cpu_bound(n):\n    count = 0\n    for _ in range(n):\n        count += 1\n    return count\n\n\nif __name__ == \"__main__\":\n    start = time.perf_counter()\n    with multiprocessing.Pool(processes=4) as pool:\n        results = pool.map(cpu_bound, [20_000_000] * 4)\n    print(f\"multiprocessing: {time.perf_counter() - start:.2f}s\")   # noticeably faster on multi-core machines"
+      }
+    },
+    {
+      "narration": "concurrent.futures gives threads and processes the same interface, so ThreadPoolExecutor and ProcessPoolExecutor are basically a one-line swap. Submit your I/O-bound fetches to a thread pool, collect results as they complete, and if the work turns CPU-bound later, you just change one class name.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed\n\ndef fetch_length(url):\n    # pretend this makes a real HTTP request\n    import time\n    time.sleep(0.5)\n    return len(url)\n\n\nurls = [\"https://a.com\", \"https://b.com\", \"https://c.com\"]\n\nwith ThreadPoolExecutor(max_workers=3) as executor:\n    futures = {executor.submit(fetch_length, url): url for url in urls}\n    for future in as_completed(futures):\n        url = futures[future]\n        print(url, \"->\", future.result())"
+      }
+    },
+    {
+      "narration": "executor.map is the simpler variant -- hand it a function and a list of inputs, and it gives back results in the exact order you submitted them, no manual bookkeeping of futures required. Reach for this when you just want all the results once everything's done.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "from concurrent.futures import ThreadPoolExecutor\n\ndef square(n):\n    return n * n\n\nwith ThreadPoolExecutor(max_workers=4) as executor:\n    results = list(executor.map(square, range(10)))\n\nprint(results)",
+        "output": "[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]"
+      }
+    },
+    {
+      "narration": "So how do you actually choose? If you're waiting on the network or disk, reach for threading -- the GIL releases during those waits, so overhead stays low. If you're crunching numbers, reach for multiprocessing -- it sidesteps the GIL entirely with separate processes. And whenever multiple threads touch the same mutable state, a lock is what keeps it from corrupting.",
+      "display": {
+        "kind": "text",
+        "heading": "Choosing the right tool",
+        "subheading": "I/O-bound -> threading  |  CPU-bound -> multiprocessing  |  shared state -> a Lock"
+      }
+    },
+    {
+      "narration": "Threads and processes are powerful, but they come with real overhead -- context switches, memory copies, and the ever-present risk of race conditions. Next, let's see how asyncio gets I/O concurrency without needing any of that.",
+      "display": {
+        "kind": "text",
+        "heading": "From threads and processes to a single event loop",
+        "subheading": "Next up: I/O concurrency without any threads at all"
+      }
+    },
+    {
+      "narration": "Asyncio flips the model entirely. Instead of the operating system switching between threads, you write coroutines with async def, and a single-threaded event loop decides when each one runs -- cooperatively, at every await point.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Concurrency II -- Asyncio",
+        "subheading": "Level 3 -- a single-threaded event loop"
+      }
+    },
+    {
+      "narration": "Calling an async function doesn't run it immediately -- it just creates a coroutine object. Await is what actually drives it forward, running it until it either finishes or hits its own await, like this asyncio.sleep, which yields control back to the event loop instead of blocking.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def say_after(delay, message):\n    await asyncio.sleep(delay)   # non-blocking sleep -- yields control to the event loop\n    print(message)\n    return message\n\n\nasync def main():\n    result = await say_after(1, \"hello\")\n    print(f\"got: {result}\")\n\n\nasyncio.run(main())"
+      }
+    },
+    {
+      "narration": "Here's a trap beginners fall into: awaiting two tasks back to back, one at a time, gives you zero concurrency benefit. It's exactly as slow as calling them synchronously -- about two seconds for two one-second sleeps, because nothing else gets a chance to run in between.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import asyncio\nimport time\n\nasync def task(name, delay):\n    await asyncio.sleep(delay)\n    print(f\"{name} done\")\n\n\nasync def main():\n    start = time.perf_counter()\n    await task(\"A\", 1)\n    await task(\"B\", 1)\n    print(f\"sequential: {time.perf_counter() - start:.2f}s\")   # ~2s -- one after another\n\n\nasyncio.run(main())"
+      }
+    },
+    {
+      "narration": "asyncio.gather is what actually runs coroutines together. While one task is parked inside a sleep, the event loop hands control to the others. Three one-second tasks gathered like this finish in about one second total, not three.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\nimport time\n\nasync def task(name, delay):\n    await asyncio.sleep(delay)\n    print(f\"{name} done\")\n    return name\n\n\nasync def main():\n    start = time.perf_counter()\n    results = await asyncio.gather(task(\"A\", 1), task(\"B\", 1), task(\"C\", 1))\n    print(f\"concurrent: {time.perf_counter() - start:.2f}s\")   # ~1s -- they ran together\n    print(results)\n\n\nasyncio.run(main())",
+        "output": "['A', 'B', 'C']"
+      }
+    },
+    {
+      "narration": "asyncio.create_task gives you more control than gather -- the coroutine starts running in the background immediately, and you decide when, or even whether, to await its result. Here, both workers start right away, and only the awaits at the end actually block.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def worker(n):\n    await asyncio.sleep(0.5)\n    return n * n\n\n\nasync def main():\n    task1 = asyncio.create_task(worker(2))   # starts running now\n    task2 = asyncio.create_task(worker(3))   # also starts running now\n\n    print(\"tasks are running in the background...\")\n    result1 = await task1\n    result2 = await task2\n    print(result1, result2)\n\n\nasyncio.run(main())",
+        "output": "4 9"
+      }
+    },
+    {
+      "narration": "Real async code usually needs to cap how much runs at once, so you don't hammer a server with ten thousand simultaneous requests. A semaphore does that -- wrap each fetch in async-with-semaphore, set the limit to three, and only three coroutines are ever mid-flight at the same time.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import asyncio\nimport random\n\nasync def fetch(session_id, semaphore):\n    async with semaphore:                     # only N fetches run at once\n        await asyncio.sleep(random.uniform(0.1, 0.3))\n        return f\"result-{session_id}\"\n\n\nasync def main():\n    semaphore = asyncio.Semaphore(3)          # at most 3 concurrent\n    tasks = [fetch(i, semaphore) for i in range(10)]\n    results = await asyncio.gather(*tasks)\n    print(results)\n\n\nasyncio.run(main())"
+      }
+    },
+    {
+      "narration": "By default, gather cancels everything else the moment one coroutine raises. Passing return_exceptions equals True changes that -- you get every result back, successes and exceptions side by side, so one bad fetch doesn't sink the whole batch.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def might_fail(n):\n    await asyncio.sleep(0.1)\n    if n == 2:\n        raise ValueError(f\"failed on {n}\")\n    return n * 10\n\n\nasync def main():\n    results = await asyncio.gather(\n        might_fail(1), might_fail(2), might_fail(3),\n        return_exceptions=True,\n    )\n    for r in results:\n        if isinstance(r, Exception):\n            print(\"error:\", r)\n        else:\n            print(\"ok:\", r)\n\n\nasyncio.run(main())",
+        "output": "ok: 10\nerror: failed on 2\nok: 30"
+      }
+    },
+    {
+      "narration": "Not every slow operation should be allowed to run forever. asyncio.wait_for wraps a coroutine with a hard deadline -- if it doesn't finish in time, a TimeoutError is raised, and you can catch it, clean up, and move on instead of hanging indefinitely.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def slow_operation():\n    await asyncio.sleep(5)\n    return \"finished\"\n\n\nasync def main():\n    try:\n        result = await asyncio.wait_for(slow_operation(), timeout=1)\n        print(result)\n    except asyncio.TimeoutError:\n        print(\"operation timed out\")\n\n\nasyncio.run(main())",
+        "output": "operation timed out"
+      }
+    },
+    {
+      "narration": "So when do you actually reach for asyncio over the other two? Managing thousands of concurrent network connections -- asyncio scales far better than threads. Just a handful of blocking calls into existing libraries -- plain threading is often simpler. And when you need to mix blocking code into an async program, you run it in a thread pool through loop.run_in_executor.",
+      "display": {
+        "kind": "text",
+        "heading": "asyncio vs. threading vs. multiprocessing",
+        "subheading": "Thousands of connections -> asyncio  |  a few blocking calls -> threading  |  heavy compute -> multiprocessing"
+      }
+    },
+    {
+      "narration": "Gather and semaphores get real concurrency out of a single thread. But notice what's missing -- nothing here guarantees a task you create actually gets checked on. That gap is exactly what structured concurrency closes.",
+      "display": {
+        "kind": "text",
+        "heading": "Concurrency without a guarantee -- yet",
+        "subheading": "Next up: making sure every task is actually accounted for"
+      }
+    },
+    {
+      "narration": "Level four asyncio is about making concurrent code trustworthy in production -- guaranteeing that every task you start is actually accounted for, cleaned up, and its failures surfaced, instead of silently lost.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Advanced Asyncio Patterns",
+        "subheading": "Level 4 -- structured concurrency"
+      }
+    },
+    {
+      "narration": "Fire-and-forget tasks are a real hazard. Call create_task and never await it, and if that coroutine raises, the exception can vanish -- swallowed, or reported late to stderr as 'task exception was never retrieved,' long after anyone could act on it.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def background_job():\n    await asyncio.sleep(1)\n    raise ValueError(\"something went wrong\")\n\n\nasync def main():\n    asyncio.create_task(background_job())   # fire-and-forget -- dangerous!\n    await asyncio.sleep(2)\n    print(\"main finished\")\n\n\nasyncio.run(main())\n# main finished\n# (the ValueError inside background_job is silently swallowed -- or reported late, to stderr, as \"Task exception was never retrieved\")"
+      }
+    },
+    {
+      "narration": "Python 3.11's asyncio.TaskGroup fixes that structurally. Every task started inside the group is guaranteed to be awaited -- if one fails, the group automatically cancels its siblings and re-raises everything together as an ExceptionGroup, which you catch with the new except-star syntax.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def worker(name, delay, fail=False):\n    await asyncio.sleep(delay)\n    if fail:\n        raise ValueError(f\"{name} failed\")\n    return f\"{name} done\"\n\n\nasync def main():\n    try:\n        async with asyncio.TaskGroup() as tg:\n            tg.create_task(worker(\"A\", 0.5))\n            tg.create_task(worker(\"B\", 0.3))\n            tg.create_task(worker(\"C\", 0.2, fail=True))\n        print(\"all tasks succeeded\")\n    except* ValueError as eg:\n        # except* is Python 3.11+ syntax for handling ExceptionGroups\n        for exc in eg.exceptions:\n            print(f\"caught: {exc}\")\n\n\nasyncio.run(main())",
+        "output": "caught: C failed"
+      }
+    },
+    {
+      "narration": "Tasks can also be cancelled explicitly. A well-behaved coroutine catches CancelledError, does its cleanup, and then re-raises it -- swallowing it silently would trick whatever cancelled the task into thinking it's still running.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def long_running():\n    try:\n        print(\"starting long work\")\n        await asyncio.sleep(10)\n        print(\"this line never runs if cancelled\")\n    except asyncio.CancelledError:\n        print(\"cleaning up after cancellation\")\n        raise   # convention: re-raise CancelledError after cleanup\n\n\nasync def main():\n    task = asyncio.create_task(long_running())\n    await asyncio.sleep(1)\n    task.cancel()\n    try:\n        await task\n    except asyncio.CancelledError:\n        print(\"confirmed: task was cancelled\")\n\n\nasyncio.run(main())",
+        "output": "starting long work\ncleaning up after cancellation\nconfirmed: task was cancelled"
+      }
+    },
+    {
+      "narration": "That semaphore pattern combines directly with TaskGroup. Here, twenty fake page fetches are bounded to five running at once, all launched inside a TaskGroup -- so you get both the concurrency cap and the guarantee that every task is awaited before the group exits.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def fetch_page(page_id, semaphore):\n    async with semaphore:\n        await asyncio.sleep(0.2)   # simulated I/O\n        return f\"page-{page_id}\"\n\n\nasync def main():\n    semaphore = asyncio.Semaphore(5)   # at most 5 concurrent \"fetches\"\n    async with asyncio.TaskGroup() as tg:\n        tasks = [tg.create_task(fetch_page(i, semaphore)) for i in range(20)]\n\n    results = [t.result() for t in tasks]\n    print(len(results), \"pages fetched\")\n\n\nasyncio.run(main())"
+      }
+    },
+    {
+      "narration": "asyncio.timeout is a context-manager version of wait_for, and it composes naturally with TaskGroup -- wrap a whole group of tasks in a timeout block, and if it expires, every task in that group gets cancelled together, cleanly.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def slow_operation():\n    await asyncio.sleep(5)\n    return \"done\"\n\n\nasync def main():\n    try:\n        async with asyncio.timeout(1):\n            result = await slow_operation()\n            print(result)\n    except TimeoutError:\n        print(\"operation timed out and was cancelled cleanly\")\n\n\nasyncio.run(main())",
+        "output": "operation timed out and was cancelled cleanly"
+      }
+    },
+    {
+      "narration": "For producer-consumer patterns, asyncio.Queue coordinates safely between coroutines, including backpressure through maxsize. A producer puts items on the queue, a consumer awaits queue.get in a loop, and a sentinel value like None signals there's nothing left to process.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "import asyncio\n\nasync def producer(queue, count):\n    for i in range(count):\n        await asyncio.sleep(0.1)\n        await queue.put(i)\n        print(f\"produced {i}\")\n    await queue.put(None)   # sentinel value signaling \"no more items\"\n\n\nasync def consumer(queue):\n    while True:\n        item = await queue.get()\n        if item is None:\n            break\n        print(f\"consumed {item}\")\n        queue.task_done()\n\n\nasync def main():\n    queue = asyncio.Queue(maxsize=5)\n    async with asyncio.TaskGroup() as tg:\n        tg.create_task(producer(queue, 5))\n        tg.create_task(consumer(queue))\n\n\nasyncio.run(main())"
+      }
+    },
+    {
+      "narration": "As a quick reference: TaskGroup runs tasks with guaranteed cleanup and propagation, except-star handles the ExceptionGroup it raises, task.cancel requests cancellation directly, asyncio.timeout cancels a whole block if it runs too long, Queue coordinates producers and consumers, and Semaphore caps how many coroutines run at once.",
+      "display": {
+        "kind": "text",
+        "heading": "Advanced asyncio cheat sheet",
+        "subheading": "TaskGroup for cleanup  |  except* for ExceptionGroups  |  timeout, Queue, Semaphore for control"
+      }
+    },
+    {
+      "narration": "That's structured concurrency -- every task awaited, every failure surfaced, every timeout and cancellation handled cleanly. Put together with threading and asyncio's basics, that's the full concurrency toolkit Python gives you.",
+      "display": {
+        "kind": "text",
+        "heading": "The full concurrency toolkit",
+        "subheading": "Threads and processes, an event loop, and structured concurrency on top"
+      }
+    },
+    {
+      "narration": "That's the full arc -- threads and processes for classic concurrency, asyncio's event loop for lightweight I/O, and structured concurrency patterns that make it production-safe. Every line of code in this video comes straight from these three lessons on Python Mastery Path -- links are on screen now.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lessons + runnable code:",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/ | .../level-3/05-concurrency-asyncio/ | .../level-4/02-advanced-asyncio/"
+      }
+    }
+  ]
+}

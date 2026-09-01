@@ -1,0 +1,14 @@
+Title: Java can now run 10,000 threads without breaking a sweat
+
+Description:
+Platform threads cost real OS memory -- a few thousand and your JVM starts choking. Java 21's virtual threads change the math entirely: millions of them can exist at once because they only occupy a real OS thread while actively running. Ordinary blocking code, like Thread.sleep or a JDBC call, just works with no reactive rewrite. This is one slice of a full lesson on advanced Java concurrency, covering CompletableFuture chaining and structured concurrency too.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/03-advanced-concurrency-patterns/
+
+#Shorts
+
+Tags: java, virtual threads, java 21, concurrency, programming tutorial, java mastery path
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/03-advanced-concurrency-patterns/

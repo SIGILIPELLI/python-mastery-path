@@ -1,0 +1,14 @@
+Title: Kill a third of your backlog in 5 minutes, no spreadsheet
+
+Description:
+Before you build a RICE spreadsheet, run the fastest prioritization framework there is: a value vs. effort 2x2. Plot every backlog item, then delete the entire low-value, high-effort quadrant with zero further analysis. In the lesson's worked example, a team drops 6 of 20 items that way and only RICE-scores what survives. Rough triage first, precision later.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+
+#Shorts
+
+Tags: product management, prioritization, value vs effort, backlog grooming, RICE, roadmap planning, product manager
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/

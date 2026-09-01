@@ -1,0 +1,14 @@
+Title: The PM tradeoff trap: don't decide it in a hallway
+
+Description:
+Nearly every build surfaces a tradeoff the PRD never anticipated — speed vs. scope, quality vs. speed, one segment's needs vs. another's. A PM's job isn't to have the answer. It's to make the tradeoff explicit and get the right people deciding it together, then document the decision so it isn't relitigated later. This Short uses the "ship in 1 week without multi-select vs. 3 weeks with it" example from Level 1 of the Product Manager Mastery Path.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/
+
+#Shorts
+
+Tags: product management, product manager, tradeoffs, working with engineering, working with design, PRD, decision making, PM skills, cross functional teams
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/

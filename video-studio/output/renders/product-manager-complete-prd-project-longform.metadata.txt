@@ -1,0 +1,15 @@
+Title: Product Manager Capstone: Writing a Complete PRD From Scratch, Step by Step
+
+Description:
+This is a dedicated, full-length walkthrough of the Product Manager Mastery Path's Level 1 capstone project: writing one complete PRD, start to finish, the way you'd actually hand it to engineering and design. Where the Level 1 roundup video touched this project briefly alongside nine other lessons, this video gives it the room it deserves -- working through the sample ListUp scenario across all six required steps: discovery, prioritization, requirements, collaboration notes, roadmap context, and stakeholder communication, then closing with the self-review checklist a real design/engineering review would actually hold it to. If you want to see what a defensible, buildable PRD looks like section by section, and why each section exists, this is the video.
+
+Lessons covered in this video:
+- 10 · Project — Write a Complete PRD: https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/
+
+Tags: product management, PRD, product requirements document, product manager tutorial, RICE prioritization, stakeholder management, product management capstone, how to write a PRD
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/

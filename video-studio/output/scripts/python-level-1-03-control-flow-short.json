@@ -1,0 +1,52 @@
+{
+  "type": "short",
+  "language": "python",
+  "title": "The Secret else Clause Hiding in Python's for Loop",
+  "description": "Python's for loops can have an else clause -- and it does something most developers never expect. It only fires if the loop finishes without ever hitting break, which makes it perfect for \"did I actually find it?\" search patterns. Full lesson on Python control flow, loops, and the match statement is linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+  "tags": ["python", "for loop", "for else", "control flow", "python tips", "programming shorts", "coding tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/"],
+  "beats": [
+    {
+      "narration": "Every Python for loop can have a secret else clause -- and most developers have never used it.",
+      "display": {
+        "kind": "title_card",
+        "heading": "for...else?",
+        "subheading": "Python Mastery Path -- Control Flow"
+      }
+    },
+    {
+      "narration": "This loop searches numbers 2 through 20 for the first multiple of 7. If it finds one, it prints it and breaks.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "for n in range(2, 20):\n    if n % 7 == 0:\n        print(f\"first multiple of 7: {n}\")\n        break\nelse:\n    # runs only if the loop finished WITHOUT break\n    print(\"no multiple of 7 found\")"
+      }
+    },
+    {
+      "narration": "Run it, and you get 7 -- the loop broke early, so that else block never even runs.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "for n in range(2, 20):\n    if n % 7 == 0:\n        print(f\"first multiple of 7: {n}\")\n        break",
+        "output": "first multiple of 7: 7"
+      }
+    },
+    {
+      "narration": "Here's the twist: that else isn't tied to the if. It's tied to the loop itself. It only fires if the loop finishes normally, without ever hitting break -- perfect for search patterns.",
+      "display": {
+        "kind": "text",
+        "heading": "for / else",
+        "subheading": "else runs only when the loop completes WITHOUT break"
+      }
+    },
+    {
+      "narration": "Full breakdown of Python control flow, loops, and even the new match statement is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "How to Handle Stakeholder Pushback (Without Caving)",
+  "description": "When a stakeholder pushes back hard on your roadmap call, the answer isn't to win the argument or cave on the spot -- it's a specific four-step move. This Short walks through handling disagreement from stakeholders, using a real sales-vs-SSO example straight from the lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/\n\n#Shorts",
+  "tags": ["product management", "stakeholder management", "PM skills", "product manager", "leadership", "communication skills"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"],
+  "beats": [
+    {
+      "narration": "A sales lead is furious. Your roadmap put 'Enterprise readiness' in Next, not Now -- they swear a deal needs SSO to close. Cave, or dig in?",
+      "display": {
+        "kind": "title_card",
+        "heading": "Handling Stakeholder Pushback",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "The move isn't winning the argument or caving on the spot. First, restate their concern back to them, so they know you actually heard it.",
+      "display": {
+        "kind": "text",
+        "heading": "Restate Their Concern First",
+        "subheading": "Confirm you understood it, in your own words."
+      }
+    },
+    {
+      "narration": "Next, share the reasoning behind the call, and ask what would actually change your mind -- new data, a bigger deal, a constraint you didn't know.",
+      "display": {
+        "kind": "text",
+        "heading": "Share Reasoning, Then Ask",
+        "subheading": "What would actually change your mind?"
+      }
+    },
+    {
+      "narration": "In the real example, the PM asked exactly that, then got the deal size and close date instead of re-prioritizing on the spot.",
+      "display": {
+        "kind": "text",
+        "heading": "The Real Move",
+        "subheading": "\"So this deal is blocked without SSO -- is that right?\""
+      }
+    },
+    {
+      "narration": "If it's still unresolved, escalate it openly instead of letting it quietly fester -- and always follow up in writing within 48 hours.",
+      "display": {
+        "kind": "text",
+        "heading": "Still Unresolved? Escalate Transparently",
+        "subheading": "Loop in whoever has the final call -- both sides represented fairly."
+      }
+    },
+    {
+      "narration": "That's how you handle stakeholder disagreement without losing trust. Full breakdown's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+      }
+    }
+  ]
+}

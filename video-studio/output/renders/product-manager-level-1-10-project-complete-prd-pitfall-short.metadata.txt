@@ -1,0 +1,14 @@
+Title: PM Pitfall: Sellers Weren't Churning Over a Bug
+
+Description:
+Seven support tickets and a churn-exit interview all pointed at the same 'broken' feature -- but the real cause wasn't a bug, it was an undocumented delay nobody told users about. This is the pitfall hiding inside the sample scenario from the Product Manager Mastery Path's Level 1 capstone project: writing a complete PRD. Before you write a single requirement, your problem statement has to name the real problem -- and it's rarely the one users think they're reporting.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/
+
+#Shorts
+
+Tags: product management, PRD, product manager tutorial, problem discovery, customer churn, product management shorts, how to write a PRD
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/

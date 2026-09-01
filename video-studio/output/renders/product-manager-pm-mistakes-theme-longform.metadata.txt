@@ -1,0 +1,22 @@
+Title: 6 Product Manager Mistakes That Quietly Sink Products
+
+Description:
+Most products don't fail with a bang — they leak. A PM makes a small, reasonable-sounding call, and six months later the team has shipped something nobody uses. This roundup pulls six anti-patterns straight from the Level 1 Product Manager Mastery Path: asking leading, hypothetical questions in customer interviews; solution-jumping from a single signal to a build; using the wrong prioritization framework for the question in front of you; owning design and engineering's jobs instead of your own; publishing a feature-list roadmap with far-future dates; and spending equal time on every stakeholder. For each one we name the mistake, explain why it does damage, and give the fix from the lesson itself.
+
+Lessons covered in this video:
+- Understanding Customers & Users: https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- Problem Discovery: https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+- Prioritization Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+- Working with Design & Engineering: https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/
+- Roadmapping Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+- Stakeholder Communication Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/
+
+Tags: product management, product manager, pm mistakes, product discovery, prioritization, rice framework, moscow, roadmapping, stakeholder management, customer interviews, associate product manager, pm career
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/

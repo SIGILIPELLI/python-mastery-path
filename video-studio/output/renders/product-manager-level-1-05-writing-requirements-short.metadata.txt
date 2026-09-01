@@ -1,0 +1,14 @@
+Title: Why Your User Story Isn't Actually "Done"
+
+Description:
+A user story sounds finished the moment the template is filled in -- but without acceptance criteria, "done" is just a guess. This Short breaks down the Given/When/Then format for acceptance criteria, straight from the Writing Requirements lesson in the Product Manager Mastery Path, and why skipping it is where scope arguments quietly start.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+
+#Shorts
+
+Tags: product manager, product management, user stories, acceptance criteria, PRD, agile, requirements gathering
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/

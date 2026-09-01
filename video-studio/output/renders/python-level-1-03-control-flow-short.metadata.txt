@@ -1,0 +1,14 @@
+Title: The Secret else Clause Hiding in Python's for Loop
+
+Description:
+Python's for loops can have an else clause -- and it does something most developers never expect. It only fires if the loop finishes without ever hitting break, which makes it perfect for "did I actually find it?" search patterns. Full lesson on Python control flow, loops, and the match statement is linked below.
+
+Source lesson:
+- https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/
+
+#Shorts
+
+Tags: python, for loop, for else, control flow, python tips, programming shorts, coding tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/

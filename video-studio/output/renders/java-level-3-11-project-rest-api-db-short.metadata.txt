@@ -1,0 +1,14 @@
+Title: This Java Interface Has Zero Code... and a Full API
+
+Description:
+Spring Data JPA can generate a complete CRUD data layer from a single empty interface -- no SQL, no manual queries written by hand. This Short walks through the real Task Management REST API project from the Java Mastery Path: the repository, the controller, and a live curl request hitting an H2 database. See the full project, including stretch goals like pagination and validation, at the link below.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-3/11-project-rest-api-db/
+
+#Shorts
+
+Tags: java, spring boot, rest api, spring data jpa, crud tutorial, backend engineering, programming shorts
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-3/11-project-rest-api-db/

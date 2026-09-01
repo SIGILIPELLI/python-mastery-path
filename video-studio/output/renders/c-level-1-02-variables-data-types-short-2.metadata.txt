@@ -1,0 +1,14 @@
+Title: Why adding 1 in C can make your number go negative
+
+Description:
+In C, integers have a fixed number of bits, so arithmetic that goes past the type's range wraps around silently instead of raising an error. This Short shows INT_MAX plus one flipping straight to the most negative int, why the compiler won't warn you at runtime, and why a wider or unsigned type only moves the boundary instead of fixing it. Pulled from the C Mastery Path Level 1 lesson on variables, data types and operators.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/
+
+#Shorts
+
+Tags: c, c programming, integer overflow, int max, undefined behavior, data types, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/

@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "C passes everything by value -- so how does swap work?",
+  "description": "C hands every function a copy of your argument, so a normal function can't change a caller's variable. This Short walks through the classic swap: pass the addresses instead of the values, dereference the pointers, and the function reaches back and rewrites x and y in main. Drop the ampersands and you're just swapping two throwaway copies.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/\n\n#Shorts",
+  "tags": ["c", "pointers", "pass by reference", "swap function", "c programming", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/"],
+  "beats": [
+    {
+      "narration": "In C, a function can't touch your variable. You pass in x, the function gets a copy, and your original never changes. So how does a swap function actually work?",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Pass by value",
+        "subheading": "the function gets a copy"
+      }
+    },
+    {
+      "narration": "The trick: don't pass the values, pass their addresses. swap takes two int pointers. The star means go to that address and change what's really stored there.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n\n// Without a pointer, this would only swap the local copies\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\nint main(void) {\n    int x = 5;\n    int y = 10;\n\n    printf(\"Before swap: x=%d, y=%d\\n\", x, y);\n    swap(&x, &y);   // pass addresses, not values\n    printf(\"After swap:  x=%d, y=%d\\n\", x, y);\n\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "Now it works. swap reached back through those addresses and rewrote x and y in main. Drop the ampersands and you'd just swap two copies that get thrown away.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "swap(&x, &y);",
+        "output": "Before swap: x=5, y=10\nAfter swap:  x=10, y=5"
+      }
+    },
+    {
+      "narration": "That's pass by reference in C. If a function needs to change your variable, hand it a pointer. Otherwise it's only editing a copy.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "The rule",
+        "subheading": "need to change it? pass a pointer"
+      }
+    },
+    {
+      "narration": "The full breakdown of pointers, NULL, and arrays is in the C Mastery Path lesson linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/"
+      }
+    }
+  ]
+}

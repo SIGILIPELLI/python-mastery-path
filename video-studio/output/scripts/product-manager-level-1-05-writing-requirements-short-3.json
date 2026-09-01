@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "The PRD Section Everyone Skips (And Regrets Mid-Sprint)",
+  "description": "Most last-minute sprint blowups trace back to one missing paragraph: the non-goals section of the PRD. This Short walks a real mini-PRD and shows why explicitly writing \"this will NOT support X\" prevents the most common scope-creep argument. A blank non-goals section isn't clean scope, it's a warning sign.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
+  "tags": ["product management", "PRD", "non-goals", "scope creep", "requirements", "product manager", "agile", "sprint planning"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"],
+  "beats": [
+    {
+      "narration": "Every argument that blows up a sprint at the last minute starts the same way. Someone assumed a feature was in scope, because nobody ever wrote down that it wasn't.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Non-Goals",
+        "subheading": "Writing Requirements -- PM Mastery Path, Level 1"
+      }
+    },
+    {
+      "narration": "Here's a mini product doc. Goals up top, sure. But look at the non-goals section. It states, plainly, what this release will not do: no multi-person comparison view, no saved filter presets.",
+      "display": {
+        "kind": "editor",
+        "lang": "markdown",
+        "code": "# Reports filter -- mini-PRD\n\n## Goals\n- Reduce time-to-find-one-person's-data to under 15 seconds (baseline: ~4 min)\n- No regression in overall reports-page load time\n\n## Non-goals\n- Multi-person comparison view (tracked separately as a Level 2 candidate)\n- Saving named/custom filter presets (out of scope for v1)\n\n## Open questions\n- Should the filter support multi-select in v1, or is single-select enough to validate first?"
+      }
+    },
+    {
+      "narration": "That's not padding. Every item there is something a reasonable teammate might assume you're building. Writing this will NOT support X kills the argument before it can happen.",
+      "display": {
+        "kind": "text",
+        "heading": "Non-goals earn their place in every PRD",
+        "subheading": "They prevent the single most common late-sprint argument."
+      }
+    },
+    {
+      "narration": "So a blank non-goals section isn't clean scope. It's a red flag that the scope hasn't actually been thought through yet.",
+      "display": {
+        "kind": "text",
+        "heading": "A blank non-goals section is a red flag",
+        "subheading": "Scope creep starts where the exclusions should have been."
+      }
+    },
+    {
+      "narration": "The full lesson walks the whole mini-PRD, section by section.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + worked mini-PRD:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"
+      }
+    }
+  ]
+}

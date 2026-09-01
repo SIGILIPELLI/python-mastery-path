@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "One Roadmap, Four Very Different Conversations",
+  "description": "The same roadmap has to be told differently to every audience, or you promise something you never meant to. Engineering and design need enough specificity to plan capacity a quarter or two out, but no firm commitments on \"Later\" items. Sales need honest themes, never ship dates on unbuilt features. Leadership need the tie to company OKRs, and public customers get quarters, never exact dates. A roadmap is a communication tool, not a contract.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n\n#Shorts",
+  "tags": ["product management", "roadmapping", "product roadmap", "stakeholder communication", "now next later", "product manager", "pm skills", "career"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"],
+  "beats": [
+    {
+      "narration": "One roadmap. Four completely different conversations. Tell it the same way to everyone, and you break a promise you never meant to make.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Communicating a roadmap without over-promising",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Engineering and design need enough specificity to plan capacity a quarter or two out. What they don't get: firm commitments on anything in your Later column.",
+      "display": {
+        "kind": "text",
+        "heading": "Engineering / design",
+        "subheading": "Specificity to plan capacity 1-2 quarters out -- not firm commitments on \"Later\" items"
+      }
+    },
+    {
+      "narration": "Sales need themes that set customer expectations honestly. Never give them a ship date on an unbuilt feature. That's a promise sales can't keep.",
+      "display": {
+        "kind": "text",
+        "heading": "Sales",
+        "subheading": "Themes that set expectations honestly -- never specific ship dates on unbuilt features"
+      }
+    },
+    {
+      "narration": "Leadership need how the roadmap ties to company goals and OKRs, not just a feature list with no why. Public customers get quarters or later this year, never a date.",
+      "display": {
+        "kind": "text",
+        "heading": "Leadership / customers",
+        "subheading": "Leadership: how it ties to OKRs, not a feature list with no \"why\". Customers: directional confidence, not a contract"
+      }
+    },
+    {
+      "narration": "A roadmap is a communication tool, not a contract. Every audience will try to hold you to the exact wording. So say your confidence level out loud, every time.",
+      "display": {
+        "kind": "text",
+        "heading": "A roadmap is a communication tool, not a contract",
+        "subheading": "State the confidence level explicitly every time you share it"
+      }
+    },
+    {
+      "narration": "Full lesson's in the Product Manager Mastery Path.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"
+      }
+    }
+  ]
+}

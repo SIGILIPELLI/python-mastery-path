@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "You don't need ONE prioritization framework",
+  "description": "Most PMs argue about which prioritization framework is \"the right one\" — RICE, MoSCoW, value vs. effort. The real move is using all three in sequence: triage fast, rank the survivors, then scope the winner. Here's the three-step pipeline from the lesson, with the worked example that shows it end to end.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
+  "tags": ["product management", "prioritization", "moscow method", "value vs effort", "product manager", "PM framework", "roadmap planning"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"],
+  "beats": [
+    {
+      "narration": "Everyone argues about which prioritization framework is the best one. RICE, MoSCoW, value versus effort. Here's the trick: you're not supposed to pick just one.",
+      "display": {
+        "kind": "title_card",
+        "heading": "One Framework Isn't Enough",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Say you've got twenty backlog items. First, sort them fast into a value-versus-effort grid. That alone lets you toss the low-value, high-effort pile without any deep analysis.",
+      "display": {
+        "kind": "text",
+        "heading": "Step 1: Value vs. Effort",
+        "subheading": "Fast triage of a long backlog -- not the final call"
+      }
+    },
+    {
+      "narration": "The survivors that are left get RICE-scored: reach times impact times confidence, divided by effort. That's how a handful of finalists get ranked with real numbers, not gut feel.",
+      "display": {
+        "kind": "text",
+        "heading": "Step 2: RICE",
+        "subheading": "(Reach x Impact x Confidence) / Effort -- for a defensible ranking"
+      }
+    },
+    {
+      "narration": "Once the winner's picked, MoSCoW scopes the release: what's a Must, a Should, a Could -- and what's explicitly a Won't. Writing down 'Won't' kills scope-creep arguments before they start.",
+      "display": {
+        "kind": "text",
+        "heading": "Step 3: MoSCoW",
+        "subheading": "Must / Should / Could / Won't -- for THIS release"
+      }
+    },
+    {
+      "narration": "Triage, rank, then scope. Three frameworks, one pipeline. The full worked example is in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"
+      }
+    }
+  ]
+}

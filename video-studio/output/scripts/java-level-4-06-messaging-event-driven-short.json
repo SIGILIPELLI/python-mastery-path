@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Kafka: One Topic, Two Totally Different Behaviors",
+  "description": "A single Kafka topic can behave like a work queue or a broadcast to every subscriber -- and the switch isn't a special queue type, it's the consumer's group ID. We break down the producer key, the consumer group config, and how Kafka quietly supports both point-to-point and pub/sub messaging on the exact same topic.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/06-messaging-event-driven/\n\n#Shorts",
+  "tags": ["java", "kafka", "event-driven architecture", "microservices", "pub/sub", "message queue", "programming tutorial", "backend development"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/06-messaging-event-driven/"],
+  "beats": [
+    {
+      "narration": "One Kafka topic. Same messages. But whether every service gets its own copy, or they split the work between them, comes down to a single config value.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Pub/Sub or Queue?",
+        "subheading": "Kafka picks based on ONE setting"
+      }
+    },
+    {
+      "narration": "The producer sends every order event keyed by the order ID -- that key guarantees all events for that order land in the same partition, in order.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "String orderId = \"order-1042\";\nString payload = \"\"\"\n    {\"orderId\": \"order-1042\", \"status\": \"CREATED\", \"total\": 129.99}\n    \"\"\";\n\nProducerRecord<String, String> record =\n    new ProducerRecord<>(\"order-events\", orderId, payload);   // key = orderId"
+      }
+    },
+    {
+      "narration": "The consumer sets a group ID. Two consumers in the same group split the topic between them -- a work queue. Give one a different group ID, and it gets a full copy of every message -- pub/sub.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "props.put(ConsumerConfig.GROUP_ID_CONFIG, \"billing-service\");\n...\nconsumer.subscribe(List.of(\"order-events\"));\n\nwhile (true) {\n    ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));\n    for (ConsumerRecord<String, String> record : records) {\n        processBillingEvent(record.value());\n    }\n    consumer.commitSync();\n}"
+      }
+    },
+    {
+      "narration": "That's the whole trick: Kafka doesn't have separate queue and topic types like RabbitMQ does -- the consumer group ID is the switch.",
+      "display": {
+        "kind": "text",
+        "heading": "Point-to-point vs Pub/Sub",
+        "subheading": "Same group ID = split work. Different group ID = full broadcast."
+      }
+    },
+    {
+      "narration": "Full walkthrough, plus the RabbitMQ comparison, is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/06-messaging-event-driven/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,289 @@
+{
+  "mode": "sequential",
+  "current_subject_index": 4,
+  "used_short_slugs": {
+    "python": [
+      "level-1/03-control-flow",
+      "level-1/01-setup",
+      "level-1/02-variables-data-types",
+      "level-1/04-functions-scope",
+      "level-1/05-data-structures",
+      "level-1/06-strings-formatting",
+      "level-1/07-file-io",
+      "level-1/08-error-handling",
+      "level-1/09-modules-packages",
+      "level-1/10-project-todo-app",
+      "level-2/01-oop",
+      "level-2/02-comprehensions-generators",
+      "level-2/03-functional-programming",
+      "level-2/04-exceptions-context-managers",
+      "level-2/05-data-formats",
+      "level-2/06-regular-expressions",
+      "level-2/07-dates-times",
+      "level-2/08-venvs-dependencies",
+      "level-2/09-testing-basics",
+      "level-2/10-project-weather-cli",
+      "level-3/01-advanced-oop",
+      "level-3/02-iterators-generators-coroutines",
+      "level-3/03-decorators-descriptors",
+      "level-3/04-concurrency-threading-multiprocessing",
+      "level-3/05-concurrency-asyncio",
+      "level-3/06-databases",
+      "level-3/07-consuming-apis",
+      "level-3/08-building-apis",
+      "level-3/09-packaging-distribution",
+      "level-3/10-profiling-performance",
+      "level-3/11-project-rest-api-db",
+      "level-4/01-design-patterns",
+      "level-4/02-advanced-asyncio",
+      "level-4/03-metaprogramming",
+      "level-4/04-production-apis",
+      "level-4/05-testing-at-scale",
+      "level-4/06-data-engineering",
+      "level-4/07-ml-foundations",
+      "level-4/08-deployment-devops",
+      "level-4/09-security-best-practices",
+      "level-4/10-capstone-project"
+    ],
+    "java": [
+      "level-1/01-setup",
+      "level-1/02-variables-data-types",
+      "level-1/03-control-flow",
+      "level-1/04-methods-parameters",
+      "level-1/05-arrays-collections",
+      "level-1/06-strings-formatting",
+      "level-1/07-classes-objects",
+      "level-1/08-exception-handling",
+      "level-1/09-packages-build-tools",
+      "level-1/10-project-contact-book",
+      "level-2/01-oop-deep-dive",
+      "level-2/02-collections-framework",
+      "level-2/03-generics",
+      "level-2/04-lambdas-streams",
+      "level-2/05-exceptions-advanced",
+      "level-2/06-file-io-nio",
+      "level-2/07-junit-testing",
+      "level-2/08-build-tools",
+      "level-2/09-enums-records-sealed",
+      "level-2/10-project-inventory-system",
+      "level-3/01-concurrency-basics",
+      "level-3/02-util-concurrent",
+      "level-3/03-jdbc-databases",
+      "level-3/04-rest-apis-spring-boot",
+      "level-3/05-design-patterns",
+      "level-3/06-serialization",
+      "level-3/07-networking-basics",
+      "level-3/08-reflection-annotations",
+      "level-3/09-jvm-internals-gc",
+      "level-3/10-profiling-optimization",
+      "level-3/11-project-rest-api-db",
+      "level-4/01-spring-ecosystem-production",
+      "level-4/02-microservices-architecture",
+      "level-4/03-advanced-concurrency-patterns",
+      "level-4/04-testing-at-scale",
+      "level-4/05-security-best-practices",
+      "level-4/06-messaging-event-driven",
+      "level-4/07-containerization-deployment",
+      "level-4/08-observability",
+      "level-4/09-performance-at-scale",
+      "level-4/10-capstone-project"
+    ],
+    "javascript": [
+      "level-1/01-setup",
+      "level-1/02-variables-data-types",
+      "level-1/03-control-flow",
+      "level-1/04-functions-scope",
+      "level-1/05-arrays-objects",
+      "level-1/06-strings-template-literals",
+      "level-1/07-dom-events",
+      "level-1/08-error-handling",
+      "level-1/09-modules-npm",
+      "level-1/10-project-todo-app"
+    ],
+    "shell": [
+      "level-1/01-setup",
+      "level-1/02-variables-data-types",
+      "level-1/03-control-flow",
+      "level-1/04-loops",
+      "level-1/05-functions-arguments",
+      "level-1/06-files-directories",
+      "level-1/07-pipes-redirection",
+      "level-1/08-text-processing",
+      "level-1/09-exit-codes-error-handling",
+      "level-1/10-project-backup-script"
+    ],
+    "c": [
+      "level-1/07-structs",
+      "level-1/08-file-io",
+      "level-1/09-preprocessor-multifile",
+      "level-1/01-setup",
+      "level-1/02-variables-data-types",
+      "level-1/03-control-flow",
+      "level-1/04-functions",
+      "level-1/05-arrays-strings",
+      "level-1/06-pointers-basics",
+      "level-1/10-project-contact-book",
+      "level-2/01-pointers-deep-dive",
+      "level-2/02-dynamic-memory",
+      "level-2/03-multidim-arrays-strings",
+      "level-2/04-structs-unions-advanced",
+      "level-2/05-binary-file-io",
+      "level-2/06-error-handling",
+      "level-2/07-modular-programming",
+      "level-2/08-makefiles-build-systems",
+      "level-2/09-debugging-tools",
+      "level-2/10-project-inventory-system",
+      "level-3/01-data-structures",
+      "level-3/02-trees-graphs",
+      "level-3/03-sorting-searching",
+      "level-3/04-bit-manipulation",
+      "level-3/05-memory-management-deep-dive",
+      "level-3/06-static-dynamic-libraries"
+    ],
+    "cpp": [
+      "level-1/06-strings",
+      "level-1/07-classes-objects",
+      "level-1/08-references-pointers",
+      "level-1/09-exception-handling",
+      "level-1/01-setup"
+    ],
+    "go": [
+      "level-1/01-setup",
+      "level-1/02-variables-types-operators",
+      "level-1/03-control-flow",
+      "level-1/04-functions-multiple-returns",
+      "level-1/05-arrays-slices-maps"
+    ],
+    "sql": [
+      "level-1/01-setup-first-queries",
+      "level-1/02-select-basics-data-types",
+      "level-1/03-filtering-where",
+      "level-1/04-sorting-limiting",
+      "level-1/05-aggregates-group-by",
+      "level-1/06-joins-basics",
+      "level-1/07-working-with-null",
+      "level-1/08-creating-tables",
+      "level-1/09-insert-update-delete",
+      "level-1/10-project-library-database"
+    ],
+    "rust": [
+      "level-1/01-setup",
+      "level-1/02-variables-types-ownership",
+      "level-1/03-control-flow",
+      "level-1/04-functions",
+      "level-1/06-collections",
+      "level-1/05-structs-enums",
+      "level-1/07-error-handling-basics",
+      "level-1/08-pattern-matching",
+      "level-1/09-modules-cargo",
+      "level-1/10-project-todo-cli"
+    ],
+    "typescript": [
+      "level-1/01-setup",
+      "level-1/02-basic-types",
+      "level-1/03-control-flow",
+      "level-1/04-functions-type-annotations",
+      "level-1/05-interfaces-type-aliases",
+      "level-1/06-arrays-objects-typed",
+      "level-1/07-classes-basics",
+      "level-1/08-enums",
+      "level-1/09-modules-tsconfig",
+      "level-1/10-project-todo-cli"
+    ],
+    "ruby": [
+      "level-1/01-setup",
+      "level-1/02-variables-types",
+      "level-1/03-control-flow",
+      "level-1/04-methods",
+      "level-1/05-arrays-hashes"
+    ],
+    "php": [
+      "level-1/01-setup",
+      "level-1/02-variables-types",
+      "level-1/03-control-flow",
+      "level-1/06-strings",
+      "level-1/07-classes-objects",
+      "level-1/04-functions",
+      "level-1/05-arrays",
+      "level-1/08-error-handling",
+      "level-1/09-composer-basics",
+      "level-1/10-project-todo-app"
+    ],
+    "product-manager": [
+      "level-1/01-what-is-product-management",
+      "level-1/02-understanding-customers-users",
+      "level-1/03-problem-discovery",
+      "level-1/04-prioritization-basics",
+      "level-1/05-writing-requirements",
+      "level-1/06-working-with-design-engineering",
+      "level-1/07-metrics-kpis-basics",
+      "level-1/08-roadmapping-basics",
+      "level-1/09-stakeholder-communication-basics",
+      "level-1/10-project-complete-prd"
+    ]
+  },
+  "used_longform_levels": {
+    "python": [
+      "level-1",
+      "level-2",
+      "level-3",
+      "level-4"
+    ],
+    "java": [
+      "level-1",
+      "level-2",
+      "level-3",
+      "level-4"
+    ],
+    "javascript": [
+      "level-1",
+      "level-2"
+    ],
+    "shell": [
+      "level-1",
+      "level-2"
+    ],
+    "c": [
+      "level-1",
+      "level-2",
+      "level-3"
+    ],
+    "cpp": [
+      "level-1",
+      "level-2"
+    ],
+    "go": [
+      "level-1",
+      "level-2"
+    ],
+    "sql": [
+      "level-1",
+      "level-2"
+    ],
+    "rust": [
+      "level-1",
+      "level-2"
+    ],
+    "typescript": [
+      "level-1",
+      "level-2"
+    ],
+    "ruby": [
+      "level-1",
+      "level-2"
+    ],
+    "php": [
+      "level-1",
+      "level-2"
+    ],
+    "product-manager": [
+      "level-1"
+    ]
+  },
+  "completed_subjects": [
+    "python",
+    "product-manager",
+    "c",
+    "java"
+  ]
+}

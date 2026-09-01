@@ -1,0 +1,299 @@
+{
+  "type": "longform",
+  "language": "javascript",
+  "title": "Build a JWT-Authenticated Task API From Scratch — Full Node.js + SQLite Capstone Walkthrough",
+  "description": "This is the JavaScript Mastery Path capstone, built stage by stage: a Task Tracker API where users register, log in, and manage their own tasks through a JWT-protected REST API backed by SQLite. We go through the project layout and environment-driven config, the SQLite connection and schema, a clean repository layer for users and tasks, JWT signing and an auth middleware, register/login routes with bcrypt password hashing, a protected tasks resource with per-user ownership checks, a full Jest + supertest integration test suite running against an in-memory database, and finally a Dockerfile, docker-compose.yml, and a two-job GitHub Actions CI pipeline that lints, tests, and builds a Docker image on every push. Every line of code shown is pulled directly from the capstone lesson — nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/javascript-mastery-path/level-4/10-capstone-project/",
+  "tags": ["javascript", "node.js", "express", "jwt authentication", "sqlite", "rest api tutorial", "jest testing", "supertest", "docker", "github actions ci/cd", "programming tutorial", "backend development"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-4/10-capstone-project/"],
+  "beats": [
+    {
+      "narration": "By the time you reach the capstone of the JavaScript Mastery Path, you've covered closures, async patterns, architecture, and security. This project pulls it all together into one real service: a JWT-authenticated task tracker built with Node, Express, and SQLite, and we're building it stage by stage, the way you'd build it on the job.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Capstone: A Production-Shaped Task API",
+        "subheading": "JavaScript Mastery Path — Level 4, Module 10"
+      }
+    },
+    {
+      "narration": "Let's start with the shape of the project. It's called task-tracker-api, and it splits cleanly into an auth module, a users module, and a tasks module, each with its own routes and repository, plus a db and config file that everything else depends on.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 1: Project Setup & Config",
+        "subheading": "Layout, dependencies, environment"
+      }
+    },
+    {
+      "narration": "Notice the repository files — users.repository.js and tasks.repository.js. Those are the only files in the whole project that know any SQL. Everything else — routes, middleware, tests — talks to plain JavaScript objects and functions, so swapping SQLite for Postgres later only touches those two files.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "task-tracker-api/\n  src/\n    app.js                  # Express app wiring — routes, middleware, error handling\n    server.js                # entry point — starts the HTTP server\n    db.js                    # SQLite connection + schema setup\n    config.js                # environment-driven configuration\n    auth/\n      auth.routes.js          # /auth/register, /auth/login\n      auth.middleware.js      # JWT verification middleware\n      tokens.js                # sign/verify JWT helpers\n    users/\n      users.repository.js\n    tasks/\n      tasks.routes.js\n      tasks.repository.js\n  tests/\n    tasks.test.js             # Jest + supertest integration tests\n  Dockerfile\n  docker-compose.yml\n  package.json\n  .env.example\n  .github/\n    workflows/\n      ci.yml"
+      }
+    },
+    {
+      "narration": "The dependencies tell the story: better-sqlite3 for the database, bcrypt for hashing passwords, jsonwebtoken for auth tokens, and Express for routing. On the dev side, Jest and supertest handle testing. The test script sets NODE_ENV to test and runs Jest with --runInBand, so tests execute one at a time against a shared database.",
+      "display": {
+        "kind": "editor",
+        "lang": "json",
+        "code": "{\n  \"name\": \"task-tracker-api\",\n  \"version\": \"1.0.0\",\n  \"type\": \"module\",\n  \"main\": \"src/server.js\",\n  \"scripts\": {\n    \"start\": \"node src/server.js\",\n    \"dev\": \"node --watch src/server.js\",\n    \"lint\": \"eslint src tests\",\n    \"test\": \"NODE_ENV=test jest --runInBand\"\n  },\n  \"dependencies\": {\n    \"better-sqlite3\": \"^11.3.0\",\n    \"bcrypt\": \"^5.1.1\",\n    \"express\": \"^4.19.2\",\n    \"jsonwebtoken\": \"^9.0.2\"\n  },\n  \"devDependencies\": {\n    \"eslint\": \"^9.9.0\",\n    \"jest\": \"^29.7.0\",\n    \"supertest\": \"^7.0.0\"\n  }\n}"
+      }
+    },
+    {
+      "narration": "Every setting that changes between your laptop, CI, and production lives in one config object, pulled from environment variables with sane defaults — the port, the JWT secret, and the database path, which automatically switches to an in-memory SQLite database whenever NODE_ENV is test.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/config.js\nexport const config = {\n  port: process.env.PORT || 3000,\n  jwtSecret: process.env.JWT_SECRET || \"dev-secret-change-me\",\n  dbPath: process.env.DB_PATH || (process.env.NODE_ENV === \"test\" ? \":memory:\" : \"./data/tasks.db\"),\n};"
+      }
+    },
+    {
+      "narration": "With config sorted, we've got everything routes and the database need without hardcoding a single value. Next: the actual database layer.",
+      "display": {
+        "kind": "text",
+        "heading": "Config is ready",
+        "subheading": "Next: wiring up SQLite"
+      }
+    },
+    {
+      "narration": "Now for storage. This project uses better-sqlite3 — a synchronous SQLite driver, so no async ceremony for a database call, and no separate database server to run locally.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 2: The Database Layer",
+        "subheading": "SQLite schema + a users repository"
+      }
+    },
+    {
+      "narration": "db.js opens the database at whatever path config gives it, turns on write-ahead logging for better concurrency, then creates two tables if they don't already exist: users, with a unique email and a password hash, and tasks, where every row is tied to a user_id.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/db.js\nimport Database from \"better-sqlite3\";\nimport { config } from \"./config.js\";\n\nexport const db = new Database(config.dbPath);\n\ndb.pragma(\"journal_mode = WAL\");\n\ndb.exec(`\n  CREATE TABLE IF NOT EXISTS users (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    email TEXT UNIQUE NOT NULL,\n    password_hash TEXT NOT NULL,\n    created_at TEXT NOT NULL DEFAULT (datetime('now'))\n  );\n\n  CREATE TABLE IF NOT EXISTS tasks (\n    id INTEGER PRIMARY KEY AUTOINCREMENT,\n    user_id INTEGER NOT NULL REFERENCES users(id),\n    title TEXT NOT NULL,\n    done INTEGER NOT NULL DEFAULT 0,\n    created_at TEXT NOT NULL DEFAULT (datetime('now'))\n  );\n`);"
+      }
+    },
+    {
+      "narration": "The users repository has exactly two operations: find a user by email, and create one. That's it — no ORM, just two prepared SQL statements wrapped in plain functions, which is exactly what a repository layer should be: a thin, testable boundary around your queries.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/users/users.repository.js\nimport { db } from \"../db.js\";\n\nexport const usersRepository = {\n  findByEmail(email) {\n    return db.prepare(\"SELECT * FROM users WHERE email = ?\").get(email);\n  },\n\n  create({ email, passwordHash }) {\n    const result = db\n      .prepare(\"INSERT INTO users (email, password_hash) VALUES (?, ?)\")\n      .run(email, passwordHash);\n    return { id: result.lastInsertRowid, email };\n  },\n};"
+      }
+    },
+    {
+      "narration": "We can now store and look up users. But storing them isn't the same as knowing who's making a request — that's what tokens and middleware are for.",
+      "display": {
+        "kind": "text",
+        "heading": "Storage is done",
+        "subheading": "Next: proving who's making the request"
+      }
+    },
+    {
+      "narration": "Authentication here has two halves: a small helper that signs and verifies JWTs, and a piece of Express middleware that every protected route can reuse.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 3: Authentication — Tokens & Middleware",
+        "subheading": "jsonwebtoken + a reusable requireAuth guard"
+      }
+    },
+    {
+      "narration": "signToken takes a user and signs a token containing their id and email, set to expire in one hour. verifyToken does the reverse, and — importantly — it just throws if the token's invalid or expired, so the caller decides what to do about that failure.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/auth/tokens.js\nimport jwt from \"jsonwebtoken\";\nimport { config } from \"../config.js\";\n\nexport function signToken(user) {\n  return jwt.sign({ sub: user.id, email: user.email }, config.jwtSecret, {\n    expiresIn: \"1h\",\n  });\n}\n\nexport function verifyToken(token) {\n  return jwt.verify(token, config.jwtSecret); // throws if invalid/expired\n}"
+      }
+    },
+    {
+      "narration": "requireAuth pulls the token out of the Authorization header, expecting the standard 'Bearer' prefix. No token means an immediate 401. A present token gets verified; if that succeeds, the decoded payload is attached to req.user for every route downstream. If it fails, that's also a 401 — invalid or expired.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/auth/auth.middleware.js\nimport { verifyToken } from \"./tokens.js\";\n\nexport function requireAuth(req, res, next) {\n  const header = req.headers.authorization;\n  const token = header?.startsWith(\"Bearer \") ? header.slice(7) : null;\n\n  if (!token) {\n    return res.status(401).json({ error: \"missing authorization token\" });\n  }\n\n  try {\n    req.user = verifyToken(token); // { sub, email, iat, exp }\n    next();\n  } catch {\n    res.status(401).json({ error: \"invalid or expired token\" });\n  }\n}"
+      }
+    },
+    {
+      "narration": "With signing and verification in place, we can finally build the routes that actually issue these tokens: registration and login.",
+      "display": {
+        "kind": "text",
+        "heading": "Auth machinery is ready",
+        "subheading": "Next: register and login"
+      }
+    },
+    {
+      "narration": "Two POST routes, both doing real validation before they touch the database.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 4: Register & Login Routes",
+        "subheading": "auth.routes.js"
+      }
+    },
+    {
+      "narration": "Register checks for an email, an eight-character-minimum password, and rejects duplicates with a 409 — before it ever hashes anything expensive. Only then does bcrypt hash the password with ten salt rounds, save the user through the repository, and sign a token back to the client.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/auth/auth.routes.js\nimport { Router } from \"express\";\nimport bcrypt from \"bcrypt\";\nimport { usersRepository } from \"../users/users.repository.js\";\nimport { signToken } from \"./tokens.js\";\n\nexport const authRouter = Router();\nconst SALT_ROUNDS = 10;\n\nauthRouter.post(\"/register\", async (req, res) => {\n  const { email, password } = req.body;\n\n  if (!email || !password || password.length < 8) {\n    return res.status(400).json({ error: \"email and an 8+ character password are required\" });\n  }\n\n  if (usersRepository.findByEmail(email)) {\n    return res.status(409).json({ error: \"email already registered\" });\n  }\n\n  const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);\n  const user = usersRepository.create({ email, passwordHash });\n  const token = signToken(user);\n\n  res.status(201).json({ token, user: { id: user.id, email: user.email } });\n});\n\nauthRouter.post(\"/login\", async (req, res) => {\n  const { email, password } = req.body;\n  const user = usersRepository.findByEmail(email);\n\n  if (!user || !(await bcrypt.compare(password, user.password_hash))) {\n    return res.status(401).json({ error: \"invalid email or password\" });\n  }\n\n  const token = signToken(user);\n  res.json({ token, user: { id: user.id, email: user.email } });\n});"
+      }
+    },
+    {
+      "narration": "Login mirrors that shape: look up the user by email, then compare the submitted password against the stored hash with bcrypt.compare. Only a match issues a token — everything else gets the same generic 401, so a wrong email and a wrong password look identical to an attacker.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/auth/auth.routes.js\nimport { Router } from \"express\";\nimport bcrypt from \"bcrypt\";\nimport { usersRepository } from \"../users/users.repository.js\";\nimport { signToken } from \"./tokens.js\";\n\nexport const authRouter = Router();\nconst SALT_ROUNDS = 10;\n\nauthRouter.post(\"/register\", async (req, res) => {\n  const { email, password } = req.body;\n\n  if (!email || !password || password.length < 8) {\n    return res.status(400).json({ error: \"email and an 8+ character password are required\" });\n  }\n\n  if (usersRepository.findByEmail(email)) {\n    return res.status(409).json({ error: \"email already registered\" });\n  }\n\n  const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);\n  const user = usersRepository.create({ email, passwordHash });\n  const token = signToken(user);\n\n  res.status(201).json({ token, user: { id: user.id, email: user.email } });\n});\n\nauthRouter.post(\"/login\", async (req, res) => {\n  const { email, password } = req.body;\n  const user = usersRepository.findByEmail(email);\n\n  if (!user || !(await bcrypt.compare(password, user.password_hash))) {\n    return res.status(401).json({ error: \"invalid email or password\" });\n  }\n\n  const token = signToken(user);\n  res.json({ token, user: { id: user.id, email: user.email } });\n});"
+      }
+    },
+    {
+      "narration": "Registration and login both return a working token. Now let's protect something with it — the actual tasks resource.",
+      "display": {
+        "kind": "text",
+        "heading": "Users can now log in",
+        "subheading": "Next: the resource worth protecting"
+      }
+    },
+    {
+      "narration": "This is where the JWT actually pays off — every task belongs to a specific user, and the app has to enforce that on every single query.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 5: The Protected Tasks Resource",
+        "subheading": "tasks.repository.js + tasks.routes.js + app.js"
+      }
+    },
+    {
+      "narration": "The tasks repository always scopes by user_id. listForUser only returns that user's rows. findOwnedById looks up a task by id and user_id together — so even if someone guesses a valid task id that belongs to a different user, the query simply returns nothing.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/tasks/tasks.repository.js\nimport { db } from \"../db.js\";\n\nexport const tasksRepository = {\n  listForUser(userId) {\n    return db.prepare(\"SELECT * FROM tasks WHERE user_id = ? ORDER BY id\").all(userId);\n  },\n\n  create(userId, title) {\n    const result = db\n      .prepare(\"INSERT INTO tasks (user_id, title) VALUES (?, ?)\")\n      .run(userId, title);\n    return { id: result.lastInsertRowid, userId, title, done: false };\n  },\n\n  findOwnedById(userId, id) {\n    return db.prepare(\"SELECT * FROM tasks WHERE id = ? AND user_id = ?\").get(id, userId);\n  },\n\n  setDone(userId, id, done) {\n    const result = db\n      .prepare(\"UPDATE tasks SET done = ? WHERE id = ? AND user_id = ?\")\n      .run(done ? 1 : 0, id, userId);\n    return result.changes > 0; // false means no matching row for this user — not found or not owned\n  },\n};"
+      }
+    },
+    {
+      "narration": "tasksRouter.use(requireAuth) at the top means every route below it needs a valid token, no exceptions. The interesting line is in the PATCH route: it calls findOwnedById first, and returns a plain 404 if the task isn't found or isn't owned by this user — never confirming to a stranger that it exists at all.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/tasks/tasks.routes.js\nimport { Router } from \"express\";\nimport { requireAuth } from \"../auth/auth.middleware.js\";\nimport { tasksRepository } from \"./tasks.repository.js\";\n\nexport const tasksRouter = Router();\ntasksRouter.use(requireAuth); // every route below requires a valid JWT\n\ntasksRouter.get(\"/\", (req, res) => {\n  const tasks = tasksRepository.listForUser(req.user.sub);\n  res.json(tasks);\n});\n\ntasksRouter.post(\"/\", (req, res) => {\n  const { title } = req.body;\n  if (!title || !title.trim()) {\n    return res.status(400).json({ error: \"title is required\" });\n  }\n  const task = tasksRepository.create(req.user.sub, title.trim());\n  res.status(201).json(task);\n});\n\ntasksRouter.patch(\"/:id/done\", (req, res) => {\n  const { id } = req.params;\n  const { done } = req.body;\n\n  // findOwnedById scopes by user_id — this is what stops one user from\n  // reading or editing another user's tasks by guessing IDs (see Module 4)\n  const task = tasksRepository.findOwnedById(req.user.sub, id);\n  if (!task) {\n    return res.status(404).json({ error: \"task not found\" });\n  }\n\n  tasksRepository.setDone(req.user.sub, id, Boolean(done));\n  res.json({ ...task, done: Boolean(done) });\n});"
+      }
+    },
+    {
+      "narration": "app.js is just wiring: JSON body parsing, a health check, the auth routes mounted at /auth, the tasks routes mounted at /tasks, and a centralized error handler at the bottom that catches anything thrown or rejected upstream and turns it into a clean 500 instead of a stack trace leaking to the client.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/app.js\nimport express from \"express\";\nimport { authRouter } from \"./auth/auth.routes.js\";\nimport { tasksRouter } from \"./tasks/tasks.routes.js\";\n\nexport const app = express();\napp.use(express.json());\n\napp.get(\"/health\", (req, res) => res.json({ status: \"ok\" }));\napp.use(\"/auth\", authRouter);\napp.use(\"/tasks\", tasksRouter);\n\n// Centralized error handler — catches anything thrown/rejected in routes above\napp.use((err, req, res, next) => {\n  console.error(err);\n  res.status(500).json({ error: \"internal server error\" });\n});"
+      }
+    },
+    {
+      "narration": "Auth, users, and a protected tasks resource are all wired together. Now we need to prove it actually behaves correctly — that's what the test suite is for.",
+      "display": {
+        "kind": "text",
+        "heading": "The API is feature-complete",
+        "subheading": "Next: proving it actually works"
+      }
+    },
+    {
+      "narration": "Because config.js switches to an in-memory SQLite database whenever NODE_ENV is test, this suite runs against a real, fresh database every time — zero mocking of the data layer.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 6: Testing with Jest & Supertest",
+        "subheading": "Real HTTP requests, an in-memory database"
+      }
+    },
+    {
+      "narration": "The auth tests are straightforward: register a user and confirm a token comes back, register the same email twice and confirm the second attempt gets a 409, then confirm a wrong password on login gets a 401.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// tests/tasks.test.js\nimport request from \"supertest\";\nimport { app } from \"../src/app.js\";\n\nasync function registerAndLogin(email = \"ada@example.com\", password = \"s3curepass\") {\n  const response = await request(app).post(\"/auth/register\").send({ email, password });\n  return response.body.token;\n}\n\ndescribe(\"auth\", () => {\n  it(\"registers a new user and returns a token\", async () => {\n    const response = await request(app)\n      .post(\"/auth/register\")\n      .send({ email: \"grace@example.com\", password: \"s3curepass\" });\n\n    expect(response.status).toBe(201);\n    expect(response.body.token).toBeDefined();\n    expect(response.body.user.email).toBe(\"grace@example.com\");\n  });\n\n  it(\"rejects duplicate registration with 409\", async () => {\n    await request(app).post(\"/auth/register\").send({ email: \"dup@example.com\", password: \"s3curepass\" });\n    const response = await request(app).post(\"/auth/register\").send({ email: \"dup@example.com\", password: \"s3curepass\" });\n    expect(response.status).toBe(409);\n  });\n\n  it(\"rejects login with a wrong password\", async () => {\n    await request(app).post(\"/auth/register\").send({ email: \"bob@example.com\", password: \"s3curepass\" });\n    const response = await request(app).post(\"/auth/login\").send({ email: \"bob@example.com\", password: \"wrong\" });\n    expect(response.status).toBe(401);\n  });\n});"
+      }
+    },
+    {
+      "narration": "The tasks tests do the real work: confirm an unauthenticated request gets a 401, confirm a created task actually shows up when listing, confirm marking it done updates the response — and confirm that patching someone else's task returns a 404, proving the ownership check actually holds up under a real HTTP request.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "describe(\"tasks\", () => {\n  it(\"rejects unauthenticated requests\", async () => {\n    const response = await request(app).get(\"/tasks\");\n    expect(response.status).toBe(401);\n  });\n\n  it(\"creates and lists tasks for the authenticated user only\", async () => {\n    const token = await registerAndLogin(\"owner@example.com\");\n\n    await request(app)\n      .post(\"/tasks\")\n      .set(\"Authorization\", `Bearer ${token}`)\n      .send({ title: \"Write capstone tests\" });\n\n    const response = await request(app)\n      .get(\"/tasks\")\n      .set(\"Authorization\", `Bearer ${token}`);\n\n    expect(response.status).toBe(200);\n    expect(response.body).toHaveLength(1);\n    expect(response.body[0]).toMatchObject({ title: \"Write capstone tests\", done: 0 });\n  });\n\n  it(\"marks a task done\", async () => {\n    const token = await registerAndLogin(\"done-test@example.com\");\n    const createResponse = await request(app)\n      .post(\"/tasks\")\n      .set(\"Authorization\", `Bearer ${token}`)\n      .send({ title: \"Ship it\" });\n\n    const taskId = createResponse.body.id;\n\n    const patchResponse = await request(app)\n      .patch(`/tasks/${taskId}/done`)\n      .set(\"Authorization\", `Bearer ${token}`)\n      .send({ done: true });\n\n    expect(patchResponse.status).toBe(200);\n    expect(patchResponse.body.done).toBe(true);\n  });\n\n  it(\"returns 404 when patching another user's task\", async () => {\n    const ownerToken = await registerAndLogin(\"owner2@example.com\");\n    const createResponse = await request(app)\n      .post(\"/tasks\")\n      .set(\"Authorization\", `Bearer ${ownerToken}`)\n      .send({ title: \"Private task\" });\n\n    const strangerToken = await registerAndLogin(\"stranger@example.com\");\n    const response = await request(app)\n      .patch(`/tasks/${createResponse.body.id}/done`)\n      .set(\"Authorization\", `Bearer ${strangerToken}`)\n      .send({ done: true });\n\n    expect(response.status).toBe(404); // ownership check in findOwnedById does its job\n  });\n});"
+      }
+    },
+    {
+      "narration": "Locally, it's npm install, copy the env example and set a real secret, then npm test — the whole suite runs in seconds against that in-memory database, no external services needed.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "npm install\ncp .env.example .env    # then edit JWT_SECRET\nnpm test                 # runs the full Jest + supertest suite against an in-memory DB\nnpm run dev               # starts the API on http://localhost:3000"
+      }
+    },
+    {
+      "narration": "With a passing suite proving the ownership checks and auth flow work, the last piece is making this runnable anywhere — Docker and CI.",
+      "display": {
+        "kind": "text",
+        "heading": "Tests are green",
+        "subheading": "Next: shipping it"
+      }
+    },
+    {
+      "narration": "The last stage is making this something a team can actually run — not just something that works on your machine.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 7: Docker & Continuous Integration",
+        "subheading": "Dockerfile, docker-compose.yml, GitHub Actions"
+      }
+    },
+    {
+      "narration": "The Dockerfile is a single stage on node:20-slim: copy the package files, run npm ci with --omit=dev so dev dependencies like Jest never ship, copy the source, and set NODE_ENV to production before exposing port 3000.",
+      "display": {
+        "kind": "editor",
+        "lang": "dockerfile",
+        "code": "# Dockerfile\nFROM node:20-slim AS base\nWORKDIR /app\n\nCOPY package.json package-lock.json ./\nRUN npm ci --omit=dev\n\nCOPY src ./src\n\nENV NODE_ENV=production\nENV PORT=3000\nEXPOSE 3000\n\nCMD [\"node\", \"src/server.js\"]"
+      }
+    },
+    {
+      "narration": "docker-compose.yml builds that image, maps port 3000, injects the JWT secret and database path as environment variables, and — this is the important part — persists the SQLite file on a named volume, so the database survives a container restart.",
+      "display": {
+        "kind": "editor",
+        "lang": "yaml",
+        "code": "# docker-compose.yml — runs the API with a persisted SQLite file on a volume\nservices:\n  api:\n    build: .\n    ports:\n      - \"3000:3000\"\n    environment:\n      JWT_SECRET: ${JWT_SECRET:-dev-secret-change-me}\n      DB_PATH: /data/tasks.db\n      PORT: 3000\n    volumes:\n      - task-data:/data\n\nvolumes:\n  task-data:"
+      }
+    },
+    {
+      "narration": "One command, docker compose up --build, and the whole API is running with a persisted database, no manual setup on the host machine at all.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "docker compose up --build\n# API available at http://localhost:3000, SQLite file persisted in the\n# \"task-data\" named volume across container restarts"
+      }
+    },
+    {
+      "narration": "The GitHub Actions workflow has two jobs: lint-and-test installs dependencies, lints, and runs the Jest suite on every push and pull request; docker-build only runs after that job passes, and actually builds the Docker image, tagged with the commit SHA — so a broken image can never reach main.",
+      "display": {
+        "kind": "editor",
+        "lang": "yaml",
+        "code": "# .github/workflows/ci.yml\nname: CI\n\non:\n  push:\n    branches: [main]\n  pull_request:\n\njobs:\n  lint-and-test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n          cache: npm\n      - run: npm ci\n      - run: npm run lint\n      - run: npm test\n\n  docker-build:\n    runs-on: ubuntu-latest\n    needs: lint-and-test\n    steps:\n      - uses: actions/checkout@v4\n      - uses: docker/setup-buildx-action@v3\n      - run: docker build -t task-tracker-api:${{ github.sha }} ."
+      }
+    },
+    {
+      "narration": "If you want to keep going: swap SQLite for Postgres by touching only the repository layer, since routes and middleware never talk to SQL directly. Add rate limiting to login, structured logging, a health-ready check, and a Playwright end-to-end suite wired into this same CI pipeline.",
+      "display": {
+        "kind": "text",
+        "heading": "Where to go from here",
+        "subheading": "Extend it into a real portfolio piece"
+      }
+    },
+    {
+      "narration": "This capstone brings together everything from the path — layered code you can test in isolation, authentication done properly, a CI pipeline that actually gates bad changes, and a container image anyone can run with one command. That's the real difference between a script and a service.",
+      "display": {
+        "kind": "text",
+        "heading": "You've completed the JavaScript Mastery Path",
+        "subheading": "From console.log to production-shaped services"
+      }
+    },
+    {
+      "narration": "Grab the complete source, the full test suite, and the Docker and CI configs at the link on screen, and go build something with it.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-4/10-capstone-project/"
+      }
+    }
+  ]
+}

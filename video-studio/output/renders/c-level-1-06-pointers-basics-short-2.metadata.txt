@@ -1,0 +1,14 @@
+Title: C passes everything by value -- so how does swap work?
+
+Description:
+C hands every function a copy of your argument, so a normal function can't change a caller's variable. This Short walks through the classic swap: pass the addresses instead of the values, dereference the pointers, and the function reaches back and rewrites x and y in main. Drop the ampersands and you're just swapping two throwaway copies.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/
+
+#Shorts
+
+Tags: c, pointers, pass by reference, swap function, c programming, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/

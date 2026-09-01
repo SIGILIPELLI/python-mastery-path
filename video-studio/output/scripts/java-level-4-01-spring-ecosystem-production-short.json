@@ -1,0 +1,43 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Spring Boot Queries With Zero SQL (It's Not Magic)",
+  "description": "Spring Data JPA can generate a real database query just from how you name a Java method — no SQL, no annotations. We break down how findByEmailAndActiveTrue and its siblings get parsed into a real query at startup, and why a typo fails the build instead of hiding in production.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/\n\n#Shorts",
+  "tags": ["java", "spring boot", "spring data jpa", "programming tutorial", "backend development", "java mastery path"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/"],
+  "beats": [
+    {
+      "narration": "You can write a real Spring Boot database query without writing a single line of SQL — just by naming a Java method correctly.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Zero SQL, One Method Name",
+        "subheading": "Java Mastery Path -- Level 4"
+      }
+    },
+    {
+      "narration": "Spring Data parses the method name at startup and turns it into a real query. Find by email and active true becomes select from users where email matches, and active is true — a full query, and you never wrote it.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "public interface UserRepository extends JpaRepository<User, Long> {\n\n    // SELECT * FROM users WHERE email = ? AND active = true\n    Optional<User> findByEmailAndActiveTrue(String email);\n\n    // SELECT * FROM users WHERE last_name LIKE ?\n    List<User> findByLastNameStartingWithIgnoreCase(String prefix);\n}"
+      }
+    },
+    {
+      "narration": "And Spring Data isn't guessing — it validates every method name against your entity at startup. Typo a field name, and the app refuses to boot instead of failing silently in production.",
+      "display": {
+        "kind": "text",
+        "heading": "It fails fast, not silently",
+        "subheading": "Spring validates every method name against your entity at startup."
+      }
+    },
+    {
+      "narration": "That's derived queries in Spring Data JPA — full lesson and runnable code linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/"
+      }
+    }
+  ]
+}

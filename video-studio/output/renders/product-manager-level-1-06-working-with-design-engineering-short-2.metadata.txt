@@ -1,0 +1,14 @@
+Title: The Design Review Order Most PMs Get Backwards
+
+Description:
+Design reviews go wrong two ways: the PM rubber-stamps everything, or relitigates the problem statement at the mockup stage -- way too late, and it wastes the designer's work. This Short breaks down the fixed order that catches real gaps instead: problem fit, acceptance criteria, edge cases, scope creep -- taste last.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/
+
+#Shorts
+
+Tags: product management, design review, PM tips, product manager mastery path, acceptance criteria, UX
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/

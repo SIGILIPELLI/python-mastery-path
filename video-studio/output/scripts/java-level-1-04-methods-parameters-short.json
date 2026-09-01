@@ -1,0 +1,52 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Same Name, 3 Methods -- How Java Overloading Works",
+  "description": "Java lets you define multiple methods with the exact same name, as long as their parameter lists differ in count or type -- it's called overloading, and the compiler picks the right one automatically at compile time. This Short breaks down multiply(int, int), multiply(double, double), and multiply(int, int, int) living side by side in the same class, and shows exactly which one runs for each call. Part of the Methods & Parameters lesson in the Java Mastery Path, Level 1.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/\n\n#Shorts",
+  "tags": ["java", "method overloading", "java methods", "programming tutorial", "java mastery path", "learn java"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/"],
+  "beats": [
+    {
+      "narration": "What if I told you Java lets you write three methods with the exact same name -- and it always knows which one to call?",
+      "display": {
+        "kind": "title_card",
+        "heading": "Method Overloading",
+        "subheading": "Java Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Here's multiply, defined three times -- two ints, two doubles, even three ints. Same name, wildly different parameter lists.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "static int multiply(int a, int b) {\n    return a * b;\n}\n\nstatic double multiply(double a, double b) {\n    return a * b;\n}\n\nstatic int multiply(int a, int b, int c) {\n    return a * b * c;\n}"
+      }
+    },
+    {
+      "narration": "Call multiply with two ints and you get six. Switch to two doubles and it becomes ten point oh. Add a third argument and a completely different method fires.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "System.out.println(multiply(2, 3));\nSystem.out.println(multiply(2.5, 4.0));\nSystem.out.println(multiply(2, 3, 4));",
+        "output": "6\n10.0\n24"
+      }
+    },
+    {
+      "narration": "This isn't magic. It's overloading -- Java picks the right method at compile time, just by matching your argument count and types.",
+      "display": {
+        "kind": "text",
+        "heading": "Method Overloading",
+        "subheading": "Resolved at compile time by parameter list"
+      }
+    },
+    {
+      "narration": "Full lesson on methods and parameters is linked right below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/"
+      }
+    }
+  ]
+}

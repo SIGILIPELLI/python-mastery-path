@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "@Cacheable: The Java Annotation That Skips the DB",
+  "description": "Spring's @Cacheable annotation lets a Java service check an in-memory cache before ever touching the database -- and @CacheEvict keeps it from serving stale data after a write. Swap the cache provider to Redis and every replica of your service shares the same cache, with zero changes to the annotations themselves. This is one piece of the Java Mastery Path's guide to performance at scale, covering JVM tuning, HikariCP connection pools, and caching strategies.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/09-performance-at-scale/\n\n#Shorts",
+  "tags": ["java", "spring boot", "caching", "performance", "software engineering", "programming tutorial", "system design"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/09-performance-at-scale/"],
+  "beats": [
+    {
+      "narration": "Your Java service is hammering the database with the same query, over and over. One annotation fixes that -- no loops, no manual cache checks.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Performance at Scale",
+        "subheading": "Java Mastery Path -- Level 4"
+      }
+    },
+    {
+      "narration": "Add @Cacheable to findBySku, and Spring checks the cache first. Only a real cache miss ever touches the database -- every call after that returns instantly.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@Cacheable(value = \"products\", key = \"#sku\")\npublic Product findBySku(String sku) {\n    // Only runs on a cache miss -- subsequent calls with the same sku\n    // return the cached value without touching the database at all.\n    return productRepository.findBySku(sku)\n        .orElseThrow(() -> new ProductNotFoundException(sku));\n}"
+      }
+    },
+    {
+      "narration": "Update the price, and @CacheEvict clears the stale entry so nobody reads old data. Every replica of your service shares that same rule, even when the cache itself moves to Redis.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@CacheEvict(value = \"products\", key = \"#product.sku()\")\npublic void updatePrice(Product product) {\n    productRepository.save(product);   // invalidate the stale cached entry\n}"
+      }
+    },
+    {
+      "narration": "That's the whole trick -- swap one line in your properties file to point at Redis, and every instance shares the same cache. The annotations in your code never change.",
+      "display": {
+        "kind": "text",
+        "heading": "Same code, different backend",
+        "subheading": "spring.cache.type=redis -- the @Cacheable/@CacheEvict annotations don't change at all"
+      }
+    },
+    {
+      "narration": "Full breakdown of JVM tuning, connection pools, and caching strategies is in the Java Mastery Path, level four, lesson nine.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/09-performance-at-scale/"
+      }
+    }
+  ]
+}

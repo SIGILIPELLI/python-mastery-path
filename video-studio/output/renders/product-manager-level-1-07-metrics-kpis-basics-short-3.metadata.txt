@@ -1,0 +1,14 @@
+Title: "Improve Engagement" Is Not a Success Metric
+
+Description:
+Every PRD needs its own success metric, and "improve engagement" isn't one. This Short walks the four-question checklist from the Product Manager Mastery Path: can you measure it with existing instrumentation, is there a clear baseline, does it plausibly move the North Star, and is the target specific and numeric? We anchor it with the lesson's worked example: a project-management SaaS whose weekly-digest-email initiative set the target "+8 percentage points in week-3 team retention within 6 weeks of launch, against the current 35% baseline."
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/
+
+#Shorts
+
+Tags: product management, product manager, metrics, KPIs, success metrics, PRD, north star metric, retention, product analytics, pm interview
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/

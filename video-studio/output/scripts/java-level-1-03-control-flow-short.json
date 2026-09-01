@@ -1,0 +1,52 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Java's switch fall-through bug -- and how to kill it",
+  "description": "One missing `break` in a classic Java switch statement silently falls through to the next case -- a bug that's tripped up developers for decades. Java 14's switch expression with arrow syntax fixes it for good: no fall-through, and it hands back a value directly. Quick look at both, straight from the Control Flow lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+  "tags": ["java", "switch statement", "switch expression", "control flow", "java tutorial", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/"],
+  "beats": [
+    {
+      "narration": "Forget a single break in a Java switch statement, and your code doesn't error -- it silently falls through into the next case.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The switch bug nobody warns you about",
+        "subheading": "Java Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Here's the classic switch: three cases, three breaks. Miss just one, and execution keeps running into the next branch -- a bug that's bitten Java devs for decades.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "int day = 3;\nString name;\n\nswitch (day) {\n    case 1:\n        name = \"Monday\";\n        break;\n    case 2:\n        name = \"Tuesday\";\n        break;\n    case 3:\n        name = \"Wednesday\";\n        break;\n    default:\n        name = \"Unknown\";\n}"
+      }
+    },
+    {
+      "narration": "Java 14 gives you a fix: the switch expression. Arrow syntax, no fall-through possible, and it returns a value directly into your variable.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "int day = 3;\n\nString name = switch (day) {\n    case 1 -> \"Monday\";\n    case 2 -> \"Tuesday\";\n    case 3 -> \"Wednesday\";\n    case 4, 5 -> \"Almost the weekend\";\n    default -> \"Unknown\";\n};"
+      }
+    },
+    {
+      "narration": "Run it, and you get exactly what you'd expect -- Wednesday. No break needed, no bug waiting to happen.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "System.out.println(name);",
+        "output": "Wednesday"
+      }
+    },
+    {
+      "narration": "That one keyword swap makes your branching logic safer by default. Full lesson and code are linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+=== UPLOADING java-level-2-01-oop-deep-dive-short ===
+Uploading java-level-2-01-oop-deep-dive-short.mp4 as public...
+  Title: Why Java Calls the Child's Method, Not the Parent's
+Uploaded: https://youtube.com/watch?v=HKve1mk3IdI (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-02-collections-framework-short ===
+Uploading java-level-2-02-collections-framework-short.mp4 as public...
+  Title: Why Your Java For-Each Loop Just Crashed
+Uploaded: https://youtube.com/watch?v=l80X1u2c9NY (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-03-generics-short ===
+Uploading java-level-2-03-generics-short.mp4 as public...
+  Title: This Java code compiles fine... then crashes at runtime
+Uploaded: https://youtube.com/watch?v=6GZQJ-TkEUc (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-04-lambdas-streams-short ===
+Uploading java-level-2-04-lambdas-streams-short.mp4 as public...
+  Title: Java Streams: Filter, Map, Sort in One Line
+Uploaded: https://youtube.com/watch?v=_EzUiIuvItE (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-05-exceptions-advanced-short ===
+Uploading java-level-2-05-exceptions-advanced-short.mp4 as public...
+  Title: Java Won't Let This Exception Disappear
+Uploaded: https://youtube.com/watch?v=q71_VGkgomQ (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-3-backend-longform ===
+Uploading java-level-3-backend-longform.mp4 as public...
+  Title: Java Level 3: Build a Real Backend -- JDBC, Spring Boot REST APIs, Design Patterns & a Full CRUD Project
+Traceback (most recent call last):
+  File "/Users/bhanuja/Desktop/vremployee/video-studio/upload/upload_cli.py", line 48, in <module>
+    main()
+  File "/Users/bhanuja/Desktop/vremployee/video-studio/upload/upload_cli.py", line 38, in main
+    upload_video(
+  File "/Users/bhanuja/Desktop/vremployee/video-studio/upload/youtube_upload.py", line 87, in upload_video
+    status, response = request.next_chunk()
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhanuja/Desktop/vremployee/video-studio/.venv/lib/python3.11/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhanuja/Desktop/vremployee/video-studio/.venv/lib/python3.11/site-packages/googleapiclient/http.py", line 1022, in next_chunk
+    raise ResumableUploadError(resp, content)
+googleapiclient.errors.ResumableUploadError: <HttpError 400 when requesting None returned "The request metadata specifies an invalid or empty video title.". Details: "[{'message': 'The request metadata specifies an invalid or empty video title.', 'domain': 'youtube.video', 'reason': 'invalidTitle', 'location': 'body.snippet.title', 'locationType': 'other'}]">
+=== EXIT CODE: 1 ===
+=== UPLOADING java-level-2-06-file-io-nio-short ===
+Uploading java-level-2-06-file-io-nio-short.mp4 as public...
+  Title: The Java one-liner that replaces 8 lines of file I/O
+Uploaded: https://youtube.com/watch?v=sd0Twyw0Iqc (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-07-junit-testing-short ===
+Uploading java-level-2-07-junit-testing-short.mp4 as public...
+  Title: How Do You Test Code That's Supposed to Crash? (JUnit)
+Uploaded: https://youtube.com/watch?v=vWDf_GeSDic (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-08-build-tools-short ===
+Uploading java-level-2-08-build-tools-short.mp4 as public...
+  Title: Why `mvn test` Secretly Runs Two Other Commands First
+Uploaded: https://youtube.com/watch?v=0vmf6B2U2wU (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-09-enums-records-sealed-short ===
+Uploading java-level-2-09-enums-records-sealed-short.mp4 as public...
+  Title: Java's switch with NO default case (compiler forces this)
+Uploaded: https://youtube.com/watch?v=q6nB5zMsbeg (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-2-10-project-inventory-system-short ===
+Uploading java-level-2-10-project-inventory-system-short.mp4 as public...
+  Title: This Java Record Makes Bad Data Impossible
+Uploaded: https://youtube.com/watch?v=Wj1P0DZlEmY (privacy: public)
+=== EXIT CODE: 0 ===
+=== UPLOADING java-level-4-master-longform ===
+Uploading java-level-4-master-longform.mp4 as public...
+  Title: Java Level 4: Production Spring, Microservices, Concurrency & Testing at Scale
+Uploaded: https://youtube.com/watch?v=dEyk_lWbjXA (privacy: public)
+=== EXIT CODE: 0 ===

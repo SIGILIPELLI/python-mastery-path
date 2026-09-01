@@ -1,0 +1,7 @@
+{
+  "port": 8787,
+  "claudePath": "/Users/bhanuja/.local/bin/claude",
+  "claudeArgs": ["--permission-mode", "acceptEdits"],
+  "timeoutMinutes": 30,
+  "botPrefix": "🤖"
+}

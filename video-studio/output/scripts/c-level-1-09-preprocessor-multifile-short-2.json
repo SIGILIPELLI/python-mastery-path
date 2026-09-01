@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "This C macro squares 1+2 and gets 5",
+  "description": "A function-like macro in C is not a function. It is pure text substitution done by the preprocessor before the compiler ever runs. Define SQUARE(x) as x * x with no parentheses and SQUARE(1 + 2) expands to 1 + 2 * 1 + 2, which is 5, not 9. This Short shows the classic unparenthesised macro bug from the C Mastery Path preprocessor lesson and the parenthesised fix.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/\n\n#Shorts",
+  "tags": ["c", "c programming", "preprocessor", "macros", "define", "programming tutorial", "c macro bug", "learn c"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/"],
+  "beats": [
+    {
+      "narration": "This C macro looks harmless. It just squares a number. But feed it one plus two, and you get five, not nine.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Wrong answer",
+        "subheading": "same macro"
+      }
+    },
+    {
+      "narration": "Define SQUARE of x as x times x, with no parentheses. The preprocessor doesn't do math. It's pure text substitution. So SQUARE of one plus two becomes one plus two times one plus two. Multiplication goes first. You get five.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#define SQUARE(x) x * x\n\n// SQUARE(1 + 2) expands to:\n// 1 + 2 * 1 + 2   ->  5"
+      }
+    },
+    {
+      "narration": "The fix is parentheses. Wrap the whole body, and every use of x. Now it expands to one plus two in parentheses, times the same again. Nine, like you wanted.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#define SQUARE(x) ((x) * (x))\n\n// SQUARE(1 + 2) expands to:\n// ((1 + 2) * (1 + 2))   ->  9"
+      }
+    },
+    {
+      "narration": "The real lesson: a macro is find and replace, not a function. For anything past a trivial constant, a real function is clearer and safer.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Prefer a function",
+        "subheading": "clearer and safer"
+      }
+    },
+    {
+      "narration": "Full breakdown and runnable code are in the C Mastery Path preprocessor lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Java Silently Truncates Integer Division (Here's the Fix)",
+  "description": "Divide two ints in Java and the decimal just disappears -- no warning, no error. In under a minute, see why int / int always truncates, how casting to double fixes it, and why casting a double to int never rounds either.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "tags": ["java", "integer division", "casting", "java basics", "programming tutorial", "coding shorts"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"],
+  "beats": [
+    {
+      "narration": "In Java, dividing two whole numbers doesn't round -- it just throws the decimal away. No warning. No error. Just silence.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Integer Division",
+        "subheading": "Java Mastery Path -- Level 1: Variables & Operators"
+      }
+    },
+    {
+      "narration": "Ten divided by three should be three point three three. Java prints three, because int divided by int always gives you an int.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "int a = 10, b = 3;\nSystem.out.println(a / b);",
+        "output": "3"
+      }
+    },
+    {
+      "narration": "Cast one side to a double before you divide, and Java keeps every decimal you actually wanted.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "System.out.println((double) a / b);",
+        "output": "3.3333333333333335"
+      }
+    },
+    {
+      "narration": "And casting a double to an int isn't rounding either -- nineteen ninety nine becomes nineteen flat, every time.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "double price = 19.99;\nint wholeDollars = (int) price;",
+        "output": "19"
+      }
+    },
+    {
+      "narration": "Variables, types, casting -- it's all in lesson two. Full code's linked right below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"
+      }
+    }
+  ]
+}

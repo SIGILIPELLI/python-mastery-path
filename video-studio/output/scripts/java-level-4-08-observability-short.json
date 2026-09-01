@@ -1,0 +1,43 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "The Java Logging Habit That Costs You Nothing",
+  "description": "Most Java devs write log statements without thinking about the cost -- but SLF4J's `{}` placeholder syntax isn't just cleaner, it's how Logback skips building your log message entirely when that level is disabled. In this Short, see the real OrderService logging code from Level 4 of the Java Mastery Path and learn why concatenating strings in your logs quietly taxes every request in production.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/08-observability/\n\n#Shorts",
+  "tags": ["java", "spring boot", "logging", "slf4j", "observability", "programming tutorial", "software engineering"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/08-observability/"],
+  "beats": [
+    {
+      "narration": "If you're still building log messages with string concatenation, you're doing work Java doesn't need -- on every single request.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Observability",
+        "subheading": "Java Mastery Path -- Level 4"
+      }
+    },
+    {
+      "narration": "Here's real Spring Boot logging code: SLF4J placeholders, not plus signs, tracking an order from creation through a declined payment to an unexpected failure.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "log.info(\"Creating order for customer={}\", request.customerId());\n\nlog.info(\"Order created id={} total={}\", order.id(), order.total());\n\ncatch (PaymentDeclinedException e) {\n    log.warn(\"Payment declined for customer={}: {}\", request.customerId(), e.getMessage());\n} catch (Exception e) {\n    log.error(\"Unexpected error creating order for customer={}\", request.customerId(), e);\n}"
+      }
+    },
+    {
+      "narration": "Those placeholders aren't just tidy -- SLF4J only assembles that string if the log level is actually enabled. At INFO in production, your DEBUG logs cost you nothing, not even string-building.",
+      "display": {
+        "kind": "text",
+        "heading": "Why it's free",
+        "subheading": "{} placeholders avoid building the message string at all when the log level is disabled"
+      }
+    },
+    {
+      "narration": "That's the difference between logging that scales and logging that quietly taxes every request. Full lesson's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/08-observability/"
+      }
+    }
+  ]
+}

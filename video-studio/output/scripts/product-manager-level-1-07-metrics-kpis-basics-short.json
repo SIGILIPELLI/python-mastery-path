@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Why Watching Quarterly Revenue Is a PM Trap",
+  "description": "Most PMs know what a metric is. Fewer know the difference between a metric they can steer with and one that only confirms the past. This Short breaks down leading vs. lagging metrics -- and the common mistake of obsessing over a lagging number week to week, long after the decisions that moved it are already history.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n\n#Shorts",
+  "tags": ["product manager", "product management", "KPIs", "metrics", "leading vs lagging metrics", "PM tips", "career", "Shorts"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"],
+  "beats": [
+    {
+      "narration": "Here's a mistake that quietly wrecks product teams: staring at quarterly revenue every single week, waiting for it to move.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Metric You're Watching Wrong",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Leading metrics -- like weekly active users or onboarding completion -- you can act on right now. Lagging metrics -- like quarterly revenue or churn -- only confirm what already happened.",
+      "display": {
+        "kind": "text",
+        "heading": "Leading vs. Lagging",
+        "subheading": "Leading predicts. Lagging confirms."
+      }
+    },
+    {
+      "narration": "The trap is treating a lagging metric like it's steerable. By the time quarterly churn actually moves, the decisions that caused it happened months ago.",
+      "display": {
+        "kind": "text",
+        "heading": "The Trap",
+        "subheading": "The cause is already months old by the time it moves"
+      }
+    },
+    {
+      "narration": "So use leading metrics to steer your day-to-day decisions, and save lagging metrics for reporting and context.",
+      "display": {
+        "kind": "text",
+        "heading": "The Fix",
+        "subheading": "Steer with leading. Report with lagging."
+      }
+    },
+    {
+      "narration": "The full lesson covers North Star metrics and the AARRR funnel too -- link's below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"
+      }
+    }
+  ]
+}

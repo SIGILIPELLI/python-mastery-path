@@ -1,0 +1,266 @@
+{
+  "type": "longform",
+  "language": "c",
+  "title": "Build a Multi-File CLI Contact Book in C \u2014 Full Project Walkthrough, Header to Binary",
+  "description": "This is the Level 1 project of the C Mastery Path, built end to end as a single narrative: a command-line contact book that adds contacts, lists them, searches by name, and saves everything to a text file so your data survives between runs. We design the shared header first \u2014 include guard, size constants, and the Contact struct \u2014 then write the implementation file function by function (load, save, add, list, find), then the main.c menu loop that reads keyboard input safely with fgets and strcspn, then compile all three files into one binary with gcc, and finish with the lesson's own three stretch goals: delete, sort, and input validation. Every line of code shown is pulled verbatim from the lesson \u2014 nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/",
+  "tags": [
+    "c",
+    "c programming",
+    "contact book project",
+    "cli application",
+    "multi-file compilation",
+    "structs in c",
+    "file io in c",
+    "gcc",
+    "pointers in c",
+    "c project tutorial",
+    "programming tutorial",
+    "beginner c"
+  ],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"],
+  "beats": [
+    {
+      "narration": "C's Level 1 gave you variables, pointers, structs, and file input and output one topic at a time. This video spends all ten minutes on the one module that ties them together \u2014 the command-line contact book project \u2014 built from an empty folder to a running program, one file at a time, exactly as the lesson lays it out.",
+      "display": {
+        "kind": "stick",
+        "scene": "wave",
+        "heading": "Full Project Build",
+        "subheading": "C Mastery Path, Level 1"
+      }
+    },
+    {
+      "narration": "Here's the plan. We design the data first, then write the logic, then the menu that drives it, then compile three source files into one binary, and end with where to take it further. Every line of code you'll see comes straight from the lesson \u2014 nothing invented.",
+      "display": {
+        "kind": "title_card",
+        "heading": "10 \u00b7 Project \u2014 CLI Contact Book",
+        "subheading": "Declarations \u2192 implementation \u2192 CLI \u2192 build"
+      }
+    },
+    {
+      "narration": "The finished tool does four things. It adds a contact with a name and a phone number, it lists everyone, it searches by name, and it saves to a text file, so your contacts are still there the next time you run the program. That last part, persistence, is what makes it feel like a real app instead of a toy.",
+      "display": {
+        "kind": "stick",
+        "scene": "checklist",
+        "heading": "What You'll Build",
+        "subheading": "add, list, search, save"
+      }
+    },
+    {
+      "narration": "The whole project is three files in one folder. contacts dot h holds the declarations, contacts dot c holds the implementation, and main dot c holds the command-line loop. The header is the what; the C files are the how.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "contacts/\n    contacts.h\n    contacts.c\n    main.c"
+      }
+    },
+    {
+      "narration": "Start with the header. This is the contract every other file agrees to. It opens and closes with an include guard \u2014 that ifndef, define, endif sandwich \u2014 so the file can be included more than once without the compiler complaining about duplicate definitions.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 1: contacts.h",
+        "subheading": "Shared declarations"
+      }
+    },
+    {
+      "narration": "Three constants set the limits up front: at most a hundred contacts, fifty characters for a name, twenty for a phone. Then a struct named Contact bundles one name and one phone into a single value you can pass around and store in an array.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// contacts.h\n#ifndef CONTACTS_H\n#define CONTACTS_H\n\n#define MAX_CONTACTS 100\n#define NAME_LEN 50\n#define PHONE_LEN 20\n\ntypedef struct {\n    char name[NAME_LEN];\n    char phone[PHONE_LEN];\n} Contact;"
+      }
+    },
+    {
+      "narration": "Then five function prototypes \u2014 load and save for the file, add, list, and find for the in-memory array. Notice add_contact takes count as a pointer, because it needs to change the caller's counter. And the read-only functions mark their array parameter const, so the compiler stops you writing to it by accident.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int load_contacts(Contact contacts[], int max);\nvoid save_contacts(const Contact contacts[], int count);\nvoid add_contact(Contact contacts[], int *count, const char *name, const char *phone);\nvoid list_contacts(const Contact contacts[], int count);\nint find_contact(const Contact contacts[], int count, const char *name);\n\n#endif"
+      }
+    },
+    {
+      "narration": "That header is now the single source of truth. contacts dot c and main dot c both include it, so they agree on what a Contact is and what every function looks like \u2014 without either file ever seeing the other's code.",
+      "display": {
+        "kind": "stick",
+        "scene": "handshake",
+        "heading": "One Contract",
+        "subheading": "both files agree"
+      }
+    },
+    {
+      "narration": "Now the implementation file. It includes standard input and output, string dot h for the string helpers, and its own header so the definitions match the prototypes. There are five functions, and we'll take them in the order the lesson presents them.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 2: contacts.c",
+        "subheading": "The implementation, function by function"
+      }
+    },
+    {
+      "narration": "load_contacts opens contacts dot txt for reading. If the file isn't there yet, that's not an error \u2014 it just returns zero and you start with an empty book. Otherwise it loops with fscanf, reading a name up to the comma and a phone up to the newline, and stops the moment a line doesn't parse into exactly two fields.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// contacts.c\n#include <stdio.h>\n#include <string.h>\n#include \"contacts.h\"\n\nint load_contacts(Contact contacts[], int max) {\n    FILE *f = fopen(\"contacts.txt\", \"r\");\n    if (f == NULL) {\n        return 0;   // no file yet -- start with zero contacts\n    }\n\n    int count = 0;\n    while (count < max &&\n           fscanf(f, \"%49[^,],%19[^\\n]\\n\", contacts[count].name, contacts[count].phone) == 2) {\n        count++;\n    }\n\n    fclose(f);\n    return count;\n}"
+      }
+    },
+    {
+      "narration": "save_contacts is the mirror image. It opens the same file for writing, which wipes it clean, then writes one line per contact \u2014 name, comma, phone. That comma-separated format is exactly what fscanf expected when loading, so the two functions always stay in sync. And it closes the file when it's done.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "void save_contacts(const Contact contacts[], int count) {\n    FILE *f = fopen(\"contacts.txt\", \"w\");\n    if (f == NULL) {\n        printf(\"Error: could not save contacts.\\n\");\n        return;\n    }\n\n    for (int i = 0; i < count; i++) {\n        fprintf(f, \"%s,%s\\n\", contacts[i].name, contacts[i].phone);\n    }\n\n    fclose(f);\n}"
+      }
+    },
+    {
+      "narration": "add_contact first checks the array isn't already full. Then it copies the name and phone into the next free slot with strncpy, capped one byte short of the buffer size. It manually writes the null terminator on that last byte, because strncpy won't add one if the source string was too long. Finally it bumps the counter through the pointer.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "void add_contact(Contact contacts[], int *count, const char *name, const char *phone) {\n    if (*count >= MAX_CONTACTS) {\n        printf(\"Contact book is full.\\n\");\n        return;\n    }\n\n    strncpy(contacts[*count].name, name, NAME_LEN - 1);\n    contacts[*count].name[NAME_LEN - 1] = '\\0';\n\n    strncpy(contacts[*count].phone, phone, PHONE_LEN - 1);\n    contacts[*count].phone[PHONE_LEN - 1] = '\\0';\n\n    (*count)++;\n}"
+      }
+    },
+    {
+      "narration": "That pattern \u2014 strncpy with a length limit, then force the null terminator yourself \u2014 is how you copy strings in C without walking off the end of a buffer. It looks fussy the first time. Get comfortable with it now, because you'll write it constantly.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Safe String Copy",
+        "subheading": "limit, then terminate"
+      }
+    },
+    {
+      "narration": "The last two functions are short. list_contacts prints a numbered line for each entry, or a friendly message when there are none. find_contact walks the array comparing names with strcmp, returns the index on a match, and returns minus one when nothing matches \u2014 the classic C way to signal not found.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "void list_contacts(const Contact contacts[], int count) {\n    if (count == 0) {\n        printf(\"No contacts yet.\\n\");\n        return;\n    }\n\n    for (int i = 0; i < count; i++) {\n        printf(\"%d. %s - %s\\n\", i + 1, contacts[i].name, contacts[i].phone);\n    }\n}\n\nint find_contact(const Contact contacts[], int count, const char *name) {\n    for (int i = 0; i < count; i++) {\n        if (strcmp(contacts[i].name, name) == 0) {\n            return i;   // found -- return its index\n        }\n    }\n    return -1;   // not found\n}"
+      }
+    },
+    {
+      "narration": "So contacts dot c never talks to the user and never touches the keyboard. Every function just takes arguments and returns a result. That clean separation is what makes this code easy to test on its own and reuse in another program later.",
+      "display": {
+        "kind": "stick",
+        "scene": "handoff",
+        "heading": "Pure Logic",
+        "subheading": "arguments in, results out"
+      }
+    },
+    {
+      "narration": "main dot c is where the program actually meets a person. It doesn't add any new logic of its own \u2014 it wires the functions from contacts dot c into a menu loop and handles reading input from the terminal.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 3: main.c",
+        "subheading": "The command-line loop"
+      }
+    },
+    {
+      "narration": "It starts by declaring the real array \u2014 a hundred Contact slots living on the stack \u2014 and immediately fills it by calling load_contacts, so any previously saved contacts are back before the user does anything. Then it sets up small buffers for the menu choice and the typed name and phone.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// main.c\n#include <stdio.h>\n#include <string.h>\n#include \"contacts.h\"\n\nint main(void) {\n    Contact contacts[MAX_CONTACTS];\n    int count = load_contacts(contacts, MAX_CONTACTS);\n\n    int choice;\n    char name[NAME_LEN];\n    char phone[PHONE_LEN];"
+      }
+    },
+    {
+      "narration": "A do-while loop prints the four options on every pass. scanf reads the number the user types, and then getchar throws away the newline that scanf leaves sitting in the input buffer. Skip that one line and your next text read silently breaks \u2014 this is the classic beginner C input bug.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "    do {\n        printf(\"\\n1. Add  2. List  3. Search  4. Save & Quit\\n> \");\n        scanf(\"%d\", &choice);\n        getchar();   // consume the leftover newline from scanf"
+      }
+    },
+    {
+      "narration": "The loop runs one command at a time \u2014 print the menu, read a choice, do that one thing, come back to the top \u2014 and it keeps going until the user picks option four. There's no concurrency here, just a simple, predictable cycle.",
+      "display": {
+        "kind": "stick",
+        "scene": "sequential",
+        "heading": "One Command at a Time",
+        "subheading": "menu loop until quit"
+      }
+    },
+    {
+      "narration": "Option one reads the name and phone with fgets, which is safer than scanf for strings because it respects the buffer size you give it. fgets keeps the trailing newline, so strcspn finds it and the code overwrites it with a null terminator. Then it passes the address of count into add_contact so the counter actually updates.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "        switch (choice) {\n            case 1:\n                printf(\"Name: \");\n                fgets(name, NAME_LEN, stdin);\n                name[strcspn(name, \"\\n\")] = '\\0';   // strip trailing newline\n\n                printf(\"Phone: \");\n                fgets(phone, PHONE_LEN, stdin);\n                phone[strcspn(phone, \"\\n\")] = '\\0';\n\n                add_contact(contacts, &count, name, phone);\n                printf(\"Added.\\n\");\n                break;"
+      }
+    },
+    {
+      "narration": "Option two is a single line \u2014 hand the array and count straight to list_contacts. Option three reads a name the same fgets way, calls find_contact, and then checks the return value: zero or higher is a real index, so it prints that contact; minus one means it prints not found.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "            case 2:\n                list_contacts(contacts, count);\n                break;\n\n            case 3:\n                printf(\"Name to search: \");\n                fgets(name, NAME_LEN, stdin);\n                name[strcspn(name, \"\\n\")] = '\\0';\n\n                int idx = find_contact(contacts, count, name);\n                if (idx >= 0) {\n                    printf(\"Found: %s - %s\\n\", contacts[idx].name, contacts[idx].phone);\n                } else {\n                    printf(\"Not found.\\n\");\n                }\n                break;"
+      }
+    },
+    {
+      "narration": "Option four calls save_contacts and says goodbye. Anything else falls through to the default case with an unknown-option message. The while condition keeps looping until choice equals four \u2014 so save and quit are deliberately the same action, and nothing is written to disk until the user chooses it.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "            case 4:\n                save_contacts(contacts, count);\n                printf(\"Saved. Goodbye!\\n\");\n                break;\n\n            default:\n                printf(\"Unknown option.\\n\");\n        }\n    } while (choice != 4);\n\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "Three source files, but only two of them actually have code to compile \u2014 the header just gets included by the others. So you pass gcc the two C files, and it links them together into a single program.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 4: Compiling & Running",
+        "subheading": "three files, one binary"
+      }
+    },
+    {
+      "narration": "Give gcc both C files, not the header, with the wall and wextra warning flags turned on so it flags anything sketchy. It produces one executable called contacts. Run it, add Ada Lovelace at five-five-five, oh-one-hundred, list to confirm she's there, then save and quit.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "gcc -Wall -Wextra -o contacts main.c contacts.c\n./contacts",
+        "output": "1. Add  2. List  3. Search  4. Save & Quit\n> 1\nName: Ada Lovelace\nPhone: 555-0100\nAdded.\n\n1. Add  2. List  3. Search  4. Save & Quit\n> 2\n1. Ada Lovelace - 555-0100\n\n1. Add  2. List  3. Search  4. Save & Quit\n> 4\nSaved. Goodbye!"
+      }
+    },
+    {
+      "narration": "And that's a complete, working C program \u2014 multi-file, persistent, built from nothing. Quit, run it a second time, and Ada is still there, loaded back in from the text file by load_contacts on startup.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "It Runs",
+        "subheading": "and the data persists"
+      }
+    },
+    {
+      "narration": "Before you move on, the lesson leaves you three ways to push the project further. Each one is a small, self-contained exercise in something you just practiced here.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "Step 5: Stretch Goals",
+        "subheading": "where to take it next"
+      }
+    },
+    {
+      "narration": "First, add a delete_contact function and a matching menu option. Second, sort the contacts alphabetically before listing \u2014 a simple bubble sort over the array is completely fine at this size. Third, add input validation so a phone number must be non-empty before add_contact is ever called.",
+      "display": {
+        "kind": "text",
+        "heading": "Three stretch goals",
+        "subheading": "delete, sort, validate"
+      }
+    },
+    {
+      "narration": "Finishing this project means you can take input, store records in structs, search and update an array, read and write files, and split a program across multiple source files. That is exactly the bar for Level 2, Intermediate \u2014 you're ready for it.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "Level 1 Complete",
+        "subheading": "on to Intermediate"
+      }
+    },
+    {
+      "narration": "The full write-up, every code block shown here, and the stretch goals are at the link on screen. Build it yourself from the empty folder, get it compiling clean, then go start Level 2.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"
+      }
+    }
+  ]
+}

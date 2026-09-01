@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "The Design Review Order Most PMs Get Backwards",
+  "description": "Design reviews go wrong two ways: the PM rubber-stamps everything, or relitigates the problem statement at the mockup stage -- way too late, and it wastes the designer's work. This Short breaks down the fixed order that catches real gaps instead: problem fit, acceptance criteria, edge cases, scope creep -- taste last.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n\n#Shorts",
+  "tags": ["product management", "design review", "PM tips", "product manager mastery path", "acceptance criteria", "UX"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"],
+  "beats": [
+    {
+      "narration": "Ever sat through a design review that turned into an argument about button colors? That's not feedback -- that's the review happening in the wrong order.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Design Review Everyone Gets Wrong",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Most design reviews go wrong one of two ways -- the PM rubber-stamps everything with no real feedback, or relitigates the problem itself, which by now just wastes the designer's work.",
+      "display": {
+        "kind": "text",
+        "heading": "Running a good design review",
+        "subheading": "PMs go wrong two ways: rubber-stamping everything, or relitigating the problem too late."
+      }
+    },
+    {
+      "narration": "The fix: a fixed order. Does this solve the actual problem? Does it meet the acceptance criteria? What edge cases are missing -- empty states, errors, mobile? Is anything scope creep? Only then, talk taste.",
+      "display": {
+        "kind": "text",
+        "heading": "Review in this order",
+        "subheading": "Problem fit, then acceptance criteria, then edge cases, then scope creep -- taste last."
+      }
+    },
+    {
+      "narration": "That exact order is what caught a real gap once: a notifications mockup with no empty state for zero notifications -- found by asking the right question, not by taste.",
+      "display": {
+        "kind": "text",
+        "heading": "Worked example",
+        "subheading": "A missing empty state, caught by the checklist -- not a preference."
+      }
+    },
+    {
+      "narration": "Full breakdown, plus the anti-patterns that erode trust, at the link below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"
+      }
+    }
+  ]
+}

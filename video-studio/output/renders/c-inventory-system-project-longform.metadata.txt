@@ -1,0 +1,12 @@
+Title: Build a Linked-List Inventory System in C — Full Project Deep-Dive, Header to Valgrind
+
+Description:
+This is the Level 2 capstone of the C Mastery Path, built end to end as a single narrative: a command-line inventory tracker that adds items with a SKU, name, quantity, and unit price as linked-list nodes, lists everything with a running total, adjusts stock up or down without ever letting a quantity go negative, and persists to a binary file between runs by flattening the list to an array on save and rebuilding it on load. We design the public header first — include guard, size constants, the Item and Node structs, and every function prototype — then write src/inventory.c function by function (init and destroy, find, head-insert add, adjust_stock, the splice in remove, total_value, the tiny iterator, and the binary save/load pair), then the src/main.c menu loop that reads keyboard input with fgets and strcspn, then a real Makefile with pattern rules and -MMD -MP automatic dependency tracking, then a run session, then an AddressSanitizer clean-exit check, and finally the lesson's own four stretch goals ending with a valgrind full leak check. Every line of code shown is pulled verbatim from the lesson — nothing invented, nothing skipped.
+
+Lessons covered in this video:
+- https://sigilipelli.github.io/c-mastery-path/level-2/10-project-inventory-system/
+
+Tags: c, c programming, linked list, linked list in c, inventory system project, c project tutorial, makefile, valgrind, memory leaks, address sanitizer, binary file io, pointers in c, modular programming, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/10-project-inventory-system/

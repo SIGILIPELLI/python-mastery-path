@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.vremployee.trading-supervisor</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/bhanuja/Desktop/vremployee/trading-ops/supervisor.py</string>
+  </array>
+  <key>StartInterval</key>
+  <integer>120</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/bhanuja/Library/Logs/trading-supervisor.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/bhanuja/Library/Logs/trading-supervisor.log</string>
+</dict>
+</plist>

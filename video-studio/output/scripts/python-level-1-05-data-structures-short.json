@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "python",
+  "title": "Python Sets: Union, Intersection & Difference in 1 Line",
+  "description": "Lists and dicts get all the attention, but Python sets quietly do math-class set operations with a single symbol -- no loops required. In this Short we compare two sets with |, &, and -, then show why membership checks on a set beat scanning a list every time.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/\n\n#Shorts",
+  "tags": ["python", "sets", "data structures", "python tips", "set operations", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/"],
+  "beats": [
+    {
+      "narration": "Ever needed to compare two lists for what's shared, what's unique, or what's different? Python sets can do all of that with one single symbol, and zero loops.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Sets Have a Superpower",
+        "subheading": "Python Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Start with two sets -- just curly braces around unique values.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "a = {1, 2, 3}\nb = {2, 3, 4}"
+      }
+    },
+    {
+      "narration": "The pipe symbol gives you the union of both sets, the ampersand gives you the intersection -- what they share -- and a minus sign gives you the difference.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "print(a | b)   # union: {1, 2, 3, 4}\nprint(a & b)   # intersection: {2, 3}\nprint(a - b)   # difference: {1}",
+        "output": "{1, 2, 3, 4}\n{2, 3}\n{1}"
+      }
+    },
+    {
+      "narration": "And checking membership is near instant with a set -- way faster than scanning through a list.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "print(3 in a)  # membership test: True",
+        "output": "True"
+      }
+    },
+    {
+      "narration": "That's the real reason sets exist: fast, unique, math-style comparisons. Full lesson's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/"
+      }
+    }
+  ]
+}

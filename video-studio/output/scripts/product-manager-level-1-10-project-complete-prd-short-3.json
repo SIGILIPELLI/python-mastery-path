@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Your PRD Isn't Done Until It Passes These 5 Questions",
+  "description": "A PRD isn't finished when you've written every section. It's finished when it survives the same review a design and engineering team would put it through. This Short walks the self-review checklist from the Level 1 capstone project: one build interpretation instead of many, testable acceptance criteria, non-goals specific enough to stop a scope-creep fight, a numeric success metric with a baseline, and a problem statement that stands on its own. Run your draft through it before you call it done.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/\n\n#Shorts",
+  "tags": ["product management", "PRD", "product requirements document", "product manager", "writing requirements", "acceptance criteria", "scope creep", "success metrics", "pm skills", "product spec"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"],
+  "beats": [
+    {
+      "narration": "Here's why PRDs get stuck in review. It's not done when it's written. It's done when it passes these five questions.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The PRD isn't done yet",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "One. Would two different engineers read this and build roughly the same thing? If there's room for very different interpretations, you're not done.",
+      "display": {
+        "kind": "text",
+        "heading": "1 - One interpretation, not many",
+        "subheading": "Two engineers, same build?"
+      }
+    },
+    {
+      "narration": "Two and three. Does every user story have acceptance criteria you can test against? Are your non-goals specific enough to stop a scope-creep argument, not just generic filler?",
+      "display": {
+        "kind": "text",
+        "heading": "2-3 - Testable and specific",
+        "subheading": "Acceptance criteria you can test - non-goals that block scope creep"
+      }
+    },
+    {
+      "narration": "Four and five. Is your success metric an actual number with a stated baseline? And could someone who doesn't know the backstory read your problem statement and get why it matters?",
+      "display": {
+        "kind": "text",
+        "heading": "4-5 - Numeric metric, clear problem",
+        "subheading": "A number with a baseline - a problem statement that stands alone"
+      }
+    },
+    {
+      "narration": "That's the same bar a real design and engineering review holds it to. Fix anything that doesn't hold up.",
+      "display": {
+        "kind": "text",
+        "heading": "The design-review bar",
+        "subheading": "Revise anything that doesn't hold up"
+      }
+    },
+    {
+      "narration": "Full checklist and PRD template are at the link.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + PRD template:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"
+      }
+    }
+  ]
+}

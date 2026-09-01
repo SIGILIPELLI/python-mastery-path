@@ -1,0 +1,14 @@
+Title: Why Product Teams Ship Features Nobody Uses (The Discovery Fix)
+
+Description:
+The fastest way to waste a quarter: a stakeholder says "build X," and two weeks later an engineer is building X, with nobody checking whether X solves a real problem. This Short walks through the discovery workflow that stops solution-jumping: collect signals for a week or two, cluster them, validate the top clusters with interviews, and only then write the problem statement. Includes the analytics-team worked example from the lesson.
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+
+#Shorts
+
+Tags: product management, product discovery, problem discovery, solution jumping, user research, pm skills, product manager
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/

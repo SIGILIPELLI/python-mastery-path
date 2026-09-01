@@ -1,0 +1,44 @@
+{
+  "type": "short",
+  "language": "python",
+  "title": "Why 5 == 5.0 is True but 5 is 5.0 is False in Python",
+  "description": "Python's == and is look almost the same but check completely different things -- one compares values, the other compares object identity. This tiny gotcha trips up a lot of new Python developers, especially once you start comparing things to None. Full lesson on variables, types, and operators is linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "tags": ["python", "python for beginners", "programming tutorial", "python tips", "equality vs identity", "python gotchas"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/"],
+  "beats": [
+    {
+      "narration": "In Python, five equals five point zero comes back true. But five is five point zero comes back false. Same value. Totally different answer.",
+      "display": {
+        "kind": "title_card",
+        "heading": "== vs is",
+        "subheading": "Python Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Here's why. Double equals checks if the values match -- and five and five point zero are equal in value. But 'is' checks identity, whether they're literally the same object in memory. An int and a float are never the same object.",
+      "display": {
+        "kind": "terminal",
+        "lang": "python",
+        "code": "print(5 == 5.0)       # True (value equality)\nprint(5 is 5.0)       # False (different objects/types)",
+        "output": "True\nFalse"
+      }
+    },
+    {
+      "narration": "Rule of thumb: use double equals to compare values, and save 'is' for checking if two variables literally point to the same object -- like comparing to None.",
+      "display": {
+        "kind": "text",
+        "heading": "== compares values",
+        "subheading": "is compares identity"
+      }
+    },
+    {
+      "narration": "Full breakdown of variables, types, and operators is linked below. Go build something.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/"
+      }
+    }
+  ]
+}

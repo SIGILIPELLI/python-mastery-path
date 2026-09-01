@@ -1,0 +1,61 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "PM vs Project Manager vs Designer: The Real Difference",
+  "description": "Product Manager, Project Manager, and Designer get confused constantly — even by the companies hiring for them. Here's the one-line distinction for each role: who owns the what, the when, and the how it feels. Straight from the Product Management Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
+  "tags": ["product management", "product manager", "project manager", "PM vs project manager", "PM career", "product management basics", "career advice"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+  ],
+  "beats": [
+    {
+      "narration": "Product Manager, Project Manager, Designer — even the companies hiring for them mix these up. Here's the actual line between them.",
+      "display": {
+        "kind": "title_card",
+        "heading": "PM vs PjM vs Designer",
+        "subheading": "Product Management Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "The Product Manager owns the what and why. Should we build this, and why does it matter? That's the PM's call.",
+      "display": {
+        "kind": "text",
+        "heading": "Product Manager",
+        "subheading": "Owns the what and why -- \"Should we build this, and why does it matter?\""
+      }
+    },
+    {
+      "narration": "The Project Manager owns the when and how it's coordinated. Is this on track, and what's blocking it?",
+      "display": {
+        "kind": "text",
+        "heading": "Project Manager",
+        "subheading": "Owns the when -- \"Is this on track, and what's blocking it?\""
+      }
+    },
+    {
+      "narration": "And the designer owns how it feels and works — the best experience for solving the problem, built closely with the PM.",
+      "display": {
+        "kind": "text",
+        "heading": "Designer",
+        "subheading": "Owns how it feels -- \"What's the best experience for solving this?\""
+      }
+    },
+    {
+      "narration": "Simple shorthand: whether to build it is a PM call. When it ships is project management. How it feels is design. Startups without a dedicated project manager just make PMs absorb that work — it doesn't redefine the role.",
+      "display": {
+        "kind": "text",
+        "heading": "The shorthand",
+        "subheading": "Whether = PM. When = Project Manager. How it feels = Design."
+      }
+    },
+    {
+      "narration": "Full lesson, tables and all, is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+.venv/
+output/renders/*.mp4
+output/_work/
+__pycache__/
+*.pyc
+credentials/
+token.json

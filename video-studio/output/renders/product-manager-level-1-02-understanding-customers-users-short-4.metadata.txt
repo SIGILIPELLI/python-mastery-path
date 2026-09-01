@@ -1,0 +1,14 @@
+Title: Your user persona is quietly lying to you
+
+Description:
+A persona is a composite sketch of a user type built from real research — useful shared shorthand for "who are we building for." But it only ever answers who, never why. This Short shows how interviews, Jobs-to-be-Done, and personas actually fit together, and why teams over-rely on the persona.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+
+#Shorts
+
+Tags: product management, personas, user persona, jobs to be done, jtbd, customer interviews, user research, product discovery
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/

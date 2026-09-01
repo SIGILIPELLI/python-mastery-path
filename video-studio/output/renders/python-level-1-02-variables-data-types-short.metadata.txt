@@ -1,0 +1,14 @@
+Title: Why 5 == 5.0 is True but 5 is 5.0 is False in Python
+
+Description:
+Python's == and is look almost the same but check completely different things -- one compares values, the other compares object identity. This tiny gotcha trips up a lot of new Python developers, especially once you start comparing things to None. Full lesson on variables, types, and operators is linked below.
+
+Source lesson:
+- https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/
+
+#Shorts
+
+Tags: python, python for beginners, programming tutorial, python tips, equality vs identity, python gotchas
+
+Source lesson(s):
+- https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/

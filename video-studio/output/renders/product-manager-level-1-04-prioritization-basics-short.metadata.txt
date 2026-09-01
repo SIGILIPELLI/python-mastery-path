@@ -1,0 +1,14 @@
+Title: You don't need ONE prioritization framework
+
+Description:
+Most PMs argue about which prioritization framework is "the right one" — RICE, MoSCoW, value vs. effort. The real move is using all three in sequence: triage fast, rank the survivors, then scope the winner. Here's the three-step pipeline from the lesson, with the worked example that shows it end to end.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+
+#Shorts
+
+Tags: product management, prioritization, moscow method, value vs effort, product manager, PM framework, roadmap planning
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/

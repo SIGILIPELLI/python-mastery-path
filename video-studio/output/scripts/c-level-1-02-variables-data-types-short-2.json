@@ -1,0 +1,55 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "Why adding 1 in C can make your number go negative",
+  "description": "In C, integers have a fixed number of bits, so arithmetic that goes past the type's range wraps around silently instead of raising an error. This Short shows INT_MAX plus one flipping straight to the most negative int, why the compiler won't warn you at runtime, and why a wider or unsigned type only moves the boundary instead of fixing it. Pulled from the C Mastery Path Level 1 lesson on variables, data types and operators.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "tags": ["c", "c programming", "integer overflow", "int max", "undefined behavior", "data types", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/"],
+  "beats": [
+    {
+      "narration": "Set a C int to its maximum value, then add one. No error. No bigger number. You get the most negative value the int can hold.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "It wraps around",
+        "subheading": "max plus one"
+      }
+    },
+    {
+      "narration": "INT_MAX from limits dot h is about 2.1 billion. Print it and it's fine. Add one, and it wraps straight around to negative 2.1 billion. Silent. The program just keeps running.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "#include <stdio.h>\n#include <limits.h>\n\nint main(void) {\n    int max = INT_MAX;          // largest value an int can hold\n    printf(\"%d\\n\", max);        // 2147483647\n    printf(\"%d\\n\", max + 1);    // -2147483648 -- wraps around to the minimum!\n    return 0;\n}",
+        "output": "2147483647\n-2147483648"
+      }
+    },
+    {
+      "narration": "Reaching for a long or an unsigned type buys you more headroom, but it doesn't fix this. It just moves the boundary further out.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "Wider type",
+        "subheading": "moves the boundary"
+      }
+    },
+    {
+      "narration": "So the rule: C will not catch this at runtime. If a value might get huge, pick a type with room to spare and check before you add.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "No runtime warning",
+        "subheading": "choose your type"
+      }
+    },
+    {
+      "narration": "The full breakdown, with the casting and sizeof examples, is in the lesson. Link's below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/"
+      }
+    }
+  ]
+}

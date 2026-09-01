@@ -1,0 +1,385 @@
+{
+  "type": "longform",
+  "language": "product-manager",
+  "title": "The Product Manager's Framework Toolkit: 6 Tools Every PM Keeps in Their Back Pocket",
+  "description": "Most product management \"frameworks\" content is either abstract theory or a listicle with no worked example. This video is a reference catalog instead: six named tools a working PM actually reaches for, and for each one we name the tool, spell out its exact template or acronym, and walk a short concrete example so you can see it in use. We cover Jobs To Be Done and the \"when... I want to... so I can...\" job statement, the fill-in-the-blank problem statement template plus a rough opportunity-sizing pass, RICE scoring with the lesson's own worked numbers (and how it differs from MoSCoW and a Value/Effort 2x2), user stories with Given/When/Then acceptance criteria, the North Star metric and the AARRR \"pirate metrics\" funnel, and the theme-based Now / Next / Later roadmap. Everything is drawn from Level 1 of the Product Manager Mastery Path. Treat it as a shelf you can pull any single tool off of when the situation calls for it.\n\nLessons covered in this video:\n- Understanding Customers & Users (Jobs To Be Done): https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n- Problem Discovery (the problem statement template): https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics (RICE, MoSCoW, Value/Effort): https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Writing Requirements (user stories + Given/When/Then): https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n- Metrics & KPIs Basics (North Star + AARRR): https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n- Roadmapping Basics (Now / Next / Later): https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/",
+  "tags": [
+    "product management",
+    "product manager",
+    "jobs to be done",
+    "JTBD",
+    "RICE prioritization",
+    "product frameworks",
+    "user stories",
+    "acceptance criteria",
+    "north star metric",
+    "AARRR",
+    "pirate metrics",
+    "product roadmap",
+    "now next later",
+    "PM fundamentals",
+    "associate product manager"
+  ],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"
+  ],
+  "beats": [
+    {
+      "narration": "Every experienced product manager carries a small set of named frameworks they reach for again and again. Not theories to memorize for an interview, but working tools. This video walks through six of them.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Product Manager's Framework Toolkit",
+        "subheading": "Six tools every PM keeps in their back pocket"
+      }
+    },
+    {
+      "narration": "For each one, we'll do the same three things. Name the tool and what it's for. Spell out the actual template or acronym. Then walk a quick, concrete example so you can see it in use.",
+      "display": {
+        "kind": "text",
+        "heading": "How this video works",
+        "subheading": "The tool, what it's for, and how to apply it"
+      }
+    },
+    {
+      "narration": "These come from Level 1 of the Product Manager Mastery Path. They're roughly in the order a PM meets them, but each stands on its own. You can pull any one off the shelf when the situation calls for it.",
+      "display": {
+        "kind": "text",
+        "heading": "A catalog, not a checklist",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+
+    {
+      "narration": "The first tool is Jobs To Be Done, or JTBD. The core idea is that people hire a product to make progress in a situation. They're not buying features. They're trying to move from where they are to where they want to be.",
+      "display": {
+        "kind": "title_card",
+        "heading": "1. Jobs To Be Done (JTBD)",
+        "subheading": "Understanding Customers & Users -- Level 1"
+      }
+    },
+    {
+      "narration": "You write a job as a single sentence. When a certain situation happens, I want to take some action, so I can reach some outcome. Situation, motivation, expected outcome, in that order.",
+      "display": {
+        "kind": "text",
+        "heading": "The job statement format",
+        "subheading": "\"When [situation], I want to [motivation], so I can [expected outcome].\""
+      }
+    },
+    {
+      "narration": "Here's one from the lesson. When I'm reviewing my team's work at the end of the week, I want to quickly see who's behind on tasks, so I can flag it before Monday's meeting, not during it. Notice it never mentions a specific app.",
+      "display": {
+        "kind": "text",
+        "heading": "A worked job statement",
+        "subheading": "Situation -> motivation -> outcome, no solution named"
+      }
+    },
+    {
+      "narration": "A demographic persona tells you who the user is. A job tells you why they act. That's more useful, because the job explains why customers switch between products that look nothing alike.",
+      "display": {
+        "kind": "text",
+        "heading": "Why it beats a persona",
+        "subheading": "Personas describe who; JTBD describes why"
+      }
+    },
+    {
+      "narration": "A paper planner, a phone reminder, and a project management tool can all be hired for the same job: make sure I don't forget something important. So your competition often isn't who you'd assume.",
+      "display": {
+        "kind": "text",
+        "heading": "Your real competition",
+        "subheading": "Different-looking products, hired for one job"
+      }
+    },
+    {
+      "narration": "A team building an expense tool interviewed five people and heard one job. When I've just paid for something out of pocket, I want to log it before I forget the details, so I can get reimbursed without a scramble at month-end. That framing pointed straight at the fix.",
+      "display": {
+        "kind": "text",
+        "heading": "JTBD in practice",
+        "subheading": "Five interviews, one shared job statement"
+      }
+    },
+    {
+      "narration": "JTBD gives you the progress a user is after. The next tool turns that into a problem the whole team can agree on.",
+      "display": {
+        "kind": "text",
+        "heading": "Next: the problem statement",
+        "subheading": "From motivation to a validated problem"
+      }
+    },
+
+    {
+      "narration": "Tool two is a fill-in-the-blank problem statement. Before it, though, one distinction. A signal is one piece of raw evidence, like a single support ticket. A problem is the validated pain that a whole cluster of signals points to.",
+      "display": {
+        "kind": "title_card",
+        "heading": "2. The Problem Statement Template",
+        "subheading": "Problem Discovery -- Level 1"
+      }
+    },
+    {
+      "narration": "The template goes like this. Who is experiencing what pain, in what situation, which causes what consequence. And then: we know this because, followed by your evidence.",
+      "display": {
+        "kind": "text",
+        "heading": "The template",
+        "subheading": "[Who] / [what pain] / [what situation] / [what consequence] / [what evidence]"
+      }
+    },
+    {
+      "narration": "Weak version: users find onboarding confusing. Strong version: new team admins abandon setup when they hit the permissions step, because the roles shown don't match their real job titles, causing thirty percent of new workspaces to never invite a second user. We know this from eighteen of twenty session replays.",
+      "display": {
+        "kind": "text",
+        "heading": "Weak versus strong",
+        "subheading": "\"Onboarding is confusing\" vs. a specific segment, trigger, and number"
+      }
+    },
+    {
+      "narration": "The strong version names four things the weak one skips. A specific user segment. A specific trigger. A specific consequence. And cited evidence. Those four are what turn a vague vibe into something a team can act on.",
+      "display": {
+        "kind": "text",
+        "heading": "What makes it actionable",
+        "subheading": "Segment + trigger + consequence + evidence"
+      }
+    },
+    {
+      "narration": "Then size it quickly. How many accounts does this affect? What's the business impact if you don't fix it? How confident are you in the cause? A rough estimate is enough to decide if it's a top-three problem or a note-and-revisit one.",
+      "display": {
+        "kind": "text",
+        "heading": "A rough opportunity-sizing pass",
+        "subheading": "Reach, business impact, confidence -- estimates, not precision"
+      }
+    },
+    {
+      "narration": "Now you have a few validated problems competing for the same team. The next tool gives you a defensible way to rank them.",
+      "display": {
+        "kind": "text",
+        "heading": "Next: RICE",
+        "subheading": "From one problem to ranking many"
+      }
+    },
+
+    {
+      "narration": "Tool three is RICE. You score each initiative on four factors and combine them into one number you can compare. RICE stands for Reach, Impact, Confidence, and Effort.",
+      "display": {
+        "kind": "title_card",
+        "heading": "3. RICE Scoring",
+        "subheading": "Prioritization Basics -- Level 1"
+      }
+    },
+    {
+      "narration": "The score is Reach times Impact times Confidence, divided by Effort. Reach is a real count, like eight hundred users a quarter. Impact is a scale from three for massive down to a quarter for minimal. Confidence is a percentage. Effort is person-months.",
+      "display": {
+        "kind": "text",
+        "heading": "The formula",
+        "subheading": "RICE = (Reach x Impact x Confidence) / Effort"
+      }
+    },
+    {
+      "narration": "From the lesson: a digest-frequency setting reaches eight hundred a quarter, impact two, confidence eighty percent, effort half a month. That scores two thousand five hundred sixty. SSO scores sixty. Dark mode scores three hundred.",
+      "display": {
+        "kind": "text",
+        "heading": "The worked numbers",
+        "subheading": "Digest fix 2,560 | Dark mode 300 | SSO 60"
+      }
+    },
+    {
+      "narration": "SSO has the highest impact per user, but its tiny reach and heavy effort sink the score well below the small digest fix. That's exactly the kind of result RICE is built to surface. It informs the call; it doesn't replace judgment.",
+      "display": {
+        "kind": "text",
+        "heading": "The counter-intuitive result",
+        "subheading": "High per-user impact still loses on reach and effort"
+      }
+    },
+    {
+      "narration": "RICE ranks many ideas. MoSCoW does something different: it scopes one release into Must have, Should have, Could have, and Won't have this time. And a quick Value versus Effort two-by-two sorts a big backlog into quick wins, major projects, fill-ins, and time sinks.",
+      "display": {
+        "kind": "text",
+        "heading": "Two neighbors: MoSCoW and Value/Effort",
+        "subheading": "MoSCoW scopes one release; Value/Effort triages a backlog"
+      }
+    },
+    {
+      "narration": "Once an initiative wins, you have to write down what it actually is. That's the next tool.",
+      "display": {
+        "kind": "text",
+        "heading": "Next: user stories",
+        "subheading": "From a ranked initiative to a written requirement"
+      }
+    },
+
+    {
+      "narration": "Tool four is really a pair. The user story, and its acceptance criteria. A story captures a piece of functionality from the user's point of view, focused on why they want it.",
+      "display": {
+        "kind": "title_card",
+        "heading": "4. User Stories + Given/When/Then",
+        "subheading": "Writing Requirements -- Level 1"
+      }
+    },
+    {
+      "narration": "The format: as a type of user, I want to do some action, so that I get some benefit. Weak story: add a filter dropdown to the reports page. Strong story: as a team lead reviewing weekly reports, I want to filter results by team member, so that I can check one person's numbers without scanning the whole list.",
+      "display": {
+        "kind": "text",
+        "heading": "The story template",
+        "subheading": "As a [user], I want to [action], so that [benefit]"
+      }
+    },
+    {
+      "narration": "The weak version describes a UI element and locks in that implementation. The strong version describes a need, which leaves room for design and engineering to propose something better, like a saved-filter feature.",
+      "display": {
+        "kind": "text",
+        "heading": "Why the strong one wins",
+        "subheading": "Describe the need, not the widget"
+      }
+    },
+    {
+      "narration": "Every story needs acceptance criteria: the specific, testable conditions for done. Given a team lead is on the reports page with fifteen or more members shown, when they select a team member from the new filter, then only that person's rows are shown and a Clear filter control appears.",
+      "display": {
+        "kind": "text",
+        "heading": "Acceptance criteria",
+        "subheading": "Given [context] / When [action] / Then [observable result]"
+      }
+    },
+    {
+      "narration": "Good criteria are checkable. The CSV export respects the active filter, not the full dataset. The file opens correctly in Excel and Google Sheets. The filename includes the export date. Each of those is a yes or no, not an opinion.",
+      "display": {
+        "kind": "text",
+        "heading": "Testable versus vague",
+        "subheading": "\"Done\" is a fact, not a matter of opinion"
+      }
+    },
+    {
+      "narration": "The story says what to build. The next tool tells you whether it worked once it ships.",
+      "display": {
+        "kind": "text",
+        "heading": "Next: metrics",
+        "subheading": "From spec to knowing if it landed"
+      }
+    },
+
+    {
+      "narration": "Tool five is two connected things: the North Star metric, and the AARRR funnel. The North Star is the single measure that best captures the core value your product delivers.",
+      "display": {
+        "kind": "title_card",
+        "heading": "5. North Star + Pirate Metrics",
+        "subheading": "Metrics & KPIs Basics -- Level 1"
+      }
+    },
+    {
+      "narration": "A good North Star is a leading indicator of value delivered, not a lagging outcome like revenue. Revenue is pushed around by too many outside factors to guide day-to-day product work.",
+      "display": {
+        "kind": "text",
+        "heading": "Leading, not lagging",
+        "subheading": "Predicts value delivered; you can act on it now"
+      }
+    },
+    {
+      "narration": "For a music app, weekly hours of music listened per active user. For a project-management tool, the number of teams with three or more active weekly users. For ride-sharing, weekly active riders who complete a ride. Each one ties to the moment the user actually gets value.",
+      "display": {
+        "kind": "text",
+        "heading": "North Star examples",
+        "subheading": "Each metric sits at the moment value is delivered"
+      }
+    },
+    {
+      "narration": "AARRR breaks the user lifecycle into five stages: Acquisition, Activation, Retention, Referral, and Revenue. Each stage gets one metric and one bottleneck to watch for.",
+      "display": {
+        "kind": "text",
+        "heading": "AARRR, the pirate metrics",
+        "subheading": "Acquisition / Activation / Retention / Referral / Revenue"
+      }
+    },
+    {
+      "narration": "Acquisition: signups by channel per week. Activation: the percent of signups who reach the first-value moment. Retention: how many week-one users come back in week two. Referral: the percent who invite a teammate. Revenue: free-to-paid conversion rate.",
+      "display": {
+        "kind": "text",
+        "heading": "One metric per stage",
+        "subheading": "A concrete measure at every step of the funnel"
+      }
+    },
+    {
+      "narration": "It's diagnostic. If growth stalls, the funnel tells you where. Strong acquisition with weak activation is a completely different problem from strong activation with weak retention. In the lesson's example, only thirty-five percent of teams stay active past week three, so retention is the place to work.",
+      "display": {
+        "kind": "text",
+        "heading": "Why the funnel matters",
+        "subheading": "Localize where growth breaks, then fix that stage"
+      }
+    },
+    {
+      "narration": "Metrics tell you where to aim. The last tool is how you communicate the plan without over-promising.",
+      "display": {
+        "kind": "text",
+        "heading": "Next: the roadmap",
+        "subheading": "From targets to a plan stakeholders can trust"
+      }
+    },
+
+    {
+      "narration": "Tool six is the theme-based roadmap. The common mistake is publishing a list of specific features with specific future dates, which becomes a promise the team never meant to make.",
+      "display": {
+        "kind": "title_card",
+        "heading": "6. The Now / Next / Later Roadmap",
+        "subheading": "Roadmapping Basics -- Level 1"
+      }
+    },
+    {
+      "narration": "Instead of Q3: dark mode, Q4: SSO, you write Q3: reduce onboarding friction, Q4: enterprise readiness. A theme communicates intent and priority without committing to one specific solution.",
+      "display": {
+        "kind": "text",
+        "heading": "Themes, not features",
+        "subheading": "Communicate intent and priority, not a fixed feature list"
+      }
+    },
+    {
+      "narration": "The theme reduce onboarding friction might end up shipping a redesigned setup wizard, or simplified default settings, or both. Discovery decides the feature; the roadmap already communicated the priority months ahead, which is usually what stakeholders need to plan around.",
+      "display": {
+        "kind": "text",
+        "heading": "Discovery fills in the detail",
+        "subheading": "The theme sets priority; discovery picks the solution"
+      }
+    },
+    {
+      "narration": "Split the roadmap by time horizon and confidence. Now, this quarter: high confidence, named projects, rough dates. Next quarter: medium confidence, themes with maybe a candidate or two, no firm dates. Later, two or more quarters out: low confidence, directional bets only, explicitly labeled subject to change.",
+      "display": {
+        "kind": "text",
+        "heading": "Now, Next, Later",
+        "subheading": "The format makes the confidence level itself visible"
+      }
+    },
+    {
+      "narration": "Every audience will try to hold a roadmap item to its literal wording. The habit that heads that off is stating the confidence level out loud, every single time you share it.",
+      "display": {
+        "kind": "text",
+        "heading": "A roadmap is not a contract",
+        "subheading": "Say the confidence level out loud, every time"
+      }
+    },
+    {
+      "narration": "That's six tools: Jobs To Be Done, the problem statement template, RICE, user stories with Given-When-Then, the North Star and pirate-metrics funnel, and the Now-Next-Later roadmap.",
+      "display": {
+        "kind": "text",
+        "heading": "The full toolkit",
+        "subheading": "Six named tools, one shelf"
+      }
+    },
+
+    {
+      "narration": "Here are the six lessons behind this toolkit, in the order we covered them. Understanding Customers and Users, for Jobs To Be Done. Problem Discovery, for the problem statement template. Prioritization Basics, for RICE.",
+      "display": {
+        "kind": "text",
+        "heading": "Sources (1-3)",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/  -  /03-problem-discovery/  -  /04-prioritization-basics/"
+      }
+    },
+    {
+      "narration": "Then Writing Requirements, for user stories and acceptance criteria. Metrics and KPIs Basics, for the North Star and the AARRR funnel. And Roadmapping Basics, for the Now, Next, Later roadmap. All six URLs are on screen and in the description.",
+      "display": {
+        "kind": "text",
+        "heading": "Sources (4-6)",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/  -  /07-metrics-kpis-basics/  -  /08-roadmapping-basics/"
+      }
+    }
+  ]
+}

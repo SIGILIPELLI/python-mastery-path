@@ -1,0 +1,52 @@
+{
+  "type": "short",
+  "language": "python",
+  "title": "Why Every Python File Has That Weird __main__ Line",
+  "description": "That guard clause at the bottom of every real Python script isn't boilerplate -- it's the difference between a reusable module and a script that fires itself the moment it's imported. This Short breaks down what if __name__ == \"__main__\": actually checks, using the exact hello.py example from the Setup & First Program lesson. Full walkthrough -- installing Python, the REPL, and picking an editor -- is linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/01-setup/\n\n#Shorts",
+  "tags": ["python", "python setup", "name main guard", "python basics", "learn python", "python tutorial", "coding shorts"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/01-setup/"],
+  "beats": [
+    {
+      "narration": "Open any real Python script and you'll spot a strange guard clause at the bottom. Here's why it's there.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Setup & First Program",
+        "subheading": "Python Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "This file defines a greet function, then checks a special variable before calling it. That check is the guard everyone glosses over.",
+      "display": {
+        "kind": "editor",
+        "lang": "python",
+        "code": "# hello.py\ndef greet(name: str) -> str:\n    return f\"Hello, {name}!\"\n\nif __name__ == \"__main__\":\n    print(greet(\"world\"))"
+      }
+    },
+    {
+      "narration": "Run the file directly and Python sets that variable to main, so the guard passes and greet actually runs.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "python3 hello.py",
+        "output": "Hello, world!"
+      }
+    },
+    {
+      "narration": "But import hello.py from another script, and that same check now fails, so the print never fires automatically. That's what separates a reusable module from a script that just runs wild.",
+      "display": {
+        "kind": "text",
+        "heading": "Why it matters",
+        "subheading": "Runs only when the file is executed directly -- not when it's imported by another module"
+      }
+    },
+    {
+      "narration": "Full setup walkthrough and the first-script exercise are linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/01-setup/"
+      }
+    }
+  ]
+}

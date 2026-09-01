@@ -1,0 +1,14 @@
+Title: A Product Manager Has Almost No Authority - That's the Job
+
+Description:
+A PM can't order engineers to build anything, can't draw the pixels, and can't run anyone's performance review. So what do they actually do? They own the "what" and the "why" of the product, and drive outcomes through influence instead of authority: turning vague pain into a specific, testable problem statement and a prioritized plan the rest of the team can build from. This Short breaks down what a product manager is really responsible for.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/
+
+#Shorts
+
+Tags: product manager, product management, what is product management, influence without authority, pm career, associate product manager, tech careers, product owner
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/

@@ -1,0 +1,14 @@
+Title: The C switch bug that compiles clean: missing break
+
+Description:
+In C, forgetting a break inside a switch doesn't cause an error. Execution falls through into the next case and quietly runs code you never asked for. Here's how fall-through works, why one matched case can print two lines, and the one time you actually want it.
+
+Source lesson:
+- https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/
+
+#Shorts
+
+Tags: c, c programming, switch statement, fallthrough, break, control flow, programming tutorial, c bugs
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/

@@ -1,0 +1,24 @@
+Title: From User to Spec: How a PM Decides What to Build
+
+Description:
+Four Product Manager Mastery Path Level 1 lessons, sequenced as one continuous arc: the craft of turning user understanding into a buildable, well-handed-off spec. We start with what a PM is actually accountable for — the what and the why, outcomes over output — then move into understanding customers through behavioral interviews, Jobs-to-be-Done, and personas that don't calcify. From there we write it down: user stories, Given/When/Then acceptance criteria, and the anatomy of a PRD, including why non-goals earn a section every time. We close on the handoff itself — progressive involvement instead of a document over the wall, running a design review against fixed questions, navigating tradeoffs out loud, and the anti-patterns that quietly erode a team's trust. This is deliberately the other half of the Level 1 material from 'A PM's Full Workflow: From Discovery to Roadmap' — no prioritization, metrics, or roadmapping retread here, just user to spec.
+
+Lessons covered in this video:
+- 01 · What Is Product Management? — https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/
+- 02 · Understanding Customers & Users — https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- 05 · Writing Requirements — https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+- 06 · Working with Design & Engineering — https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/
+
+Tags: product management, product manager, user stories, PRD, acceptance criteria, jobs to be done, customer interviews, product requirements document, design review, working with engineering
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/

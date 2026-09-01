@@ -1,0 +1,14 @@
+Title: Not Every Stakeholder Deserves the Same Amount of Your Time
+
+Description:
+For a larger initiative, plot each stakeholder on how much influence they have over the decision versus how much interest they have in the outcome. That grid tells you how much time to invest in each relationship. High influence and high interest means manage closely with regular, detailed updates. A VP with high influence but low day-to-day interest wants a two-line summary, not a ten-slide deck. The common mistake is spending equal time on everyone.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/
+
+#Shorts
+
+Tags: product management, stakeholder management, influence interest grid, stakeholder communication, product manager tips, prioritization, career
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/

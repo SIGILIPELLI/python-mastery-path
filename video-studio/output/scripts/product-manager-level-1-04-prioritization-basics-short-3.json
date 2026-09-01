@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "The RICE math that kills your highest-impact feature",
+  "description": "In this lesson's worked example, SSO support scores the maximum on per-user impact and still loses the priority fight. We walk the actual RICE numbers: how low reach and high effort drag a strong bet below a small, cheap fix that reaches everyone. Then the caveat that matters -- RICE informs the call, it doesn't make it.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
+  "tags": ["product management", "prioritization", "RICE framework", "product manager", "roadmap", "backlog", "product strategy"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"],
+  "beats": [
+    {
+      "narration": "The feature with the highest impact on every user it touched lost the priority fight. Here's the RICE math that killed it.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Prioritization Basics",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "SSO scores a three out of three on impact, the max. But it reaches only forty accounts a quarter and costs two person-months. RICE score: sixty.",
+      "display": {
+        "kind": "text",
+        "heading": "SSO support",
+        "subheading": "Reach 40/qtr  .  Impact 3  .  Confidence 100%  .  Effort 2   =   RICE 60"
+      }
+    },
+    {
+      "narration": "A small fix, letting users change their digest email frequency, scores just a two on impact. But it reaches eight hundred a quarter and takes half a month. Score: over two thousand five hundred.",
+      "display": {
+        "kind": "text",
+        "heading": "Digest-frequency setting",
+        "subheading": "Reach 800/qtr  .  Impact 2  .  Confidence 80%  .  Effort 0.5   =   RICE 2,560"
+      }
+    },
+    {
+      "narration": "Reach times impact times confidence, divided by effort. A big win for a few people can't beat a modest win for everyone, cheaply.",
+      "display": {
+        "kind": "text",
+        "heading": "RICE = (Reach x Impact x Confidence) / Effort",
+        "subheading": "Low reach plus high effort sinks a high-impact bet"
+      }
+    },
+    {
+      "narration": "That's the counter-intuitive result RICE exists to surface. SSO might still ship if it unblocks a specific large deal. The score informs the call, it doesn't make it.",
+      "display": {
+        "kind": "text",
+        "heading": "RICE informs the decision -- it doesn't replace judgment",
+        "subheading": "A strategic bet can still win despite a low score"
+      }
+    },
+    {
+      "narration": "Full breakdown, with the scoring tables, is in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"
+      }
+    }
+  ]
+}

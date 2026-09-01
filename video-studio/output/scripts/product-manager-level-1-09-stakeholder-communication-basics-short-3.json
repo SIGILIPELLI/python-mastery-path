@@ -1,0 +1,59 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "Not Every Stakeholder Deserves the Same Amount of Your Time",
+  "description": "For a larger initiative, plot each stakeholder on how much influence they have over the decision versus how much interest they have in the outcome. That grid tells you how much time to invest in each relationship. High influence and high interest means manage closely with regular, detailed updates. A VP with high influence but low day-to-day interest wants a two-line summary, not a ten-slide deck. The common mistake is spending equal time on everyone.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/\n\n#Shorts",
+  "tags": ["product management", "stakeholder management", "influence interest grid", "stakeholder communication", "product manager tips", "prioritization", "career"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"],
+  "beats": [
+    {
+      "narration": "Not every stakeholder deserves the same amount of your time. Spending equal effort on everyone is a common product manager mistake.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stakeholder Communication Basics",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "For a bigger initiative, plot each stakeholder on two axes: how much influence they have over the decision, and how much interest they have in the outcome. That tells you where to invest.",
+      "display": {
+        "kind": "text",
+        "heading": "The influence / interest grid",
+        "subheading": "Influence over the decision  x  interest in the outcome"
+      }
+    },
+    {
+      "narration": "High influence and high interest? Manage closely, with regular detailed updates. High influence but low day-to-day interest, like a VP who could override the call? Keep them satisfied with a two-line summary, not a ten-slide deck.",
+      "display": {
+        "kind": "text",
+        "heading": "Manage closely  vs.  keep satisfied",
+        "subheading": "High interest = detailed updates. Low interest, high influence = brief, no detail overload."
+      }
+    },
+    {
+      "narration": "Low influence but high interest, like the engineer executing the plan daily, still deserves clear updates and more detail. Low influence and low interest? Just monitor, minimal effort.",
+      "display": {
+        "kind": "text",
+        "heading": "Keep informed  vs.  monitor",
+        "subheading": "The engineer running the plan daily often deserves more detail than their formal roadmap influence suggests."
+      }
+    },
+    {
+      "narration": "Match the effort to the box. Your time is finite.",
+      "display": {
+        "kind": "text",
+        "heading": "Spend your time where it moves the decision",
+        "subheading": "Equal time for everyone means the wrong people get too much and too little."
+      }
+    },
+    {
+      "narration": "The full lesson on stakeholder communication is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Title: Your PRD Isn't Done Until It Passes These 5 Questions
+
+Description:
+A PRD isn't finished when you've written every section. It's finished when it survives the same review a design and engineering team would put it through. This Short walks the self-review checklist from the Level 1 capstone project: one build interpretation instead of many, testable acceptance criteria, non-goals specific enough to stop a scope-creep fight, a numeric success metric with a baseline, and a problem statement that stands on its own. Run your draft through it before you call it done.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/
+
+#Shorts
+
+Tags: product management, PRD, product requirements document, product manager, writing requirements, acceptance criteria, scope creep, success metrics, pm skills, product spec
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/

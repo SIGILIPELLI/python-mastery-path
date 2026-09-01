@@ -1,0 +1,14 @@
+Title: C structs pass by value -- your function edits a copy
+
+Description:
+In C, handing a struct to a function copies the whole thing, member by member. So when the function changes its parameter, the caller's struct never moves. This Short shows the classic tryToMove gotcha from the Structs lesson and the one-line fix: pass a pointer instead.
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/
+
+#Shorts
+
+Tags: c, c programming, structs, pass by value, pointers, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/

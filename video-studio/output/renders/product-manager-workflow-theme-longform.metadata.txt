@@ -1,0 +1,20 @@
+Title: A PM's Full Workflow: From Discovery to Roadmap
+
+Description:
+Five Product Manager Mastery Path lessons, followed as one continuous workflow instead of five separate topics. This video traces a single thread — from spotting a raw signal, through validating it into a real problem, ranking it against everything else on the backlog, defining the metric that proves it worked, putting it on an honest roadmap, and defending that roadmap when a stakeholder pushes back. If you've already watched the Level 1 survey or the PRD deep-dive, this is the version that shows how discovery, prioritization, metrics, roadmapping, and stakeholder communication actually chain together in real PM work.
+
+Lessons covered in this video:
+- Problem Discovery: https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+- Prioritization Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+- Metrics & KPIs Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/
+- Roadmapping Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+- Stakeholder Communication Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/
+
+Tags: product management, product manager, prioritization, roadmapping, stakeholder management, metrics, KPIs, RICE framework, product discovery, PM workflow
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/

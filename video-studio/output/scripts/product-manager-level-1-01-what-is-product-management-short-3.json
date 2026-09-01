@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "A Product Manager's Real Week: One Support Ticket to a Buildable Plan",
+  "description": "What does a product manager actually do all week? We walk through one real Monday-to-Friday on a SaaS product's notifications area: reading support tickets, interviewing a churned user, writing a one-page problem statement, fighting for engineering time, and drafting the spec. Notice what never happens: no code, no final design, no sprint timeline. The PM's job is turning a noisy signal into a defined, prioritized, buildable plan.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
+  "tags": ["product manager", "product management", "day in the life", "PM career", "tech careers", "SaaS", "product management tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"],
+  "beats": [
+    {
+      "narration": "Here's one real week for a product manager. No code, no mockups. Just turning a messy signal into a plan the team can build.",
+      "display": {
+        "kind": "title_card",
+        "heading": "A Day in the Life of a PM",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Monday, they read weekend support tickets and spot three complaints about duplicate email digests. Tuesday, a call with a user who churned, citing notification overload. They're hunting for a pattern, not a one-off.",
+      "display": {
+        "kind": "text",
+        "heading": "Monday & Tuesday: gather the signal",
+        "subheading": "Three duplicate-digest complaints. One churned user citing notification overload."
+      }
+    },
+    {
+      "narration": "Wednesday, they write a one-page problem statement and take it to prioritization, where it competes with two other ideas. Thursday, they draft the spec for the winner, a digest-frequency setting.",
+      "display": {
+        "kind": "text",
+        "heading": "Wednesday & Thursday: define and prioritize",
+        "subheading": "A one-page problem statement vs. two other initiatives for a two-engineer team."
+      }
+    },
+    {
+      "narration": "Friday, they present the expected impact to the head of product. Notice what never happened: no code, no design, no timeline. The PM turned noise into a buildable plan. That's the job.",
+      "display": {
+        "kind": "text",
+        "heading": "Friday: align on the plan",
+        "subheading": "No code, no pixel-level design, no sprint timeline -- a noisy signal became a buildable plan."
+      }
+    },
+    {
+      "narration": "Want the full week-by-week breakdown? It's in lesson one of the Product Manager Mastery Path.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+      }
+    }
+  ]
+}

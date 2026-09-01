@@ -1,0 +1,299 @@
+{
+  "type": "longform",
+  "language": "java",
+  "title": "Build an Order Management API in Spring Boot — Full Java Capstone Walkthrough (JPA, Postgres, Docker, CI)",
+  "description": "This is the Java Mastery Path capstone, built stage by stage: an Order Management Service — a Spring Boot REST API for creating, confirming, and cancelling orders, backed by JPA and Postgres. We go through the project layout and Maven setup, a validated JPA entity with its own state-transition guards, request and response DTOs that keep the entity off the wire, a Spring Data repository, a centralized @RestControllerAdvice exception handler, the service and controller layers, a Mockito unit test alongside a full @SpringBootTest + MockMvc integration test, and finally a multi-stage Dockerfile, a docker-compose.yml running the app against real Postgres, and a two-job GitHub Actions CI pipeline that tests before it ever builds an image. Every line of code shown is pulled directly from the capstone lesson — nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/",
+  "tags": ["java", "spring boot", "jpa hibernate", "rest api tutorial", "postgresql", "mockito", "mockmvc testing", "docker", "github actions ci/cd", "programming tutorial", "backend development", "microservices"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"],
+  "beats": [
+    {
+      "narration": "By the time you reach the capstone of the Java Mastery Path, you've covered Spring's ecosystem, layered architecture, testing at scale, and production concerns like observability and caching. This project pulls all of it together into one real service: an Order Management API built with Spring Boot, JPA, and Postgres, and we're building it stage by stage, exactly the way you'd build it on the job.",
+      "display": {
+        "kind": "title_card",
+        "heading": "The Capstone: A Production-Shaped Order Service",
+        "subheading": "Java Mastery Path — Level 4, Module 10"
+      }
+    },
+    {
+      "narration": "Here's the target: an Order Management Service — a REST API for creating, retrieving, confirming, and cancelling orders. It layers a RestController on top of a Service on top of a Repository, validates its DTOs with Bean Validation, and ships with a global exception handler, a Mockito unit test, a full Spring Boot integration test, Docker, and a GitHub Actions pipeline.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 1: What We're Building",
+        "subheading": "An Order Management REST API"
+      }
+    },
+    {
+      "narration": "The package layout tells you the architecture before you read a line of code. model holds the entity and its status enum, dto holds the request and response shapes, repository is the only place that talks to the database, service holds the business rules, controller exposes the HTTP endpoints, and exception centralizes error handling — and the test package mirrors that same structure.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "order-management/\n    pom.xml\n    Dockerfile\n    docker-compose.yml\n    .github/\n        workflows/\n            ci.yml\n    src/\n        main/\n            java/\n                com/example/orders/\n                    OrderManagementApplication.java\n                    model/\n                        Order.java\n                        OrderStatus.java\n                    dto/\n                        CreateOrderRequest.java\n                        OrderResponse.java\n                    repository/\n                        OrderRepository.java\n                    service/\n                        OrderService.java\n                    controller/\n                        OrderController.java\n                    exception/\n                        OrderNotFoundException.java\n                        InvalidOrderStateException.java\n                        GlobalExceptionHandler.java\n            resources/\n                application.properties\n        test/\n            java/\n                com/example/orders/\n                    service/\n                        OrderServiceTest.java\n                    controller/\n                        OrderControllerIT.java"
+      }
+    },
+    {
+      "narration": "The pom.xml pins Java 21 on Spring Boot 3.3, and pulls in exactly what this service needs: Spring Web for REST, Spring Data JPA for persistence, Spring Validation for Bean Validation annotations, and Actuator for health checks. The Postgres driver is scoped to runtime, while H2 and Spring Boot's test starter are scoped to tests only, so the real database is never touched while testing.",
+      "display": {
+        "kind": "editor",
+        "lang": "xml",
+        "code": "<!-- pom.xml -->\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\">\n    <modelVersion>4.0.0</modelVersion>\n\n    <parent>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-parent</artifactId>\n        <version>3.3.0</version>\n    </parent>\n\n    <groupId>com.example</groupId>\n    <artifactId>order-management</artifactId>\n    <version>1.0.0</version>\n    <packaging>jar</packaging>\n\n    <properties>\n        <java.version>21</java.version>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-web</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-validation</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-actuator</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.postgresql</groupId>\n            <artifactId>postgresql</artifactId>\n            <scope>runtime</scope>\n        </dependency>\n        <dependency>\n            <groupId>com.h2database</groupId>\n            <artifactId>h2</artifactId>\n            <scope>test</scope>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-test</artifactId>\n            <scope>test</scope>\n        </dependency>\n    </dependencies>\n\n    <build>\n        <plugins>\n            <plugin>\n                <groupId>org.springframework.boot</groupId>\n                <artifactId>spring-boot-maven-plugin</artifactId>\n            </plugin>\n        </plugins>\n    </build>\n</project>"
+      }
+    },
+    {
+      "narration": "The entry point is almost nothing — one class annotated @SpringBootApplication, with a public static void main that hands off to SpringApplication.run. Every bit of wiring, from the embedded server to component scanning, happens automatically from that single annotation.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/OrderManagementApplication.java\npackage com.example.orders;\n\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\n\n@SpringBootApplication\npublic class OrderManagementApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(OrderManagementApplication.class, args);\n    }\n}"
+      }
+    },
+    {
+      "narration": "Setup is done. Now let's build the actual domain this service is modeling: an order, and the states it can move through.",
+      "display": {
+        "kind": "text",
+        "heading": "Setup is complete",
+        "subheading": "Next: the domain model"
+      }
+    },
+    {
+      "narration": "Every order in this system lives in exactly one of three states, and the entity itself is the only thing allowed to change that state.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 2: The Domain Model",
+        "subheading": "OrderStatus, the Order entity, and DTOs"
+      }
+    },
+    {
+      "narration": "OrderStatus is about as simple as an enum gets — PENDING, CONFIRMED, or CANCELLED. Keeping it this narrow is deliberate: it makes every valid state explicit and makes illegal states, like a cancelled order somehow going back to pending, something the entity's own methods can guard against.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/model/OrderStatus.java\npackage com.example.orders.model;\n\npublic enum OrderStatus {\n    PENDING,\n    CONFIRMED,\n    CANCELLED\n}"
+      }
+    },
+    {
+      "narration": "The Order entity is a JPA @Entity backed by a real table, with Bean Validation annotations — @NotBlank on the email, @Positive on the total — enforced before anything ever reaches the database. Notice it starts every order as PENDING in its constructor, and the confirm and cancel methods live on the entity itself, throwing an IllegalStateException if you try an invalid transition, like cancelling something that's already cancelled.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/model/Order.java\npackage com.example.orders.model;\n\nimport jakarta.persistence.*;\nimport jakarta.validation.constraints.NotBlank;\nimport jakarta.validation.constraints.Positive;\n\nimport java.time.Instant;\n\n@Entity\n@Table(name = \"orders\")\npublic class Order {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n\n    @NotBlank\n    private String customerEmail;\n\n    @Positive\n    private double total;\n\n    @Enumerated(EnumType.STRING)\n    private OrderStatus status;\n\n    private Instant createdAt;\n\n    protected Order() {\n        // required by JPA\n    }\n\n    public Order(String customerEmail, double total) {\n        this.customerEmail = customerEmail;\n        this.total = total;\n        this.status = OrderStatus.PENDING;\n        this.createdAt = Instant.now();\n    }\n\n    public Long getId() { return id; }\n    public String getCustomerEmail() { return customerEmail; }\n    public double getTotal() { return total; }\n    public OrderStatus getStatus() { return status; }\n    public Instant getCreatedAt() { return createdAt; }\n\n    public void confirm() {\n        if (status != OrderStatus.PENDING) {\n            throw new IllegalStateException(\"Only PENDING orders can be confirmed\");\n        }\n        this.status = OrderStatus.CONFIRMED;\n    }\n\n    public void cancel() {\n        if (status == OrderStatus.CANCELLED) {\n            throw new IllegalStateException(\"Order is already cancelled\");\n        }\n        this.status = OrderStatus.CANCELLED;\n    }\n}"
+      }
+    },
+    {
+      "narration": "Two small records keep the entity from ever leaking straight into the API. CreateOrderRequest is what the client sends in — validated with @Email and @Positive right on the record's fields. OrderResponse is what goes back out, built with a static from method that maps an Order onto exactly the fields a client should see.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/dto/CreateOrderRequest.java\npackage com.example.orders.dto;\n\nimport jakarta.validation.constraints.Email;\nimport jakarta.validation.constraints.NotBlank;\nimport jakarta.validation.constraints.Positive;\n\npublic record CreateOrderRequest(\n    @NotBlank @Email String customerEmail,\n    @Positive double total\n) {}\n\n// src/main/java/com/example/orders/dto/OrderResponse.java\npackage com.example.orders.dto;\n\nimport com.example.orders.model.Order;\nimport com.example.orders.model.OrderStatus;\n\nimport java.time.Instant;\n\npublic record OrderResponse(\n    Long id,\n    String customerEmail,\n    double total,\n    OrderStatus status,\n    Instant createdAt\n) {\n    public static OrderResponse from(Order order) {\n        return new OrderResponse(\n            order.getId(),\n            order.getCustomerEmail(),\n            order.getTotal(),\n            order.getStatus(),\n            order.getCreatedAt()\n        );\n    }\n}"
+      }
+    },
+    {
+      "narration": "The domain model is solid — validated on the way in, safe on the way out. Now it needs somewhere to live: the repository layer.",
+      "display": {
+        "kind": "text",
+        "heading": "Domain model is done",
+        "subheading": "Next: persistence"
+      }
+    },
+    {
+      "narration": "Spring Data JPA means the repository layer barely has to be written at all.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 3: The Repository Layer",
+        "subheading": "OrderRepository — Spring Data JPA"
+      }
+    },
+    {
+      "narration": "OrderRepository extends JpaRepository, which alone gives you save, findById, findAll, and delete for free. The only code actually written here is two query methods — findByCustomerEmailIgnoreCase and findByStatus — and Spring Data generates the SQL for both just from their method names. No hand-written queries, no ORM boilerplate.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/repository/OrderRepository.java\npackage com.example.orders.repository;\n\nimport com.example.orders.model.Order;\nimport com.example.orders.model.OrderStatus;\nimport org.springframework.data.jpa.repository.JpaRepository;\n\nimport java.util.List;\n\npublic interface OrderRepository extends JpaRepository<Order, Long> {\n    List<Order> findByCustomerEmailIgnoreCase(String customerEmail);\n    List<Order> findByStatus(OrderStatus status);\n}"
+      }
+    },
+    {
+      "narration": "Data access is covered. But a real API also has to fail predictably — that's what the exception layer is for.",
+      "display": {
+        "kind": "text",
+        "heading": "Persistence is wired",
+        "subheading": "Next: handling failure cleanly"
+      }
+    },
+    {
+      "narration": "Instead of scattering try-catch blocks through the controller, this service defines its own exceptions and handles every one of them in a single place.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 4: Centralized Error Handling",
+        "subheading": "Custom exceptions + @RestControllerAdvice"
+      }
+    },
+    {
+      "narration": "Two small, specific exceptions: OrderNotFoundException carries the missing id straight into its message, and InvalidOrderStateException covers everything else that can go wrong with a state transition, like confirming an order twice. Neither one does anything fancy — they just give the handler something precise to catch.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/exception/OrderNotFoundException.java\npackage com.example.orders.exception;\n\npublic class OrderNotFoundException extends RuntimeException {\n    public OrderNotFoundException(Long id) {\n        super(\"Order not found: \" + id);\n    }\n}\n\n// src/main/java/com/example/orders/exception/InvalidOrderStateException.java\npackage com.example.orders.exception;\n\npublic class InvalidOrderStateException extends RuntimeException {\n    public InvalidOrderStateException(String message) {\n        super(message);\n    }\n}"
+      }
+    },
+    {
+      "narration": "@RestControllerAdvice turns those exceptions into consistent JSON responses without touching the controller at all: a not-found exception becomes a 404, an invalid state becomes a 409 Conflict, and Spring's own MethodArgumentNotValidException — thrown automatically when Bean Validation fails — gets mapped to a 400 with every field error joined into one readable message.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/exception/GlobalExceptionHandler.java\npackage com.example.orders.exception;\n\nimport org.springframework.http.HttpStatus;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.MethodArgumentNotValidException;\nimport org.springframework.web.bind.annotation.ExceptionHandler;\nimport org.springframework.web.bind.annotation.RestControllerAdvice;\n\nimport java.time.Instant;\nimport java.util.LinkedHashMap;\nimport java.util.Map;\n\n@RestControllerAdvice\npublic class GlobalExceptionHandler {\n\n    @ExceptionHandler(OrderNotFoundException.class)\n    public ResponseEntity<Map<String, Object>> handleNotFound(OrderNotFoundException e) {\n        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody(e.getMessage()));\n    }\n\n    @ExceptionHandler(InvalidOrderStateException.class)\n    public ResponseEntity<Map<String, Object>> handleInvalidState(InvalidOrderStateException e) {\n        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorBody(e.getMessage()));\n    }\n\n    @ExceptionHandler(MethodArgumentNotValidException.class)\n    public ResponseEntity<Map<String, Object>> handleValidation(MethodArgumentNotValidException e) {\n        String details = e.getBindingResult().getFieldErrors().stream()\n            .map(fe -> fe.getField() + \": \" + fe.getDefaultMessage())\n            .reduce((a, b) -> a + \"; \" + b)\n            .orElse(\"Invalid request\");\n        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorBody(details));\n    }\n\n    private Map<String, Object> errorBody(String message) {\n        Map<String, Object> body = new LinkedHashMap<>();\n        body.put(\"timestamp\", Instant.now());\n        body.put(\"message\", message);\n        return body;\n    }\n}"
+      }
+    },
+    {
+      "narration": "Every failure mode now has a predictable, well-shaped response. Time to build the layer that actually drives the business logic and exposes it over HTTP.",
+      "display": {
+        "kind": "text",
+        "heading": "Error handling is centralized",
+        "subheading": "Next: service and controller"
+      }
+    },
+    {
+      "narration": "This is where the actual order lifecycle lives — creating, looking up, confirming, and cancelling — and where it finally gets exposed as a REST API.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 5: Service & Controller",
+        "subheading": "OrderService, OrderController, application.properties"
+      }
+    },
+    {
+      "narration": "OrderService takes the repository through constructor injection — no field injection, no autowiring magic — and every method is thin: build or fetch an entity, delegate the state change to the entity's own confirm or cancel method, catch the IllegalStateException it might throw and re-throw it as the InvalidOrderStateException the global handler knows how to turn into a 409.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/service/OrderService.java\npackage com.example.orders.service;\n\nimport com.example.orders.dto.CreateOrderRequest;\nimport com.example.orders.exception.InvalidOrderStateException;\nimport com.example.orders.exception.OrderNotFoundException;\nimport com.example.orders.model.Order;\nimport com.example.orders.repository.OrderRepository;\nimport org.slf4j.Logger;\nimport org.slf4j.LoggerFactory;\nimport org.springframework.stereotype.Service;\n\nimport java.util.List;\n\n@Service\npublic class OrderService {\n\n    private static final Logger log = LoggerFactory.getLogger(OrderService.class);\n\n    private final OrderRepository orderRepository;\n\n    public OrderService(OrderRepository orderRepository) {\n        this.orderRepository = orderRepository;\n    }\n\n    public Order create(CreateOrderRequest request) {\n        Order order = new Order(request.customerEmail(), request.total());\n        Order saved = orderRepository.save(order);\n        log.info(\"Created order id={} for customer={}\", saved.getId(), saved.getCustomerEmail());\n        return saved;\n    }\n\n    public Order findById(Long id) {\n        return orderRepository.findById(id)\n            .orElseThrow(() -> new OrderNotFoundException(id));\n    }\n\n    public List<Order> findAll() {\n        return orderRepository.findAll();\n    }\n\n    public Order confirm(Long id) {\n        Order order = findById(id);\n        try {\n            order.confirm();\n        } catch (IllegalStateException e) {\n            throw new InvalidOrderStateException(e.getMessage());\n        }\n        return orderRepository.save(order);\n    }\n\n    public Order cancel(Long id) {\n        Order order = findById(id);\n        try {\n            order.cancel();\n        } catch (IllegalStateException e) {\n            throw new InvalidOrderStateException(e.getMessage());\n        }\n        return orderRepository.save(order);\n    }\n}"
+      }
+    },
+    {
+      "narration": "OrderController is almost pure routing: @PostMapping with @Valid on the request body triggers Bean Validation automatically, @GetMapping with a path variable fetches a single order, and the confirm and cancel endpoints are simple POSTs to /orders/id/confirm and /orders/id/cancel. Every response gets mapped through OrderResponse.from before it leaves the method, so the entity itself never crosses the wire.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/main/java/com/example/orders/controller/OrderController.java\npackage com.example.orders.controller;\n\nimport com.example.orders.dto.CreateOrderRequest;\nimport com.example.orders.dto.OrderResponse;\nimport com.example.orders.model.Order;\nimport com.example.orders.service.OrderService;\nimport jakarta.validation.Valid;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.web.bind.annotation.*;\n\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/orders\")\npublic class OrderController {\n\n    private final OrderService orderService;\n\n    public OrderController(OrderService orderService) {\n        this.orderService = orderService;\n    }\n\n    @PostMapping\n    @ResponseStatus(HttpStatus.CREATED)\n    public OrderResponse create(@Valid @RequestBody CreateOrderRequest request) {\n        return OrderResponse.from(orderService.create(request));\n    }\n\n    @GetMapping(\"/{id}\")\n    public OrderResponse get(@PathVariable Long id) {\n        return OrderResponse.from(orderService.findById(id));\n    }\n\n    @GetMapping\n    public List<OrderResponse> list() {\n        return orderService.findAll().stream().map(OrderResponse::from).toList();\n    }\n\n    @PostMapping(\"/{id}/confirm\")\n    public OrderResponse confirm(@PathVariable Long id) {\n        return OrderResponse.from(orderService.confirm(id));\n    }\n\n    @PostMapping(\"/{id}/cancel\")\n    public OrderResponse cancel(@PathVariable Long id) {\n        return OrderResponse.from(orderService.cancel(id));\n    }\n}"
+      }
+    },
+    {
+      "narration": "Configuration stays environment-driven: the datasource URL, username, and password all read from environment variables with local defaults, ddl-auto is set to update so Hibernate keeps the schema in sync during development, and Actuator is deliberately narrowed to just health, metrics, and info — not everything it could expose.",
+      "display": {
+        "kind": "editor",
+        "lang": "properties",
+        "code": "# src/main/resources/application.properties\nspring.application.name=order-management\n\nspring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:5432/orders\nspring.datasource.username=${DB_USER:orders_app}\nspring.datasource.password=${DB_PASSWORD}\n\nspring.jpa.hibernate.ddl-auto=update\nspring.jpa.show-sql=false\n\nmanagement.endpoints.web.exposure.include=health,metrics,info\nmanagement.endpoint.health.show-details=when-authorized"
+      }
+    },
+    {
+      "narration": "The API is feature-complete end to end. Now we need to prove it actually behaves correctly under real conditions — that's what the test suite is for.",
+      "display": {
+        "kind": "text",
+        "heading": "The service is feature-complete",
+        "subheading": "Next: proving it works"
+      }
+    },
+    {
+      "narration": "This capstone tests at two different levels, and each one is checking something the other can't.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 6: Testing — Mockito and MockMvc",
+        "subheading": "A unit test and a full Spring Boot integration test"
+      }
+    },
+    {
+      "narration": "OrderServiceTest is a pure Mockito unit test — @ExtendWith MockitoExtension, a mocked repository injected straight into the service, no Spring context loaded at all, so it runs in milliseconds. It checks that creating an order saves it, that looking up a missing id throws OrderNotFoundException, and that cancelling actually flips the status to CANCELLED.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/test/java/com/example/orders/service/OrderServiceTest.java\npackage com.example.orders.service;\n\nimport com.example.orders.dto.CreateOrderRequest;\nimport com.example.orders.exception.OrderNotFoundException;\nimport com.example.orders.model.Order;\nimport com.example.orders.repository.OrderRepository;\nimport org.junit.jupiter.api.Test;\nimport org.junit.jupiter.api.extension.ExtendWith;\nimport org.mockito.InjectMocks;\nimport org.mockito.Mock;\nimport org.mockito.junit.jupiter.MockitoExtension;\n\nimport java.util.Optional;\n\nimport static org.junit.jupiter.api.Assertions.*;\nimport static org.mockito.Mockito.*;\n\n@ExtendWith(MockitoExtension.class)\nclass OrderServiceTest {\n\n    @Mock\n    private OrderRepository orderRepository;\n\n    @InjectMocks\n    private OrderService orderService;\n\n    @Test\n    void create_savesAndReturnsOrder() {\n        when(orderRepository.save(any(Order.class))).thenAnswer(inv -> inv.getArgument(0));\n\n        Order order = orderService.create(new CreateOrderRequest(\"alice@example.com\", 49.99));\n\n        assertEquals(\"alice@example.com\", order.getCustomerEmail());\n        verify(orderRepository).save(any(Order.class));\n    }\n\n    @Test\n    void findById_throwsWhenMissing() {\n        when(orderRepository.findById(404L)).thenReturn(Optional.empty());\n\n        assertThrows(OrderNotFoundException.class, () -> orderService.findById(404L));\n    }\n\n    @Test\n    void cancel_marksOrderCancelled() {\n        Order existing = new Order(\"bob@example.com\", 20.0);\n        when(orderRepository.findById(1L)).thenReturn(Optional.of(existing));\n        when(orderRepository.save(any(Order.class))).thenAnswer(inv -> inv.getArgument(0));\n\n        Order cancelled = orderService.cancel(1L);\n\n        assertEquals(\"CANCELLED\", cancelled.getStatus().name());\n    }\n}"
+      }
+    },
+    {
+      "narration": "OrderControllerIT is the opposite: a full @SpringBootTest with MockMvc, pointed at an in-memory H2 database running in Postgres compatibility mode so the SQL dialect matches production. It sends a real JSON POST to /orders and checks the actual HTTP response, then confirms an invalid payload — a bad email and a negative total — correctly comes back as a 400.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// src/test/java/com/example/orders/controller/OrderControllerIT.java\npackage com.example.orders.controller;\n\nimport org.junit.jupiter.api.Test;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;\nimport org.springframework.boot.test.context.SpringBootTest;\nimport org.springframework.http.MediaType;\nimport org.springframework.test.context.TestPropertySource;\nimport org.springframework.test.web.servlet.MockMvc;\n\nimport static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;\nimport static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;\n\n@SpringBootTest\n@AutoConfigureMockMvc\n@TestPropertySource(properties = {\n    \"spring.datasource.url=jdbc:h2:mem:orders;MODE=PostgreSQL\",\n    \"spring.datasource.driver-class-name=org.h2.Driver\",\n    \"spring.jpa.hibernate.ddl-auto=create-drop\"\n})\nclass OrderControllerIT {\n\n    @Autowired\n    private MockMvc mockMvc;\n\n    @Test\n    void createThenFetchOrder() throws Exception {\n        String payload = \"\"\"\n            {\"customerEmail\": \"carol@example.com\", \"total\": 75.50}\n            \"\"\";\n\n        String response = mockMvc.perform(post(\"/orders\")\n                .contentType(MediaType.APPLICATION_JSON)\n                .content(payload))\n            .andExpect(status().isCreated())\n            .andExpect(jsonPath(\"$.customerEmail\").value(\"carol@example.com\"))\n            .andExpect(jsonPath(\"$.status\").value(\"PENDING\"))\n            .andReturn().getResponse().getContentAsString();\n\n        mockMvc.perform(get(\"/orders\"))\n            .andExpect(status().isOk())\n            .andExpect(jsonPath(\"$[0].customerEmail\").value(\"carol@example.com\"));\n    }\n\n    @Test\n    void createOrder_rejectsInvalidPayload() throws Exception {\n        String badPayload = \"\"\"\n            {\"customerEmail\": \"not-an-email\", \"total\": -5}\n            \"\"\";\n\n        mockMvc.perform(post(\"/orders\")\n                .contentType(MediaType.APPLICATION_JSON)\n                .content(badPayload))\n            .andExpect(status().isBadRequest());\n    }\n}"
+      }
+    },
+    {
+      "narration": "With a fast unit suite and a real integration suite both passing, the last piece is making this something a team can actually run — not just something that works on your machine.",
+      "display": {
+        "kind": "text",
+        "heading": "Tests are green",
+        "subheading": "Next: shipping it"
+      }
+    },
+    {
+      "narration": "The last stage turns this from a project you run locally into something deployable anywhere, with a pipeline that gates every change.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stage 7: Docker & Continuous Integration",
+        "subheading": "Dockerfile, docker-compose.yml, GitHub Actions"
+      }
+    },
+    {
+      "narration": "The Dockerfile is a proper multi-stage build: the first stage uses a full Maven and JDK image to run mvn package, the second stage copies just the built jar onto a slim JRE-only Alpine image, and it creates and switches to a non-root app user before running — so the container never runs as root.",
+      "display": {
+        "kind": "editor",
+        "lang": "dockerfile",
+        "code": "# Dockerfile\nFROM maven:3.9-eclipse-temurin-21 AS build\nWORKDIR /app\nCOPY pom.xml .\nRUN mvn dependency:go-offline -B\nCOPY src ./src\nRUN mvn package -DskipTests -B\n\nFROM eclipse-temurin:21-jre-alpine\nWORKDIR /app\nRUN addgroup -S app && adduser -S app -G app\nUSER app\nCOPY --from=build /app/target/order-management-*.jar app.jar\nEXPOSE 8080\nENTRYPOINT [\"java\", \"-jar\", \"app.jar\"]"
+      }
+    },
+    {
+      "narration": "docker-compose.yml runs the app alongside a real Postgres 16 container, wires the database host, user, and password in as environment variables, and persists Postgres's data directory on a named volume — so restarting the stack doesn't wipe your orders.",
+      "display": {
+        "kind": "editor",
+        "lang": "yaml",
+        "code": "# docker-compose.yml\nservices:\n  app:\n    build: .\n    ports:\n      - \"8080:8080\"\n    environment:\n      DB_HOST: db\n      DB_USER: orders_app\n      DB_PASSWORD: ${DB_PASSWORD}\n    depends_on:\n      - db\n\n  db:\n    image: postgres:16-alpine\n    environment:\n      POSTGRES_DB: orders\n      POSTGRES_USER: orders_app\n      POSTGRES_PASSWORD: ${DB_PASSWORD}\n    volumes:\n      - order_db_data:/var/lib/postgresql/data\n\nvolumes:\n  order_db_data:"
+      }
+    },
+    {
+      "narration": "The GitHub Actions workflow has two jobs: test sets up JDK 21 with Maven caching and runs mvn test on every push and pull request; build-image only runs after tests pass, and only on a push — not on pull requests — and tags the Docker image with the commit SHA, so nothing broken ever gets built into a shippable image.",
+      "display": {
+        "kind": "editor",
+        "lang": "yaml",
+        "code": "# .github/workflows/ci.yml\nname: CI\n\non:\n  push:\n    branches: [main]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Set up JDK 21\n        uses: actions/setup-java@v4\n        with:\n          distribution: temurin\n          java-version: '21'\n          cache: maven\n\n      - name: Run tests\n        run: mvn test -B\n\n  build-image:\n    needs: test\n    runs-on: ubuntu-latest\n    if: github.event_name == 'push'\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Build Docker image\n        run: docker build -t order-management:${{ github.sha }} ."
+      }
+    },
+    {
+      "narration": "Locally, it's mvn test, then docker compose up --build with a database password set, and the whole stack — app and Postgres — comes up together. From there it's just curl: POST a new order, POST to its confirm endpoint, GET the list back, and check /actuator/health for a clean status up.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "# Local build and test\nmvn test\n\n# Run with Docker Compose (app + Postgres together)\nDB_PASSWORD='SuperSecret123!' docker compose up --build\n\n# Create an order\ncurl -X POST localhost:8080/orders \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"customerEmail\": \"dave@example.com\", \"total\": 120.00}'\n# {\"id\":1,\"customerEmail\":\"dave@example.com\",\"total\":120.0,\"status\":\"PENDING\",\"createdAt\":\"2026-01-15T10:00:00Z\"}\n\ncurl -X POST localhost:8080/orders/1/confirm\n# {\"id\":1,\"customerEmail\":\"dave@example.com\",\"total\":120.0,\"status\":\"CONFIRMED\", ...}\n\ncurl localhost:8080/orders\n# [{\"id\":1,\"customerEmail\":\"dave@example.com\", ...}]\n\ncurl localhost:8080/actuator/health\n# {\"status\":\"UP\"}"
+      }
+    },
+    {
+      "narration": "The core capstone is done — but the lesson leaves you with real stretch goals if you want to push it further.",
+      "display": {
+        "kind": "text",
+        "heading": "Beyond the capstone",
+        "subheading": "Where to take it next"
+      }
+    },
+    {
+      "narration": "Add pagination to the orders list with Spring's Pageable, add a SecurityFilterChain that requires authentication on POST and DELETE while leaving GET open, wrap confirm and cancel with a Micrometer counter tracking order outcomes, publish an OrderCreated event to Kafka, and swap the in-memory H2 tests for a Testcontainers-backed Postgres test running the full flow against a real, disposable database.",
+      "display": {
+        "kind": "text",
+        "heading": "Five ways to extend it",
+        "subheading": "Pagination, security, metrics, events, Testcontainers"
+      }
+    },
+    {
+      "narration": "This capstone is the same shape as the rest of the path, just assembled into one service: layered architecture, validated input, centralized error handling, tests at two different levels, and a build pipeline that actually gates bad changes before they ship. That's the real difference between a script and a production service.",
+      "display": {
+        "kind": "text",
+        "heading": "You've completed the Java Mastery Path",
+        "subheading": "From public static void main to a tested, containerized microservice"
+      }
+    },
+    {
+      "narration": "Grab the complete source, both test suites, and the Docker and CI configs at the link on screen, and go build something with it.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"
+      }
+    }
+  ]
+}

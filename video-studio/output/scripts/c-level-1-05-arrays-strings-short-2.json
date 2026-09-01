@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "The C input line that opens a security hole (use fgets)",
+  "description": "C never checks how much text you type into a buffer. Read a name with the old gets() function and a long enough input writes straight past the end of your array and corrupts memory \u2014 a classic real-world security bug. This Short shows the safe replacement from the C Mastery Path Arrays & Strings lesson: fgets with an explicit buffer size, plus the trailing-newline quirk you have to strip.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/\n\n#Shorts",
+  "tags": ["c", "c programming", "fgets", "gets", "buffer overflow", "c strings", "input handling", "memory safety", "programming tutorial", "learn c"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/"],
+  "beats": [
+    {
+      "narration": "C doesn't check how much you type. The old gets function reads a name into a fifty character buffer. Type two hundred characters and it writes past the end and corrupts memory. That's a real security hole.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "No bounds check",
+        "subheading": "input overflows the buffer"
+      }
+    },
+    {
+      "narration": "Here's the safe version. fgets takes the buffer and its size, so it stops before the end no matter what. One quirk: it keeps the newline you pressed, so check the last character and swap it for a null terminator.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n\nint main(void) {\n    char name[50];\n\n    printf(\"Enter your name: \");\n    fgets(name, sizeof(name), stdin);   // safe: won't overflow the buffer\n\n    // fgets keeps the trailing newline -- strip it if present\n    size_t len = strlen(name);\n    if (len > 0 && name[len - 1] == '\\n') {\n        name[len - 1] = '\\0';\n    }\n\n    printf(\"Hello, %s!\\n\", name);\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "The whole fix is passing the size of the buffer as the limit. gets never knew the size. fgets can't overflow because you told it where the wall is.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Pass the size",
+        "subheading": "fgets knows the limit"
+      }
+    },
+    {
+      "narration": "Same program, but now no input can ever escape the buffer. That's the habit to keep.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "Safe input",
+        "subheading": "nothing escapes the buffer"
+      }
+    },
+    {
+      "narration": "Full lesson and runnable code are linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/05-arrays-strings/"
+      }
+    }
+  ]
+}

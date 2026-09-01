@@ -1,0 +1,355 @@
+{
+  "type": "longform",
+  "language": "product-manager",
+  "title": "6 Product Manager Mistakes That Quietly Sink Products",
+  "description": "Most products don't fail with a bang — they leak. A PM makes a small, reasonable-sounding call, and six months later the team has shipped something nobody uses. This roundup pulls six anti-patterns straight from the Level 1 Product Manager Mastery Path: asking leading, hypothetical questions in customer interviews; solution-jumping from a single signal to a build; using the wrong prioritization framework for the question in front of you; owning design and engineering's jobs instead of your own; publishing a feature-list roadmap with far-future dates; and spending equal time on every stakeholder. For each one we name the mistake, explain why it does damage, and give the fix from the lesson itself.\n\nLessons covered in this video:\n- Understanding Customers & Users: https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n- Problem Discovery: https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Working with Design & Engineering: https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n- Roadmapping Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n- Stakeholder Communication Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/",
+  "tags": ["product management", "product manager", "pm mistakes", "product discovery", "prioritization", "rice framework", "moscow", "roadmapping", "stakeholder management", "customer interviews", "associate product manager", "pm career"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/",
+    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+  ],
+  "beats": [
+    {
+      "narration": "Most products don't fail with a bang. They leak. A PM makes a small, reasonable-sounding call, and six months later the team has shipped something nobody uses. In this video we'll walk through six mistakes that quietly sink products, and for each one, name it, explain the damage, and give you the fix straight from the lesson.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Six Quiet Mistakes",
+        "subheading": "name it, fix it"
+      }
+    },
+    {
+      "narration": "Every fix here comes from the Level 1 Product Manager course. Six lessons, six anti-patterns. If you're early in your PM career, these are the ones that catch almost everyone, so let's make sure they don't catch you.",
+      "display": {
+        "kind": "text",
+        "heading": "Product Manager Mastery Path",
+        "subheading": "Level 1 · mistakes catalog"
+      }
+    },
+
+    {
+      "narration": "First mistake, and it starts in the room with your customer.",
+      "display": {
+        "kind": "title_card",
+        "heading": "1 · Leading Interview Questions",
+        "subheading": "Understanding Customers & Users"
+      }
+    },
+    {
+      "narration": "The single biggest beginner mistake in customer interviews is asking leading, hypothetical questions. Things like, would you use a dashboard that shows this, or would a cheaper plan make you buy more. It feels like research. It isn't.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake",
+        "subheading": "\"Would you use a feature that...\""
+      }
+    },
+    {
+      "narration": "Here's why it backfires. People are unreliable predictors of their own future behavior. Ask someone if they'd use a feature and they'll be polite and say yes. Then they never touch it, and you've built on a phantom.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Can't Predict Themselves"
+      }
+    },
+    {
+      "narration": "They are, though, reliable narrators of their past behavior. So flip every question backward in time. Instead of, would you use this, ask, walk me through the last time you needed to check this. What did you actually do?",
+      "display": {
+        "kind": "text",
+        "heading": "The fix",
+        "subheading": "behavioral, not hypothetical"
+      }
+    },
+    {
+      "narration": "Instead of, do you think notifications are annoying, ask about the last notification they got from the product and what they did with it. Chase the emotion. When they mention frustration or relief, dig in. Four or five people telling the same story is a real pattern.",
+      "display": {
+        "kind": "text",
+        "heading": "Follow the emotion",
+        "subheading": "five is often enough"
+      }
+    },
+    {
+      "narration": "Good interviews give you signals. The next mistake is what PMs do with those signals too fast.",
+      "display": {
+        "kind": "text",
+        "heading": "Bridge",
+        "subheading": "from signal to build"
+      }
+    },
+
+    {
+      "narration": "Mistake two lives in the gap between a signal and a problem.",
+      "display": {
+        "kind": "title_card",
+        "heading": "2 · Solution-Jumping",
+        "subheading": "Problem Discovery"
+      }
+    },
+    {
+      "narration": "A signal is one piece of raw evidence. One support ticket, one churn comment, one stakeholder request, a metric that dipped. A problem is the underlying, validated pain that a whole cluster of signals points to. The mistake is treating a single signal as a validated problem and building a fix within days.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake",
+        "subheading": "signal treated as problem"
+      }
+    },
+    {
+      "narration": "Discovery is the work of turning that raw left column into specific, validated statements, and being willing to conclude, this isn't actually a real problem, or it's real but too small to prioritize right now.",
+      "display": {
+        "kind": "stick",
+        "scene": "search",
+        "heading": "Cluster, Then Validate"
+      }
+    },
+    {
+      "narration": "Teams that skip this and go straight from, a stakeholder said X, to, an engineer is now building X, are the single most common source of shipped features nobody uses. The loudest request wins instead of the most important problem.",
+      "display": {
+        "kind": "text",
+        "heading": "Why it does damage",
+        "subheading": "features nobody uses"
+      }
+    },
+    {
+      "narration": "The fix is a workflow. Collect signals for one to two weeks without committing to a fix. Cluster the ones pointing at the same issue. Validate your top two or three with a few targeted interviews or a data pull. Then write the problem statement, before anyone proposes a solution.",
+      "display": {
+        "kind": "text",
+        "heading": "The fix",
+        "subheading": "collect, cluster, validate"
+      }
+    },
+    {
+      "narration": "Now you've got two or three real problems. Which one do you build? That's where the next mistake lives.",
+      "display": {
+        "kind": "text",
+        "heading": "Bridge",
+        "subheading": "choosing what to build"
+      }
+    },
+
+    {
+      "narration": "Mistake three is about picking the right tool for the question.",
+      "display": {
+        "kind": "title_card",
+        "heading": "3 · The Wrong Framework",
+        "subheading": "Prioritization Basics"
+      }
+    },
+    {
+      "narration": "There are three prioritization tools, and the mistake is using the wrong one. RICE scores many competing initiatives into one comparable number. MoSCoW scopes a single release into must, should, could, and won't. Value versus effort is a fast two-by-two gut check for a big backlog.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake",
+        "subheading": "right tool, wrong question"
+      }
+    },
+    {
+      "narration": "Reaching for a full RICE spreadsheet when you've already decided what to build, and you just need to scope the release, is wasted effort. That's a MoSCoW job. And skipping the quick value-effort triage on a huge backlog means you drown in detail.",
+      "display": {
+        "kind": "stick",
+        "scene": "prioritize",
+        "heading": "Match The Tool"
+      }
+    },
+    {
+      "narration": "So match the framework to the situation. Large backlog, need a first pass? Value versus effort. A handful of finalists, need a defensible ranking? RICE. Already decided what to build, need to scope the release? MoSCoW.",
+      "display": {
+        "kind": "text",
+        "heading": "The fix",
+        "subheading": "choosing which framework"
+      }
+    },
+    {
+      "narration": "They chain together nicely. Triage the backlog with value and effort, RICE-score the ten or fifteen that survive, then MoSCoW-scope whichever one gets greenlit. The won't-have column does real work, heading off scope-creep arguments later.",
+      "display": {
+        "kind": "text",
+        "heading": "A common flow",
+        "subheading": "triage, score, scope"
+      }
+    },
+    {
+      "narration": "You've picked the work. Now you hand it to design and engineering, and there's a whole family of mistakes waiting there.",
+      "display": {
+        "kind": "text",
+        "heading": "Bridge",
+        "subheading": "the handoff"
+      }
+    },
+
+    {
+      "narration": "Mistake four is really a whole cluster, and it shows up at the handoff.",
+      "display": {
+        "kind": "title_card",
+        "heading": "4 · Owning Everyone's Job",
+        "subheading": "Working with Design & Engineering"
+      }
+    },
+    {
+      "narration": "The anti-pattern table in this lesson is basically a list of ways to lose your team's trust. Specifying pixel-level UI in the PRD undermines the designer's expertise and slows them down. Dictating technical implementation undermines the engineer's, and can lock in a worse approach.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake",
+        "subheading": "PM anti-patterns table"
+      }
+    },
+    {
+      "narration": "Two more. Changing scope mid-sprint without discussion breaks the team's ability to commit to anything. And being the only person who talks to users starves design and engineering of context that would improve their own decisions.",
+      "display": {
+        "kind": "stick",
+        "scene": "pushback",
+        "heading": "Erodes Trust"
+      }
+    },
+    {
+      "narration": "There's a timing version of this too. The most common collaboration mistake is bringing design and engineering in too late, after the PRD feels finished, so their first contribution becomes pushback on a document that already feels locked.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake, part two",
+        "subheading": "looped in too late"
+      }
+    },
+    {
+      "narration": "The fix is progressive involvement. Anyone who'll be asked to execute a plan should get to shape it before it's final. Review designs against a fixed set of questions, in order, starting with, does this solve the actual problem statement. And when a tradeoff surfaces mid-build, make it explicit and bring in the right people. Don't decide it alone in a hallway.",
+      "display": {
+        "kind": "text",
+        "heading": "The fix",
+        "subheading": "progressive involvement"
+      }
+    },
+    {
+      "narration": "The team is building. Now leadership wants to see a roadmap, and here's how that goes wrong.",
+      "display": {
+        "kind": "text",
+        "heading": "Bridge",
+        "subheading": "the roadmap ask"
+      }
+    },
+
+    {
+      "narration": "Mistake five is the one leadership actually sees.",
+      "display": {
+        "kind": "title_card",
+        "heading": "5 · The Feature-List Roadmap",
+        "subheading": "Roadmapping Basics"
+      }
+    },
+    {
+      "narration": "The most common roadmapping mistake is publishing a list of specific features on specific dates far in the future. Q3, dark mode. Q4, single sign-on. Q1 next year, mobile app. It looks organized and responsible.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake",
+        "subheading": "features on far-future dates"
+      }
+    },
+    {
+      "narration": "But that list becomes a promise the team didn't mean to make, and a source of friction the moment priorities shift, which they always do. It also pressures the team to build the listed thing even after new evidence says otherwise.",
+      "display": {
+        "kind": "stick",
+        "scene": "roadmap",
+        "heading": "Now / Next / Later"
+      }
+    },
+    {
+      "narration": "The fix is a theme-based roadmap. Q3, reduce onboarding friction. Q4, enterprise readiness. That communicates intent and priority without over-committing to a specific solution, and leaves room for discovery to shape the actual feature.",
+      "display": {
+        "kind": "text",
+        "heading": "The fix",
+        "subheading": "themes, not features"
+      }
+    },
+    {
+      "narration": "Pair it with honest time horizons. Now, this quarter, is high confidence and specific. Next is themes with maybe a candidate or two. Later is directional only, explicitly labeled subject to change. A roadmap is a communication tool, not a contract, so state the confidence level out loud every time you share it.",
+      "display": {
+        "kind": "text",
+        "heading": "Time-horizon confidence",
+        "subheading": "make confidence visible"
+      }
+    },
+    {
+      "narration": "Different audiences need different things. Sales needs themes to set customer expectations, never ship dates on unbuilt features. Customers, if the roadmap is public, need directional confidence and quarters, not exact dates. Leadership needs to see how it ties to company goals.",
+      "display": {
+        "kind": "text",
+        "heading": "Per audience",
+        "subheading": "what to avoid telling them"
+      }
+    },
+    {
+      "narration": "One mistake left, and it's about where your hours go.",
+      "display": {
+        "kind": "text",
+        "heading": "Bridge",
+        "subheading": "your time budget"
+      }
+    },
+
+    {
+      "narration": "And the last mistake is about how you spend your time.",
+      "display": {
+        "kind": "title_card",
+        "heading": "6 · Equal Time For Everyone",
+        "subheading": "Stakeholder Communication Basics"
+      }
+    },
+    {
+      "narration": "For any larger initiative, a common mistake is spending equal time on every stakeholder. A single generic status email to everyone usually under-serves all of them, and it burns your hours on the people who need the least.",
+      "display": {
+        "kind": "text",
+        "heading": "The mistake",
+        "subheading": "equal time on everyone"
+      }
+    },
+    {
+      "narration": "Before writing any update, identify who actually needs one and what they need from it. The engineering lead needs scope clarity and blockers. Sales needs an honest confidence level and rough timing. Leadership needs progress against the success metric and the why.",
+      "display": {
+        "kind": "text",
+        "heading": "Map first",
+        "subheading": "who needs what"
+      }
+    },
+    {
+      "narration": "Then plot each stakeholder on how much influence they have over the decision versus how much interest they have in the outcome. That grid tells you how much time each relationship actually deserves.",
+      "display": {
+        "kind": "stick",
+        "scene": "discuss",
+        "heading": "Influence vs Interest"
+      }
+    },
+    {
+      "narration": "High influence, high interest: manage closely, with regular detailed updates. High influence, low interest, like a busy VP: keep satisfied with a two-line summary, not a ten-slide deck. Low influence, high interest, like the engineer executing daily: keep informed with clear detail. Low influence, low interest: just monitor.",
+      "display": {
+        "kind": "text",
+        "heading": "The fix",
+        "subheading": "four quadrants, four cadences"
+      }
+    },
+    {
+      "narration": "And when a stakeholder pushes back, don't treat it as a fight to win or simply cave. Restate their concern, share the reasoning behind the decision, and name what would actually change your mind. If it's still unresolved, escalate transparently instead of letting it fester.",
+      "display": {
+        "kind": "text",
+        "heading": "Handling disagreement",
+        "subheading": "understand the concern"
+      }
+    },
+
+    {
+      "narration": "So there's the catalog. Ask what people did, not what they'd do. Cluster signals before you build. Match the prioritization tool to the question. Let design and engineering own their crafts. Ship a theme-based roadmap with honest horizons. And spend your time by influence and interest. Six quiet mistakes, six fixes.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "Six Fixes",
+        "subheading": "you know them now"
+      }
+    },
+    {
+      "narration": "Every point in this video came straight from the Level 1 Product Manager course. The full lessons are linked below, in the order we covered them: understanding customers and users, problem discovery, prioritization basics, working with design and engineering, roadmapping basics, and stakeholder communication basics.",
+      "display": {
+        "kind": "text",
+        "heading": "Lessons covered (in order)",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path"
+      }
+    }
+  ]
+}

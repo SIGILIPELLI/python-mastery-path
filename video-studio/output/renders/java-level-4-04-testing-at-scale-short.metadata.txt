@@ -1,0 +1,14 @@
+Title: Java Tests Can Spin Up a Real Database (Then Delete It)
+
+Description:
+Mockito fakes your dependencies for millisecond-fast unit tests, but sometimes you need to know your code works against a real database engine. Testcontainers spins up an actual disposable Postgres instance in Docker just for the test run, then tears it down when it's done. See the full breakdown of unit tests, Spring MockMvc integration tests, and Testcontainers in the Java Mastery Path.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/
+
+#Shorts
+
+Tags: java, testing, mockito, testcontainers, spring boot, unit testing, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/

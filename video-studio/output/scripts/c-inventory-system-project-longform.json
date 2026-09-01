@@ -1,0 +1,399 @@
+{
+  "type": "longform",
+  "language": "c",
+  "title": "Build a Linked-List Inventory System in C \u2014 Full Project Deep-Dive, Header to Valgrind",
+  "description": "This is the Level 2 capstone of the C Mastery Path, built end to end as a single narrative: a command-line inventory tracker that adds items with a SKU, name, quantity, and unit price as linked-list nodes, lists everything with a running total, adjusts stock up or down without ever letting a quantity go negative, and persists to a binary file between runs by flattening the list to an array on save and rebuilding it on load. We design the public header first \u2014 include guard, size constants, the Item and Node structs, and every function prototype \u2014 then write src/inventory.c function by function (init and destroy, find, head-insert add, adjust_stock, the splice in remove, total_value, the tiny iterator, and the binary save/load pair), then the src/main.c menu loop that reads keyboard input with fgets and strcspn, then a real Makefile with pattern rules and -MMD -MP automatic dependency tracking, then a run session, then an AddressSanitizer clean-exit check, and finally the lesson's own four stretch goals ending with a valgrind full leak check. Every line of code shown is pulled verbatim from the lesson \u2014 nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/c-mastery-path/level-2/10-project-inventory-system/",
+  "tags": [
+    "c",
+    "c programming",
+    "linked list",
+    "linked list in c",
+    "inventory system project",
+    "c project tutorial",
+    "makefile",
+    "valgrind",
+    "memory leaks",
+    "address sanitizer",
+    "binary file io",
+    "pointers in c",
+    "modular programming",
+    "programming tutorial"
+  ],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/10-project-inventory-system/"],
+  "beats": [
+    {
+      "narration": "C's Level 2 already got a fast roundup that skimmed this project in about a minute. This video does the opposite. We spend the full ten minutes building the linked-list inventory system for real, from an empty folder to a program that runs clean under a memory sanitizer.",
+      "display": {
+        "kind": "stick",
+        "scene": "wave",
+        "heading": "Full Project Build",
+        "subheading": "C Mastery Path, Level 2"
+      }
+    },
+    {
+      "narration": "Here's the route. Design the public header, write the linked-list implementation function by function, wire up a command-line menu, build it with a real Makefile, run it, and prove it leaks nothing. Every line of code comes straight from the lesson.",
+      "display": {
+        "kind": "title_card",
+        "heading": "10 \u00b7 Project \u2014 Linked-list Inventory System",
+        "subheading": "header \u2192 implementation \u2192 CLI \u2192 build \u2192 leak-check"
+      }
+    },
+    {
+      "narration": "The finished tool tracks inventory from the terminal. It adds items with a SKU, name, quantity, and unit price. It lists everything and totals the value. It adjusts stock without ever letting a quantity go negative. And it saves to a binary file between runs.",
+      "display": {
+        "kind": "stick",
+        "scene": "checklist",
+        "heading": "What You'll Build",
+        "subheading": "add, list, adjust, persist"
+      }
+    },
+    {
+      "narration": "The layout is four files. A Makefile at the root, the public header under include, and two sources under src \u2014 inventory dot c for the list logic, main dot c for the command line. Headers in one place, sources in another.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "inventory/\n    Makefile\n    include/\n        inventory.h\n    src/\n        inventory.c\n        main.c"
+      }
+    },
+    {
+      "narration": "Start with the header \u2014 the module's public contract. It follows the opaque-type idea from the modular-programming module: main never touches a node by hand, only through these functions.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 1: include/inventory.h",
+        "subheading": "the module's public contract"
+      }
+    },
+    {
+      "narration": "Inside the include guard, two size constants. The Item struct bundles a SKU, a name, a quantity, and a unit price. The Node struct wraps one Item plus a next pointer \u2014 that self-reference is what chains the list. And Inventory holds the head pointer and a count.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// inventory.h\n#ifndef INVENTORY_H\n#define INVENTORY_H\n\n#define SKU_LEN  16\n#define NAME_LEN 48\n\ntypedef struct {\n    char sku[SKU_LEN];\n    char name[NAME_LEN];\n    int quantity;\n    double unit_price;\n} Item;\n\ntypedef struct Node {\n    Item item;\n    struct Node *next;\n} Node;\n\ntypedef struct {\n    Node *head;\n    size_t count;\n} Inventory;"
+      }
+    },
+    {
+      "narration": "Then the operations. Destroy frees every node. Add fails on a duplicate SKU or out of memory. Find returns a pointer the caller must not free. Adjust stock takes a signed delta and refuses to go below zero. Remove unlinks a node by SKU.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "void inventory_init(Inventory *inv);\nvoid inventory_destroy(Inventory *inv);   // frees every node\n\n// Returns 1 on success, 0 on failure (out of memory, or duplicate SKU).\nint inventory_add(Inventory *inv, const char *sku, const char *name,\n                   int quantity, double unit_price);\n\n// Returns a pointer into the list, or NULL if the SKU isn't found.\n// Callers must not free this pointer -- the inventory owns it.\nItem *inventory_find(Inventory *inv, const char *sku);\n\n// delta may be negative (shipping stock out). Returns 0 if it would\n// take quantity below zero, and leaves the item unchanged.\nint inventory_adjust_stock(Inventory *inv, const char *sku, int delta);\n\n// Removes the node for sku. Returns 0 if not found.\nint inventory_remove(Inventory *inv, const char *sku);"
+      }
+    },
+    {
+      "narration": "Total value sums quantity times price. First and next are a tiny read-only iterator so main can print the list without touching node internals. And save and load are the binary persistence pair. That's the entire public surface.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "double inventory_total_value(const Inventory *inv);\n\n// List traversal for callers that just want to print everything.\nconst Node *inventory_first(const Inventory *inv);\nconst Node *inventory_next(const Node *node);\n\n// Binary persistence -- flattens to an array of Item on save,\n// rebuilds the list on load. See Module 5 for the file format.\nint inventory_save(const Inventory *inv, const char *path);\nint inventory_load(Inventory *inv, const char *path);\n\n#endif"
+      }
+    },
+    {
+      "narration": "That header is the single point of agreement. Inventory dot c implements exactly these functions; main dot c calls them and nothing else. Neither file ever sees the other's code.",
+      "display": {
+        "kind": "stick",
+        "scene": "handshake",
+        "heading": "One Contract",
+        "subheading": "both files agree"
+      }
+    },
+    {
+      "narration": "Now the implementation. It includes standard input and output, stdlib for malloc and free, string dot h, and its own header. We'll take the functions in the lesson's order.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 2: src/inventory.c",
+        "subheading": "the list logic, function by function"
+      }
+    },
+    {
+      "narration": "Init zeroes the head and count. Destroy walks the chain freeing each node \u2014 and notice it saves the next pointer into a local variable before calling free. Read next off a node you already freed and that's a use-after-free.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// inventory.c\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n#include \"inventory.h\"\n\nvoid inventory_init(Inventory *inv) {\n    inv->head = NULL;\n    inv->count = 0;\n}\n\nvoid inventory_destroy(Inventory *inv) {\n    Node *cur = inv->head;\n    while (cur != NULL) {\n        Node *next = cur->next;   // save next BEFORE freeing cur\n        free(cur);\n        cur = next;\n    }\n    inv->head = NULL;\n    inv->count = 0;\n}"
+      }
+    },
+    {
+      "narration": "Remember that order. Save the next pointer, free the current node, then move on. Every correct linked-list teardown in C looks exactly like this.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Save Next, Then Free",
+        "subheading": "or it's use-after-free"
+      }
+    },
+    {
+      "narration": "Find is a linear walk from the head, comparing SKUs with strcmp. Add calls find first to reject duplicates, then calls malloc for a fresh node and checks it isn't NULL before doing anything else.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "Item *inventory_find(Inventory *inv, const char *sku) {\n    for (Node *cur = inv->head; cur != NULL; cur = cur->next) {\n        if (strcmp(cur->item.sku, sku) == 0) {\n            return &cur->item;\n        }\n    }\n    return NULL;\n}\n\nint inventory_add(Inventory *inv, const char *sku, const char *name,\n                   int quantity, double unit_price) {\n    if (inventory_find(inv, sku) != NULL) {\n        return 0;   // duplicate SKU -- use inventory_adjust_stock instead\n    }\n\n    Node *node = malloc(sizeof(Node));\n    if (node == NULL) {\n        return 0;\n    }"
+      }
+    },
+    {
+      "narration": "It copies the strings in with strncpy capped one byte short, then writes the null terminator by hand. The insert points the new node at the old head and moves head to the new node. Constant time, no walk to the end \u2014 the trade-off is the newest item lists first.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "    strncpy(node->item.sku, sku, SKU_LEN - 1);\n    node->item.sku[SKU_LEN - 1] = '\\0';\n    strncpy(node->item.name, name, NAME_LEN - 1);\n    node->item.name[NAME_LEN - 1] = '\\0';\n    node->item.quantity = quantity;\n    node->item.unit_price = unit_price;\n\n    // Insert at the head -- O(1), and order doesn't matter for this use case.\n    node->next = inv->head;\n    inv->head = node;\n    inv->count++;\n    return 1;\n}"
+      }
+    },
+    {
+      "narration": "Adjust stock finds the item, and if the change would push the quantity below zero it returns zero and changes nothing. A positive delta is receiving stock, a negative delta is shipping it out, and you can never ship more than you have.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int inventory_adjust_stock(Inventory *inv, const char *sku, int delta) {\n    Item *item = inventory_find(inv, sku);\n    if (item == NULL) {\n        return 0;\n    }\n    if (item->quantity + delta < 0) {\n        return 0;   // would go negative -- refuse rather than corrupt state\n    }\n    item->quantity += delta;\n    return 1;\n}"
+      }
+    },
+    {
+      "narration": "Remove walks with two pointers \u2014 current, and the node behind it. On a match, if there's no previous node we're deleting the head, so head moves forward. Otherwise the previous node's next jumps over the current one. Then free it and drop the count.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int inventory_remove(Inventory *inv, const char *sku) {\n    Node *cur = inv->head;\n    Node *prev = NULL;\n\n    while (cur != NULL) {\n        if (strcmp(cur->item.sku, sku) == 0) {\n            if (prev == NULL) {\n                inv->head = cur->next;   // removing the head node\n            } else {\n                prev->next = cur->next; // splice cur out of the chain\n            }\n            free(cur);\n            inv->count--;\n            return 1;\n        }\n        prev = cur;\n        cur = cur->next;\n    }\n    return 0;   // not found\n}"
+      }
+    },
+    {
+      "narration": "Total value accumulates quantity times price down the list. And first and next are the whole iterator \u2014 first returns the head, next returns a node's next, both as const pointers so callers can read an item but not rewrite the list.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "double inventory_total_value(const Inventory *inv) {\n    double total = 0.0;\n    for (Node *cur = inv->head; cur != NULL; cur = cur->next) {\n        total += cur->item.quantity * cur->item.unit_price;\n    }\n    return total;\n}\n\nconst Node *inventory_first(const Inventory *inv) {\n    return inv->head;\n}\n\nconst Node *inventory_next(const Node *node) {\n    return node->next;\n}"
+      }
+    },
+    {
+      "narration": "Now the interesting part \u2014 disk. The list is scattered across the heap, but a file wants one contiguous block. So save flattens the list into an array, and load builds the list back from it.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Flatten & Rebuild",
+        "subheading": "list in RAM, array on disk"
+      }
+    },
+    {
+      "narration": "Save opens the file in binary write mode and writes a header first \u2014 just the count \u2014 so load knows how many records to expect instead of guessing. Then it allocates a temporary array sized for every item.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int inventory_save(const Inventory *inv, const char *path) {\n    FILE *f = fopen(path, \"wb\");\n    if (f == NULL) {\n        return 0;\n    }\n\n    // Header first: how many records follow, so inventory_load doesn't\n    // have to guess -- the same self-describing format Module 5 covers.\n    if (fwrite(&inv->count, sizeof(inv->count), 1, f) != 1) {\n        fclose(f);\n        return 0;\n    }\n\n    // Flatten the list to a contiguous array purely for the write --\n    // the file format is an array; the in-memory structure is a list.\n    Item *buffer = malloc(inv->count * sizeof(Item));\n    if (inv->count > 0 && buffer == NULL) {\n        fclose(f);\n        return 0;\n    }"
+      }
+    },
+    {
+      "narration": "It copies each item out of its node into that array, writes the whole thing in one fwrite call, frees the buffer, closes the file, and returns true only if every record actually reached disk.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "    size_t i = 0;\n    for (Node *cur = inv->head; cur != NULL; cur = cur->next) {\n        buffer[i++] = cur->item;\n    }\n\n    size_t written = fwrite(buffer, sizeof(Item), inv->count, f);\n    free(buffer);\n    fclose(f);\n    return written == inv->count;\n}"
+      }
+    },
+    {
+      "narration": "Load initializes an empty inventory. If the file isn't there yet, that's fine \u2014 an empty inventory is a valid result, so it returns success. Same if the header can't be read. It only fails hard on things it genuinely can't recover from.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int inventory_load(Inventory *inv, const char *path) {\n    inventory_init(inv);\n\n    FILE *f = fopen(path, \"rb\");\n    if (f == NULL) {\n        return 1;   // no file yet -- an empty inventory is a valid result\n    }\n\n    size_t count;\n    if (fread(&count, sizeof(count), 1, f) != 1) {\n        fclose(f);\n        return 1;   // empty or corrupt header -- start empty rather than fail\n    }"
+      }
+    },
+    {
+      "narration": "It allocates an array for the promised count, reads that many records in one call, and closes the file. If fewer came back than the header claimed, the file is truncated \u2014 so it discards the partial data and starts empty rather than trusting it.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "    Item *buffer = malloc(count * sizeof(Item));\n    if (count > 0 && buffer == NULL) {\n        fclose(f);\n        return 0;\n    }\n\n    size_t read_count = fread(buffer, sizeof(Item), count, f);\n    fclose(f);\n\n    if (read_count != count) {\n        free(buffer);\n        return 1;   // truncated file -- don't trust it, start empty\n    }"
+      }
+    },
+    {
+      "narration": "Then it rebuilds the list, appending at the tail this time so the on-disk order survives. If a malloc fails partway, it destroys what it built so far \u2014 no half-list, no leak \u2014 and returns failure.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "    Node *tail = NULL;\n    for (size_t i = 0; i < count; i++) {\n        Node *node = malloc(sizeof(Node));\n        if (node == NULL) {\n            free(buffer);\n            inventory_destroy(inv);   // clean up partial list before failing\n            return 0;\n        }\n        node->item = buffer[i];\n        node->next = NULL;\n\n        if (tail == NULL) {\n            inv->head = node;\n        } else {\n            tail->next = node;\n        }\n        tail = node;\n        inv->count++;\n    }\n\n    free(buffer);\n    return 1;\n}"
+      }
+    },
+    {
+      "narration": "So the code deliberately keeps two forms. A linked list in memory, because items come and go. A flat array on disk, because a file is just bytes. Each conversion runs exactly once \u2014 on save, and on load.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "List vs Array",
+        "subheading": "each shape where it fits"
+      }
+    },
+    {
+      "narration": "main dot c adds no list logic of its own. It loads the saved data, prints a menu, and turns key presses into calls on the inventory module.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 3: src/main.c",
+        "subheading": "the command-line loop"
+      }
+    },
+    {
+      "narration": "It declares one Inventory on the stack and immediately calls load, so any previously saved items are back before the user does anything. If load returns zero \u2014 a real allocation failure \u2014 it prints an error and exits.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// main.c\n#include <stdio.h>\n#include <string.h>\n#include \"inventory.h\"\n\n#define DB_PATH \"inventory.dat\"\n\nstatic void print_menu(void) {\n    printf(\"\\n1. Add item  2. List  3. Adjust stock  4. Save & Quit\\n> \");\n}\n\nint main(void) {\n    Inventory inv;\n    if (!inventory_load(&inv, DB_PATH)) {\n        fprintf(stderr, \"Could not initialize inventory.\\n\");\n        return 1;\n    }\n\n    int choice;\n    char sku[SKU_LEN], name[NAME_LEN];"
+      }
+    },
+    {
+      "narration": "The loop reads a menu number with scanf, then getchar eats the leftover newline \u2014 skip that and the next text read breaks. Option one reads the SKU and name with fgets, strips the newline with strcspn, reads the numbers, and calls inventory add.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "    do {\n        print_menu();\n        if (scanf(\"%d\", &choice) != 1) {\n            break;\n        }\n        getchar();   // consume the leftover newline\n\n        switch (choice) {\n            case 1: {\n                int qty;\n                double price;\n                printf(\"SKU: \");\n                fgets(sku, SKU_LEN, stdin);\n                sku[strcspn(sku, \"\\n\")] = '\\0';\n                printf(\"Name: \");\n                fgets(name, NAME_LEN, stdin);\n                name[strcspn(name, \"\\n\")] = '\\0';\n                printf(\"Quantity: \");\n                scanf(\"%d\", &qty);\n                printf(\"Unit price: \");\n                scanf(\"%lf\", &price);\n                getchar();\n\n                if (inventory_add(&inv, sku, name, qty, price)) {\n                    printf(\"Added.\\n\");\n                } else {\n                    printf(\"Failed -- duplicate SKU or out of memory.\\n\");\n                }\n                break;\n            }"
+      }
+    },
+    {
+      "narration": "One command per pass. Print the menu, read a choice, do that single thing, loop back \u2014 until the user picks save and quit. No concurrency anywhere, just a predictable cycle.",
+      "display": {
+        "kind": "stick",
+        "scene": "sequential",
+        "heading": "One Command at a Time",
+        "subheading": "menu loop until quit"
+      }
+    },
+    {
+      "narration": "Option two uses the first-and-next iterator to print every row, then the running total underneath. Option three reads a SKU and a signed adjustment and calls adjust stock \u2014 a negative number ships stock out, and the call fails cleanly if there isn't enough.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "            case 2:\n                for (const Node *cur = inventory_first(&inv); cur != NULL;\n                     cur = inventory_next(cur)) {\n                    printf(\"%-8s %-24s qty=%-5d $%.2f\\n\",\n                           cur->item.sku, cur->item.name,\n                           cur->item.quantity, cur->item.unit_price);\n                }\n                printf(\"Total value: $%.2f\\n\", inventory_total_value(&inv));\n                break;\n\n            case 3: {\n                int delta;\n                printf(\"SKU: \");\n                fgets(sku, SKU_LEN, stdin);\n                sku[strcspn(sku, \"\\n\")] = '\\0';\n                printf(\"Adjustment (negative to ship out): \");\n                scanf(\"%d\", &delta);\n                getchar();\n\n                if (inventory_adjust_stock(&inv, sku, delta)) {\n                    printf(\"Updated.\\n\");\n                } else {\n                    printf(\"Failed -- unknown SKU or insufficient stock.\\n\");\n                }\n                break;\n            }"
+      }
+    },
+    {
+      "narration": "Option four saves and breaks the loop. Then, after the loop ends, main calls inventory destroy exactly once to free every node. That single call is the difference between a clean exit and leaking the whole list.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "            case 4:\n                if (inventory_save(&inv, DB_PATH)) {\n                    printf(\"Saved. Goodbye!\\n\");\n                } else {\n                    printf(\"Warning: save failed.\\n\");\n                }\n                break;\n\n            default:\n                printf(\"Unknown option.\\n\");\n        }\n    } while (choice != 4);\n\n    inventory_destroy(&inv);\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "The build is a real Makefile, using the pattern rules and automatic dependency tracking from the build-systems module.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 4: Makefile",
+        "subheading": "pattern rules + -MMD -MP"
+      }
+    },
+    {
+      "narration": "The flags turn on warnings, C11, debug info, and add the include folder to the search path. Wildcard finds every C file under src, patsubst maps each to an object file under build, and the dep list swaps the o extension for d.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": "CC       := gcc\nCFLAGS   := -Wall -Wextra -std=c11 -g -Iinclude\nDEPFLAGS := -MMD -MP\n\nSRC_DIR   := src\nBUILD_DIR := build\nTARGET    := $(BUILD_DIR)/inventory\n\nSRCS := $(wildcard $(SRC_DIR)/*.c)\nOBJS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))\nDEPS := $(OBJS:.o=.d)"
+      }
+    },
+    {
+      "narration": "The target links the object files together. A pattern rule compiles any source into its object file, creating the build directory first through an order-only prerequisite. Run builds then executes; clean deletes the build folder and the data file.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": ".PHONY: all clean run\n\nall: $(TARGET)\n\n$(TARGET): $(OBJS)\n\t$(CC) $^ -o $@\n\n$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)\n\t$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@\n\n$(BUILD_DIR):\n\tmkdir -p $(BUILD_DIR)\n\nrun: $(TARGET)\n\t./$(TARGET)\n\nclean:\n\trm -rf $(BUILD_DIR) inventory.dat\n\n-include $(DEPS)"
+      }
+    },
+    {
+      "narration": "The clever bit is the last line. Those two compiler flags make gcc emit a small dot-d file listing every header each source includes. Pull those files back into the Makefile and editing inventory dot h rebuilds everything that depends on it.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Automatic Deps",
+        "subheading": "-MMD -MP plus -include"
+      }
+    },
+    {
+      "narration": "Time to actually run it. Build with make, then make run, and step through a short session at the prompt.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 5: Running It",
+        "subheading": "a quick session"
+      }
+    },
+    {
+      "narration": "Add a widget \u2014 SKU WGT-100, fifty units at four twenty-five. List prints it back with a total value of two hundred twelve fifty. Then try to ship out sixty units against fifty in stock.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "make\nmake run",
+        "output": "1. Add item  2. List  3. Adjust stock  4. Save & Quit\n> 1\nSKU: WGT-100\nName: Widget\nQuantity: 50\nUnit price: 4.25\nAdded.\n\n1. Add item  2. List  3. Adjust stock  4. Save & Quit\n> 2\nWGT-100  Widget                   qty=50    $4.25\nTotal value: $212.50\n\n1. Add item  2. List  3. Adjust stock  4. Save & Quit\n> 3\nSKU: WGT-100\nAdjustment (negative to ship out): -60\nFailed -- unknown SKU or insufficient stock.\n\n1. Add item  2. List  3. Adjust stock  4. Save & Quit\n> 4\nSaved. Goodbye!"
+      }
+    },
+    {
+      "narration": "That failure is the design working. Fifty in stock, minus sixty requested, so adjust stock refused and left the record untouched. In C nothing stops you writing a negative quantity \u2014 except the check you put there yourself.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Guardrail Held",
+        "subheading": "never goes negative"
+      }
+    },
+    {
+      "narration": "One more thing you can see in that output. Because add inserts at the head, the most recently added item lists first. If you needed arrival order instead, you'd tail-append in add, the same way load already does.",
+      "display": {
+        "kind": "text",
+        "heading": "Head insert = newest first",
+        "subheading": "a visible consequence of O(1) add"
+      }
+    },
+    {
+      "narration": "This project does manual memory management \u2014 one malloc per item, with matching frees in destroy and remove. That's exactly where a missed free or a double free hides. So verify it.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 6: Verifying No Leaks",
+        "subheading": "AddressSanitizer + valgrind"
+      }
+    },
+    {
+      "narration": "Recompile both source files with the address and undefined-behavior sanitizers, straight from the debugging-tools module. Then run a full session \u2014 add a few items, remove one, adjust stock, save and quit.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "gcc -Wall -Wextra -g -O0 -Iinclude -fsanitize=address,undefined \\\n    -o inventory_debug src/inventory.c src/main.c\n./inventory_debug"
+      }
+    },
+    {
+      "narration": "A clean exit with no sanitizer output means every node you allocated was freed exactly once \u2014 no leak, no use-after-free, no double free. That silence is the whole goal.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "No Leaks",
+        "subheading": "freed exactly once"
+      }
+    },
+    {
+      "narration": "The lesson leaves four ways to push it further, and each one exercises something from this build.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "Step 7: Stretch Goals",
+        "subheading": "where to take it next"
+      }
+    },
+    {
+      "narration": "Add a remove-item menu option and confirm with the sanitizer that deleting the head, a middle node, and the only node all work. Write a low-stock report. Reverse the list in place by swapping next pointers. And run the whole program under valgrind with full leak checking.",
+      "display": {
+        "kind": "text",
+        "heading": "Four stretch goals",
+        "subheading": "remove, low-stock, reverse, valgrind"
+      }
+    },
+    {
+      "narration": "Finishing this project means you can build and tear down a linked list correctly, split code across a header and an implementation, drive it from a CLI, script the build, and prove it's leak-free. That's the bar for Level 3.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "Level 2 Complete",
+        "subheading": "on to Advanced"
+      }
+    },
+    {
+      "narration": "The full write-up, every code block shown here, and all four stretch goals are at the link on screen. Build it yourself from the empty folder, get it running clean under the sanitizer, then start Level 3.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/10-project-inventory-system/"
+      }
+    }
+  ]
+}

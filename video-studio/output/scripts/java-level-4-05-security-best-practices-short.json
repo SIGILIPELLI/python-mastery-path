@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "The SQL Injection Bug Hiding in Plain Java Code",
+  "description": "One string concatenation is all it takes for a login form to leak your entire users table. This Short breaks down how SQL injection actually works in Java, and the one-line fix (PreparedStatement / Spring Data parameter binding) that closes it for good. Full lesson covers the rest of the OWASP Top 10 -- XSS, CSRF, and secrets management.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/05-security-best-practices/\n\n#Shorts",
+  "tags": ["java", "sql injection", "security best practices", "prepared statement", "spring data jpa", "web security", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/05-security-best-practices/"],
+  "beats": [
+    {
+      "narration": "This one line of Java code lets a hacker log in as literally any user -- and it compiles just fine.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Security Best Practices",
+        "subheading": "Java Mastery Path -- Level 4"
+      }
+    },
+    {
+      "narration": "Concatenate user input straight into a SQL query, and a single crafted string turns your WHERE clause into something that's always true -- returning every row, including passwords.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// VULNERABLE -- never do this\nString query = \"SELECT * FROM users WHERE email = '\" + userInput + \"'\";\n// userInput = \"' OR '1'='1\" turns this into a query that returns every row"
+      }
+    },
+    {
+      "narration": "The fix is one keyword: PreparedStatement. It binds your input strictly as data, never as part of the SQL itself.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "String sql = \"SELECT * FROM users WHERE email = ?\";\ntry (PreparedStatement stmt = connection.prepareStatement(sql)) {\n    stmt.setString(1, userInput);\n    ResultSet rs = stmt.executeQuery();\n}"
+      }
+    },
+    {
+      "narration": "And if you're using Spring Data's @Query with named parameters like this, you're already safe -- it binds the same way under the hood.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@Query(\"SELECT u FROM User u WHERE u.email = :email\")\nOptional<User> findByEmail(@Param(\"email\") String email);"
+      }
+    },
+    {
+      "narration": "That one swap is the difference between a secure app and a headline. Full security checklist -- XSS, CSRF, secrets, all of it -- is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/05-security-best-practices/"
+      }
+    }
+  ]
+}

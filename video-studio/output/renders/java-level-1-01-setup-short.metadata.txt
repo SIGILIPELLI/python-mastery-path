@@ -1,0 +1,14 @@
+Title: Java Doesn't Need a Build Step Anymore
+
+Description:
+Think Java always means compile-then-run? Since Java 11, you can launch a .java file directly with a single command -- no javac step required. This is lesson 1 of the Java Mastery Path: install the JDK, write your first Hello World, and use the single-file launch shortcut for quick tests.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/
+
+#Shorts
+
+Tags: java, java tutorial, learn java, java hello world, programming tutorial, coding for beginners
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/

@@ -1,0 +1,70 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "The C hello world, line by line (what each piece does)",
+  "description": "Everyone copies the six-line C hello world, but almost nobody explains what each line is for. This Short walks the \"Anatomy of the program\" breakdown from the C Mastery Path setup lesson: what including stdio.h does before compilation, why int main returns an exit status, what return 0 signals to the shell, and why gcc names your binary a.out when you forget the -o flag.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/\n\n#Shorts",
+  "tags": ["c", "c programming", "hello world", "gcc", "int main", "return 0", "learn to code", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/"],
+  "beats": [
+    {
+      "narration": "Every C hello world has the same few pieces. Most tutorials make you copy them without saying what they do.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Line by line",
+        "subheading": "what each piece does"
+      }
+    },
+    {
+      "narration": "Here's the whole program. Six lines, no filler. And no class wrapper like in Java. C has no objects.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// hello.c\n#include <stdio.h>\n\nint main(void) {\n    printf(\"Hello, world!\\n\");\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "The include line is a preprocessor directive. It pulls in printf's declaration before compilation starts. Drop it, and the compiler doesn't know what printf is.",
+      "display": {
+        "kind": "text",
+        "heading": "#include <stdio.h>",
+        "subheading": "a preprocessor directive"
+      }
+    },
+    {
+      "narration": "int main is the entry point. The int means it returns an integer exit status to the shell. Return zero means success, non-zero means an error.",
+      "display": {
+        "kind": "text",
+        "heading": "int main(void)",
+        "subheading": "returns an exit status"
+      }
+    },
+    {
+      "narration": "Now compile it. The dash o flag names the output binary. Leave it off, and gcc just calls it a dot out.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "gcc hello.c -o hello\n./hello",
+        "output": "Hello, world!"
+      }
+    },
+    {
+      "narration": "That return zero isn't decoration. It's you telling the shell the program worked. Every piece earns its place.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "It all matters",
+        "subheading": "nothing is boilerplate"
+      }
+    },
+    {
+      "narration": "The full anatomy table and exercise are in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/01-setup/"
+      }
+    }
+  ]
+}

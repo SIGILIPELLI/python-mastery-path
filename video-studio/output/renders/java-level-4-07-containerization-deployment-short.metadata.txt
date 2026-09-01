@@ -1,0 +1,14 @@
+Title: Stop Shipping Maven Into Production (Multi-Stage Docker)
+
+Description:
+Most Java Dockerfiles accidentally ship the entire Maven build toolchain into production. This Short shows the two-stage fix: compile in a throwaway Maven/JDK stage, then copy just the finished jar into a slim JRE image running as a non-root user. Same app, a fraction of the image size, way less attack surface.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/
+
+#Shorts
+
+Tags: java, docker, multi-stage build, containerization, devops, spring boot, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/

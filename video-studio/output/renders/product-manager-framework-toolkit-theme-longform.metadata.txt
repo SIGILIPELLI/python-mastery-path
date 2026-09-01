@@ -1,0 +1,22 @@
+Title: The Product Manager's Framework Toolkit: 6 Tools Every PM Keeps in Their Back Pocket
+
+Description:
+Most product management "frameworks" content is either abstract theory or a listicle with no worked example. This video is a reference catalog instead: six named tools a working PM actually reaches for, and for each one we name the tool, spell out its exact template or acronym, and walk a short concrete example so you can see it in use. We cover Jobs To Be Done and the "when... I want to... so I can..." job statement, the fill-in-the-blank problem statement template plus a rough opportunity-sizing pass, RICE scoring with the lesson's own worked numbers (and how it differs from MoSCoW and a Value/Effort 2x2), user stories with Given/When/Then acceptance criteria, the North Star metric and the AARRR "pirate metrics" funnel, and the theme-based Now / Next / Later roadmap. Everything is drawn from Level 1 of the Product Manager Mastery Path. Treat it as a shelf you can pull any single tool off of when the situation calls for it.
+
+Lessons covered in this video:
+- Understanding Customers & Users (Jobs To Be Done): https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- Problem Discovery (the problem statement template): https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+- Prioritization Basics (RICE, MoSCoW, Value/Effort): https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+- Writing Requirements (user stories + Given/When/Then): https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+- Metrics & KPIs Basics (North Star + AARRR): https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/
+- Roadmapping Basics (Now / Next / Later): https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/
+
+Tags: product management, product manager, jobs to be done, JTBD, RICE prioritization, product frameworks, user stories, acceptance criteria, north star metric, AARRR, pirate metrics, product roadmap, now next later, PM fundamentals, associate product manager
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/

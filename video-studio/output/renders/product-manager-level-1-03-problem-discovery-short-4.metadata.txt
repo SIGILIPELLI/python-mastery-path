@@ -1,0 +1,14 @@
+Title: One angry support ticket is not a problem. It's a signal.
+
+Description:
+New PMs treat every loud request as a problem to solve, then wonder why they keep shipping fixes for symptoms. This Short breaks down the difference between a signal (one piece of raw evidence) and a problem (the validated pain a cluster of signals points to), using the B2B analytics worked example from Level 1's Problem Discovery lesson: two support tickets, a return-rate drop, and one lost renewal that all cluster into a single real problem. Collect signals, cluster them, then write the problem statement before anyone proposes a solution.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/
+
+#Shorts
+
+Tags: product management, problem discovery, product discovery, signals vs problems, problem statement, pm skills, product manager, user research
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/

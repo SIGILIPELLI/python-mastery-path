@@ -1,0 +1,51 @@
+{
+  "type": "short",
+  "language": "product-manager",
+  "title": "\"Improve Engagement\" Is Not a Success Metric",
+  "description": "Every PRD needs its own success metric, and \"improve engagement\" isn't one. This Short walks the four-question checklist from the Product Manager Mastery Path: can you measure it with existing instrumentation, is there a clear baseline, does it plausibly move the North Star, and is the target specific and numeric? We anchor it with the lesson's worked example: a project-management SaaS whose weekly-digest-email initiative set the target \"+8 percentage points in week-3 team retention within 6 weeks of launch, against the current 35% baseline.\"\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n\n#Shorts",
+  "tags": ["product management", "product manager", "metrics", "KPIs", "success metrics", "PRD", "north star metric", "retention", "product analytics", "pm interview"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"],
+  "beats": [
+    {
+      "narration": "Improve engagement is not a success metric. If nobody can check whether you actually hit it, it doesn't belong in your PRD.",
+      "display": {
+        "kind": "text",
+        "heading": "\"Improve engagement\" is not a success metric",
+        "subheading": "Product Manager Mastery Path -- Level 1"
+      }
+    },
+    {
+      "narration": "Every PRD needs its own success metric, separate from the North Star. Run it through a checklist. Can you measure it with the instrumentation you already have? Is there a clear baseline before launch?",
+      "display": {
+        "kind": "text",
+        "heading": "Every PRD needs its own success metric",
+        "subheading": "Measurable with existing instrumentation? Clear baseline before launch?"
+      }
+    },
+    {
+      "narration": "Without a baseline, improvement is unfalsifiable. Then: does moving this metric plausibly move the North Star, so you're not chasing a vanity number? And is the target specific and numeric?",
+      "display": {
+        "kind": "text",
+        "heading": "Does it move the North Star -- or just a vanity metric?",
+        "subheading": "\"Improve engagement\" isn't checkable. \"+10% week-2 retention\" is."
+      }
+    },
+    {
+      "narration": "Here's the lesson's real example. A project-management SaaS ships a weekly digest email. Its success metric: plus eight points in week-three team retention, within six weeks of launch, against the current thirty-five percent baseline.",
+      "display": {
+        "kind": "text",
+        "heading": "The weekly-digest-email initiative",
+        "subheading": "\"+8 points in week-3 team retention within 6 weeks, vs. the current 35% baseline\""
+      }
+    },
+    {
+      "narration": "That's leading, specific, and measurable, and it ties straight back to the North Star. Full lesson's linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson:",
+        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"
+      }
+    }
+  ]
+}

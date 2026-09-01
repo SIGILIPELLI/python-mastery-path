@@ -1,0 +1,14 @@
+Title: Why Watching Quarterly Revenue Is a PM Trap
+
+Description:
+Most PMs know what a metric is. Fewer know the difference between a metric they can steer with and one that only confirms the past. This Short breaks down leading vs. lagging metrics -- and the common mistake of obsessing over a lagging number week to week, long after the decisions that moved it are already history.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/
+
+#Shorts
+
+Tags: product manager, product management, KPIs, metrics, leading vs lagging metrics, PM tips, career, Shorts
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/

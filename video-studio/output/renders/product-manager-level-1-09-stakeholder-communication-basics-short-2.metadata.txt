@@ -1,0 +1,14 @@
+Title: How to Handle Stakeholder Pushback (Without Caving)
+
+Description:
+When a stakeholder pushes back hard on your roadmap call, the answer isn't to win the argument or cave on the spot -- it's a specific four-step move. This Short walks through handling disagreement from stakeholders, using a real sales-vs-SSO example straight from the lesson.
+
+Source lesson:
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/
+
+#Shorts
+
+Tags: product management, stakeholder management, PM skills, product manager, leadership, communication skills
+
+Source lesson(s):
+- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/

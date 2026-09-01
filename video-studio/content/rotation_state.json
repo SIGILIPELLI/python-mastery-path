@@ -1,0 +1,427 @@
+{
+  "mode": "sequential",
+  "current_subject_index": 2,
+  "short_uses": {
+    "python": {
+      "level-1/03-control-flow": 2,
+      "level-1/01-setup": 2,
+      "level-1/02-variables-data-types": 2,
+      "level-1/04-functions-scope": 2,
+      "level-1/05-data-structures": 2,
+      "level-1/06-strings-formatting": 1,
+      "level-1/07-file-io": 1,
+      "level-1/08-error-handling": 1,
+      "level-1/09-modules-packages": 1,
+      "level-1/10-project-todo-app": 1,
+      "level-2/01-oop": 1,
+      "level-2/02-comprehensions-generators": 1,
+      "level-2/03-functional-programming": 1,
+      "level-2/04-exceptions-context-managers": 1,
+      "level-2/05-data-formats": 1,
+      "level-2/06-regular-expressions": 1,
+      "level-2/07-dates-times": 1,
+      "level-2/08-venvs-dependencies": 1,
+      "level-2/09-testing-basics": 1,
+      "level-2/10-project-weather-cli": 1,
+      "level-3/01-advanced-oop": 1,
+      "level-3/02-iterators-generators-coroutines": 1,
+      "level-3/03-decorators-descriptors": 1,
+      "level-3/04-concurrency-threading-multiprocessing": 1,
+      "level-3/05-concurrency-asyncio": 1,
+      "level-3/06-databases": 1,
+      "level-3/07-consuming-apis": 1,
+      "level-3/08-building-apis": 1,
+      "level-3/09-packaging-distribution": 1,
+      "level-3/10-profiling-performance": 1,
+      "level-3/11-project-rest-api-db": 1,
+      "level-4/01-design-patterns": 1,
+      "level-4/02-advanced-asyncio": 1,
+      "level-4/03-metaprogramming": 1,
+      "level-4/04-production-apis": 1,
+      "level-4/05-testing-at-scale": 1,
+      "level-4/06-data-engineering": 1,
+      "level-4/07-ml-foundations": 1,
+      "level-4/08-deployment-devops": 1,
+      "level-4/09-security-best-practices": 1,
+      "level-4/10-capstone-project": 1
+    },
+    "java": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-data-types": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-methods-parameters": 1,
+      "level-1/05-arrays-collections": 1,
+      "level-1/06-strings-formatting": 1,
+      "level-1/07-classes-objects": 1,
+      "level-1/08-exception-handling": 1,
+      "level-1/09-packages-build-tools": 1,
+      "level-1/10-project-contact-book": 1,
+      "level-2/01-oop-deep-dive": 1,
+      "level-2/02-collections-framework": 1,
+      "level-2/03-generics": 1,
+      "level-2/04-lambdas-streams": 1,
+      "level-2/05-exceptions-advanced": 1,
+      "level-2/06-file-io-nio": 1,
+      "level-2/07-junit-testing": 1,
+      "level-2/08-build-tools": 1,
+      "level-2/09-enums-records-sealed": 1,
+      "level-2/10-project-inventory-system": 1,
+      "level-3/01-concurrency-basics": 1,
+      "level-3/02-util-concurrent": 1,
+      "level-3/03-jdbc-databases": 1,
+      "level-3/04-rest-apis-spring-boot": 1,
+      "level-3/05-design-patterns": 1,
+      "level-3/06-serialization": 1,
+      "level-3/07-networking-basics": 1,
+      "level-3/08-reflection-annotations": 1,
+      "level-3/09-jvm-internals-gc": 1,
+      "level-3/10-profiling-optimization": 1,
+      "level-3/11-project-rest-api-db": 1,
+      "level-4/01-spring-ecosystem-production": 1,
+      "level-4/02-microservices-architecture": 1,
+      "level-4/03-advanced-concurrency-patterns": 1,
+      "level-4/04-testing-at-scale": 1,
+      "level-4/05-security-best-practices": 1,
+      "level-4/06-messaging-event-driven": 1,
+      "level-4/07-containerization-deployment": 1,
+      "level-4/08-observability": 1,
+      "level-4/09-performance-at-scale": 1,
+      "level-4/10-capstone-project": 1
+    },
+    "javascript": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-data-types": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-functions-scope": 1,
+      "level-1/05-arrays-objects": 1,
+      "level-1/06-strings-template-literals": 1,
+      "level-1/07-dom-events": 1,
+      "level-1/08-error-handling": 1,
+      "level-1/09-modules-npm": 1,
+      "level-1/10-project-todo-app": 1
+    },
+    "shell": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-data-types": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-loops": 1,
+      "level-1/05-functions-arguments": 1,
+      "level-1/06-files-directories": 1,
+      "level-1/07-pipes-redirection": 1,
+      "level-1/08-text-processing": 1,
+      "level-1/09-exit-codes-error-handling": 1,
+      "level-1/10-project-backup-script": 1
+    },
+    "c": {
+      "level-1/07-structs": 2,
+      "level-1/08-file-io": 2,
+      "level-1/09-preprocessor-multifile": 2,
+      "level-1/01-setup": 2,
+      "level-1/02-variables-data-types": 2,
+      "level-1/03-control-flow": 2,
+      "level-1/04-functions": 2,
+      "level-1/05-arrays-strings": 2,
+      "level-1/06-pointers-basics": 2,
+      "level-1/10-project-contact-book": 2,
+      "level-2/01-pointers-deep-dive": 1,
+      "level-2/02-dynamic-memory": 1,
+      "level-2/03-multidim-arrays-strings": 1,
+      "level-2/04-structs-unions-advanced": 1,
+      "level-2/05-binary-file-io": 1,
+      "level-2/06-error-handling": 1,
+      "level-2/07-modular-programming": 1,
+      "level-2/08-makefiles-build-systems": 1,
+      "level-2/09-debugging-tools": 1,
+      "level-2/10-project-inventory-system": 1,
+      "level-3/01-data-structures": 1,
+      "level-3/02-trees-graphs": 1,
+      "level-3/03-sorting-searching": 1,
+      "level-3/04-bit-manipulation": 1,
+      "level-3/05-memory-management-deep-dive": 1,
+      "level-3/06-static-dynamic-libraries": 1
+    },
+    "cpp": {
+      "level-1/06-strings": 1,
+      "level-1/07-classes-objects": 1,
+      "level-1/08-references-pointers": 1,
+      "level-1/09-exception-handling": 1,
+      "level-1/01-setup": 1
+    },
+    "go": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-types-operators": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-functions-multiple-returns": 1,
+      "level-1/05-arrays-slices-maps": 1
+    },
+    "sql": {
+      "level-1/01-setup-first-queries": 1,
+      "level-1/02-select-basics-data-types": 1,
+      "level-1/03-filtering-where": 1,
+      "level-1/04-sorting-limiting": 1,
+      "level-1/05-aggregates-group-by": 1,
+      "level-1/06-joins-basics": 1,
+      "level-1/07-working-with-null": 1,
+      "level-1/08-creating-tables": 1,
+      "level-1/09-insert-update-delete": 1,
+      "level-1/10-project-library-database": 1
+    },
+    "rust": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-types-ownership": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-functions": 1,
+      "level-1/06-collections": 1,
+      "level-1/05-structs-enums": 1,
+      "level-1/07-error-handling-basics": 1,
+      "level-1/08-pattern-matching": 1,
+      "level-1/09-modules-cargo": 1,
+      "level-1/10-project-todo-cli": 1
+    },
+    "typescript": {
+      "level-1/01-setup": 1,
+      "level-1/02-basic-types": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-functions-type-annotations": 1,
+      "level-1/05-interfaces-type-aliases": 1,
+      "level-1/06-arrays-objects-typed": 1,
+      "level-1/07-classes-basics": 1,
+      "level-1/08-enums": 1,
+      "level-1/09-modules-tsconfig": 1,
+      "level-1/10-project-todo-cli": 1
+    },
+    "ruby": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-types": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/04-methods": 1,
+      "level-1/05-arrays-hashes": 1
+    },
+    "php": {
+      "level-1/01-setup": 1,
+      "level-1/02-variables-types": 1,
+      "level-1/03-control-flow": 1,
+      "level-1/06-strings": 1,
+      "level-1/07-classes-objects": 1,
+      "level-1/04-functions": 1,
+      "level-1/05-arrays": 1,
+      "level-1/08-error-handling": 1,
+      "level-1/09-composer-basics": 1,
+      "level-1/10-project-todo-app": 1
+    },
+    "product-manager": {
+      "level-1/01-what-is-product-management": 4,
+      "level-1/02-understanding-customers-users": 4,
+      "level-1/03-problem-discovery": 4,
+      "level-1/04-prioritization-basics": 4,
+      "level-1/05-writing-requirements": 4,
+      "level-1/06-working-with-design-engineering": 3,
+      "level-1/07-metrics-kpis-basics": 3,
+      "level-1/08-roadmapping-basics": 3,
+      "level-1/09-stakeholder-communication-basics": 3,
+      "level-1/10-project-complete-prd": 3
+    }
+  },
+  "longform_used": {
+    "python": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-3"
+      },
+      {
+        "kind": "level_capstone",
+        "level": "level-4",
+        "slug": "level-4/10-capstone-project"
+      },
+      {
+        "kind": "project",
+        "slug": "level-4/10-capstone-project"
+      },
+      {
+        "kind": "theme",
+        "topic": "Python Concurrency: Threading, Multiprocessing & Asyncio"
+      }
+    ],
+    "java": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-3"
+      },
+      {
+        "kind": "level_capstone",
+        "level": "level-4",
+        "slug": "level-4/10-capstone-project"
+      },
+      {
+        "kind": "project",
+        "slug": "level-4/10-capstone-project"
+      }
+    ],
+    "javascript": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      },
+      {
+        "kind": "level_capstone",
+        "level": "level-4",
+        "slug": "level-4/10-capstone-project"
+      }
+    ],
+    "shell": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "c": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-3"
+      },
+      {
+        "kind": "project",
+        "slug": "level-1/10-project-contact-book"
+      },
+      {
+        "kind": "project",
+        "slug": "level-2/10-project-inventory-system"
+      }
+    ],
+    "cpp": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "go": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "sql": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "rust": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "typescript": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "ruby": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "php": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "level_roundup",
+        "level": "level-2"
+      }
+    ],
+    "product-manager": [
+      {
+        "kind": "level_roundup",
+        "level": "level-1"
+      },
+      {
+        "kind": "project",
+        "slug": "level-1/10-project-complete-prd"
+      },
+      {
+        "kind": "theme"
+      },
+      {
+        "kind": "theme"
+      },
+      {
+        "kind": "theme"
+      },
+      {
+        "kind": "theme"
+      }
+    ],
+    "s32k": [
+      {
+        "kind": "level_capstone",
+        "level": "level-1",
+        "slug": "level-1/10-capstone-can-sensor-node"
+      }
+    ]
+  },
+  "completed_subjects": [
+    "python",
+    "product-manager"
+  ]
+}

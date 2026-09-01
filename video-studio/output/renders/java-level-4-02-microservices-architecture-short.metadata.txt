@@ -1,0 +1,14 @@
+Title: One Java Annotation Stops Cascading Microservice Failures
+
+Description:
+When a downstream microservice starts failing, hammering it with retries just makes things worse. Spring's circuit breaker annotation from Resilience4j trips once failures cross a threshold, skipping the network entirely and routing straight to a fallback -- giving the failing service room to recover. This is one pattern from the microservices architecture lesson in the Java Mastery Path.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/
+
+#Shorts
+
+Tags: java, microservices, circuit breaker, resilience4j, spring boot, software architecture, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/

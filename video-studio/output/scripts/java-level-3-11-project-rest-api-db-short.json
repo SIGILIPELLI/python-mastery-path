@@ -1,0 +1,52 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "This Java Interface Has Zero Code... and a Full API",
+  "description": "Spring Data JPA can generate a complete CRUD data layer from a single empty interface -- no SQL, no manual queries written by hand. This Short walks through the real Task Management REST API project from the Java Mastery Path: the repository, the controller, and a live curl request hitting an H2 database. See the full project, including stretch goals like pagination and validation, at the link below.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-3/11-project-rest-api-db/\n\n#Shorts",
+  "tags": ["java", "spring boot", "rest api", "spring data jpa", "crud tutorial", "backend engineering", "programming shorts"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-3/11-project-rest-api-db/"],
+  "beats": [
+    {
+      "narration": "This one Java interface is the entire data access layer for a full REST API -- and it has zero method bodies.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Zero Code, Full CRUD API",
+        "subheading": "Java Mastery Path -- Level 3 Project"
+      }
+    },
+    {
+      "narration": "Extend JpaRepository, and Spring Data JPA generates findAll, findById, save, and deleteById for you automatically, at runtime.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// TaskRepository.java\npackage com.example.taskapi;\n\nimport org.springframework.data.jpa.repository.JpaRepository;\n\npublic interface TaskRepository extends JpaRepository<Task, Long> {\n}"
+      }
+    },
+    {
+      "narration": "A thin controller calls that repository through a service layer, and now GET and POST map straight to your H2 database.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "@GetMapping\npublic List<Task> getAll() {\n    return taskService.findAll();\n}\n\n@PostMapping\npublic ResponseEntity<Task> create(@RequestBody TaskRequest request) {\n    Task created = taskService.create(request.title());\n    return ResponseEntity.status(201).body(created);\n}"
+      }
+    },
+    {
+      "narration": "Hit that endpoint with curl, and the task is already saved -- no SQL written by hand, anywhere.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "curl -X POST http://localhost:8080/tasks \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\"title\": \"Write Level 3 capstone docs\", \"completed\": false}'",
+        "output": "{\"id\":1,\"title\":\"Write Level 3 capstone docs\",\"completed\":false}"
+      }
+    },
+    {
+      "narration": "That's the whole CRUD project built layer by layer -- full source and stretch goals are in the lesson, link below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-3/11-project-rest-api-db/"
+      }
+    }
+  ]
+}

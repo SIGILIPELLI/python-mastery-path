@@ -1,0 +1,14 @@
+Title: The Java Logging Habit That Costs You Nothing
+
+Description:
+Most Java devs write log statements without thinking about the cost -- but SLF4J's `{}` placeholder syntax isn't just cleaner, it's how Logback skips building your log message entirely when that level is disabled. In this Short, see the real OrderService logging code from Level 4 of the Java Mastery Path and learn why concatenating strings in your logs quietly taxes every request in production.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-4/08-observability/
+
+#Shorts
+
+Tags: java, spring boot, logging, slf4j, observability, programming tutorial, software engineering
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-4/08-observability/

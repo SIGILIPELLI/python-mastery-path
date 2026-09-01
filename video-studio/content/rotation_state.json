@@ -1,6 +1,6 @@
 {
   "mode": "sequential",
-  "current_subject_index": 2,
+  "current_subject_index": 3,
   "short_uses": {
     "python": {
       "level-1/03-control-flow": 2,
@@ -123,11 +123,11 @@
       "level-1/05-arrays-strings": 2,
       "level-1/06-pointers-basics": 2,
       "level-1/10-project-contact-book": 2,
-      "level-2/01-pointers-deep-dive": 1,
-      "level-2/02-dynamic-memory": 1,
-      "level-2/03-multidim-arrays-strings": 1,
-      "level-2/04-structs-unions-advanced": 1,
-      "level-2/05-binary-file-io": 1,
+      "level-2/01-pointers-deep-dive": 2,
+      "level-2/02-dynamic-memory": 2,
+      "level-2/03-multidim-arrays-strings": 2,
+      "level-2/04-structs-unions-advanced": 2,
+      "level-2/05-binary-file-io": 2,
       "level-2/06-error-handling": 1,
       "level-2/07-modular-programming": 1,
       "level-2/08-makefiles-build-systems": 1,
@@ -318,6 +318,9 @@
       {
         "kind": "project",
         "slug": "level-2/10-project-inventory-system"
+      },
+      {
+        "kind": "theme"
       }
     ],
     "cpp": [
@@ -422,6 +425,7 @@
   },
   "completed_subjects": [
     "python",
-    "product-manager"
+    "product-manager",
+    "c"
   ]
 }

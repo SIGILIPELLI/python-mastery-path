@@ -1,8 +1,8 @@
 site_name: Python Mastery Path
 site_description: A structured, module-wise Python training program from entry level to master level.
-site_url: https://sigilipelli.github.io/python-skillmastery/
+site_url: https://sigilipelli.github.io/python-mastery-path/
 repo_url: https://github.com/sigilipelli/python-mastery-path
-repo_name: python-skillmastery
+repo_name: python-mastery-path
 
 theme:
   name: material

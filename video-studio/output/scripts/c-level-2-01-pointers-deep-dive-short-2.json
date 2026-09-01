@@ -1,0 +1,63 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "C pointers: why +1 doesn't mean +1 byte",
+  "description": "Adding 1 to a pointer in C does not add one byte. The compiler scales it by the size of the pointed-to type, which is exactly why nums[i] equals *(nums + i). The same lesson also explains why arrays are not pointers: pass one into a function and its size collapses from 40 bytes to 8. Watch to see both in action.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/01-pointers-deep-dive/\n\n#Shorts",
+  "tags": ["c", "c programming", "pointers", "pointer arithmetic", "arrays in c", "c tutorial", "programming tutorial", "learn c"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/01-pointers-deep-dive/"],
+  "beats": [
+    {
+      "narration": "Here's a C question. Add one to an int pointer. How far does the address move? Not one byte. A whole element.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Pointer + 1",
+        "subheading": "how many bytes?"
+      }
+    },
+    {
+      "narration": "The compiler knows the type. Add one to an int pointer, it jumps by sizeof int. The same step on a char pointer moves one byte.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int  *ip = nums;      // int  nums[]    = {10, 20, 30, 40};\nchar *cp = letters;   // char letters[] = {'a','b','c','d'};\n\nprintf(\"ip + 1 moved %zu bytes\\n\", sizeof(int));\nprintf(\"cp + 1 moved %zu byte\\n\",  sizeof(char));"
+      }
+    },
+    {
+      "narration": "Same plus one, a different jump each time, four bytes versus one. It's also why nums index i is just star of nums plus i.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "printf(\"%p -> %p\\n\", (void *)ip, (void *)(ip + 1));",
+        "output": "ip     = 0x7ffee0a1c9a0\nip + 1 = 0x7ffee0a1c9a4   (moved 4 bytes)\ncp + 1 = 0x7ffee0a1c991   (moved 1 byte)"
+      }
+    },
+    {
+      "narration": "Pass an array into a function and the size info vanishes. Inside it's only a pointer, so forty bytes reads as eight.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "void by_param(int arr[]) {          // silently: int *arr\n    printf(\"inside: sizeof(arr) = %zu\\n\", sizeof(arr));\n}\n\nint nums[10];\nprintf(\"in main: sizeof(nums) = %zu\\n\", sizeof(nums));\nby_param(nums);",
+        "output": "in main: sizeof(nums) = 40\ninside: sizeof(arr) = 8"
+      }
+    },
+    {
+      "narration": "So arrays are not pointers. They decay the moment you pass them, and the length is gone. That's why array functions always want a count.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Arrays != pointers",
+        "subheading": "length is lost"
+      }
+    },
+    {
+      "narration": "The full deep dive covers const placement, void star, and function pointers.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/01-pointers-deep-dive/"
+      }
+    }
+  ]
+}

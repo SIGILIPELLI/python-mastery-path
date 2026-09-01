@@ -1,0 +1,14 @@
+Title: This C struct wastes 4 bytes and it's the field order
+
+Description:
+Two C structs with the exact same three fields can have different sizes, purely because of declaration order. This Short shows why sizeof surprises you: the compiler inserts invisible padding bytes so each field lands on an aligned address. Reorder wide members first and the struct shrinks for free. Full walkthrough, plus unions and bit-fields, in the lesson.
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/
+
+#Shorts
+
+Tags: c, c programming, structs, memory alignment, struct padding, sizeof, data structures, systems programming, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/

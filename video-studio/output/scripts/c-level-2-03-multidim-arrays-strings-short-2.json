@@ -1,0 +1,63 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "strtok in C eats your string alive",
+  "description": "strtok looks like a friendly string splitter, but it mutates your buffer in place and hides its progress in a static variable. Here's exactly what it does to your array, why a string literal is undefined behavior, and why two strtok loops can't run at once. From the C Mastery Path lesson on multi-dimensional arrays and string manipulation.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/\n\n#Shorts",
+  "tags": ["c", "c programming", "strtok", "string manipulation", "c strings", "undefined behavior", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/"],
+  "beats": [
+    {
+      "narration": "You split a string in C with strtok. Every field comes out fine. Then you print the original string, and most of it is gone.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Where did it go?",
+        "subheading": "strtok surprise"
+      }
+    },
+    {
+      "narration": "Here's the split. strtok hands back one comma-separated field at a time until it returns NULL.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "char line[] = \"widget,42,9.99\";\n\nchar *field = strtok(line, \",\");\nwhile (field != NULL) {\n    printf(\"[%s]\\n\", field);\n    field = strtok(NULL, \",\");\n}\n\nprintf(\"line is now: %s\\n\", line);"
+      }
+    },
+    {
+      "narration": "But it never copies. Each time it hits a comma, it overwrites that comma with a null terminator, right inside your array. Afterward the string stops at the first field.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "printf(\"line is now: %s\\n\", line);",
+        "output": "[widget]\n[42]\n[9.99]\nline is now: widget"
+      }
+    },
+    {
+      "narration": "Two rules. Never pass strtok a string literal, that's undefined behavior. And it keeps its place in a hidden static variable, so two strtok loops can't run at once.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Two rules",
+        "subheading": "no literals, no nesting"
+      }
+    },
+    {
+      "narration": "Need the original intact? Split a copy instead. Fields out, data kept.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "Split a copy",
+        "subheading": "keep your data"
+      }
+    },
+    {
+      "narration": "Full breakdown's in the C Mastery Path lesson on multi-dimensional arrays and strings.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/"
+      }
+    }
+  ]
+}

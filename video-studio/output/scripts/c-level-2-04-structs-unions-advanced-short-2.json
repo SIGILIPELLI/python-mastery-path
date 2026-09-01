@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "This C struct wastes 4 bytes and it's the field order",
+  "description": "Two C structs with the exact same three fields can have different sizes, purely because of declaration order. This Short shows why sizeof surprises you: the compiler inserts invisible padding bytes so each field lands on an aligned address. Reorder wide members first and the struct shrinks for free. Full walkthrough, plus unions and bit-fields, in the lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/\n\n#Shorts",
+  "tags": ["c", "c programming", "structs", "memory alignment", "struct padding", "sizeof", "data structures", "systems programming", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/"],
+  "beats": [
+    {
+      "narration": "Two structs. Same three fields, same data. One is twelve bytes, the other is eight. You didn't add anything. So where did those extra four bytes come from?",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Same fields",
+        "subheading": "different size"
+      }
+    },
+    {
+      "narration": "Here they are. Bad holds a char, then an int, then a char. Good puts the int first, then both chars. Only the order changed.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stddef.h>\n\nstruct Bad  { char a; int b; char c; };   // char, pad, int, char, pad\nstruct Good { int b; char a; char c; };   // int, char, char, pad"
+      }
+    },
+    {
+      "narration": "Run it. Bad is twelve bytes, Good is eight. The CPU wants that int on a four-byte boundary, so the compiler quietly inserts padding after the first char to line it up.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "printf(\"sizeof(struct Bad)  = %zu\\n\", sizeof(struct Bad));\nprintf(\"sizeof(struct Good) = %zu\\n\", sizeof(struct Good));\nprintf(\"Bad:  a@%zu b@%zu c@%zu\\n\",\n       offsetof(struct Bad, a),\n       offsetof(struct Bad, b),\n       offsetof(struct Bad, c));",
+        "output": "sizeof(struct Bad)  = 12\nsizeof(struct Good) = 8\nBad:  a@0 b@4 c@8\nGood: b@0 a@4 c@5"
+      }
+    },
+    {
+      "narration": "So the fix is free. Declare your wide members first, doubles and pointers, then the narrow ones. Same fields, less memory, no tricks.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Wide first",
+        "subheading": "padding shrinks"
+      }
+    },
+    {
+      "narration": "There's more in the full lesson, including unions and bit-fields.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/"
+      }
+    }
+  ]
+}

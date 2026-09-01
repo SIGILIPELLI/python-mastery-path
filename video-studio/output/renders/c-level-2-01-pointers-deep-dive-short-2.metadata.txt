@@ -1,0 +1,14 @@
+Title: C pointers: why +1 doesn't mean +1 byte
+
+Description:
+Adding 1 to a pointer in C does not add one byte. The compiler scales it by the size of the pointed-to type, which is exactly why nums[i] equals *(nums + i). The same lesson also explains why arrays are not pointers: pass one into a function and its size collapses from 40 bytes to 8. Watch to see both in action.
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/01-pointers-deep-dive/
+
+#Shorts
+
+Tags: c, c programming, pointers, pointer arithmetic, arrays in c, c tutorial, programming tutorial, learn c
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/01-pointers-deep-dive/

@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "c",
+  "title": "The realloc line that silently leaks memory forever",
+  "description": "Assigning realloc's result straight back into the same pointer is one of C's most common heap leaks: if the call fails it returns NULL while your original block stays allocated, and you've just lost the only pointer to it. This Short shows the bug and the temporary-pointer fix from the C Mastery Path dynamic memory lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/02-dynamic-memory/\n\n#Shorts",
+  "tags": ["c", "c programming", "realloc", "memory leak", "dynamic memory", "malloc", "pointers", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/02-dynamic-memory/"],
+  "beats": [
+    {
+      "narration": "This one line of C looks totally reasonable. It can also leak memory forever.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Looks Fine",
+        "subheading": "it isn't"
+      }
+    },
+    {
+      "narration": "You want a bigger block, so you pass items to realloc and store the result back in items. But if realloc fails, it returns NULL and leaves the old block still allocated. You just overwrote the only pointer to it. It's leaked until the program exits.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// if this realloc fails, the old block leaks\nitems = realloc(items, new_cap * sizeof *items);\nif (items == NULL) return 1;"
+      }
+    },
+    {
+      "narration": "The fix is a temporary pointer. Assign realloc's result to tmp. If it's NULL, the original block is still valid, so you free it and bail. Only when tmp is good do you commit it back to items.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "int *tmp = realloc(items, new_cap * sizeof *items);\nif (tmp == NULL) {\n    free(items);          // original is still valid\n    printf(\"Grow failed.\\n\");\n    return 1;\n}\nitems = tmp;\ncapacity = new_cap;"
+      }
+    },
+    {
+      "narration": "This pattern is everywhere in C. A temp pointer, plus a free on the failure path, is how you grow a buffer without leaking.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "The Rule",
+        "subheading": "never realloc in place"
+      }
+    },
+    {
+      "narration": "Full breakdown, including calloc and the four ways heap code goes wrong, in the Level 2 dynamic memory lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/02-dynamic-memory/"
+      }
+    }
+  ]
+}

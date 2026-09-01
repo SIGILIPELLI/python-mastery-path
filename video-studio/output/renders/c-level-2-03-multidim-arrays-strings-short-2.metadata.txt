@@ -1,0 +1,14 @@
+Title: strtok in C eats your string alive
+
+Description:
+strtok looks like a friendly string splitter, but it mutates your buffer in place and hides its progress in a static variable. Here's exactly what it does to your array, why a string literal is undefined behavior, and why two strtok loops can't run at once. From the C Mastery Path lesson on multi-dimensional arrays and string manipulation.
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/
+
+#Shorts
+
+Tags: c, c programming, strtok, string manipulation, c strings, undefined behavior, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/

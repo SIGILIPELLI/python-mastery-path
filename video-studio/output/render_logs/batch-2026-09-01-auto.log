@@ -1,0 +1,51 @@
+=== RENDER c-level-2-01-pointers-deep-dive-short-2 Tue Sep  1 11:11:29 IST 2026 ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 6 beats...
+      -> total narration: 56.2s across 6 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-01-pointers-deep-dive-short-2.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-01-pointers-deep-dive-short-2.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~56s
+OK c-level-2-01-pointers-deep-dive-short-2
+=== RENDER c-level-2-02-dynamic-memory-short-2 Tue Sep  1 11:13:13 IST 2026 ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 56.7s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-02-dynamic-memory-short-2.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-02-dynamic-memory-short-2.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~57s
+OK c-level-2-02-dynamic-memory-short-2
+=== RENDER c-level-2-03-multidim-arrays-strings-short-2 Tue Sep  1 11:14:48 IST 2026 ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 6 beats...
+      -> total narration: 56.0s across 6 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-03-multidim-arrays-strings-short-2.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-03-multidim-arrays-strings-short-2.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~56s
+OK c-level-2-03-multidim-arrays-strings-short-2
+=== RENDER c-level-2-04-structs-unions-advanced-short-2 Tue Sep  1 11:17:11 IST 2026 ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 54.0s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-04-structs-unions-advanced-short-2.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-04-structs-unions-advanced-short-2.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~54s
+OK c-level-2-04-structs-unions-advanced-short-2
+=== RENDER c-level-2-05-binary-file-io-short-2 Tue Sep  1 11:18:31 IST 2026 ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 5 beats...
+      -> total narration: 57.7s across 5 beats
+[2/3] Rendering vertical (Shorts) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-05-binary-file-io-short-2.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-level-2-05-binary-file-io-short-2.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~58s
+OK c-level-2-05-binary-file-io-short-2
+=== RENDER c-professional-c-practices-theme-longform Tue Sep  1 11:20:17 IST 2026 ===

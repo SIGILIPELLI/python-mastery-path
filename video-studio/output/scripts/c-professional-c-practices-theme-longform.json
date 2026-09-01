@@ -1,0 +1,306 @@
+{
+  "type": "longform",
+  "language": "c",
+  "title": "Writing Professional C: Error Handling, Modular Design, Makefiles & Debugging (Full Guide)",
+  "description": "C that compiles and runs is not the same as C another engineer can maintain. This video walks through the four habits that close that gap: an error-handling convention that actually scales -- status returns with out-parameters, errno, your own enum error codes, and the goto cleanup ladder; modular design with real boundaries -- what belongs in a header, file-scope static for privacy, linkage, and opaque types; a Makefile that tracks its own header dependencies -- rules, variables, pattern rules, automatic variables, -MMD -MP, and a debug/release split; and the debugging tools that find the bugs your eyes miss -- gdb stepping and backtrace, valgrind for non-crashing memory bugs, and sanitizers for day-to-day speed. Every snippet is pulled verbatim from the C Mastery Path Level 2 curriculum, in the order covered below.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/c-mastery-path/level-2/06-error-handling/\n- https://sigilipelli.github.io/c-mastery-path/level-2/07-modular-programming/\n- https://sigilipelli.github.io/c-mastery-path/level-2/08-makefiles-build-systems/\n- https://sigilipelli.github.io/c-mastery-path/level-2/09-debugging-tools/\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/06-error-handling/\n- https://sigilipelli.github.io/c-mastery-path/level-2/07-modular-programming/\n- https://sigilipelli.github.io/c-mastery-path/level-2/08-makefiles-build-systems/\n- https://sigilipelli.github.io/c-mastery-path/level-2/09-debugging-tools/",
+  "tags": ["c", "c programming", "error handling", "modular programming", "makefile tutorial", "build systems", "gdb", "valgrind", "address sanitizer", "c tutorial", "professional c", "goto cleanup"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/c-mastery-path/level-2/06-error-handling/",
+    "https://sigilipelli.github.io/c-mastery-path/level-2/07-modular-programming/",
+    "https://sigilipelli.github.io/c-mastery-path/level-2/08-makefiles-build-systems/",
+    "https://sigilipelli.github.io/c-mastery-path/level-2/09-debugging-tools/"
+  ],
+  "beats": [
+    {
+      "narration": "Every C programmer writes code that compiles and runs. Fewer write C that another engineer can maintain a year later without fear. This video covers four habits: disciplined error handling, modular design with real boundaries, a build system that tracks its own dependencies, and the debugging tools that find the bugs printf can't.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "Student C to Pro C",
+        "subheading": "four habits"
+      }
+    },
+    {
+      "narration": "First, error handling. C has no exceptions, so every function needs a convention for saying I failed, and ideally why. Let's start with the one that scales.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Error Handling Conventions",
+        "subheading": "C Mastery Path -- Level 2"
+      }
+    },
+    {
+      "narration": "The dominant convention is to return a status and pass data back through an out-parameter. Here parse_positive_int returns one for success or zero for failure, and the value comes back through the out pointer. Why not just return the number and use minus one for errors? Because minus one is a valid integer.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n#include <stdlib.h>\n\n// Returns 1 on success, 0 on failure. The VALUE comes back through *out.\nint parse_positive_int(const char *text, int *out) {\n    if (text == NULL || out == NULL) return 0;\n\n    char *end;\n    long value = strtol(text, &end, 10);\n\n    if (end == text)     return 0;   // no digits at all\n    if (*end != '\\0')    return 0;   // trailing junk: \"12abc\"\n    if (value <= 0)      return 0;   // not positive\n    if (value > 100000)  return 0;   // out of our accepted range\n\n    *out = (int)value;\n    return 1;\n}\n\nint main(void) {\n    const char *inputs[] = {\"42\", \"abc\", \"12x\", \"-5\", \"999999\"};\n\n    for (int i = 0; i < 5; i++) {\n        int value;\n        if (parse_positive_int(inputs[i], &value)) {\n            printf(\"%-8s -> %d\\n\", inputs[i], value);\n        } else {\n            printf(\"%-8s -> rejected\\n\", inputs[i]);\n        }\n    }\n    return 0;\n}\n// Output:\n// 42       -> 42\n// abc      -> rejected\n// 12x      -> rejected\n// -5       -> rejected\n// 999999   -> rejected"
+      }
+    },
+    {
+      "narration": "That shape works for every function, whatever it returns. The caller gets a clean yes-or-no to check in an if, and the real result is handed back separately through the pointer they passed in.",
+      "display": {
+        "kind": "stick",
+        "scene": "handoff",
+        "heading": "Status + out-param",
+        "subheading": "verdict and value"
+      }
+    },
+    {
+      "narration": "When a library call fails, it often sets the global errno to explain why. Three rules: only read errno after a call has signalled failure, read it immediately before another call overwrites it, and set it to zero first when failure is ambiguous.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "#include <stdio.h>\n#include <errno.h>\n#include <string.h>\n\nint main(void) {\n    errno = 0;                       // clear it before the call\n\n    FILE *f = fopen(\"/definitely/not/here.txt\", \"r\");\n    if (f == NULL) {\n        // Two ways to report the same thing:\n        printf(\"errno = %d: %s\\n\", errno, strerror(errno));\n        perror(\"fopen\");             // prints \"fopen: <message>\" to stderr\n        return 1;\n    }\n\n    fclose(f);\n    return 0;\n}",
+        "output": "errno = 2: No such file or directory\nfopen: No such file or directory"
+      }
+    },
+    {
+      "narration": "When callers need to react differently to different failures, an enum beats a bare zero or one. Make the OK value zero so callers can still write if err, and switch over it without a default, so the compiler warns you when you add a case and forget to describe it.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n\ntypedef enum {\n    CFG_OK = 0,\n    CFG_ERR_NOT_FOUND,\n    CFG_ERR_BAD_SYNTAX,\n    CFG_ERR_OUT_OF_MEMORY\n} ConfigError;\n\nconst char *config_error_string(ConfigError e) {\n    switch (e) {\n        case CFG_OK:                 return \"success\";\n        case CFG_ERR_NOT_FOUND:      return \"config file not found\";\n        case CFG_ERR_BAD_SYNTAX:     return \"malformed line in config\";\n        case CFG_ERR_OUT_OF_MEMORY:  return \"out of memory\";\n    }\n    return \"unknown error\";\n}\n\nint main(void) {\n    ConfigError err = CFG_ERR_BAD_SYNTAX;\n\n    if (err != CFG_OK) {\n        fprintf(stderr, \"config: %s (code %d)\\n\",\n                config_error_string(err), err);\n        return 1;\n    }\n    return 0;\n}\n// Output (on stderr):\n// config: malformed line in config (code 2)"
+      }
+    },
+    {
+      "narration": "This is the one place idiomatic C reaches for goto, and it's genuinely the clearest option. Every resource starts as NULL, every failure jumps to a single cleanup label, and that block releases whatever was acquired. Freeing the right subset at five different returns is exactly where leaks come from.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n#include <stdlib.h>\n\nint copy_file(const char *src, const char *dst) {\n    FILE *in = NULL, *out = NULL;\n    char *buf = NULL;\n    int result = 0;                       // 0 = failure, 1 = success\n\n    in = fopen(src, \"rb\");\n    if (in == NULL) { perror(src); goto cleanup; }\n\n    out = fopen(dst, \"wb\");\n    if (out == NULL) { perror(dst); goto cleanup; }\n\n    buf = malloc(4096);\n    if (buf == NULL) { fprintf(stderr, \"out of memory\\n\"); goto cleanup; }\n\n    size_t n;\n    while ((n = fread(buf, 1, 4096, in)) > 0) {\n        if (fwrite(buf, 1, n, out) != n) {\n            perror(\"write\");\n            goto cleanup;\n        }\n    }\n    if (ferror(in)) { perror(\"read\"); goto cleanup; }\n\n    result = 1;                           // made it all the way through\n\ncleanup:\n    free(buf);                            // free(NULL) is safe\n    if (out) fclose(out);\n    if (in)  fclose(in);\n    return result;\n}"
+      }
+    },
+    {
+      "narration": "Finally, the division of labour. assert is for programmer mistakes that should be impossible; it's compiled out in release builds, so never use it on user input. Return codes and errno are for runtime errors you must handle. Diagnostics go to stderr, and returning EXIT_FAILURE from main tells the shell and CI something went wrong.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "#include <stdio.h>\n#include <stdlib.h>\n#include <assert.h>\n\ndouble average(const int *values, int n) {\n    // assert documents an assumption the CALLER must satisfy.\n    // Compiled out entirely when NDEBUG is defined (gcc -DNDEBUG).\n    assert(values != NULL);\n    assert(n > 0);\n\n    long sum = 0;\n    for (int i = 0; i < n; i++) sum += values[i];\n    return (double)sum / n;\n}\n\nint main(int argc, char **argv) {\n    if (argc < 2) {\n        // Usage errors go to stderr, not stdout, so pipes stay clean.\n        fprintf(stderr, \"usage: %s <file>\\n\", argv[0]);\n        return EXIT_FAILURE;      // conventionally 1\n    }\n\n    int data[] = {4, 8, 15, 16, 23, 42};\n    printf(\"average = %.2f\\n\", average(data, 6));\n\n    return EXIT_SUCCESS;          // 0\n}"
+      }
+    },
+    {
+      "narration": "So: status returns, errno for the detail, your own enums when the causes differ, the goto ladder for cleanup. That's one module speaking clearly about failure. Next, how to make many modules speak clearly to each other.",
+      "display": {
+        "kind": "text",
+        "heading": "Recap: failing loudly",
+        "subheading": "Next: real module boundaries"
+      }
+    },
+    {
+      "narration": "Modular programming is about boundaries. A header is a contract. It should hold only what callers need to compile against you: public prototypes, types they must construct, enums and defines that are part of the API. Nothing about how you actually do the work.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Modular Programming",
+        "subheading": "C Mastery Path -- Level 2"
+      }
+    },
+    {
+      "narration": "Function bodies, structs only you touch, and implementation-only macros stay on your side of the table, in the dot c file. And never define a variable or a normal function in a header, or the linker reports a duplicate symbol.",
+      "display": {
+        "kind": "stick",
+        "scene": "handshake",
+        "heading": "A header is a contract",
+        "subheading": "public side only"
+      }
+    },
+    {
+      "narration": "Inside a function, static means keep this between calls. At file scope it means something more important: this name is invisible outside this one file. Mark every helper static by default. You get no name collisions, freedom to rename or delete it later, and better optimization.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// stats.c\n#include \"stats.h\"\n#include <stdlib.h>\n\n// PRIVATE: no other .c file can call or even see these.\nstatic int compare_doubles(const void *a, const void *b) {\n    double x = *(const double *)a;\n    double y = *(const double *)b;\n    return (x > y) - (x < y);\n}\n\nstatic double sum_all(const double *v, size_t n) {\n    double total = 0.0;\n    for (size_t i = 0; i < n; i++) total += v[i];\n    return total;\n}\n\n// PUBLIC: declared in stats.h\ndouble stats_mean(const double *v, size_t n) {\n    if (n == 0) return 0.0;\n    return sum_all(v, n) / (double)n;\n}"
+      }
+    },
+    {
+      "narration": "Linkage decides whether two declarations of a name refer to the same thing. A plain global has external linkage, shared program-wide. Add static and it's private to the file. When you genuinely need a shared global, declare it with extern in the header and define it exactly once, in a single dot c file.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// config.h\n#ifndef CONFIG_H\n#define CONFIG_H\n\nextern int g_verbose;        // DECLARATION only -- no storage allocated\nvoid config_set_verbose(int on);\n\n#endif\n\n// config.c\n#include \"config.h\"\n\nint g_verbose = 0;           // THE definition -- exactly one, in one .c file\n\nvoid config_set_verbose(int on) {\n    g_verbose = on;\n}"
+      }
+    },
+    {
+      "narration": "The strongest encapsulation in C is the opaque type. The header declares that a struct Counter exists, but never shows what's inside it. Callers get a pointer and a set of functions, so changing the layout doesn't force them to recompile. FILE star works exactly this way.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// counter.h\n#ifndef COUNTER_H\n#define COUNTER_H\n\n// Incomplete type: callers know Counter exists, not what's inside it.\ntypedef struct Counter Counter;\n\nCounter *counter_create(const char *label);\nvoid     counter_destroy(Counter *c);\n\nvoid     counter_increment(Counter *c);\nint      counter_value(const Counter *c);\nconst char *counter_label(const Counter *c);\n\n#endif"
+      }
+    },
+    {
+      "narration": "The full struct definition lives in counter.c and nowhere else. main works entirely through functions; writing to a field directly is a compile error, because the type is incomplete. Every create has exactly one matching destroy.",
+      "display": {
+        "kind": "terminal",
+        "lang": "c",
+        "code": "// main.c\n#include <stdio.h>\n#include \"counter.h\"\n\nint main(void) {\n    Counter *hits = counter_create(\"page-hits\");\n    if (hits == NULL) return 1;\n\n    for (int i = 0; i < 5; i++) counter_increment(hits);\n\n    printf(\"%s = %d\\n\", counter_label(hits), counter_value(hits));\n\n    // hits->value = 99;   // COMPILE ERROR: incomplete type, no members visible\n\n    counter_destroy(hits);\n    return 0;\n}",
+        "output": "page-hits = 5"
+      }
+    },
+    {
+      "narration": "Building it is two steps: compile each dot c to its own object file, then link the objects into one executable. Three errors you'll meet: undefined reference means you never linked the file that defines the function, duplicate symbol means it's defined twice, and implicit declaration means you forgot the header.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "# Compile each module to an object file independently\ngcc -Wall -Wextra -c counter.c -o counter.o\ngcc -Wall -Wextra -c stats.c   -o stats.o\ngcc -Wall -Wextra -c main.c    -o main.o\n\n# Link them into one executable\ngcc counter.o stats.o main.o -o app"
+      }
+    },
+    {
+      "narration": "Headers as contracts, static for privacy, opaque types to hide layout, one object file per module. The catch: doing that by hand means tracking which files changed and what depends on them. That's a build system's job.",
+      "display": {
+        "kind": "text",
+        "heading": "Recap: real boundaries",
+        "subheading": "Next: the build system"
+      }
+    },
+    {
+      "narration": "A Makefile is a dependency graph. Each rule names a target, the prerequisites it depends on, and a recipe to rebuild it when a prerequisite is newer. That recipe must be indented with a real tab, not spaces. It's the most common Makefile mistake, and the error never mentions tabs.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Makefiles & Build Systems",
+        "subheading": "C Mastery Path -- Level 2"
+      }
+    },
+    {
+      "narration": "Here's a first Makefile for a two-module program. Running make with no arguments builds the first target, so the final artifact goes at the top. Touch counter.c and only that object and the link rebuild. Touch counter.h and both objects rebuild, because both rules list it.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": "# Makefile\napp: main.o counter.o\n\tgcc main.o counter.o -o app\n\nmain.o: main.c counter.h\n\tgcc -Wall -Wextra -c main.c -o main.o\n\ncounter.o: counter.c counter.h\n\tgcc -Wall -Wextra -c counter.c -o counter.o\n\nclean:\n\trm -f app main.o counter.o"
+      }
+    },
+    {
+      "narration": "Variables kill the repetition. Colon-equals is evaluated once, immediately, so use it by default. Question-mark-equals sets a value only if it isn't already defined, so make CC=clang can override it. And passing CFLAGS on the command line replaces the file's value entirely, for a one-command release build.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": "CC      := gcc\nCFLAGS  := -Wall -Wextra -std=c11 -g\nLDFLAGS :=\nTARGET  := app\nOBJS    := main.o counter.o stats.o\n\n$(TARGET): $(OBJS)\n\t$(CC) $(OBJS) $(LDFLAGS) -o $(TARGET)\n\nclean:\n\trm -f $(TARGET) $(OBJS)"
+      }
+    },
+    {
+      "narration": "One more reason the graph matters: because make knows exactly what depends on what, make dash j eight runs up to eight recipes at once, and independent object files compile in parallel. On a real project that's often a four to eight times speedup.",
+      "display": {
+        "kind": "stick",
+        "scene": "parallel",
+        "heading": "make -j8",
+        "subheading": "parallel compiles"
+      }
+    },
+    {
+      "narration": "One rule per object doesn't scale. A pattern rule covers them all: percent dot o from percent dot c. In the recipe, dollar-at is the target, dollar-less-than is the first prerequisite, dollar-caret is all of them. And list every non-file target like clean and run under dot PHONY, so make always runs the recipe.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": "CC      := gcc\nCFLAGS  := -Wall -Wextra -std=c11 -g\nTARGET  := app\nSRCS    := $(wildcard *.c)          # every .c in this directory\nOBJS    := $(SRCS:.c=.o)            # main.c counter.c -> main.o counter.o\n\n.PHONY: all clean run\n\nall: $(TARGET)\n\n$(TARGET): $(OBJS)\n\t$(CC) $^ -o $@\n\n%.o: %.c\n\t$(CC) $(CFLAGS) -c $< -o $@\n\nrun: $(TARGET)\n\t./$(TARGET)\n\nclean:\n\trm -f $(TARGET) $(OBJS)"
+      }
+    },
+    {
+      "narration": "That pattern rule has a real bug: it never mentions headers, so editing counter.h won't trigger a rebuild, and you get a stale binary. The fix is dash M M D dash M P in the compile flags. The compiler writes a dot d file listing every header each object used, and minus-include pulls those rules back in.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": "CC      := gcc\nCFLAGS  := -Wall -Wextra -std=c11 -g\nDEPFLAGS := -MMD -MP                 # emit a .d file listing every header used\n\nSRCS := $(wildcard *.c)\nOBJS := $(SRCS:.c=.o)\nDEPS := $(SRCS:.c=.d)\n\napp: $(OBJS)\n\t$(CC) $^ -o $@\n\n%.o: %.c\n\t$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@\n\n-include $(DEPS)                     # leading '-' = ignore if not there yet\n\n.PHONY: clean\nclean:\n\trm -f app $(OBJS) $(DEPS)"
+      }
+    },
+    {
+      "narration": "Worthwhile CFLAGS: dash Wall dash Wextra for the warnings that catch real bugs, dash std c11 to pin the language, dash g for debug symbols, and a sanitize flag for memory and undefined-behaviour bugs. A single BUILD variable can swap a debug build with sanitizers for an optimized release that also defines NDEBUG.",
+      "display": {
+        "kind": "editor",
+        "lang": "make",
+        "code": "CFLAGS := -Wall -Wextra -std=c11\n\nifeq ($(BUILD),release)\n    CFLAGS += -O2 -DNDEBUG\nelse\n    CFLAGS += -O0 -g -fsanitize=address,undefined\n    LDFLAGS += -fsanitize=address,undefined\nendif"
+      }
+    },
+    {
+      "narration": "Anatomy of a rule, variables, pattern rules, automatic header tracking, a debug and release split. Tools like CMake generate all of this, but they still run the same compile and link commands underneath, so learn make first. Last habit: finding the bugs that ship anyway.",
+      "display": {
+        "kind": "text",
+        "heading": "Recap: builds that track themselves",
+        "subheading": "Next: debugging tools"
+      }
+    },
+    {
+      "narration": "You still get bugs. The last habit is knowing which tool finds which bug, instead of sprinkling printf lines and guessing. It starts at compile time: build with dash g for source and variable information, and dash O zero, because optimized code reorders variables and makes stepping misleading.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Debugging Tools",
+        "subheading": "C Mastery Path -- Level 2"
+      }
+    },
+    {
+      "narration": "Take this program. sum_range is called with zero and five, but the array only has indices zero through four, so it reads one past the end. It compiles and often appears to run fine, because an out-of-bounds read is undefined behaviour, not a guaranteed crash.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// buggy.c\n#include <stdio.h>\n\nint sum_range(int low, int high) {\n    int total = 0;\n    for (int i = low; i <= high; i++) {\n        total += i;\n    }\n    return total;\n}\n\nint main(void) {\n    int values[5] = {10, 20, 30, 40, 50};\n    int result = sum_range(0, 5);   // BUG: should be 0, 4 -- reads values[5], out of bounds\n    printf(\"Sum of first 5: %d\\n\", result);\n    printf(\"Values: %d %d %d %d %d\\n\",\n           values[0], values[1], values[2], values[3], values[4]);\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "Under gdb you set a breakpoint, run, and step through. break main, run, next, step into sum_range, then print low and print high, which show zero and five. Set a breakpoint inside the loop and print i, and it reaches five, past the end of the array.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "(gdb) break main\nBreakpoint 1 at 0x1169: file buggy.c, line 13.\n(gdb) run\nStarting program: ./buggy\n\nBreakpoint 1, main () at buggy.c:13\n13          int values[5] = {10, 20, 30, 40, 50};\n(gdb) next\n14          int result = sum_range(0, 5);\n(gdb) step\nsum_range (low=0, high=5) at buggy.c:5\n5           int total = 0;\n(gdb) print low\n$1 = 0\n(gdb) print high\n$2 = 5"
+      }
+    },
+    {
+      "narration": "This is the mindset shift: you're not guessing anymore, you're investigating. backtrace is often the single most useful command. With a core dump it answers where did this actually die immediately, no manual stepping, pointing straight at the null pointer that was passed in.",
+      "display": {
+        "kind": "stick",
+        "scene": "search",
+        "heading": "Investigate, don't guess",
+        "subheading": "backtrace first"
+      }
+    },
+    {
+      "narration": "Some bugs never crash. They read one byte past a block, or leak a few bytes at a time. Here's leaky.c. make_greeting allocates twenty bytes, which isn't enough for a long name, and the caller never frees the result. Two defects, and it still runs without crashing.",
+      "display": {
+        "kind": "editor",
+        "lang": "c",
+        "code": "// leaky.c\n#include <stdlib.h>\n#include <string.h>\n\nchar *make_greeting(const char *name) {\n    char *greeting = malloc(20);           // BUG: too small for long names\n    strcpy(greeting, \"Hello, \");\n    strcat(greeting, name);                // may overflow the 20 bytes\n    return greeting;                       // BUG: caller never frees this\n}\n\nint main(void) {\n    char *msg = make_greeting(\"Alexandria Constantinople\");   // long enough to overflow\n    (void)msg;                             // pretend we used it\n    return 0;\n}"
+      }
+    },
+    {
+      "narration": "valgrind's memcheck runs your program instrumented, tracking every allocation, free, and access. Run leaky.c under leak-check full and both defects are pinned: an invalid write of size one at line eight, and twenty-one bytes definitely lost, traced to the exact malloc on line six whose value was never released.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "gcc -Wall -Wextra -g -O0 -o leaky leaky.c\nvalgrind --leak-check=full ./leaky",
+        "output": "==12345== Invalid write of size 1\n==12345==    at 0x4849C29: strcat (vg_replace_strmem.c:...)\n==12345==    by 0x1091A5: make_greeting (leaky.c:8)\n==12345==    by 0x1091E2: main (leaky.c:13)\n==12345==  Address 0x4a4d054 is 0 bytes after a block of size 20 alloc'd\n...\n==12345== 21 bytes in 1 blocks are definitely lost in loss record 1 of 1\n==12345==    at 0x484D9C4: malloc (vg_replace_malloc.c:...)\n==12345==    by 0x109188: make_greeting (leaky.c:6)\n==12345==    by 0x1091E2: main (leaky.c:13)"
+      }
+    },
+    {
+      "narration": "valgrind is thorough but ten to fifty times slower. For everyday work, compile with dash f sanitize address comma undefined. It catches most of the same bugs at nearly full speed and fires the moment the overflow happens. Sanitizers by default while developing, a full valgrind sweep before a release.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "gcc -Wall -Wextra -g -O0 -fsanitize=address,undefined -o app main.c\n./app",
+        "output": "==12345==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x...\nWRITE of size 1 at 0x... thread T0\n    #0 0x... in strcat\n    #1 0x... in make_greeting leaky.c:8\n    #2 0x... in main leaky.c:13"
+      }
+    },
+    {
+      "narration": "So which tool? It crashes and you want to know where: gdb and backtrace. What value does this variable have right here: gdb with a breakpoint and print. Is this leaking: valgrind leak-check full. Reading out of bounds: sanitizers for speed, valgrind for depth. Used a variable before initializing it: either one will tell you.",
+      "display": {
+        "kind": "text",
+        "heading": "Which tool for which bug",
+        "subheading": "gdb / valgrind / sanitizers"
+      }
+    },
+    {
+      "narration": "Put the four habits together and you've got C that survives contact with other people: functions that report failure honestly, modules with real walls between them, a build that rebuilds exactly what changed, and tools that corner the bugs. That's the difference between code that runs and code that lasts.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "Professional C",
+        "subheading": "the four habits"
+      }
+    },
+    {
+      "narration": "Every example here comes straight from these four lessons on the C Mastery Path, Level 2. The links are on screen now. Work through the exercises at the end of each one, and this stops being theory.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lessons + runnable code:",
+        "subheading": "c-mastery-path/level-2/06-error-handling/ | 07-modular-programming/ | 08-makefiles-build-systems/ | 09-debugging-tools/"
+      }
+    }
+  ]
+}

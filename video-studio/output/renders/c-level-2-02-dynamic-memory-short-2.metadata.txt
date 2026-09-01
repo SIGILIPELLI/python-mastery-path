@@ -1,0 +1,14 @@
+Title: The realloc line that silently leaks memory forever
+
+Description:
+Assigning realloc's result straight back into the same pointer is one of C's most common heap leaks: if the call fails it returns NULL while your original block stays allocated, and you've just lost the only pointer to it. This Short shows the bug and the temporary-pointer fix from the C Mastery Path dynamic memory lesson.
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/02-dynamic-memory/
+
+#Shorts
+
+Tags: c, c programming, realloc, memory leak, dynamic memory, malloc, pointers, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/02-dynamic-memory/

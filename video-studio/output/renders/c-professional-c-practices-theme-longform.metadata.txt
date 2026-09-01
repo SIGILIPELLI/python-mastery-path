@@ -1,0 +1,24 @@
+Title: Writing Professional C: Error Handling, Modular Design, Makefiles & Debugging (Full Guide)
+
+Description:
+C that compiles and runs is not the same as C another engineer can maintain. This video walks through the four habits that close that gap: an error-handling convention that actually scales -- status returns with out-parameters, errno, your own enum error codes, and the goto cleanup ladder; modular design with real boundaries -- what belongs in a header, file-scope static for privacy, linkage, and opaque types; a Makefile that tracks its own header dependencies -- rules, variables, pattern rules, automatic variables, -MMD -MP, and a debug/release split; and the debugging tools that find the bugs your eyes miss -- gdb stepping and backtrace, valgrind for non-crashing memory bugs, and sanitizers for day-to-day speed. Every snippet is pulled verbatim from the C Mastery Path Level 2 curriculum, in the order covered below.
+
+Lessons covered in this video:
+- https://sigilipelli.github.io/c-mastery-path/level-2/06-error-handling/
+- https://sigilipelli.github.io/c-mastery-path/level-2/07-modular-programming/
+- https://sigilipelli.github.io/c-mastery-path/level-2/08-makefiles-build-systems/
+- https://sigilipelli.github.io/c-mastery-path/level-2/09-debugging-tools/
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/06-error-handling/
+- https://sigilipelli.github.io/c-mastery-path/level-2/07-modular-programming/
+- https://sigilipelli.github.io/c-mastery-path/level-2/08-makefiles-build-systems/
+- https://sigilipelli.github.io/c-mastery-path/level-2/09-debugging-tools/
+
+Tags: c, c programming, error handling, modular programming, makefile tutorial, build systems, gdb, valgrind, address sanitizer, c tutorial, professional c, goto cleanup
+
+Source lesson(s):
+- https://sigilipelli.github.io/c-mastery-path/level-2/06-error-handling/
+- https://sigilipelli.github.io/c-mastery-path/level-2/07-modular-programming/
+- https://sigilipelli.github.io/c-mastery-path/level-2/08-makefiles-build-systems/
+- https://sigilipelli.github.io/c-mastery-path/level-2/09-debugging-tools/

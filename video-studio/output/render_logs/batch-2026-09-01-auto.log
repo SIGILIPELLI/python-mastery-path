@@ -49,3 +49,13 @@ Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-
       Runtime:  ~58s
 OK c-level-2-05-binary-file-io-short-2
 === RENDER c-professional-c-practices-theme-longform Tue Sep  1 11:20:17 IST 2026 ===
+[1/3] Synthesizing narration (en-US-JennyNeural) for 35 beats...
+      -> total narration: 679.0s across 35 beats
+[2/3] Rendering horizontal (long-form) animation clips...
+[3/3] Muxing audio + video and assembling final MP4...
+
+Done. Video:    /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-professional-c-practices-theme-longform.mp4
+      Metadata: /Users/bhanuja/Desktop/vremployee/video-studio/output/renders/c-professional-c-practices-theme-longform.metadata.txt  (title/description/tags/source links -- for you to review before uploading)
+      Runtime:  ~679s
+OK c-professional-c-practices-theme-longform
+ALL DONE Tue Sep  1 11:35:24 IST 2026

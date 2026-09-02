@@ -1,0 +1,14 @@
+Title: Why Java's main() method is spelled exactly like that
+
+Description:
+Java's entry point isn't arbitrary boilerplate. The public class name must match the file name exactly, case and all, or javac refuses to compile. And every word of public static void main(String[] args) is load-bearing: public lets the JVM call it from outside, static means no object is needed first, void means it returns nothing, and String[] args carries your command-line arguments. This Short breaks down the anatomy of Hello.java from the Java Mastery Path setup lesson.
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/
+
+#Shorts
+
+Tags: java, java tutorial, main method, public static void main, jvm, javac, hello world, programming tutorial, learn java
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/

@@ -1,0 +1,14 @@
+Title: Why Java rejects a 10-billion literal (the L suffix)
+
+Description:
+Ten billion is a perfectly valid long value, so why won't Java compile it? Because a bare whole-number literal is a 32-bit int, and ten billion overflows that before your long ever sees it. This Short shows the fix from the Variables lesson: the trailing L, the f suffix for floats, and underscores as digit separators.
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/
+
+#Shorts
+
+Tags: java, java literals, long suffix, primitive types, data types, java tutorial, programming
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/

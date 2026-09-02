@@ -1,0 +1,61 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Why Java rejects a 10-billion literal (the L suffix)",
+  "description": "Ten billion is a perfectly valid long value, so why won't Java compile it? Because a bare whole-number literal is a 32-bit int, and ten billion overflows that before your long ever sees it. This Short shows the fix from the Variables lesson: the trailing L, the f suffix for floats, and underscores as digit separators.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "tags": ["java", "java literals", "long suffix", "primitive types", "data types", "java tutorial", "programming"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"],
+  "beats": [
+    {
+      "narration": "Type ten billion into a Java long and the compiler stops you cold. The number's valid, the variable's big enough, and it still won't build.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Won't compile",
+        "subheading": "a valid number, rejected"
+      }
+    },
+    {
+      "narration": "Here's the fix from the lesson. One trailing L on the literal, and underscores splitting the digits so you can actually read it.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "int x = 42;\nlong big = 10_000_000_000L;   // underscores as digit separators\ndouble price = 19.99;\nchar grade = 'A';\nboolean passed = true;"
+      }
+    },
+    {
+      "narration": "Without the L, Java reads a bare whole number as a 32-bit int. Ten billion overflows that, so it's rejected.",
+      "display": {
+        "kind": "text",
+        "heading": "A bare whole number is an int",
+        "subheading": "32 bits, ten billion overflows"
+      }
+    },
+    {
+      "narration": "Same trap with decimals. A bare 3.14 is a double. Put it in a float and you need the little f.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "float f = 3.14f;"
+      }
+    },
+    {
+      "narration": "So the suffix isn't noise. It tells Java the literal's type before it defaults to int or double.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "The suffix sets the type",
+        "subheading": "before Java picks a default"
+      }
+    },
+    {
+      "narration": "Full breakdown's in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"
+      }
+    }
+  ]
+}

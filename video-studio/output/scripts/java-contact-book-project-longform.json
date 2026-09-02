@@ -1,0 +1,268 @@
+{
+  "type": "longform",
+  "language": "java",
+  "title": "Build a CLI Contact Book in Java — Full Multi-Class Project Walkthrough With File Persistence",
+  "description": "This is the Java Mastery Path Level 1 capstone, built end to end: a command-line contact book that adds, lists, finds, and deletes contacts, and persists them all to a plain-text file between runs. We go section by section through the project's own layout — Contact.java as an immutable data class with CSV serialization and a fromCsvLine factory that fails loudly on a malformed line, ContactStorage.java handling file persistence with Path, Files.exists, try-with-resources readers and writers, and graceful IOException handling, and ContactBook.java as the CLI layer that loads on start, dispatches commands through an arrow switch, validates argument counts, matches names with equalsIgnoreCase, uses a rebuild-the-list delete pattern, and saves after every mutation. Then we compile with javac, run a real add/list/find/delete session, and finish with the lesson's stretch goals. Every code block shown is pulled verbatim from the lesson — nothing invented.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/",
+  "tags": ["java", "java project", "cli application", "file io", "csv parsing", "object oriented programming", "beginner java", "java tutorial", "contact book", "programming project", "java mastery path", "level 1 capstone"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/"],
+  "beats": [
+    {
+      "narration": "This is the final project of Java Mastery Path Level One, and it's where everything you've learned so far clicks into place. We're building a command-line contact book, from an empty folder to a working program that saves your data to disk. Classes, constructors, exceptions, file input and output, arrays and loops. It's all here, in one small but real application. Let's build it step by step.",
+      "display": {
+        "kind": "stick",
+        "scene": "wave",
+        "heading": "The Level 1 Capstone",
+        "subheading": "a CLI contact book"
+      }
+    },
+    {
+      "narration": "First, the spec. Knowing exactly what you're building keeps the code honest, so here are the five things this program has to do before we call it done.",
+      "display": {
+        "kind": "title_card",
+        "heading": "What You'll Build",
+        "subheading": "Java Mastery Path — Level 1, Module 10"
+      }
+    },
+    {
+      "narration": "The contact book adds a contact with a name, a phone number, and an email. It lists every contact you've saved. It finds a contact by name. It deletes a contact by name. And the important one: it persists everything to a plain-text file, so your contacts are still there the next time you run it. Five features, no framework, just Java.",
+      "display": {
+        "kind": "stick",
+        "scene": "checklist",
+        "heading": "Five Features",
+        "subheading": "add, list, find, delete, persist"
+      }
+    },
+    {
+      "narration": "Now, how do we organize this? It's a tiny program, but we're deliberately going to split it across three separate files instead of cramming it into one.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Project Layout",
+        "subheading": "three files, three jobs"
+      }
+    },
+    {
+      "narration": "Contact dot java is the data class, one contact and nothing else. Contact storage dot java handles reading and writing the file. And Contact book dot java is the command-line interface that ties them together. Three files, three clearly separate responsibilities.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "contactbook/\n    Contact.java\n    ContactStorage.java\n    ContactBook.java"
+      }
+    },
+    {
+      "narration": "You might ask why bother, this could all live in one file. The answer is separation of concerns. The data class doesn't know files exist. The storage class doesn't know about commands. The CLI class doesn't know how a contact is stored on disk. Each piece can change without breaking the others, and each one is small enough to hold in your head. That habit scales to programs a hundred times this size.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "Why Split It",
+        "subheading": "separation of concerns"
+      }
+    },
+    {
+      "narration": "Let's start with the smallest piece, the Contact class itself.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Contact.java",
+        "subheading": "the data class"
+      }
+    },
+    {
+      "narration": "Three fields: name, phone, and email, all marked final, so once a contact is built it never changes. The constructor takes all three and assigns them. Then simple getters, one per field. It's an immutable little value object, which is exactly what you want for a record like this.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// Contact.java\npublic class Contact {\n    private final String name;\n    private final String phone;\n    private final String email;\n\n    public Contact(String name, String phone, String email) {\n        this.name = name;\n        this.phone = phone;\n        this.email = email;\n    }\n\n    public String getName() { return name; }\n    public String getPhone() { return phone; }\n    public String getEmail() { return email; }\n\n    // Serialize to a single line for file storage: name,phone,email\n    public String toCsvLine() {\n        return name + \",\" + phone + \",\" + email;\n    }\n\n    // Parse a stored line back into a Contact\n    public static Contact fromCsvLine(String line) {\n        String[] parts = line.split(\",\", -1);\n        if (parts.length != 3) {\n            throw new IllegalArgumentException(\"Malformed contact line: \" + line);\n        }\n        return new Contact(parts[0], parts[1], parts[2]);\n    }\n\n    @Override\n    public String toString() {\n        return String.format(\"%-15s %-15s %s\", name, phone, email);\n    }\n}"
+      }
+    },
+    {
+      "narration": "Now the two methods that matter for storage. To C-S-V line joins the three fields with commas into a single string, that's one line in our file. From C-S-V line does the reverse: it splits the line on commas. Notice the minus one argument to split, that keeps trailing empty fields instead of dropping them, so a contact with no email still parses into three parts.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// Contact.java\npublic class Contact {\n    private final String name;\n    private final String phone;\n    private final String email;\n\n    public Contact(String name, String phone, String email) {\n        this.name = name;\n        this.phone = phone;\n        this.email = email;\n    }\n\n    public String getName() { return name; }\n    public String getPhone() { return phone; }\n    public String getEmail() { return email; }\n\n    // Serialize to a single line for file storage: name,phone,email\n    public String toCsvLine() {\n        return name + \",\" + phone + \",\" + email;\n    }\n\n    // Parse a stored line back into a Contact\n    public static Contact fromCsvLine(String line) {\n        String[] parts = line.split(\",\", -1);\n        if (parts.length != 3) {\n            throw new IllegalArgumentException(\"Malformed contact line: \" + line);\n        }\n        return new Contact(parts[0], parts[1], parts[2]);\n    }\n\n    @Override\n    public String toString() {\n        return String.format(\"%-15s %-15s %s\", name, phone, email);\n    }\n}"
+      }
+    },
+    {
+      "narration": "And if that split doesn't produce exactly three parts, the line is corrupt, and the code throws an illegal argument exception with the bad line right in the message. It doesn't guess, it doesn't return a half-built contact. It fails loudly and tells you which line broke. That's the mindset from the exception handling module, applied for real.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Fail Loudly",
+        "subheading": "reject a malformed line"
+      }
+    },
+    {
+      "narration": "Last, the toString override controls how a contact prints. String dot format with the dash-fifteen patterns left-aligns name and phone into fifteen-character columns, so when you list contacts they line up in a neat table instead of a ragged mess.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// Contact.java\npublic class Contact {\n    private final String name;\n    private final String phone;\n    private final String email;\n\n    public Contact(String name, String phone, String email) {\n        this.name = name;\n        this.phone = phone;\n        this.email = email;\n    }\n\n    public String getName() { return name; }\n    public String getPhone() { return phone; }\n    public String getEmail() { return email; }\n\n    // Serialize to a single line for file storage: name,phone,email\n    public String toCsvLine() {\n        return name + \",\" + phone + \",\" + email;\n    }\n\n    // Parse a stored line back into a Contact\n    public static Contact fromCsvLine(String line) {\n        String[] parts = line.split(\",\", -1);\n        if (parts.length != 3) {\n            throw new IllegalArgumentException(\"Malformed contact line: \" + line);\n        }\n        return new Contact(parts[0], parts[1], parts[2]);\n    }\n\n    @Override\n    public String toString() {\n        return String.format(\"%-15s %-15s %s\", name, phone, email);\n    }\n}"
+      }
+    },
+    {
+      "narration": "Next, the class that actually touches the disk, Contact storage.",
+      "display": {
+        "kind": "title_card",
+        "heading": "ContactStorage.java",
+        "subheading": "file persistence"
+      }
+    },
+    {
+      "narration": "The constructor takes a file name and turns it into a Path with Paths dot get, Java's modern way to refer to a file on disk. Load builds a list. The first thing it does is check Files dot exists, and if there's no file yet, it just returns the empty list, a fresh start, not an error.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactStorage.java\nimport java.io.*;\nimport java.nio.file.*;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactStorage {\n    private final Path filePath;\n\n    public ContactStorage(String fileName) {\n        this.filePath = Paths.get(fileName);\n    }\n\n    public List<Contact> load() {\n        List<Contact> contacts = new ArrayList<>();\n        if (!Files.exists(filePath)) {\n            return contacts;   // no file yet -- start empty\n        }\n        try (BufferedReader reader = Files.newBufferedReader(filePath)) {\n            String line;\n            while ((line = reader.readLine()) != null) {\n                if (!line.isBlank()) {\n                    contacts.add(Contact.fromCsvLine(line));\n                }\n            }\n        } catch (IOException e) {\n            System.out.println(\"Warning: could not read contacts file: \" + e.getMessage());\n        }\n        return contacts;\n    }\n\n    public void save(List<Contact> contacts) {\n        try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {\n            for (Contact c : contacts) {\n                writer.write(c.toCsvLine());\n                writer.newLine();\n            }\n        } catch (IOException e) {\n            System.out.println(\"Error: could not save contacts: \" + e.getMessage());\n        }\n    }\n}"
+      }
+    },
+    {
+      "narration": "To read, it opens the file with Files dot new buffered reader inside a try-with-resources block, so the reader closes itself no matter what happens. Then the classic loop: read a line, and while it's not null, keep going. Blank lines are skipped, and everything else goes through Contact dot from C-S-V line into the list.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactStorage.java\nimport java.io.*;\nimport java.nio.file.*;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactStorage {\n    private final Path filePath;\n\n    public ContactStorage(String fileName) {\n        this.filePath = Paths.get(fileName);\n    }\n\n    public List<Contact> load() {\n        List<Contact> contacts = new ArrayList<>();\n        if (!Files.exists(filePath)) {\n            return contacts;   // no file yet -- start empty\n        }\n        try (BufferedReader reader = Files.newBufferedReader(filePath)) {\n            String line;\n            while ((line = reader.readLine()) != null) {\n                if (!line.isBlank()) {\n                    contacts.add(Contact.fromCsvLine(line));\n                }\n            }\n        } catch (IOException e) {\n            System.out.println(\"Warning: could not read contacts file: \" + e.getMessage());\n        }\n        return contacts;\n    }\n\n    public void save(List<Contact> contacts) {\n        try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {\n            for (Contact c : contacts) {\n                writer.write(c.toCsvLine());\n                writer.newLine();\n            }\n        } catch (IOException e) {\n            System.out.println(\"Error: could not save contacts: \" + e.getMessage());\n        }\n    }\n}"
+      }
+    },
+    {
+      "narration": "Both load and save wrap their work in a catch for I-O exception. If the file can't be read or written, the program prints a warning and carries on, instead of crashing with a stack trace in the user's face. For a tool you run dozens of times a day, that kind of resilience really matters.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "Warn, Don't Crash",
+        "subheading": "handle IOException"
+      }
+    },
+    {
+      "narration": "Save is the mirror image. Open the file with new buffered writer, again in try-with-resources, then for each contact write its C-S-V line and call writer dot new line. That new line call is what keeps each contact on its own row, ready for load to read straight back.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactStorage.java\nimport java.io.*;\nimport java.nio.file.*;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactStorage {\n    private final Path filePath;\n\n    public ContactStorage(String fileName) {\n        this.filePath = Paths.get(fileName);\n    }\n\n    public List<Contact> load() {\n        List<Contact> contacts = new ArrayList<>();\n        if (!Files.exists(filePath)) {\n            return contacts;   // no file yet -- start empty\n        }\n        try (BufferedReader reader = Files.newBufferedReader(filePath)) {\n            String line;\n            while ((line = reader.readLine()) != null) {\n                if (!line.isBlank()) {\n                    contacts.add(Contact.fromCsvLine(line));\n                }\n            }\n        } catch (IOException e) {\n            System.out.println(\"Warning: could not read contacts file: \" + e.getMessage());\n        }\n        return contacts;\n    }\n\n    public void save(List<Contact> contacts) {\n        try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {\n            for (Contact c : contacts) {\n                writer.write(c.toCsvLine());\n                writer.newLine();\n            }\n        } catch (IOException e) {\n            System.out.println(\"Error: could not save contacts: \" + e.getMessage());\n        }\n    }\n}"
+      }
+    },
+    {
+      "narration": "Now the piece the user actually interacts with, the command-line logic in Contact book.",
+      "display": {
+        "kind": "title_card",
+        "heading": "ContactBook.java",
+        "subheading": "CLI logic"
+      }
+    },
+    {
+      "narration": "Two static fields at the top: the list of contacts, and a Contact storage pointed at contacts dot C-S-V. The very first thing main does is call storage dot load, so every run starts with whatever was saved last time. If there are no arguments at all, it prints a usage line and exits.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactBook.java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactBook {\n\n    static List<Contact> contacts;\n    static ContactStorage storage = new ContactStorage(\"contacts.csv\");\n\n    public static void main(String[] args) {\n        contacts = storage.load();\n\n        if (args.length == 0) {\n            printUsage();\n            return;\n        }\n\n        String command = args[0];\n\n        try {\n            switch (command) {\n                case \"add\" -> addContact(args);\n                case \"list\" -> listContacts();\n                case \"find\" -> findContact(args);\n                case \"delete\" -> deleteContact(args);\n                default -> printUsage();\n            }\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Error: \" + e.getMessage());\n        }\n    }\n\n    static void printUsage() {\n        System.out.println(\"Usage: ContactBook [add <name> <phone> <email> | list | find <name> | delete <name>]\");\n    }\n\n    static void addContact(String[] args) {\n        if (args.length != 4) {\n            throw new IllegalArgumentException(\"add requires: <name> <phone> <email>\");\n        }\n        Contact c = new Contact(args[1], args[2], args[3]);\n        contacts.add(c);\n        storage.save(contacts);\n        System.out.println(\"Added: \" + c);\n    }\n\n    static void listContacts() {\n        if (contacts.isEmpty()) {\n            System.out.println(\"No contacts yet.\");\n            return;\n        }\n        for (Contact c : contacts) {\n            System.out.println(c);\n        }\n    }\n\n    static void findContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"find requires: <name>\");\n        }\n        String query = args[1];\n        boolean found = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                System.out.println(c);\n                found = true;\n            }\n        }\n        if (!found) {\n            System.out.println(\"No contact named \" + query);\n        }\n    }\n\n    static void deleteContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"delete requires: <name>\");\n        }\n        String query = args[1];\n        List<Contact> remaining = new ArrayList<>();\n        boolean removed = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                removed = true;\n            } else {\n                remaining.add(c);\n            }\n        }\n        contacts = remaining;\n        storage.save(contacts);\n        System.out.println(removed ? \"Deleted \" + query : \"No contact named \" + query);\n    }\n}"
+      }
+    },
+    {
+      "narration": "The first argument is the command. An arrow switch routes it: add, list, find, or delete, each to its own method, and anything else falls through to usage. The whole switch sits inside one try block, so any illegal argument exception thrown deeper down gets caught once, right here, and printed as a clean error message.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactBook.java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactBook {\n\n    static List<Contact> contacts;\n    static ContactStorage storage = new ContactStorage(\"contacts.csv\");\n\n    public static void main(String[] args) {\n        contacts = storage.load();\n\n        if (args.length == 0) {\n            printUsage();\n            return;\n        }\n\n        String command = args[0];\n\n        try {\n            switch (command) {\n                case \"add\" -> addContact(args);\n                case \"list\" -> listContacts();\n                case \"find\" -> findContact(args);\n                case \"delete\" -> deleteContact(args);\n                default -> printUsage();\n            }\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Error: \" + e.getMessage());\n        }\n    }\n\n    static void printUsage() {\n        System.out.println(\"Usage: ContactBook [add <name> <phone> <email> | list | find <name> | delete <name>]\");\n    }\n\n    static void addContact(String[] args) {\n        if (args.length != 4) {\n            throw new IllegalArgumentException(\"add requires: <name> <phone> <email>\");\n        }\n        Contact c = new Contact(args[1], args[2], args[3]);\n        contacts.add(c);\n        storage.save(contacts);\n        System.out.println(\"Added: \" + c);\n    }\n\n    static void listContacts() {\n        if (contacts.isEmpty()) {\n            System.out.println(\"No contacts yet.\");\n            return;\n        }\n        for (Contact c : contacts) {\n            System.out.println(c);\n        }\n    }\n\n    static void findContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"find requires: <name>\");\n        }\n        String query = args[1];\n        boolean found = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                System.out.println(c);\n                found = true;\n            }\n        }\n        if (!found) {\n            System.out.println(\"No contact named \" + query);\n        }\n    }\n\n    static void deleteContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"delete requires: <name>\");\n        }\n        String query = args[1];\n        List<Contact> remaining = new ArrayList<>();\n        boolean removed = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                removed = true;\n            } else {\n                remaining.add(c);\n            }\n        }\n        contacts = remaining;\n        storage.save(contacts);\n        System.out.println(removed ? \"Deleted \" + query : \"No contact named \" + query);\n    }\n}"
+      }
+    },
+    {
+      "narration": "That's a nice pattern to notice. Main doesn't do any real work itself. It reads one word, hands off to the right command method, and lets that method worry about the details.",
+      "display": {
+        "kind": "stick",
+        "scene": "handoff",
+        "heading": "Dispatch",
+        "subheading": "main delegates to a command"
+      }
+    },
+    {
+      "narration": "Add first checks it got exactly four arguments, the command plus three fields, and throws if not. Then it builds a contact, adds it to the list, and immediately calls storage dot save, so the file is up to date the moment the command finishes. Find loops the list and matches names with equals-ignore-case, so casing doesn't matter.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactBook.java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactBook {\n\n    static List<Contact> contacts;\n    static ContactStorage storage = new ContactStorage(\"contacts.csv\");\n\n    public static void main(String[] args) {\n        contacts = storage.load();\n\n        if (args.length == 0) {\n            printUsage();\n            return;\n        }\n\n        String command = args[0];\n\n        try {\n            switch (command) {\n                case \"add\" -> addContact(args);\n                case \"list\" -> listContacts();\n                case \"find\" -> findContact(args);\n                case \"delete\" -> deleteContact(args);\n                default -> printUsage();\n            }\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Error: \" + e.getMessage());\n        }\n    }\n\n    static void printUsage() {\n        System.out.println(\"Usage: ContactBook [add <name> <phone> <email> | list | find <name> | delete <name>]\");\n    }\n\n    static void addContact(String[] args) {\n        if (args.length != 4) {\n            throw new IllegalArgumentException(\"add requires: <name> <phone> <email>\");\n        }\n        Contact c = new Contact(args[1], args[2], args[3]);\n        contacts.add(c);\n        storage.save(contacts);\n        System.out.println(\"Added: \" + c);\n    }\n\n    static void listContacts() {\n        if (contacts.isEmpty()) {\n            System.out.println(\"No contacts yet.\");\n            return;\n        }\n        for (Contact c : contacts) {\n            System.out.println(c);\n        }\n    }\n\n    static void findContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"find requires: <name>\");\n        }\n        String query = args[1];\n        boolean found = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                System.out.println(c);\n                found = true;\n            }\n        }\n        if (!found) {\n            System.out.println(\"No contact named \" + query);\n        }\n    }\n\n    static void deleteContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"delete requires: <name>\");\n        }\n        String query = args[1];\n        List<Contact> remaining = new ArrayList<>();\n        boolean removed = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                removed = true;\n            } else {\n                remaining.add(c);\n            }\n        }\n        contacts = remaining;\n        storage.save(contacts);\n        System.out.println(removed ? \"Deleted \" + query : \"No contact named \" + query);\n    }\n}"
+      }
+    },
+    {
+      "narration": "Delete is the interesting one. Instead of removing from the list while looping over it, which is a classic bug, it builds a fresh list of everything that doesn't match, then replaces the old list with that. Same result, no risk. Then it saves, and reports whether anything was actually removed.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// ContactBook.java\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ContactBook {\n\n    static List<Contact> contacts;\n    static ContactStorage storage = new ContactStorage(\"contacts.csv\");\n\n    public static void main(String[] args) {\n        contacts = storage.load();\n\n        if (args.length == 0) {\n            printUsage();\n            return;\n        }\n\n        String command = args[0];\n\n        try {\n            switch (command) {\n                case \"add\" -> addContact(args);\n                case \"list\" -> listContacts();\n                case \"find\" -> findContact(args);\n                case \"delete\" -> deleteContact(args);\n                default -> printUsage();\n            }\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"Error: \" + e.getMessage());\n        }\n    }\n\n    static void printUsage() {\n        System.out.println(\"Usage: ContactBook [add <name> <phone> <email> | list | find <name> | delete <name>]\");\n    }\n\n    static void addContact(String[] args) {\n        if (args.length != 4) {\n            throw new IllegalArgumentException(\"add requires: <name> <phone> <email>\");\n        }\n        Contact c = new Contact(args[1], args[2], args[3]);\n        contacts.add(c);\n        storage.save(contacts);\n        System.out.println(\"Added: \" + c);\n    }\n\n    static void listContacts() {\n        if (contacts.isEmpty()) {\n            System.out.println(\"No contacts yet.\");\n            return;\n        }\n        for (Contact c : contacts) {\n            System.out.println(c);\n        }\n    }\n\n    static void findContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"find requires: <name>\");\n        }\n        String query = args[1];\n        boolean found = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                System.out.println(c);\n                found = true;\n            }\n        }\n        if (!found) {\n            System.out.println(\"No contact named \" + query);\n        }\n    }\n\n    static void deleteContact(String[] args) {\n        if (args.length != 2) {\n            throw new IllegalArgumentException(\"delete requires: <name>\");\n        }\n        String query = args[1];\n        List<Contact> remaining = new ArrayList<>();\n        boolean removed = false;\n        for (Contact c : contacts) {\n            if (c.getName().equalsIgnoreCase(query)) {\n                removed = true;\n            } else {\n                remaining.add(c);\n            }\n        }\n        contacts = remaining;\n        storage.save(contacts);\n        System.out.println(removed ? \"Deleted \" + query : \"No contact named \" + query);\n    }\n}"
+      }
+    },
+    {
+      "narration": "Time to compile it and actually use it from a real terminal.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Running It",
+        "subheading": "javac, then a real session"
+      }
+    },
+    {
+      "narration": "One javac call compiles all three files together. Then you run Contact book with add, a quoted name, a phone, and an email. The program confirms with the formatted contact line, and behind the scenes, contacts dot C-S-V now exists on disk.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "javac Contact.java ContactStorage.java ContactBook.java\n\njava ContactBook add \"Alice Smith\" 555-1234 alice@example.com\n# Added: Alice Smith     555-1234        alice@example.com"
+      }
+    },
+    {
+      "narration": "Add a second contact, then list, and both show up in that aligned table. Find Alice pulls just her row. Delete Bob Jones, list again, and only Alice remains. Every one of those commands was a separate program run, and the data survived all of them, because each run reloads the file first.",
+      "display": {
+        "kind": "editor",
+        "lang": "bash",
+        "code": "java ContactBook add \"Bob Jones\" 555-5678 bob@example.com\njava ContactBook list\n# Alice Smith     555-1234        alice@example.com\n# Bob Jones       555-5678        bob@example.com\n\njava ContactBook find Alice Smith\njava ContactBook delete \"Bob Jones\"\njava ContactBook list\n# Alice Smith     555-1234        alice@example.com"
+      }
+    },
+    {
+      "narration": "And that's a real, working, persistent application. Not a toy stuffed into one main method, but properly separated classes each doing a single job.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "It Persists",
+        "subheading": "data survives every run"
+      }
+    },
+    {
+      "narration": "The lesson leaves you four ways to push this further.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Stretch Goals",
+        "subheading": "make it yours"
+      }
+    },
+    {
+      "narration": "Add email validation, a simple check that there's an at sign and a dot after it. Add an update command to edit one field of an existing contact. Switch storage from C-S-V to JSON, which you'll do properly with a real library and modern file I-O in Level Two. And write unit tests for from C-S-V line and to C-S-V line, formalized with JUnit 5 later in the path.",
+      "display": {
+        "kind": "text",
+        "heading": "Four Extensions",
+        "subheading": "validation, update, JSON, tests"
+      }
+    },
+    {
+      "narration": "Finishing this project is the marker that you're ready for Level Two, intermediate Java. You've taken a pile of separate concepts and shipped something whole.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "On To Level 2",
+        "subheading": "intermediate Java"
+      }
+    },
+    {
+      "narration": "So that's the whole build: an immutable data class, a storage class that reads and writes a file safely, and a command-line class that loads on start, dispatches commands, and saves after every change. Small pieces, clear boundaries. Go type it out yourself, that's how it really sticks.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "Level 1, Done",
+        "subheading": "small pieces, clear boundaries"
+      }
+    },
+    {
+      "narration": "The complete lesson, with every code block and the full run-through, is at the link on screen. Build it, then make it yours with the stretch goals.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "The Java ArrayList.remove() overload trap",
+  "description": "List in Java has two remove methods: remove(Object) and remove(int index). With a list of Integer, calling list.remove(1) runs the by-index overload and deletes the element at position 1 -- not the value 1. This Short shows the unambiguous String-list case first, then the Integer gotcha and the Integer.valueOf fix.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/\n\n#Shorts",
+  "tags": [
+    "java",
+    "arraylist",
+    "collections",
+    "java beginners",
+    "programming tutorial",
+    "java gotchas"
+  ],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/"
+  ],
+  "beats": [
+    {
+      "narration": "Here's a Java trick question. You've got a list of numbers, you call remove with the number one, and the wrong element vanishes. Why?",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Wrong element gone",
+        "subheading": "remove(1)"
+      }
+    },
+    {
+      "narration": "With a list of strings, it's unambiguous. Remove Call Sam by value, then remove index zero by position. List has two remove methods, and Java picks based on the argument type.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "List<String> todos = new ArrayList<>();\n\ntodos.add(\"Buy milk\");\ntodos.add(\"Write report\");\ntodos.add(\"Call Sam\");\n\ntodos.remove(\"Call Sam\");   // remove by value\ntodos.remove(0);            // remove by index -- careful, overload!\nSystem.out.println(todos);  // [Write report]"
+      }
+    },
+    {
+      "narration": "Now switch to a list of Integers. Call remove with a plain int, and Java runs the remove-by-index overload. It drops the element at that position, not the value you wanted.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "List<Integer> scores = new ArrayList<>();\nscores.add(95);\nscores.add(80);\n\nscores.remove(1);   // removes index 1 -> the 80, not the value 1"
+      }
+    },
+    {
+      "narration": "To actually remove the value one, box it yourself: remove Integer dot valueOf one. Same method name, completely different behavior.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "The fix",
+        "subheading": "Integer.valueOf(1)"
+      }
+    },
+    {
+      "narration": "Arrays are fixed size, ArrayList grows and shrinks. Full lesson and runnable code:",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/"
+      }
+    }
+  ]
+}

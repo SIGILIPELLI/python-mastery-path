@@ -1,6 +1,6 @@
 {
   "mode": "sequential",
-  "current_subject_index": 3,
+  "current_subject_index": 4,
   "short_uses": {
     "python": {
       "level-1/03-control-flow": 2,
@@ -46,11 +46,11 @@
       "level-4/10-capstone-project": 1
     },
     "java": {
-      "level-1/01-setup": 1,
-      "level-1/02-variables-data-types": 1,
-      "level-1/03-control-flow": 1,
-      "level-1/04-methods-parameters": 1,
-      "level-1/05-arrays-collections": 1,
+      "level-1/01-setup": 2,
+      "level-1/02-variables-data-types": 2,
+      "level-1/03-control-flow": 2,
+      "level-1/04-methods-parameters": 2,
+      "level-1/05-arrays-collections": 2,
       "level-1/06-strings-formatting": 1,
       "level-1/07-classes-objects": 1,
       "level-1/08-exception-handling": 1,
@@ -271,6 +271,10 @@
       {
         "kind": "project",
         "slug": "level-4/10-capstone-project"
+      },
+      {
+        "kind": "project",
+        "slug": "level-1/10-project-contact-book"
       }
     ],
     "javascript": [
@@ -426,6 +430,7 @@
   "completed_subjects": [
     "python",
     "product-manager",
-    "c"
+    "c",
+    "java"
   ]
 }

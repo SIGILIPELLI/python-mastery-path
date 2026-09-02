@@ -1,0 +1,63 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Java: when do you actually need `new`?",
+  "description": "A question that trips up every Java beginner: when do you have to write the word `new`, and when can you skip it? This Short uses the `Counter` class from the Java Mastery Path methods lesson to show the split. Instance methods like `increment()` and `getCount()` act on one object's data, so they need a `Counter` built with `new`. A `static` method like `Counter.describe()` belongs to the class itself and needs no object at all.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/\n\n#Shorts",
+  "tags": ["java", "static methods", "instance methods", "new keyword", "java for beginners", "object oriented programming", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/"],
+  "beats": [
+    {
+      "narration": "Here's a question that trips up every Java beginner. When do you have to write the word new, and when can you skip it entirely?",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "new or not?",
+        "subheading": "static vs instance"
+      }
+    },
+    {
+      "narration": "Look at this Counter class. The count field, plus increment and getCount, are instance methods. They work on one specific object's data.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "public class Counter {\n    private int count = 0;   // instance field\n\n    // instance method -- needs a Counter object to call it\n    void increment() {\n        count++;\n    }\n\n    int getCount() {\n        return count;\n    }\n\n    // static method -- called via Counter.describe(), no instance needed\n    static String describe() {\n        return \"A simple counter class\";\n    }\n}"
+      }
+    },
+    {
+      "narration": "So there are two kinds. A static method belongs to the class itself. An instance method needs a real object to act on.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "two kinds",
+        "subheading": "class vs object"
+      }
+    },
+    {
+      "narration": "You build a Counter with new, call increment twice, and getCount returns two. But describe is static, so Counter dot describe needs no object at all.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "Counter c = new Counter();\nc.increment();\nc.increment();\nSystem.out.println(c.getCount());\nSystem.out.println(Counter.describe());",
+        "output": "2\nA simple counter class"
+      }
+    },
+    {
+      "narration": "That's the whole rule. Instance data needs new. Class level behavior doesn't. Once you see it, you'll never guess again.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "the rule",
+        "subheading": "data needs new"
+      }
+    },
+    {
+      "narration": "Full lesson and runnable code are linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/"
+      }
+    }
+  ]
+}

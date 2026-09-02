@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "Why Java's main() method is spelled exactly like that",
+  "description": "Java's entry point isn't arbitrary boilerplate. The public class name must match the file name exactly, case and all, or javac refuses to compile. And every word of public static void main(String[] args) is load-bearing: public lets the JVM call it from outside, static means no object is needed first, void means it returns nothing, and String[] args carries your command-line arguments. This Short breaks down the anatomy of Hello.java from the Java Mastery Path setup lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/\n\n#Shorts",
+  "tags": ["java", "java tutorial", "main method", "public static void main", "jvm", "javac", "hello world", "programming tutorial", "learn java"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/"],
+  "beats": [
+    {
+      "narration": "Rename this file from Hello dot java to lowercase hello dot java, and it stops compiling. Java's entry point has rules, and every single word of it means something.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "It won't compile",
+        "subheading": "one letter off"
+      }
+    },
+    {
+      "narration": "Here's the whole first program. The catch: the public class name has to match the file name exactly, case included. Class Hello must live in a file called Hello dot java.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "// Hello.java\npublic class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, world!\");\n    }\n}"
+      }
+    },
+    {
+      "narration": "Two steps by hand. javac compiles your source into Hello dot class, which is JVM bytecode. Then java Hello runs that class, with no extension on the end.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "javac Hello.java\n# produces Hello.class (JVM bytecode)\n\njava Hello",
+        "output": "Hello, world!"
+      }
+    },
+    {
+      "narration": "Now the signature. It's public so the JVM, sitting outside your class, can call it. static so it runs without creating an object first. void because it returns nothing. And String args holds your command-line arguments.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "public static void main",
+        "subheading": "every word earns its place"
+      }
+    },
+    {
+      "narration": "The full anatomy table and the runnable code are in the lesson.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/01-setup/"
+      }
+    }
+  ]
+}

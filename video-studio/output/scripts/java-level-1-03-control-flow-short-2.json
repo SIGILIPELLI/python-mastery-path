@@ -1,0 +1,64 @@
+{
+  "type": "short",
+  "language": "java",
+  "title": "The one Java loop that runs before it checks",
+  "description": "Every loop you know tests its condition first and might never run. Java's do-while is the exception: it runs the body once, then checks. We compare a plain while loop against a do-while whose condition is false immediately but the body still prints once. Perfect for prompt-and-validate loops where you always need at least one pass.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+  "tags": [
+    "java",
+    "do-while",
+    "while loop",
+    "control flow",
+    "java loops",
+    "programming tutorial",
+    "learn java"
+  ],
+  "voice": "en-US-JennyNeural",
+  "source_urls": [
+    "https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/"
+  ],
+  "beats": [
+    {
+      "narration": "Here's a loop that breaks its own rule. Every loop you know checks its condition first, and might never run. Java has exactly one that runs its body once before it ever checks.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Runs first, asks later",
+        "subheading": "do-while"
+      }
+    },
+    {
+      "narration": "A plain while loop checks up front. If count has already passed the limit, this body never runs, not even once.",
+      "display": {
+        "kind": "editor",
+        "lang": "java",
+        "code": "int count = 0;\nwhile (count < 3) {\n    System.out.println(\"count = \" + count);\n    count++;\n}\n// count = 0, count = 1, count = 2"
+      }
+    },
+    {
+      "narration": "Now a do-while. n is zero, so n less than zero is false immediately. But the body still ran once before that check ever happened.",
+      "display": {
+        "kind": "terminal",
+        "lang": "java",
+        "code": "int n = 0;\ndo {\n    System.out.println(\"runs at least once: \" + n);\n    n++;\n} while (n < 0);   // condition is false immediately, but body already ran once",
+        "output": "runs at least once: 0"
+      }
+    },
+    {
+      "narration": "That's ideal for prompt-and-validate loops. Ask for input, check it, repeat if it's bad. You always need at least one pass, and do-while guarantees it.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Prompt and validate",
+        "subheading": "always one pass"
+      }
+    },
+    {
+      "narration": "Full lesson and runnable code are linked below. Go try it.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/"
+      }
+    }
+  ]
+}

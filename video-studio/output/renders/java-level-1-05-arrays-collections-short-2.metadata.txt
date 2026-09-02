@@ -1,0 +1,14 @@
+Title: The Java ArrayList.remove() overload trap
+
+Description:
+List in Java has two remove methods: remove(Object) and remove(int index). With a list of Integer, calling list.remove(1) runs the by-index overload and deletes the element at position 1 -- not the value 1. This Short shows the unambiguous String-list case first, then the Integer gotcha and the Integer.valueOf fix.
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/
+
+#Shorts
+
+Tags: java, arraylist, collections, java beginners, programming tutorial, java gotchas
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/

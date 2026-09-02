@@ -1,0 +1,14 @@
+Title: The one Java loop that runs before it checks
+
+Description:
+Every loop you know tests its condition first and might never run. Java's do-while is the exception: it runs the body once, then checks. We compare a plain while loop against a do-while whose condition is false immediately but the body still prints once. Perfect for prompt-and-validate loops where you always need at least one pass.
+
+Source lesson:
+- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/
+
+#Shorts
+
+Tags: java, do-while, while loop, control flow, java loops, programming tutorial, learn java
+
+Source lesson(s):
+- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/

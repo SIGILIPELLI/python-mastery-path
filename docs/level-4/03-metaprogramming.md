@@ -185,6 +185,51 @@ print([m for m in dir(Greeter) if not m.startswith("_")])   # ['greet']
 | `exec(code, namespace)` | generate and run code from a string (framework-level only) |
 | `inspect` module | introspect signatures, source, members at runtime |
 
+## How It Actually Works
+
+The `class` statement is itself compiled to a function call, not special
+class-building syntax evaluated by some separate code path: `class MyClass(
+metaclass=Meta): pass` compiles to roughly `MyClass = Meta("MyClass", (), namespace,
+**kwargs)` where `namespace` is the dict built by executing the class body as its own
+tiny scope. `type.__call__` (the metaclass's own `__call__`, inherited from `type`
+itself, since a metaclass is a class too) is what actually orchestrates calling
+`Meta.__new__` to build the class object and then `Meta.__init__` to further
+initialize it — the exact same two-phase `__new__`/`__init__` split ordinary
+instances go through, just one level up the type hierarchy, which is why both hooks
+print in that order at *import* time, before `MyClass()` is ever called to make an
+instance.
+
+`PluginMeta.registry[name] = cls` runs inside `__new__`, which fires **every single
+time** any class using that metaclass is defined — including transitively for every
+subclass, since a metaclass is inherited by default (a subclass of a class with
+`metaclass=PluginMeta` automatically gets built by `PluginMeta` too, unless overridden).
+This is the entire mechanism behind "automatic" plugin registration: there is no
+scanning of the filesystem or reflection over already-loaded classes — registration
+happens as a side effect of the class object being constructed, which only occurs
+once each subclass's `class` statement actually executes (i.e., once its defining
+module is imported).
+
+`__init_subclass__` achieves the same effect through a narrower, purpose-built hook:
+`type.__new__` itself calls `cls.__init_subclass__(cls=new_subclass, **kwargs)` as a
+final step of building any new class that has a base class defining it (implemented
+as an implicit classmethod) — so you get a callback exactly when a subclass is
+created, without needing to write your own metaclass or override `__new__`
+yourself. It runs strictly *after* the class object already fully exists, though,
+which is precisely why it can't do what a metaclass's `__new__` can: reject or
+rewrite the namespace *before* the class is built.
+
+`type("Point", (), {...})` is not a special-cased shortcut — it is calling the exact
+same `type` callable that implicitly builds every class from a `class` statement,
+just supplying the three positional arguments (name, bases tuple, namespace dict)
+explicitly rather than letting the compiler derive them from source syntax. `exec(code,
+namespace)` compiles and runs the given string exactly as if it were a module's top-
+level code, executing inside the given dict as its namespace — that's the same
+compile-and-execute pipeline from Level 1's `python3 hello.py` walkthrough,
+just triggered manually at runtime on a string instead of a file, which is why
+`dataclasses` can generate an actual, fast `__init__` method (compiled bytecode, no
+per-call overhead) rather than a slower generic one built from introspecting fields
+at call time.
+
 ## Exercise
 
 Build a small validation framework using `__init_subclass__`: a base class

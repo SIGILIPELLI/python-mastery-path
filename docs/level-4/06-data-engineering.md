@@ -190,6 +190,55 @@ an in-memory `DataFrame`, no file I/O required.
 | Join two tables | `df1.merge(df2, on="key", how="left")` |
 | Handle missing data | `df.dropna()` / `df.fillna(value)` |
 
+## How It Actually Works
+
+A `numpy` array's speed comes from a fundamentally different memory layout than a
+Python `list`: a list is an array of *pointers* to separately heap-allocated
+objects scattered across memory, while a `numpy` array is one contiguous block of
+raw, fixed-width machine values (all `float64`, all `int32`, etc., decided once at
+creation) with no per-element Python object overhead at all. `prices * quantities`
+doesn't loop in Python bytecode calling `__mul__` per element — it dispatches once
+into a compiled C (or SIMD-vectorized) loop that walks both underlying memory
+buffers directly, multiplying raw values using the CPU's native arithmetic
+instructions, often processing several elements per CPU cycle via vector
+instructions. This is precisely why "vectorized" numpy code that looks like Python
+runs at compiled-language speed: the actual arithmetic never touches the Python
+interpreter's per-instruction dispatch overhead at all, only the *call* into numpy
+does.
+
+A `pandas` `DataFrame` is built on top of exactly this: each column is stored as a
+numpy array (or an Arrow-backed block, in newer pandas), and the `DataFrame` itself
+is essentially a dict-like collection of these column arrays sharing a common row
+index. This is why `df["price"]` is cheap (it just returns a view referencing the
+existing underlying array, wrapped as a `Series`) while adding a differently-typed
+column can trigger a new array allocation. `df[df["quantity"] > 5]` works in two
+steps mechanically: `df["quantity"] > 5` runs the same vectorized comparison as
+`numpy` to produce a boolean array the same length as the DataFrame, and the outer
+`df[...]` then uses that boolean array as a *mask* — a single vectorized selection
+pass over each column's underlying array picking out only the `True` positions —
+rather than a Python-level loop checking each row one at a time.
+
+`df.groupby("product")` doesn't recompute per-group results directly — it first
+performs a **hash-based partition**: it computes a hash of the grouping column's
+values (the same hashing mechanism behind Python's own `dict`/`set`) to bucket row
+positions by their `product` value into an internal grouping object, without
+copying the underlying data yet. Only when you call `.sum()` or `.agg(...)` does it
+apply the requested reduction separately over the row-index buckets already
+computed, materializing a new, smaller result — which is why chaining multiple
+aggregations off one `groupby(...)` call (as `.agg(total_revenue=..., avg_price=...,
+orders=...)` does) is more efficient than calling `groupby` fresh for each one: the
+expensive bucketing step happens exactly once and is reused for every aggregate
+computed from it.
+
+`orders.merge(customers, on="customer_id", how="left")` implements a **relational
+join** the same way a SQL database's join operator does — for reasonably sized data,
+pandas builds a hash table keyed by the join column from the smaller side (`
+customers`), then does a single pass over `orders` looking up each `customer_id` in
+that hash table (an O(1) average lookup per row, the same hash-table mechanism as
+Python `dict`) rather than comparing every row of `orders` against every row of
+`customers` (which would be the much slower, naive O(n×m) nested-loop join a
+hand-written merge might accidentally implement).
+
 ## Exercise
 
 Build the ETL pipeline above into a real script with a `tests/test_transform.py`

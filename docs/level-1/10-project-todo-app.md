@@ -126,6 +126,34 @@ python3 todo.py list
 # [ ] 2. Review Level 2 outline
 ```
 
+## How It Actually Works
+
+Each time you run `python3 todo.py add "..."`, a **brand-new process** starts
+with no memory of previous runs. The only thing that carries state between
+invocations is `tasks.json` on disk. Every command follows the same cycle:
+
+1. **Startup.** The OS hands the process its command-line words as an array;
+   CPython exposes them as `sys.argv` (with `sys.argv[0]` being the script
+   path). `args = sys.argv[1:]` drops the script name.
+2. **Load.** `load_tasks()` calls `DB_PATH.read_text()`, which opens the file,
+   reads its bytes, decodes them to a `str`, and closes the file. `json.loads`
+   then runs a C tokenizer over that string, building Python `list`/`dict`/
+   `str`/`bool` objects as it recognizes JSON tokens — turning stored text
+   back into live objects.
+3. **Mutate in memory.** `add_task`/`complete_task`/`delete_task` change the
+   in-memory `tasks` list. At this point the file on disk is still the old
+   version.
+4. **Save.** `save_tasks()` calls `json.dumps(tasks, indent=2)` — a recursive
+   walk that emits JSON text for each object — then `write_text()` opens the
+   file in write mode (**truncating it to zero length first**), writes the new
+   text, and closes it. The close flushes the OS buffer to disk.
+5. **Exit.** The process ends; all in-memory objects are freed. The next
+   command starts over from step 1.
+
+The `try/except json.JSONDecodeError` around the load matters because step 4
+isn't atomic: if the process were killed mid-write, the file could be left
+half-written, and the next run needs to degrade gracefully rather than crash.
+
 ## Stretch goals
 
 - Add due dates and sort tasks by them.

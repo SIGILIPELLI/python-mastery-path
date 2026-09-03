@@ -148,6 +148,39 @@ timezone-aware datetimes for anything involving more than one location.
 | string -> `datetime` | `datetime.strptime(text, fmt)` or `.fromisoformat()` |
 | Convert timezone | `.astimezone(ZoneInfo("..."))` |
 
+## How It Actually Works
+
+**`datetime` stores broken-out fields, not a single timestamp.** Internally a
+`datetime` is a small struct of year, month, day, hour, minute, second,
+microsecond, and an optional `tzinfo` pointer — packed into a few bytes. It is
+*not* seconds-since-epoch. Comparisons and subtraction convert to a common
+scale (an internal ordinal day count plus seconds) on the fly.
+
+**`datetime.now()` is a system call.** It asks the OS for the current wall
+time (`clock_gettime(CLOCK_REALTIME)` on Linux, similar elsewhere), which
+returns seconds + nanoseconds since the Unix epoch, then converts that into
+the broken-out fields using the local timezone rules. A *naive* datetime
+throws the timezone away after that conversion; an *aware* one keeps it.
+
+**`timedelta` normalizes on construction.** Whatever units you pass
+(`weeks`, `hours`, `milliseconds`, …) are immediately reduced to a canonical
+`(days, seconds, microseconds)` triple with `0 ≤ seconds < 86400` and
+`0 ≤ microseconds < 10⁶`. Date arithmetic is then just integer math on those
+fields, with month/day rollover handled by the calendar conversion.
+
+**`strftime`/`strptime` are format interpreters.** `strftime` walks the
+format string and, for each `%code`, substitutes the corresponding field
+(often delegating to the C library's `strftime`, so locale settings matter for
+`%B`/`%A`). `strptime` builds a regular expression from the format string,
+matches it against the input, and pulls the captured pieces into a datetime —
+raising `ValueError` if the regex doesn't match.
+
+**`zoneinfo`** reads the IANA `tzdata` database files (compiled binary tables
+of historical UTC-offset transitions and DST rules), caches the parsed
+`ZoneInfo` object, and computes an offset for a given instant by binary-
+searching the transition list. That's how it knows, say, that New York was
+UTC−5 in January but UTC−4 in July.
+
 ## Exercise
 
 Write a function `days_until_birthday(birth_month, birth_day)` that returns

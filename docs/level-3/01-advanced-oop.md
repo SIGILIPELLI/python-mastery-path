@@ -189,6 +189,49 @@ class object itself gets built.
 | `@cached_property` | compute an expensive attribute once, reuse it |
 | `metaclass=` | customize how classes themselves are constructed |
 
+## How It Actually Works
+
+An ABC's enforcement isn't checked at method-call time — it's checked at
+**instantiation time**, and the mechanism is a metaclass. `ABC` is built on
+`ABCMeta`, a subclass of `type`; `@abstractmethod` just tags a function object with
+a `__isabstractmethod__ = True` attribute. When a class body finishes executing,
+`ABCMeta.__new__` scans the resulting namespace (and inherited members) for anything
+still carrying that flag and stores the set of unimplemented names on the class as
+`__abstractmethods__`. `object.__new__` (called during instantiation) checks that set
+and raises `TypeError` immediately if it's non-empty — which is exactly why
+`PaymentMethod()` fails before `__init__` ever runs, and why a subclass that
+overrides every abstract method with a concrete one becomes instantiable again: its
+own `__abstractmethods__` computes to empty.
+
+The MRO for `class D(B, C)` is not "depth-first left-to-right" (the old, broken
+classic algorithm) — CPython computes it with **C3 linearization**: merge the MROs
+of `B` and `C` plus the list `[B, C]` itself, taking the head of the first list that
+doesn't appear in the tail of any other list, repeating until nothing's left. This
+guarantees each ancestor appears exactly once and *before* its own parents, and that
+the order respects each base's own local precedence — that's why `D → B → C → A`,
+not `D → B → A → C → A`. `super().greet()` doesn't call "the parent" — it looks up
+`type(self).__mro__`, finds the calling class's position in it, and calls the *next*
+entry — which is why `B.greet` and `C.greet` both run exactly once even though both
+ultimately inherit from `A`: each `super()` call advances one shared position along
+one shared list, not down two independent lineages.
+
+`@cached_property` is a **non-data descriptor** (it defines `__get__` but not
+`__set__`), which matters specifically because of attribute lookup priority: a
+non-data descriptor is checked only if the instance's own `__dict__` doesn't already
+have that name. The first access to `report.total` runs your function, computes the
+result, and then manually writes `self.__dict__["total"] = 60` — after that, ordinary
+attribute lookup finds `total` sitting directly in the instance's `__dict__` and
+never consults the descriptor's `__get__` again, which is the entire caching
+mechanism (and why the class needs a real, writable instance `__dict__` to work at
+all).
+
+Finally, `class Bad(Base): ...` triggers `ValidatingMeta.__new__` before `Bad` even
+exists as an object: the `class` statement itself compiles to a call to the
+metaclass — `ValidatingMeta("Bad", (Base,), namespace)` — and only if that call
+returns successfully does the name `Bad` get bound. Raising `TypeError` inside
+`__new__` means the class object is never created at all, not merely rejected after
+the fact.
+
 ## Exercise
 
 Define an ABC `Shape` with abstract methods `area()` and `perimeter()`, plus a

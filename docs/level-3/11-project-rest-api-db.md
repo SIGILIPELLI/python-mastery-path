@@ -350,6 +350,52 @@ pytest -v tests/
 # tests/test_books.py::test_delete_book PASSED
 ```
 
+## How It Actually Works
+
+`get_db()` being a generator function is exactly what makes it work as a FastAPI
+dependency with cleanup: FastAPI recognizes that `Depends(get_db)` wraps a generator,
+so instead of calling it once and using the return value, it calls `next()` on it to
+run up to the `yield`, hands the yielded `Session` to your route as the dependency
+value, and — after the route function fully returns (success *or* exception) —
+resumes the generator past `yield` to run `db.close()` inside the `finally` block.
+This is the identical generator-suspend-and-resume mechanism from Level 2's
+context managers, applied here to guarantee a `Session` (and the underlying
+database connection it holds) is released after every single request, even one that
+raises partway through.
+
+`connect_args={"check_same_thread": False}` exists because of a genuine mismatch
+between two different concurrency models: SQLite's C library, by default, raises an
+error if you use a connection from a different OS thread than the one that created
+it (its own safety check against cross-thread misuse of a non-thread-safe handle).
+FastAPI, run by `uvicorn`, executes synchronous (non-`async def`) route functions in
+a worker thread pool so they don't block the event loop — meaning a request's
+database work can genuinely happen on a different thread than the one that opened
+the connection. This flag tells SQLite's driver to skip that check, which is safe
+here specifically because SQLAlchemy's `sessionmaker` hands out one dedicated
+connection per request (via `get_db`) rather than sharing one connection
+concurrently across threads.
+
+Separating `schemas.py` (`BookOut`) from `models.py` (`Book`) is enforced
+mechanically by `ConfigDict(from_attributes=True)`: without it, Pydantic's model
+constructor only accepts a dict-like mapping of keys to values, but a SQLAlchemy
+`Book` instance is a plain Python object whose data lives in attributes
+(`book.title`), not dict keys. `from_attributes=True` tells Pydantic's validator to
+read each declared field via `getattr` instead of `__getitem__`, which is the entire
+mechanism letting `response_model=BookOut` turn an ORM row into a JSON-serializable
+model automatically — and it also means only the fields *declared* on `BookOut` are
+ever read off the ORM object, so a sensitive column added to `Book` later doesn't
+silently start appearing in API responses; it has to be added to `BookOut`
+explicitly first.
+
+`tests/conftest.py`'s isolated test database works by dependency **override**, not
+by re-pointing the real one: FastAPI stores dependencies in a resolvable registry
+keyed by the dependency function object itself, and `app.dependency_overrides[get_db]
+= override_get_db` swaps in a different generator function purely for the duration
+of the test session — every route that declares `Depends(get_db)` transparently
+receives the overridden version instead, with zero changes to `main.py`'s route
+code, because the override lookup happens by function identity at request time, not
+by anything baked into the route definitions themselves.
+
 ## Stretch goals
 
 - Add pagination (`?limit=&offset=`) to `GET /books`.

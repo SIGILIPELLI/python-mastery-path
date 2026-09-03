@@ -212,6 +212,48 @@ changes are tracked, reversible, and repeatable across environments.
 | Portability | SQLite only | works with SQLite, PostgreSQL, MySQL, etc. with little code change |
 | Best for | small scripts, simple embedded storage | applications that grow, need multiple DB backends, or many relationships |
 
+## How It Actually Works
+
+`sqlite3.connect("app.db")` doesn't start a separate database server — SQLite is
+**embedded**: the entire database engine (parser, query planner, B-tree storage
+engine, transaction manager) is a C library linked directly into your Python process,
+and "the database" is just that one `.db` file on disk, formatted as a set of
+B-tree pages. Every table and every index is its own B-tree inside that file; a
+`CREATE TABLE` writes a new B-tree root page and records its schema in a special
+`sqlite_master` table stored the same way.
+
+Parameterized queries (`?` placeholders) matter mechanically, not just stylistically:
+`cursor.execute("... WHERE name = ?", (name,))` sends the SQL text and the value
+*separately* to SQLite's prepared-statement API — SQLite compiles the query's
+structure once (with a placeholder hole) and later binds `name` directly as a typed
+value into that hole, never re-parsing it as SQL syntax. An f-string
+(`f"... = '{name}'"`), by contrast, splices untrusted text directly into the SQL
+*before* parsing, so a value like `' OR '1'='1` becomes part of the query's grammar
+instead of staying a data value — that's the entire mechanism behind SQL injection,
+and exactly what parameter binding structurally prevents.
+
+`with connection:` context-manager behavior (commit on success, rollback on
+exception, but no close) exists because a `Connection`'s `__enter__`/`__exit__` are
+scoped specifically to the SQL transaction, not the OS-level file handle — SQLite
+wraps every write in an implicit transaction anyway (journaling the original page
+contents before modifying them, so a crash mid-write can roll back to a consistent
+state), and the context manager just decides whether to `COMMIT` (making changes
+durable) or `ROLLBACK` (discarding them) based on whether an exception propagated out
+of the block.
+
+SQLAlchemy's ORM sits on top of all this as a **translation layer**, not a different
+storage engine: `select(User).where(User.name.like("%Johnson%"))` builds an
+in-memory expression tree of Python objects representing the query, which
+SQLAlchemy's SQL compiler then renders into an actual SQL string with `?`
+placeholders (or `%s` for other backends) — the *exact* same parameterized-query
+mechanism as raw `sqlite3`, just generated programmatically. A `Session` additionally
+implements the **unit-of-work pattern**: it tracks every object you've loaded or
+modified in an "identity map" keyed by primary key, and `session.commit()` diffs
+each tracked object's current attribute values against what was loaded from the
+database, generating exactly the `UPDATE`/`INSERT`/`DELETE` statements needed —
+which is why simply setting `user.name = "..."` on a session-attached object, with no
+explicit `UPDATE` call, is enough to persist the change.
+
 ## Exercise
 
 Using plain `sqlite3`, create a `tasks` table (`id`, `title`, `done`) and write

@@ -173,6 +173,50 @@ print(b.logs)           # ['first entry'] — shared state
 | Observer | decouple "something happened" from "who reacts" | a dict of `event -> [callbacks]` |
 | Singleton | exactly one shared instance | a module (not a class) |
 
+## How It Actually Works
+
+The factory pattern's dict-of-constructors trick works because a **class itself is a
+callable object** — `EmailNotifier` is not sugar for anything else, it's a real value
+of type `type` that supports `()` to invoke `__call__` on its metaclass, which runs
+`__new__` then `__init__`. Storing `{"email": EmailNotifier}` is therefore storing an
+ordinary reference to a first-class object, exactly like storing a function in a
+dict — `notifiers[kind]()` is just "look up a callable, then call it," with no
+special-casing for the fact that the callable happens to be a class rather than a
+plain function.
+
+The strategy pattern needs no `Strategy` base class specifically because Python's
+call syntax `discount_strategy(subtotal)` is **duck-typed**: the bytecode compiles to
+`CALL`, which just checks that whatever object sits in that variable defines
+`__call__` (which every plain function does, via its type's `tp_call` slot in C) and
+invokes it with the given arguments — there's no interface check against a declared
+type anywhere in this path. This is different from a language with nominal typing,
+where "any object implementing an interface" needs that interface declared
+explicitly; here, "has the right shape and is callable with the right arguments" is
+sufficient at the point of the call.
+
+`EventBus.publish` uses `callback(**data)` to invoke every subscriber with the same
+keyword arguments regardless of what each specific callback's parameter names are —
+this works because Python resolves keyword arguments by matching them against the
+receiving function's parameter *names* at call time (a dict-like binding step done by
+the interpreter before the function body runs), so as long as each subscribed
+function declares parameters named `order_id` and `total`, the dispatch is uniform
+even though the functions themselves are otherwise unrelated.
+
+The module-as-singleton pattern relies directly on the import-caching mechanism from
+Level 1: `sys.modules["config"]` is created exactly once per process, and every
+subsequent `import config` anywhere in the codebase returns that *same* module
+object rather than re-running its top-level code — `_settings` is therefore one
+dictionary shared by reference across every importer, with no synchronization needed
+because there's only ever one copy to begin with. The `__new__`-based class
+singleton achieves the same one-instance guarantee through a different, more
+explicit mechanism: `__new__` is the method actually responsible for allocating a new
+object (called before `__init__`, which only initializes an already-allocated one),
+so caching and returning the same instance from `__new__` means `Logger()` a second
+time never allocates a new object at all — `__init__` still runs again on that
+cached instance afterward (Python calls it unconditionally after `__new__` returns
+an instance of the class), which is worth knowing since it can silently reset state
+if you're not careful.
+
 ## Exercise
 
 Build a small "report exporter" using the strategy pattern: a function

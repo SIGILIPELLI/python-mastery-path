@@ -132,6 +132,37 @@ print(list(chain([1, 2], "ab", (True, False))))
 | Very large or infinite sequence | generator expression or `yield` function |
 | Need to pause/resume complex, stateful logic | generator function with `yield` |
 
+## How It Actually Works
+
+**A comprehension is compiled into a hidden nested function.** When the
+compiler sees `[n * n for n in numbers]`, it builds an anonymous code object
+whose body is roughly `result = []; for n in numbers: result.append(n * n);
+return result`, then emits code to call that function immediately with
+`numbers` as its argument. This is why the loop variable `n` doesn't leak into
+the surrounding scope (it's local to that hidden function) and why a
+comprehension has its own frame. A dict/set comprehension is the same with
+`{}` and `__setitem__`/`.add` instead. (In 3.12+ this is inlined for speed but
+keeps the same isolation.)
+
+**A generator is a suspended stack frame.** A function containing `yield`
+compiles with a `GENERATOR` flag; *calling* it doesn't run any body code — it
+allocates a **generator object** that holds a frozen frame (its own local
+variables, value stack, and instruction pointer). Each `next(gen)`:
+
+1. Resumes the interpreter's eval loop at the saved instruction pointer, with
+   the saved frame state restored.
+2. Runs until it hits a `YIELD_VALUE` opcode, which pushes the yielded value
+   out to the caller and *freezes the frame again exactly where it is* —
+   locals and all.
+3. When the function body finally returns (or falls off the end), the
+   generator raises `StopIteration`, which `for` loops catch silently.
+
+So `fibonacci()` can loop `while True` without hanging: nothing runs between
+your `next()` calls. A generator expression `(x for x in ...)` is that same
+machinery with an anonymous generator code object. `yield from sub` delegates:
+it drives `sub` to exhaustion, forwarding values out and `.send()`/`.throw()`
+inputs in, then continues.
+
 ## Exercise
 
 Given a large text file (simulate it with a list of strings), write a

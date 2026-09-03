@@ -375,6 +375,37 @@ pytest -v tests/
 # tests/test_report.py::test_format_report_includes_city_name PASSED
 ```
 
+## How It Actually Works
+
+**What `requests.get(url, params=..., timeout=10)` actually does:**
+
+1. Builds a `Request` object, URL-encodes `params` onto the query string, and
+   picks a connection from a pool (a fresh `Session` creates one; `requests`
+   reuses TCP connections to the same host when it can).
+2. Resolves the hostname via DNS, opens a TCP socket, and — because it's
+   `https` — performs a TLS handshake (certificate verification against the
+   `certifi` CA bundle).
+3. Sends a raw HTTP/1.1 request (`GET /v1/search?name=London&count=1
+   HTTP/1.1`, `Host:`, `User-Agent:`, …) and blocks reading the response.
+   `timeout=10` arms a socket timeout so a silent server can't hang you
+   forever.
+4. Parses the status line, headers, and body. `.json()` runs the same JSON
+   scanner from the Data Formats module over the body bytes (decoded per the
+   `Content-Type` charset), returning `dict`/`list` objects.
+5. `raise_for_status()` checks the numeric status code and raises
+   `HTTPError` for 4xx/5xx — that's the line converting "the server said no"
+   into a Python exception your `except requests.RequestException` can catch.
+
+**Why the tests never touch the network:** `monkeypatch.setattr(client.requests,
+"get", fake_get)` reaches into the *already-imported* `requests` module object
+and replaces its `get` attribute with your function, recording the original.
+Because `client.py` calls `requests.get` by looking up `get` on that module
+object *at call time*, it now finds `fake_get`. After the test, pytest's
+`monkeypatch` fixture automatically restores the real `get`. The
+`FakeResponse` class only needs `.json()` and `.raise_for_status()` because
+those are the only methods `client.py` actually calls — it's duck typing, not
+inheritance.
+
 ## Stretch goals
 
 - Add a `--units imperial` flag that reports Fahrenheit and mph directly from

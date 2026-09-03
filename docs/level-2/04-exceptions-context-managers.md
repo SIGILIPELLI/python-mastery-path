@@ -192,6 +192,36 @@ with suppress(FileNotFoundError):
 | `@contextlib.contextmanager` | quick context manager from a generator |
 | `contextlib.suppress(Err)` | ignore a specific, expected exception |
 
+## How It Actually Works
+
+**Custom exceptions are ordinary classes** — the only thing that makes
+`InsufficientFundsError` catchable is that it inherits (transitively) from
+`BaseException`. `except AppError` works for both `ValidationError` and
+`NotFoundError` because the `except` clause runs `issubclass(type(exc),
+AppError)`, and both are subclasses. `raise X from Y` sets `X.__cause__ = Y`
+and a `__suppress_context__` flag; an unhandled exception raised inside an
+`except` block automatically gets `__context__` set to the one being handled.
+The traceback printer walks all three (`__traceback__`, `__cause__`,
+`__context__`) to produce the full chained report.
+
+**The `with` statement is a precise protocol, not a special case of `try`:**
+
+1. Evaluate the expression (`open(...)`, `Timer()`), then call its `__enter__`.
+   The return value is bound to the `as` name.
+2. The compiler registers `__exit__` so it runs no matter how the block ends.
+3. On normal exit: `__exit__(None, None, None)`.
+4. On an exception: `__exit__(exc_type, exc_value, traceback)`. If `__exit__`
+   returns a truthy value, the interpreter *swallows* the exception; if it
+   returns falsy/`None`, the exception continues propagating after cleanup.
+
+**`@contextmanager` bridges the two worlds.** It wraps your generator in a
+helper object whose `__enter__` calls `next(gen)` (running everything up to
+`yield` and returning the yielded value) and whose `__exit__` either calls
+`next(gen)` again (normal path) or `gen.throw(exc)` (exception path) — which
+is *why* you need `try/finally` inside the generator: `gen.throw` makes the
+`yield` expression raise, and only a `finally` guarantees your release code
+still runs.
+
 ## Exercise
 
 Define a `DatabaseConnectionError(AppError)` exception, and write a

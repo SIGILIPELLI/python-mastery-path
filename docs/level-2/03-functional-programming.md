@@ -158,6 +158,36 @@ slow_square(1_000_000)
 | `functools.reduce(fn, iterable)` | fold into one value | usually a `for` loop or `sum`/`max` |
 | `lambda args: expr` | inline single-expression function | — |
 
+## How It Actually Works
+
+**"Functions are first-class" is literal: a function is an ordinary heap
+object** of type `function`, carrying `__code__` (the compiled bytecode),
+`__defaults__`, `__globals__` (the module namespace it was defined in), and
+`__closure__`. Assigning `greeting = shout` just copies a pointer; there is no
+special "function variable".
+
+**A closure is a tuple of cell objects.** When the compiler sees that
+`multiplier` reads `factor` from its enclosing function, it doesn't copy the
+value — it compiles `factor` in `make_multiplier` as a *cell variable*
+(a tiny box object) instead of a normal local. The inner function stores a
+reference to that same cell in its `__closure__`. So `double` and `triple`
+each close over a *different* cell, which is why they remember different
+factors. (This also explains the classic "late binding" gotcha: closures
+capture the cell, not the value at definition time.)
+
+**`map` and `filter` are lazy iterator objects written in C.** `map(f, xs)`
+doesn't call `f` at all yet — it returns a `map` object that calls `f(next(xs))`
+once each time *you* call `next()` on it. `list(map(...))` is what forces the
+work. A comprehension does the same work but in Python bytecode with an
+inlined loop, which is why it's often marginally faster and always more
+readable for simple cases.
+
+**A decorator is just a function call performed at `def` time.** `@timed`
+above `def slow_square` compiles to: define the function, then immediately
+rebind the name to `timed(slow_square)`. `functools.reduce` is a plain C loop
+that threads an accumulator through the sequence — nothing magic, just
+`acc = f(acc, item)` repeated.
+
 ## Exercise
 
 Given a list of order dictionaries like

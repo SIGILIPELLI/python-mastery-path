@@ -600,6 +600,46 @@ jobs:
       - run: docker build -t habit-tracker:${{ github.sha }} .
 ```
 
+## How It Actually Works
+
+The `User -> Habit -> CheckIn` access-control model works because of a fact from
+Module 6's ORM internals: every `Habit` row carries a real `user_id` foreign-key
+column, and `crud.get_owned_habit(db, current_user, habit_id)` compiles to a `SELECT
+... WHERE id = ? AND user_id = ?` — the ownership check happens as part of the SQL
+*query itself*, at the database engine level, not as a Python-side `if habit.user_id
+!= current_user.id` check performed after an unscoped fetch. This matters: a query
+scoped this way returns nothing at all for another user's habit ID, which the route
+then correctly turns into a `404`, rather than fetching the row and then having to
+remember to check ownership in application code — a mistake that's easy to
+accidentally skip in one code path and not another as an API grows.
+
+`current_user=Depends(security.get_current_user)` chains together two dependency
+resolutions from Module 4's production-API authentication and Module 8's own
+database session dependency: FastAPI's dependency graph (built by inspecting each
+route's, then each dependency's, own signature — the same introspection mechanism
+throughout this whole course) resolves `get_current_user`'s own `db: Session =
+Depends(get_db)` parameter first, then calls `get_current_user(token, db)`, which
+decodes and verifies the JWT (Module 4's HMAC-signature check), looks up the
+corresponding `User` row by the `sub` claim, and returns that ORM object — which is
+why every route handler in this file receives an already-authenticated,
+already-database-backed `User` instance with zero repeated authentication logic
+written per route.
+
+Wiring `tests/conftest.py`'s dependency overrides (Module 3's FastAPI
+`dependency_overrides` mechanism) together with an in-memory or temp-file SQLite
+database means the entire suite — auth, CRUD, and access control — runs against a
+real, disposable SQLAlchemy engine rather than mocks standing in for the database
+layer, which is precisely why a test asserting "user A cannot see user B's habit"
+here is testing the *actual* SQL `WHERE user_id = ?` scoping described above, not
+just a unit test's assumption about how that scoping is supposed to work.
+
+The CI workflow's `needs: test` gate (Module 8's job-dependency mechanism) applies
+one more time at the top of the whole stack: `docker build -t
+habit-tracker:${{ github.sha }} .` only ever runs after the full `pytest --cov=app`
+suite — covering every mechanism from every level of this course working together —
+has already exited successfully, which is the concrete reason a broken build of this
+capstone can never reach a built image.
+
 ## Running everything locally
 
 ```bash

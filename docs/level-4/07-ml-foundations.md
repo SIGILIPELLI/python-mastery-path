@@ -179,6 +179,55 @@ print(f"train: {train_accuracy:.3f}, test: {test_accuracy:.3f}")
 | Chain steps safely | `Pipeline([...])` |
 | Robust evaluation | `cross_val_score(model, X, y, cv=5)` |
 
+## How It Actually Works
+
+`model.fit(X_train, y_train)` for `LinearRegression` is solving a concrete numerical
+optimization problem, not "learning" in any mystical sense: scikit-learn computes
+the coefficients that minimize the sum of squared differences between predicted and
+actual `price` values, typically via a **least-squares** solve using linear algebra
+(an SVD or normal-equations-based routine from the underlying LAPACK library numpy
+wraps) rather than any iterative guessing — for ordinary linear regression there's a
+closed-form matrix solution, which is why `.fit()` on this particular model is fast
+and deterministic given the same data. The `model.coef_` values are literally the
+entries of the solved coefficient vector, one weight per feature column in `X`,
+representing how much the prediction changes per unit change in that feature holding
+the others fixed.
+
+`train_test_split(..., random_state=42)` doesn't do anything model-specific — it
+shuffles row indices using a seeded pseudorandom number generator and partitions
+them into two groups at the requested ratio. The seed matters mechanically because a
+PRNG is deterministic given its seed: the exact same `random_state` value always
+produces the exact same shuffle order on the exact same input, which is why fixing
+it makes an experiment reproducible across runs and across machines, while leaving
+it unset means a different random split (and slightly different resulting metrics)
+every time.
+
+`StandardScaler().fit(X_train)` computes and stores the mean and standard deviation
+of *each column* of `X_train` as internal attributes; `.transform(X)` then applies
+`(x - mean) / std` element-wise to whatever data you pass it, using those *stored*
+values rather than recomputing them from `X` itself. This is precisely the
+mechanical reason for "fit only on training data, transform both": if you called
+`.fit_transform()` on the test set too, the mean/std used to scale it would be
+computed *including* test-set values, meaning information about the exact
+distribution of data the model will be "evaluated" on has leaked into the
+preprocessing step — an optimistic bias in the resulting metric that wouldn't
+reproduce on genuinely new, unseen data in production. A `Pipeline` structurally
+prevents this mistake by construction: calling `pipeline.fit(X_train, y_train)`
+internally calls `.fit_transform()` on each preprocessing step in sequence but
+`.transform()` only (never re-fitting) on `pipeline.predict(X_test)`, so the same
+learned mean/std automatically get reused correctly with no way to accidentally
+call the wrong method on the wrong split.
+
+`cross_val_score(pipeline, X, y, cv=5)` partitions the *entire* dataset into 5
+roughly equal folds, then runs 5 separate full fit/evaluate cycles, each time
+holding out one fold as the test set and training fresh on the other four — a
+brand-new `Pipeline` (with brand-new fitted scaler and model) is fit each time, none
+sharing state with another fold's run. Averaging the 5 resulting scores gives a much
+more reliable performance estimate than one split because it's no longer sensitive
+to which particular rows happened to land in the one test set a single
+`train_test_split` would have produced — a lucky or unlucky split is averaged out
+across five independent measurements.
+
 ## Exercise
 
 Using the `iris` dataset, build a `Pipeline` with a `StandardScaler` and a

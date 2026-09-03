@@ -129,6 +129,43 @@ git commit -m "Initial project setup"
 The `.venv` folder itself should never be committed to version control — it's
 large, platform-specific, and fully reproducible from `requirements.txt`.
 
+## How It Actually Works
+
+**A virtual environment is mostly a directory layout plus one config file.**
+`python3 -m venv .venv` creates:
+
+- `.venv/bin/python` — a symlink (or small copy) pointing back at the base
+  interpreter.
+- `.venv/pyvenv.cfg` — a text file recording the `home` (the base Python) and
+  `include-system-site-packages = false`.
+- `.venv/lib/pythonX.Y/site-packages/` — an empty install target.
+
+The magic is in interpreter startup. When *any* Python starts, it walks up
+from its own executable looking for a `pyvenv.cfg`. Finding one, it sets
+`sys.prefix` to the venv directory and puts the venv's `site-packages` on
+`sys.path` *instead of* the system one. So "activating" is almost cosmetic:
+`source .venv/bin/activate` just prepends `.venv/bin` to `$PATH` and sets
+`$VIRTUAL_ENV`, so typing `python` finds the venv's interpreter — which would
+have used the venv's packages anyway. Running `.venv/bin/python` directly,
+with no activation, works identically.
+
+**`pip install requests`** then:
+
+1. Queries the PyPI "simple" index for the `requests` project page, reads the
+   list of released files, and picks the best-matching **wheel**
+   (`.whl` — a ZIP with a specific naming scheme) for your Python version and
+   platform.
+2. Recursively resolves dependencies (`urllib3`, `certifi`, `idna`,
+   `charset-normalizer`), backtracking if version constraints conflict.
+3. Downloads each wheel and unpacks it straight into `site-packages/`, then
+   writes a `<pkg>.dist-info/` folder containing `METADATA`, `RECORD` (a
+   manifest with hashes of every installed file), and `entry_points.txt`.
+
+`pip freeze` just reads those `dist-info` folders and prints
+`name==version` for each; `pip install -r` replays them. The `.venv` folder
+is disposable precisely because all of this is reconstructible from
+`requirements.txt`.
+
 ## Exercise
 
 Starting from an empty folder, create a virtual environment, activate it,

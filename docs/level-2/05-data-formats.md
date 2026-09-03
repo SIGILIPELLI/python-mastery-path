@@ -152,6 +152,33 @@ tree.write("library.xml", encoding="utf-8", xml_declaration=True)
 | JSON | nested data, config, web APIs | no comments, no native dates |
 | XML | documents, legacy enterprise systems, attributes + text | more verbose, easy to get parsing wrong |
 
+## How It Actually Works
+
+Each parser is a small **state machine** turning a byte/character stream into
+Python objects — they differ in what grammar they implement:
+
+- **`csv`** is a C-level character-by-character state machine implementing
+  RFC 4180. It tracks states like *start-of-field*, *in-quoted-field*,
+  *in-unquoted-field*, *quote-in-quoted-field*. That's why you can't just
+  `line.split(",")`: a quoted field may contain commas, embedded newlines, or
+  doubled quotes (`""` → `"`), and only the state machine handles them
+  correctly. `DictReader` runs the same machine, then zips the first row
+  (header) against each subsequent row.
+- **`json`** tokenizes the text (`{`, `}`, `[`, `]`, `:`, `,`, strings,
+  numbers, `true`/`false`/`null`) and recursively builds objects: a `{` starts
+  a `dict`, keys/values fill it until `}`. CPython ships a C accelerator
+  (`_json`) that does this in one pass; there's a pure-Python fallback with
+  identical behavior. `json.dumps` is the reverse recursion, emitting text for
+  each object and raising `TypeError` on anything it doesn't know how to
+  represent (e.g. a `datetime`). The `JSONDecodeError` carries `lineno`/`colno`
+  because the scanner tracks its position as it goes.
+- **`xml.etree.ElementTree`** drives the C **expat** library, a streaming
+  (SAX-style) parser that fires callbacks — *start tag*, *text*, *end tag* —
+  as it reads. `ET.fromstring` uses a `TreeBuilder` that responds to those
+  callbacks by constructing `Element` nodes and nesting them, giving you the
+  finished tree. This streaming core is why `iterparse` can process
+  gigabyte-scale XML without loading it all into memory.
+
 ## Exercise
 
 Given a CSV file of products (`name,price,quantity`), write a script that:

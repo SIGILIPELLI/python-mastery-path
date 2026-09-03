@@ -65,6 +65,37 @@ Any of these work well for this program: VS Code (free, huge Python extension
 ecosystem), PyCharm Community (free, Python-specific), or even a plain text editor
 plus the terminal. Pick one and move on — the editor matters far less than practice.
 
+## How It Actually Works
+
+When you type `python3 hello.py`, a lot happens before "Hello, world!" appears:
+
+1. **Interpreter startup.** The OS loads the `python3` executable, which
+   initializes the CPython runtime: it sets up the interpreter state, builds
+   `sys.path` (from the executable's location, `PYTHONPATH`, and compiled-in
+   defaults), and imports a handful of bootstrap modules written in C and
+   frozen into the binary.
+2. **Reading and compiling your file.** CPython reads `hello.py` as text,
+   tokenizes it, parses the tokens into an Abstract Syntax Tree, and compiles
+   that AST into **bytecode** — a compact instruction set for CPython's virtual
+   machine. Your `def greet` becomes a *code object* holding those
+   instructions plus metadata (argument names, constants, line numbers).
+3. **`.pyc` caching.** For imported modules CPython writes the compiled
+   bytecode to `__pycache__/*.pyc` so it can skip recompilation next time,
+   keyed by the source file's hash or mtime. The top-level script you run
+   directly is *not* cached this way.
+4. **Execution.** CPython creates a module object, sets its `__name__` to
+   `"__main__"` (this is the whole reason the `if __name__ == "__main__"`
+   guard works), and runs the module's bytecode top to bottom in the
+   evaluation loop — a big C `switch` over bytecode instructions. `def greet`
+   executes as a "make a function object and bind the name `greet`"
+   instruction; the `if` block then calls it.
+5. **Shutdown.** After the last instruction, CPython runs cleanup (flushing
+   `stdout`, running `atexit` handlers, garbage-collecting), then the process
+   exits with status code 0.
+
+The REPL runs this same read → compile → execute loop, but once per line you
+type instead of once per file.
+
 ## Exercise
 
 Write a script `greet_many.py` that defines a list of three names and prints a

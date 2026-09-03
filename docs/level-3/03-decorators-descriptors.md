@@ -218,6 +218,48 @@ you use `@property`, you're using a descriptor that Python provides for you.
 | `__get__`/`__set__`/`__set_name__` | descriptor protocol — reusable validated attributes |
 | `@property` | the most common descriptor, built into Python |
 
+## How It Actually Works
+
+`@wraps(fn)` fixes an identity problem that exists because a decorator's wrapper
+really is a brand-new `function` object — it has its own freshly built `__name__`
+(`"wrapper"`), its own `__doc__` (`None`, since your wrapper has no docstring), and
+its own `__dict__`. `functools.wraps` doesn't do anything magical to prevent this —
+it runs *after* `wrapper` is defined and copies over a fixed list of attributes
+(`__name__`, `__doc__`, `__module__`, `__qualname__`, and merges `__dict__`) from
+`fn` onto `wrapper`, and additionally sets `wrapper.__wrapped__ = fn`, which is what
+lets introspection tools like `inspect.signature` see through one or more layers of
+wrapping to the original function's real parameter list.
+
+A decorator factory like `retry(times=3)` works through ordinary closures, nothing
+special to decorators: calling `retry(times=3, delay=0)` runs immediately and
+returns `decorator`, a function that has closed over `times` and `delay` in its own
+cell variables (exactly the closure mechanism from Level 2). `@retry(times=3,
+delay=0)` above `def flaky(): ...` then compiles to `flaky = decorator(flaky)` — the
+"factory" layer exists purely because the compiler always calls exactly what
+immediately follows `@` with the decorated function as its single argument, so a
+parameterized decorator needs one extra function call in between to produce the
+actual single-argument decorator.
+
+`@CountCalls` above `def greet` works because Python's call syntax `obj(...)`
+compiles to `type(obj).__call__(obj, ...)` regardless of whether `obj` is a plain
+function or a class instance — `greet` after decoration is literally a `CountCalls`
+instance, and `greet("Ada")` dispatches to `CountCalls.__call__`, which is why state
+like `self.calls` persists naturally between calls without needing `global` or a
+closure cell.
+
+The descriptor protocol is the real backbone here: attribute lookup on an instance
+(`obj.attr`) first checks `type(obj).__mro__` for `attr`; if what it finds there
+defines `__get__` *and* `__set__` (a **data descriptor**, like `PositiveNumber` or
+`property`), that descriptor wins even over an entry already sitting in
+`obj.__dict__`. `p.price = 9.99` therefore doesn't write into `p.__dict__["price"]`
+at all — it's intercepted by `PositiveNumber.__set__`, which validates and stores the
+value under `p.__dict__["_price"]` instead. `__set_name__` is a hook the class
+machinery calls automatically, once, right after the class body finishes executing,
+telling each descriptor instance what attribute name it was assigned to — which is
+exactly how one `PositiveNumber()` instance shared by `price` and `quantity` knows to
+store each under a different private name (`_price` vs. `_quantity`) without you
+passing the name explicitly.
+
 ## Exercise
 
 Write a decorator factory `@cache_for(seconds)` that caches a function's

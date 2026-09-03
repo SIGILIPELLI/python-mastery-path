@@ -190,6 +190,59 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO reporting_user;
 | Hard-coded secrets | credentials committed to source | environment variables / secrets manager |
 | Known-vulnerable dependencies | outdated packages | `pip-audit` in CI |
 
+## How It Actually Works
+
+SQL injection, XSS, and command injection are structurally the *same* underlying
+bug, just in three different interpreters: each is a case of untrusted data being
+concatenated into a string that a downstream parser will then interpret as *syntax*
+rather than as inert *data*. A SQL engine's parser can't tell the difference between
+`'` characters you meant as literal text and `'` characters that close a string and
+start new SQL grammar; a browser's HTML parser can't tell `<script>` you meant as
+plain text from `<script>` you meant as a tag; a shell's parser can't tell a `;` you
+meant as a literal filename character from a `;` meant to start a second command.
+Parameterized queries, HTML auto-escaping, and `subprocess.run([...])` (a list, not
+a string) all solve this the same way: they keep the untrusted data on a separate
+channel from the syntax being parsed, so the parser is structurally incapable of
+reinterpreting it, rather than relying on you correctly guessing every dangerous
+character to filter out — `shell=True` specifically routes your command through
+`/bin/sh -c "..."`, handing the *interpolated string itself* to a real shell parser
+that respects `;`, `|`, `&&`, backticks, and more, which is exactly the syntax
+channel a list-of-arguments call bypasses entirely by invoking the target program
+directly via `execve` with no shell in between.
+
+`pickle.load` executing arbitrary code on untrusted input isn't a bug in `pickle` —
+it's an inherent consequence of what pickle's format is designed to do: a pickle
+stream isn't just serialized data, it's effectively a small stack-based bytecode
+program (its own opcode set, distinct from CPython's) that reconstructs arbitrary
+Python objects, including instances of arbitrary classes — and one of its opcodes
+(`REDUCE`, or `GLOBAL` followed by a call) is explicitly designed to call a named
+callable with given arguments during deserialization, because that's how pickle
+reconstructs objects whose type defines a custom `__reduce__`. There's no way to
+sandbox this partially: unpickling is *supposed* to be able to invoke code, which is
+precisely what makes it unsafe for anything you didn't generate yourself. `json.loads`
+has no equivalent capability by design — its grammar (Module 5's recursive-descent
+parser) can only ever build `dict`/`list`/`str`/`int`/`float`/`bool`/`None`, with
+no opcode anywhere in the format for "now call this function."
+
+`pwd_context.verify(...)` from Module 4 is the same mechanism repeated here for
+emphasis: bcrypt's embedded salt and deliberately expensive cost factor make brute-
+forcing a *stolen hash* computationally expensive per guess even with full offline
+access to it, which is the actual threat model password hashing defends against — a
+fast hash like SHA-256 is designed for the opposite property (verifying huge
+volumes of data quickly), which is exactly why it's the wrong tool here despite
+technically being "a hash."
+
+`GRANT SELECT ... (deliberately NOT granting INSERT/UPDATE/DELETE)` works because a
+database's permission system is checked by the query planner *before* a statement
+is allowed to execute — the same enforcement point that would reject a malformed
+query rejects an `UPDATE` from a connection authenticated as `reporting_user`
+regardless of what the application code sitting on top of that connection tries to
+do. This is the concrete value of least privilege: even if every other layer
+(application logic, SQL injection defenses) somehow failed simultaneously, a
+compromised reporting service literally cannot issue a write the database engine
+itself will execute, because the permission check happens at a lower layer than any
+application bug could reach.
+
 ## Exercise
 
 Audit the Level 3/4 Book Catalog API for the issues in this module: confirm

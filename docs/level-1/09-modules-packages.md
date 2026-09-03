@@ -83,6 +83,35 @@ response = requests.get("https://api.github.com")
 print(response.status_code)  # 200
 ```
 
+## How It Actually Works
+
+`import shapes` runs the **import system**, and the single most important fact
+is that a module's code runs *once per process*:
+
+1. **Cache check.** Python looks up `"shapes"` in `sys.modules`, a dict of
+   every module already imported. A hit returns immediately — this is why
+   circular imports don't loop forever and why a module is a natural
+   singleton.
+2. **Finding.** On a miss, Python asks each *finder* in `sys.meta_path`. The
+   path-based finder walks `sys.path` (current dir / script dir, then
+   `PYTHONPATH`, then the standard library, then `site-packages`) looking for
+   `shapes.py`, a `shapes/` package with `__init__.py`, a C extension, etc.
+3. **Loading.** The matching *loader* reads the source, checks for a valid
+   cached `__pycache__/shapes.cpython-XY.pyc` (compares source mtime/hash and
+   Python version), compiles it if stale, and writes the `.pyc` back.
+4. **Execution.** Python creates an empty module object, inserts it into
+   `sys.modules` *first* (so partial circular imports can see it), then
+   executes the module body top to bottom in that module's namespace. `def`s
+   and assignments populate the module's `__dict__`.
+5. **Binding.** Finally the name `shapes` is bound in *your* namespace to that
+   module object. `from shapes import area_circle` does the same load, then
+   copies just that one attribute into your namespace.
+
+`__init__.py` is simply the code that runs when a package is first imported.
+`pip install requests` downloads a wheel and unpacks it into `site-packages/`,
+which is already on `sys.path` — so `import requests` then just works via the
+same five steps.
+
 ## Exercise
 
 Split a script that manages a to-do list into two modules: `storage.py`

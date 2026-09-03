@@ -219,6 +219,45 @@ def safe_get_json(url, **kwargs):
 | Reusable session + retries | `requests.Session()` + `HTTPAdapter` |
 | Read a secret safely | `os.environ.get("API_TOKEN")` |
 
+## How It Actually Works
+
+`requests.get(url)` sits on top of `urllib3`, which manages a **connection pool**:
+opening a TCP socket and completing a TLS handshake is expensive (multiple network
+round trips), so a `requests.Session()` keeps underlying connections open and reuses
+them for subsequent requests to the same host — this is why the docs recommend a
+`Session` for repeated calls to the same API rather than bare `requests.get`, which
+creates and tears down a fresh connection pool adapter every call.
+
+`timeout=5` doesn't limit total request time as a single wall-clock deadline the way
+it might sound — under the hood it's implemented as two separate socket-level
+timeouts: a **connect timeout** (how long to wait for the TCP handshake) and a
+**read timeout** (how long to wait between receiving chunks of the response body
+once connected). Without it, the underlying socket's `recv()` call blocks
+indefinitely if the server accepts the connection but never sends data — a
+deliberately slow or hung server can otherwise freeze your program forever, since
+nothing in the OS or Python enforces a default timeout on a socket read.
+
+`response.raise_for_status()` works by checking `self.status_code` against ranges
+(anything ≥ 400) and constructing an `HTTPError` only then — the HTTP response
+itself already arrived successfully at the transport level (TCP/TLS completed fine,
+bytes were received); "success" or "failure" is purely an application-level status
+code the server chose to send, which is exactly why `raise_for_status()` is a
+separate, optional call rather than something that happens automatically: a 404
+isn't a network failure, it's valid HTTP that your code has to decide how to
+interpret.
+
+`json=` on a POST works by JSON-encoding your dict with `json.dumps` (the same
+mechanism from Module 5) and setting the `Content-Type: application/json` header
+before the request line is ever sent — this is purely a client-side convenience
+built on top of the same body/headers that `requests.post(..., data=..., headers=...)`
+would let you set manually. `Retry`/`HTTPAdapter` intercept requests at the
+connection-pool level below `requests` itself: when a request fails or returns a
+listed status code, `urllib3` catches it, computes a delay using the configured
+backoff formula, and re-sends the *exact same* prepared request over the pool's
+connection — the retry logic lives below the point where `requests`'s own API even
+sees the failure, which is why it applies uniformly to `get`, `post`, and every other
+method through one shared adapter.
+
 ## Exercise
 
 Write a small client `github_client.py` with a function

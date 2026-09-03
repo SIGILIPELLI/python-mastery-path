@@ -241,6 +241,50 @@ def test_get_missing_task_returns_404():
 | Error response | `raise HTTPException(status_code=..., detail=...)` |
 | Shared logic | `Depends(dependency_function)` |
 
+## How It Actually Works
+
+`def get_task(task_id: int):` validating and converting the URL segment isn't
+FastAPI reading your mind about intent — at import time, FastAPI inspects each route
+function's **signature** using Python's `inspect`/`typing` machinery (the same
+runtime introspection `functools.wraps` relies on) and, for every parameter, builds
+a corresponding Pydantic field from its type annotation. When a request for
+`/tasks/abc` arrives, FastAPI extracts the raw string `"abc"` from the URL path,
+hands it to Pydantic's validator for `int`, which fails to coerce it and raises a
+structured validation error — FastAPI catches that specific exception type and
+converts it into the `422` JSON response, all before your function body executes at
+all; a matching request for `/tasks/7` goes through the same coercion but succeeds,
+so `task_id` arrives inside your function already as a real Python `int`, not a
+string you'd have to convert yourself.
+
+A `BaseModel` subclass like `TaskCreate` is not just documentation — Pydantic
+generates, once per model class (via `__init_subclass__`/metaclass hooks and a
+compiled validator, precompiled to Rust in Pydantic v2 for speed), a fast validation
+routine covering every field. When a request body arrives, FastAPI reads the raw
+bytes, decodes them as JSON (using the same recursive parsing you saw in Module 5),
+and passes the resulting dict through that compiled validator — a violated
+constraint like `min_length=1` fails during that single pass and never reaches
+`create_task`'s body, which is why routes can assume validated input rather than
+manually checking `if not task.title: raise ...` everywhere.
+
+`Depends(get_query_token)` implements dependency injection through the same
+signature-introspection mechanism as request bodies: FastAPI sees the parameter's
+default is a `Depends(...)` marker, calls `get_query_token` itself (passing along any
+of *its* declared parameters, resolved recursively — dependencies can depend on
+other dependencies), and substitutes the return value as the argument to your route
+function. If `get_query_token` raises `HTTPException`, FastAPI's own exception
+handling middleware — installed automatically around every route — catches it and
+converts it directly into an HTTP response with that status code and detail message,
+short-circuiting before your route body ever runs, exactly like the type-validation
+path above.
+
+`uvicorn` and FastAPI communicate through the **ASGI** interface: uvicorn is
+responsible for the raw TCP/HTTP protocol parsing and turns each incoming connection
+into a Python coroutine call following that standard interface, which is why FastAPI
+route handlers can be either plain `def` functions (uvicorn runs them in a thread
+pool to avoid blocking the event loop) or `async def` (run directly on the event
+loop) — the framework layer is decoupled from the network layer specifically so
+either style of handler works.
+
 ## Exercise
 
 Extend the CRUD example above with a `priority: str` field on `TaskCreate`

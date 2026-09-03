@@ -196,6 +196,45 @@ even hurt, once you account for overhead).
 | Is a function using too much memory? | `memory_profiler` |
 | Visualize a whole profile | `snakeviz` |
 
+## How It Actually Works
+
+`timeit` isn't just "call `time.time()` before and after" — a single measurement is
+dominated by noise (OS scheduler jitter, other processes, CPU frequency scaling,
+garbage collection running mid-measurement), so `timeit` disables the automatic
+cyclic garbage collector for the duration of the run specifically to remove one major
+source of that noise, executes the snippet the requested number of times in a tight
+loop with minimal per-iteration overhead (the code is compiled once into a real
+function via `exec`, not re-parsed each iteration), and reports total elapsed time —
+which is why comparing two approaches needs the same `number=` for both: the
+measurement is a sum over many runs, not a single call.
+
+`cProfile` works by installing a C-level **tracing hook** into the interpreter that
+fires on specific low-level events — function call, function return, exception —
+which is a real feature of the CPython eval loop (the same hook mechanism
+`sys.settrace` and debuggers use, though `cProfile` uses the lighter-weight
+`sys.setprofile`, which doesn't fire per-line, only per-call). Each time your
+`fibonacci` function is entered, the profiler stamps a start time on that call's
+frame; on return, it computes elapsed time and adds it to two running totals for
+that function's code object: `tottime` (time in the function's own bytecode,
+excluding calls to other functions) and `cumtime` (including everything it called,
+which is why a top-level function's `cumtime` can be almost the whole program's
+runtime even though its `tottime` is tiny). Because this hook fires on *every* call,
+recursive functions like naive Fibonacci — with `2^n`-ish calls — show it: the huge
+`ncalls` count in the sample output isn't slow code, it's simply how many times a
+C-level counter got incremented.
+
+`sum(numbers)` beats a hand-written accumulation loop mechanically because `sum` is
+implemented in C: it walks the underlying array performing additions using C-level
+loops and, for common numeric types, uses type-specific fast paths that skip much of
+the general-purpose `PyNumber_Add` machinery a `total += n` bytecode sequence
+(`LOAD_FAST`, `BINARY_OP`, `STORE_FAST`, dispatch through `__add__`, repeated per
+element) would otherwise go through on every iteration. Membership testing on a
+`set` versus a `list` isn't a "usually faster" heuristic — it's the same O(1)
+hash-table lookup versus O(n) linear scan distinction from Module 5's dict/set
+internals: `x in big_set` computes `hash(x)` once and checks one slot (occasionally a
+few, on collision), while `x in big_list` calls `__eq__` against every element in
+order until a match or the end.
+
 ## Exercise
 
 Write two versions of a function that finds all prime numbers up to `n`: one

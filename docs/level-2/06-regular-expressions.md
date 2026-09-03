@@ -129,6 +129,35 @@ re.search(r"python", "I love Python", re.IGNORECASE)   # case-insensitive
 re.findall(r"^\d+", "1 apple\n2 pears", re.MULTILINE)   # ^ matches start of EACH line
 ```
 
+## How It Actually Works
+
+`re` is a **compiler and a virtual machine**, just like CPython itself:
+
+1. **Parse.** `re.compile(r"user=(\d+)")` parses the pattern string into a
+   small syntax tree of nodes (literal, character class, group, repeat,
+   branch).
+2. **Compile.** That tree is lowered to a flat program of opcodes for the
+   `sre` (Secret Labs regex engine) VM — things like `LITERAL 117` ("match
+   'u'"), `IN` (character set), `MARK` (record a group boundary),
+   `REPEAT_ONE`, `BRANCH`, `JUMP`.
+3. **Cache.** `re.search(pattern_string, ...)` without pre-compiling still
+   compiles internally, then caches the compiled object (last 512 distinct
+   patterns) so a loop calling `re.search` with the same literal pattern isn't
+   recompiling every iteration — though pre-compiling is still clearer.
+4. **Execute.** Matching runs the VM against the subject string with a
+   **backtracking** strategy: on a quantifier like `.*`, the engine greedily
+   consumes as much as possible, then *backs up* one character at a time
+   whenever the rest of the pattern fails to match. Group positions are saved
+   and restored as `MARK` opcodes execute.
+
+This backtracking model is the whole reason for greedy-vs-lazy (`.*` vs `.*?`
+just change which direction the engine tries first) and for **catastrophic
+backtracking**: a pattern like `(a+)+$` against `"aaaa...b"` forces the engine
+to try an exponential number of ways to partition the a's before concluding
+failure. `re.match` vs `re.search` is not a VM difference — `match` simply
+starts the VM only at position 0, while `search` retries it at each successive
+start position.
+
 ## Exercise
 
 Write a function `extract_hashtags(text)` that returns a list of unique

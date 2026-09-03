@@ -200,6 +200,49 @@ coroutines safely, including backpressure via `maxsize`.
 | `asyncio.Queue` | coordinate producer/consumer coroutines |
 | `asyncio.Semaphore(n)` | cap how many coroutines run concurrently |
 
+## How It Actually Works
+
+A fire-and-forget `asyncio.create_task(...)` fails silently because of exactly how
+task results are stored: a `Task` object holds its outcome (return value or raised
+exception) internally once its coroutine finishes, but nothing ever *reads* that
+outcome unless something calls `.result()` or `await`s the task. If the task raised
+and nobody ever retrieves that result, the exception just sits there — the event
+loop's garbage collector eventually notices the exception was never fetched when the
+`Task` object itself is finally collected, and only *then* logs the "Task exception
+was never retrieved" warning, which is why it can appear seemingly late and
+disconnected from where the actual failure happened.
+
+`asyncio.TaskGroup` fixes this by tracking every task created through `tg.create_task`
+in an internal set for the lifetime of the `async with` block. Its `__aexit__`
+(the async version of `__exit__` from Level 2's context managers) does not return
+until every tracked task has finished, and if any of them raised, it actively calls
+`.cancel()` on every other still-running sibling task before re-raising — collecting
+every exception that occurred (including from cancellation cleanup) into a single
+**`ExceptionGroup`**, a real container type (added in 3.11) that can hold multiple
+unrelated exceptions at once, since more than one task can legitimately fail
+independently. `except* ValueError` is special *syntax*, not a smarter `except`: it
+partitions the group's exceptions by type, handles the matching subset, and
+re-raises a new `ExceptionGroup` containing whatever didn't match — enabling
+selective handling across a naturally plural failure.
+
+`task.cancel()` doesn't forcibly stop a coroutine's execution the instant it's
+called — it schedules a `CancelledError` to be raised *at the next `await` point*
+inside that coroutine's frame, using the exact same "inject an exception into a
+suspended frame" mechanism as `generator.throw()` from Module 2. This is why
+`long_running`'s `try/except CancelledError` block only sees the exception once
+control returns to its `await asyncio.sleep(10)` line — cancellation is cooperative,
+not preemptive, so a coroutine stuck in a long synchronous computation with no
+`await` inside it cannot be cancelled until it reaches one.
+
+`asyncio.Queue` coordinates producer and consumer safely without any lock because
+`put`/`get` are themselves coroutines that suspend at `await` when the queue is
+full/empty respectively — the queue's internal waiting logic uses `asyncio`'s own
+event objects to wake up a waiting `get()` the moment an item is `put()` (and vice
+versa for a full queue blocking `put()`), all scheduled through the same single-
+threaded event loop, so there's no possibility of the classic race condition between
+"check if empty" and "take an item" that a hand-rolled queue on a list would have
+under real thread-based concurrency.
+
 ## Exercise
 
 Build a small "web crawler" simulation: a `TaskGroup` that fetches 15 fake

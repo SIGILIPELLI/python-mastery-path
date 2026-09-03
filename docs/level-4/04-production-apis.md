@@ -233,6 +233,52 @@ a consistent JSON shape, rather than each route formatting errors differently.
 | Abuse protection | `slowapi` rate limiting |
 | Consistent error shape | `@app.exception_handler(...)` |
 
+## How It Actually Works
+
+`pwd_context.hash(password)` doesn't just run one hash function — bcrypt combines a
+randomly generated **salt** with the password and runs the result through the
+Blowfish-derived cipher a configurable number of rounds (a "cost factor," commonly
+2^12 or higher), producing an output string that embeds the salt, the cost factor,
+and the hash together. This is deliberately, tunably slow: a fast general-purpose
+hash like SHA-256 can be brute-forced at billions of guesses per second on commodity
+hardware, while bcrypt's cost factor can be dialed up over time to keep pace with
+faster hardware, and the embedded random salt means two users with the identical
+password get completely different stored hashes — defeating precomputed
+("rainbow table") attacks. `verify_password` re-derives the hash using the *same*
+embedded salt and cost factor pulled out of the stored string, then compares the
+result — it never "decrypts" anything, because there's nothing reversible here at
+all.
+
+A JWT is not encrypted (with `HS256` specifically) — `jwt.encode` builds a header and
+a payload dict (your data plus `exp`), base64url-encodes each separately, and
+computes an **HMAC-SHA256 signature** over the concatenated header and payload using
+`SECRET_KEY`, appending that as a third dot-separated segment. Anyone can decode the
+header and payload from a JWT with no key at all (they're just base64, not
+encryption) — the entire security property lives in the third segment: only someone
+holding `SECRET_KEY` can produce a signature that will verify, so `jwt.decode`
+recomputes the HMAC from the received header/payload and rejects the token (raising
+`JWTError`) if it doesn't match, which is exactly why a stolen or forged token
+without the real secret is worthless even though its contents are fully readable.
+
+`@app.middleware("http")` works by wrapping every route handler in an onion of
+nested async calls: FastAPI (built on Starlette) chains each registered middleware
+function so that `call_next(request)` inside your `add_request_id_and_timing`
+function is itself a call into the next layer of that chain — either another
+middleware or, at the innermost layer, the matched route handler. Because your code
+runs both *before* `await call_next(request)` (timing starts, request ID generated)
+and *after* it returns (headers added to the real response object), the same
+function naturally wraps every request regardless of which route ultimately handles
+it — there's no need to duplicate that logic in each route function.
+
+Prefix-based versioning (`APIRouter(prefix="/api/v1")`) works through simple path
+matching at request-dispatch time: FastAPI/Starlette's router holds an ordered list
+of (path pattern, handler) pairs, and `include_router` just merges each router's
+routes into that list with the prefix prepended to every path pattern — a request
+for `/api/v1/books/3` and one for `/api/v2/books/3` are matched against entirely
+separate compiled path patterns pointing at entirely separate handler functions, so
+"v1" and "v2" coexisting is simply two independent entries in the same routing
+table, not any kind of runtime branching inside one shared handler.
+
 ## Exercise
 
 Take the Book Catalog API from Level 3's capstone project and add: a

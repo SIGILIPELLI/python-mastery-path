@@ -195,6 +195,50 @@ asyncio.run(main())
 | Heavy CPU computation | `multiprocessing` |
 | Mixing sync (blocking) code into async code | run it in a thread via `loop.run_in_executor` |
 
+## How It Actually Works
+
+`async def` marks a function so that calling it doesn't run any code — it returns a
+**coroutine object**, a suspendable frame conceptually identical to a generator's
+(in fact, `async def` coroutines and generators share the same underlying frame
+machinery in CPython). `asyncio.run(main())` creates an **event loop** — really just
+a `while True:` loop running in the current thread — and drives that coroutine object
+by repeatedly calling into it and letting it run until it hits an `await` on
+something not yet ready, at which point control returns to the loop.
+
+`await asyncio.sleep(delay)` is the crucial mechanism: `asyncio.sleep` doesn't
+actually block anything — it registers a callback with the event loop's internal
+scheduler (via the OS's timer/`select`/`epoll`/`kqueue` mechanism, whichever the
+platform's default loop implementation uses) to be woken up after `delay` seconds,
+and then suspends the *coroutine's own frame* right there, handing control back to
+the event loop. The loop, now free, checks its list of ready callbacks and other
+pending tasks and runs whichever one is ready next — this is why `await
+asyncio.sleep(1)` in two coroutines finishes in ~1 second total when run
+concurrently (both timers are ticking down in the same loop iteration) rather than 2
+seconds sequentially: it's genuinely cooperative multitasking on a *single* OS
+thread, with no GIL contention because there's only ever one thread running Python
+bytecode at a time by construction, not by lock.
+
+`asyncio.create_task(worker(2))` is what actually schedules a coroutine to run
+independently: it wraps the coroutine object in a `Task`, hands it to the event
+loop's ready queue immediately, and returns right away — this is different from
+`await worker(2)`, which drives the coroutine inline in the current frame and blocks
+progress on *this* line until it's done. `asyncio.gather(*coros)` internally wraps
+each argument in a `Task` (scheduling all of them essentially at once) and then
+awaits all of them together, collecting results in the original order regardless of
+completion order — this is exactly why two independently-created tasks can be
+"running in the background" between the two lines that create them and the lines
+that await them.
+
+A coroutine only ever yields control voluntarily, at an `await` — nothing preempts
+it mid-execution the way an OS thread can be preempted between bytecode instructions.
+This is why `asyncio.Semaphore(3)` limiting "concurrent" fetches works with none of
+`threading.Lock`'s contention concerns: at most 3 coroutines are ever mid-flight
+between their own `await` points at once, and since only one Python frame is ever
+actually executing at any instant regardless, there's no possibility of two
+coroutines corrupting shared state through simultaneous non-atomic mutation the way
+threads can — the only hazard is a coroutine holding a resource across an `await`
+longer than intended, not a torn read-modify-write.
+
 ## Exercise
 
 Write an async function `fetch_all(urls)` that "fetches" each URL by awaiting

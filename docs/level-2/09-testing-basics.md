@@ -177,6 +177,41 @@ pytest -v
 | `pytest -x` | stop after the first failure |
 | `pytest --tb=short` | shorter tracebacks on failure |
 
+## How It Actually Works
+
+**Plain `assert` gives rich output because pytest rewrites your test files'
+bytecode as it imports them.** pytest installs an *import hook* ahead of
+Python's normal machinery. When it loads `test_calculator.py`, it parses the
+source to an AST and rewrites every `assert` statement: instead of
+`assert add(2,2) == 5`, it becomes code that evaluates `add(2,2)` and `5` into
+temporary variables, and if the result is falsy, formats a message showing
+each sub-expression's value (`assert 4 == 5 / where 4 = add(2, 2)`). The
+rewritten module is cached as a `.pyc` so it isn't re-done every run. This is
+also why `assert` in your *application* code (imported normally) doesn't get
+the fancy output.
+
+**A test run has distinct phases:**
+
+1. **Collection.** pytest recursively walks the target paths, imports each
+   `test_*.py` (triggering the rewrite), and gathers `test_*` functions and
+   `Test*` classes into a tree of *items*.
+2. **Fixture resolution.** For each item, pytest inspects the test function's
+   parameter names, looks up matching fixtures (searching the test module,
+   then `conftest.py` files from the test's directory upward, then plugins),
+   and builds a dependency graph. Fixtures run in dependency order; anything
+   after a `yield` is registered as a *finalizer* on a stack.
+3. **Execution.** Each item runs through a three-call protocol —
+   `setup` (instantiate fixtures), `call` (run the test body), `teardown`
+   (pop and run finalizers in LIFO order). Each phase produces a *report*;
+   an exception in `call` becomes a failure report with the captured
+   traceback and stdout.
+4. **Reporting.** The collected reports are summarized into the
+   `N passed, M failed` line.
+
+`@pytest.mark.parametrize` doesn't loop inside one test — it generates *N
+separate items* at collection time, which is why each shows up individually in
+`-v` output and can pass or fail independently.
+
 ## Exercise
 
 Write `stack.py` with a small `Stack` class (`push`, `pop`, `peek`, `is_empty`,

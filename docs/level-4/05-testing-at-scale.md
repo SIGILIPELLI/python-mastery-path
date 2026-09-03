@@ -226,6 +226,55 @@ push/PR means broken code never merges silently.
 | `pytest-cov` | measure which lines your tests actually exercise |
 | GitHub Actions matrix | run tests across multiple Python versions automatically |
 
+## How It Actually Works
+
+Fixture `scope=` controls a **cache key**, not a different code path: pytest keeps a
+cache of already-created fixture values keyed by (fixture function, scope
+identifier) — for `scope="module"`, the identifier is the test file being run; for
+`scope="session"`, it's the whole test run. When a test requests a fixture, pytest
+checks that cache first and only calls your fixture function (running its setup and
+registering its `yield`-based teardown) if there's no cached value yet for the
+current scope identifier — which is exactly why a `module`-scoped fixture's "setting
+up" print only appears once even though many test functions in that file request it,
+and precisely why mutating it leaks: every subsequent test in that scope is handed
+the *same* cached object reference, not a fresh copy.
+
+Fixture composition (`existing_user(db_session)`) works through the same
+signature-introspection dependency injection covered in Module 9 — pytest builds a
+dependency graph by inspecting each fixture function's own parameters recursively,
+resolving `db_session` first because `existing_user` declares it, and only then
+calling `existing_user` with that resolved value. A test requesting both
+`db_session` and `existing_user` gets the *same* `db_session` instance in both
+places specifically because that resolution is itself cached per test (function
+scope, by default) — the dependency graph is walked once per test, not once per
+fixture reference.
+
+`@patch("weather_service.requests.get")` works, and patching `requests.get` directly
+doesn't, because of the same "modules are mutable namespaces, attributes are looked
+up at call time" fact from Level 2's monkeypatch discussion: `get_temperature`
+reads `requests.get` by looking it up on whatever object the name `requests` is
+bound to *inside `weather_service`'s own namespace* at call time. `weather_service`
+imported `requests` once and bound the name `requests` in its own module dict to the
+real `requests` module object — patching `weather_service.requests.get` walks that
+exact same attribute path (`weather_service` → its `requests` reference → `.get`)
+and swaps the final attribute, so the lookup `get_temperature` performs at call time
+finds the replacement. Patching the separate name `requests.get` in the standalone
+`requests` module wouldn't matter here only if `weather_service` had already
+resolved and cached a direct reference elsewhere — but since it hasn't, both paths
+usually point at the same object; the real gotcha this note is guarding against is
+code that did `from requests import get` (binding its own local name `get`,
+unaffected by patching the module's own attribute).
+
+Hypothesis's engine works by treating each `@given(st.integers())`-style strategy as
+a generator of structured random values, run through hundreds of iterations by
+default. When an iteration raises an `AssertionError`, Hypothesis doesn't just
+report that one random input — it engages a **shrinking** phase: it systematically
+tries smaller/simpler variations of the failing input (fewer list elements, smaller
+integers, shorter strings) using its own search heuristics, re-running the test each
+time, and keeps the smallest input it can find that still fails — which is why a
+found bug reports something like `[0, 1]` rather than the sprawling random list that
+first triggered it.
+
 ## Exercise
 
 Take the Book Catalog API's `crud.py` from Level 3 and add: a `module`-scoped

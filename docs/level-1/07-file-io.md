@@ -53,6 +53,35 @@ print(file_path.read_text())
 print(file_path.exists())
 ```
 
+## How It Actually Works
+
+`open()` doesn't read anything — it asks the operating system for a **file
+descriptor** (a small integer the kernel uses to track the open file), then
+wraps that descriptor in a stack of Python objects:
+
+1. **`FileIO`** — the raw layer. It translates `.read()`/`.write()` into the
+   `read(2)`/`write(2)` system calls on the descriptor. System calls are
+   relatively expensive (a switch into the kernel), so you don't want one per
+   character.
+2. **`BufferedReader`/`BufferedWriter`** — an in-memory buffer (8 KB by
+   default). Reads pull a big chunk from the OS and hand you slices of it;
+   writes accumulate in the buffer and flush to the OS only when it fills, when
+   you call `.flush()`, or when the file closes. This is why data you "wrote"
+   can be missing from the file until close.
+3. **`TextIOWrapper`** — only for text mode. It decodes incoming bytes to `str`
+   using the specified (or locale-default) encoding, encodes outgoing `str`
+   back to bytes, and does newline translation (`\r\n` ↔ `\n` on Windows).
+   `newline=""` for `csv` disables that translation.
+
+**`with open(...) as f:`** compiles to: call `open()`, call its `__enter__`
+(which returns the file object itself), run the body, then *guaranteed* call
+`f.__exit__()` — even on an exception or `return` — which calls `.close()`.
+`close()` flushes the buffer and then calls `close(2)` to release the
+descriptor back to the kernel. Descriptors are a limited per-process resource,
+so leaking them (never closing) eventually raises "Too many open files".
+`pathlib.Path.read_text()` is a convenience that does the whole
+open → read → close cycle in one call.
+
 ## Exercise
 
 Write a script that reads a text file, counts how many times each word

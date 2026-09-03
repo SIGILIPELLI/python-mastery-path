@@ -98,6 +98,36 @@ def apply_twice(fn, value):
 print(apply_twice(square, 3))  # 81
 ```
 
+## How It Actually Works
+
+A `def` statement is an instruction that *runs*: at the point the interpreter
+reaches it, it builds a **function object** from a pre-compiled code object and
+binds it to a name. The code object (fixed at compile time) holds the
+bytecode, the constant pool, and — crucially — the list of local variable
+names. The function object (created fresh each time `def` runs) holds the
+defaults, the closure cells, and a reference to the code object.
+
+**Local variables are array slots, not dict entries.** When CPython compiles a
+function it counts the local names and assigns each a numbered slot. Inside
+the function, `x = 1` compiles to `STORE_FAST 0` and reading `x` compiles to
+`LOAD_FAST 0` — a direct array index, much faster than the dictionary lookup
+that module-level globals require (`LOAD_GLOBAL`). This is also why assigning
+to a name *anywhere* in a function makes it local *everywhere* in that
+function, and why `global`/`nonlocal` exist to opt back out.
+
+**LEGB is a compile-time decision.** The compiler already knows, for each
+name, whether it's local (`LOAD_FAST`), a closure variable
+(`LOAD_DEREF` — reads a *cell object* shared with the enclosing function),
+a global (`LOAD_GLOBAL`), or a builtin (falls through to the builtins module).
+
+**Calling** pushes a new *frame object* onto the call stack: it holds the
+local-variable array, a value stack for intermediate results, and a pointer
+back to the caller's frame (that back-chain is what a traceback walks).
+`return` pops the frame and pushes the return value onto the caller's stack.
+`*args` collects surplus positionals into a new tuple; `**kwargs` collects
+surplus keywords into a new dict — both built by the interpreter as part of
+the call sequence.
+
 ## Exercise
 
 Write a function `summarize(*values, **options)` that returns the min, max, and

@@ -201,6 +201,47 @@ published as a deployable image — a fundamental CI/CD safety property.
 | Observability | structured logging (tying back to
 [Production-Grade APIs](04-production-apis.md)'s middleware) |
 
+## How It Actually Works
+
+A Docker image is a stack of **read-only layers**, each one a filesystem diff from
+the layer below it — every `FROM`, `COPY`, and `RUN` instruction in a Dockerfile
+produces exactly one new layer, identified by a content hash of its resulting
+filesystem changes. When you rebuild, Docker checks whether a given instruction's
+inputs (its command text, and for `COPY`, the hash of the files being copied) match
+a previously built layer with that same hash — if so, it reuses the cached layer
+instead of re-executing the instruction. This is the entire mechanism behind the
+"copy requirements.txt first" trick: as long as `requirements.txt` hasn't changed,
+the `RUN pip install` layer's cache key matches and Docker skips reinstalling
+everything, even though the `COPY app/` step after it (which changes on every code
+edit) always misses cache and reruns — ordering instructions from least-to-most
+frequently changing is what maximizes how much of the stack stays cached.
+
+`docker run -p 8000:8000` sets up a **network address translation (NAT) rule** on
+the host: the container gets its own isolated network namespace (its own virtual
+network interface, its own view of `localhost`) via Linux kernel namespaces, and the
+port mapping tells the host's networking stack to forward incoming connections on
+host port 8000 to the container's internal port 8000. This is why the app inside the
+container can simply bind to `0.0.0.0:8000` without knowing anything about the host
+machine's actual IP or port configuration — the kernel-level translation is what
+makes "8000:8000" work identically regardless of what else is running on the host.
+
+Inside `docker-compose`'s network, the API reaching the database via the hostname
+`db` isn't magic service discovery — Compose creates a private Docker network for
+the whole `docker-compose.yml` file and runs an embedded DNS server on it that
+resolves each service's name (from the YAML key, `db`) to that container's internal
+IP address on the shared network, refreshed automatically as containers restart with
+new IPs — ordinary DNS resolution, just scoped to containers on that one
+Compose-created network rather than the wider internet.
+
+`needs: test` in the GitHub Actions workflow creates an explicit dependency edge in
+the workflow's job graph: GitHub Actions computes which jobs can run in parallel and
+which must wait, and a job listed in another's `needs` only starts after that
+dependency job's steps have all completed *and* exited successfully (non-zero exit
+from any step fails the whole job). `build-and-push` therefore literally cannot
+begin — its runner isn't even provisioned — until every step of `test` (including
+the `pytest` run) has returned a zero exit code, which is the concrete mechanism
+making "broken code can't reach the registry" true rather than aspirational.
+
 ## Exercise
 
 Write a `Dockerfile` and `docker-compose.yml` for the Level 3 Book Catalog API

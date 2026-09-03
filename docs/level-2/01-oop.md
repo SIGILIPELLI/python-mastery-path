@@ -201,6 +201,39 @@ print(Pizza.margherita().toppings)
 print(Pizza.slice_count(12))   # 6
 ```
 
+## How It Actually Works
+
+**A `class` statement is executable code that builds an object.** When the
+interpreter reaches `class Dog:`, it:
+
+1. Runs the class body as a mini-scope, collecting every name it defines
+   (`species`, `__init__`, `bark`) into a fresh namespace dict.
+2. Calls the metaclass — `type` by default — as
+   `type("Dog", (object,), namespace)`. That call allocates a new *class
+   object* whose `__dict__` is (a mappingproxy over) that namespace, links its
+   `__bases__` and computes its `__mro__`.
+3. Binds the name `Dog` to that class object. Classes are just objects; `Dog`
+   is an instance of `type`.
+
+**Creating an instance:** `Dog("Rex", 3)` calls `type.__call__(Dog, ...)`,
+which does `instance = Dog.__new__(Dog)` (allocates a blank object with its own
+`__dict__`), then `instance.__init__("Rex", 3)` (your constructor, which fills
+that dict), then returns the instance.
+
+**Attribute lookup** (`rex.bark`) is `type.__getattribute__` running a
+precise algorithm: check the type's MRO for a *data descriptor* named `bark`;
+if none, check the instance's own `__dict__`; if none, check the MRO for a
+non-data descriptor or plain class attribute. Functions stored on a class are
+*non-data descriptors*: `Dog.__dict__["bark"].__get__(rex, Dog)` returns a
+**bound method** that remembers `rex`, which is how `self` gets passed
+automatically. `rex.species` misses the instance dict and finds the shared
+class attribute — assign `rex.species = ...` and you create an instance-level
+entry that shadows it.
+
+`super().describe()` doesn't mean "my parent" — it walks to *the next class
+after the current one in the instance's MRO*, which is what makes cooperative
+multiple inheritance work.
+
 ## Exercise
 
 Model a small library system: a `Book` class with `title`, `author`, and a

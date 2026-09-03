@@ -1231,6 +1231,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,6 +2344,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2544,6 +2566,33 @@ raises an exception.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Custom exceptions are ordinary classes</strong> — the only thing that makes
+<code>InsufficientFundsError</code> catchable is that it inherits (transitively) from
+<code>BaseException</code>. <code>except AppError</code> works for both <code>ValidationError</code> and
+<code>NotFoundError</code> because the <code>except</code> clause runs <code>issubclass(type(exc),
+AppError)</code>, and both are subclasses. <code>raise X from Y</code> sets <code>X.__cause__ = Y</code>
+and a <code>__suppress_context__</code> flag; an unhandled exception raised inside an
+<code>except</code> block automatically gets <code>__context__</code> set to the one being handled.
+The traceback printer walks all three (<code>__traceback__</code>, <code>__cause__</code>,
+<code>__context__</code>) to produce the full chained report.</p>
+<p><strong>The <code>with</code> statement is a precise protocol, not a special case of <code>try</code>:</strong></p>
+<ol>
+<li>Evaluate the expression (<code>open(...)</code>, <code>Timer()</code>), then call its <code>__enter__</code>.
+   The return value is bound to the <code>as</code> name.</li>
+<li>The compiler registers <code>__exit__</code> so it runs no matter how the block ends.</li>
+<li>On normal exit: <code>__exit__(None, None, None)</code>.</li>
+<li>On an exception: <code>__exit__(exc_type, exc_value, traceback)</code>. If <code>__exit__</code>
+   returns a truthy value, the interpreter <em>swallows</em> the exception; if it
+   returns falsy/<code>None</code>, the exception continues propagating after cleanup.</li>
+</ol>
+<p><strong><code>@contextmanager</code> bridges the two worlds.</strong> It wraps your generator in a
+helper object whose <code>__enter__</code> calls <code>next(gen)</code> (running everything up to
+<code>yield</code> and returning the yielded value) and whose <code>__exit__</code> either calls
+<code>next(gen)</code> again (normal path) or <code>gen.throw(exc)</code> (exception path) — which
+is <em>why</em> you need <code>try/finally</code> inside the generator: <code>gen.throw</code> makes the
+<code>yield</code> expression raise, and only a <code>finally</code> guarantees your release code
+still runs.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Define a <code>DatabaseConnectionError(AppError)</code> exception, and write a
 <code>@contextmanager</code> function <code>db_connection(url)</code> that prints "connecting",

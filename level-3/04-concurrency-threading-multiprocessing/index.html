@@ -1587,6 +1587,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2289,6 +2300,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2487,6 +2509,47 @@ moment the work becomes CPU-bound instead of I/O-bound.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The GIL is a single mutex inside the CPython interpreter that must be held by a
+thread to execute Python bytecode — it exists because CPython's memory management
+(reference counting, specifically) is not thread-safe by design: incrementing and
+decrementing an object's refcount from multiple threads simultaneously without a
+lock would corrupt it, freeing an object still in use or leaking one that should have
+been freed. Rather than adding fine-grained locking to every object (which earlier
+experiments showed hurt single-threaded performance badly), CPython uses one global
+lock and switches which thread holds it periodically — since Python 3.2, based on a
+configurable time interval (<code>sys.getswitchinterval()</code>, default ~5ms) rather than a
+fixed bytecode-instruction count, giving each thread a fair, tunable slice of actual
+execution time.</p>
+<p>Crucially, the GIL is released around any operation that calls into blocking C code —
+a <code>socket.recv()</code>, <code>time.sleep()</code>, or file-read system call all release the GIL
+before making the OS call and reacquire it after, specifically so other Python
+threads can run bytecode while one thread is stuck waiting on the kernel. This is the
+precise, mechanical reason threading helps I/O-bound work (the threads spend most of
+their time with the GIL released, blocked in the OS) but not CPU-bound pure-Python
+work (the threads spend all their time holding the GIL, so the "concurrency" is just
+rapid switching between them, not simultaneous execution — four threads doing
+<code>count += 1</code> in a loop still execute one bytecode instruction at a time, system-wide).</p>
+<p><code>multiprocessing.Pool</code> sidesteps the GIL entirely by not sharing a process at all:
+each worker is a genuinely separate OS process (started via <code>fork</code> on Unix, which
+duplicates the parent's memory via copy-on-write, or <code>spawn</code>, which starts a fresh
+interpreter and re-imports your module) with its own independent memory space, its
+own reference counts, and its own GIL — true parallel bytecode execution across
+cores. The cost is that arguments and return values crossing the process boundary
+(<code>pool.map(cpu_bound, [...])</code>) must be <strong>pickled</strong> (serialized to bytes), sent through
+an OS pipe to the worker, and unpickled on the other side — this is exactly why the
+<code>if __name__ == "__main__":</code> guard matters on <code>spawn</code>-based platforms: a freshly
+started worker process re-imports your script as a module to reconstruct the
+functions it needs to call, and without the guard, that re-import would execute your
+top-level <code>Pool(...)</code> creation code again, recursively spawning more pools.</p>
+<p>A <code>threading.Lock</code> is a thin wrapper around an OS-level mutex primitive: <code>with lock:</code>
+calls <code>lock.acquire()</code> (blocking the calling thread until it can obtain the lock —
+implemented via a semaphore the OS scheduler manages) on entry and <code>lock.release()</code>
+on exit, guaranteeing that the <code>counter += 1</code> read-modify-write sequence (itself
+several separate bytecode instructions — a <code>LOAD_FAST</code>, a numeric add, a <code>STORE_FAST</code>
+— any of which the GIL could switch threads between) runs to completion in one
+thread before another can start it, which is precisely what a race condition without
+the lock is missing.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a function <code>word_count(text)</code> that counts words in a string. Simulate
 processing 8 large text "documents" (just repeat a string many times) using

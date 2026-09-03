@@ -1203,6 +1203,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,6 +2344,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2512,6 +2534,31 @@ recognize.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>"Functions are first-class" is literal: a function is an ordinary heap
+object</strong> of type <code>function</code>, carrying <code>__code__</code> (the compiled bytecode),
+<code>__defaults__</code>, <code>__globals__</code> (the module namespace it was defined in), and
+<code>__closure__</code>. Assigning <code>greeting = shout</code> just copies a pointer; there is no
+special "function variable".</p>
+<p><strong>A closure is a tuple of cell objects.</strong> When the compiler sees that
+<code>multiplier</code> reads <code>factor</code> from its enclosing function, it doesn't copy the
+value — it compiles <code>factor</code> in <code>make_multiplier</code> as a <em>cell variable</em>
+(a tiny box object) instead of a normal local. The inner function stores a
+reference to that same cell in its <code>__closure__</code>. So <code>double</code> and <code>triple</code>
+each close over a <em>different</em> cell, which is why they remember different
+factors. (This also explains the classic "late binding" gotcha: closures
+capture the cell, not the value at definition time.)</p>
+<p><strong><code>map</code> and <code>filter</code> are lazy iterator objects written in C.</strong> <code>map(f, xs)</code>
+doesn't call <code>f</code> at all yet — it returns a <code>map</code> object that calls <code>f(next(xs))</code>
+once each time <em>you</em> call <code>next()</code> on it. <code>list(map(...))</code> is what forces the
+work. A comprehension does the same work but in Python bytecode with an
+inlined loop, which is why it's often marginally faster and always more
+readable for simple cases.</p>
+<p><strong>A decorator is just a function call performed at <code>def</code> time.</strong> <code>@timed</code>
+above <code>def slow_square</code> compiles to: define the function, then immediately
+rebind the name to <code>timed(slow_square)</code>. <code>functools.reduce</code> is a plain C loop
+that threads an accumulator through the sequence — nothing magic, just
+<code>acc = f(acc, item)</code> repeated.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Given a list of order dictionaries like
 <code>{"item": "Book", "price": 12.5, "qty": 2}</code>, use <code>map</code> and a lambda to compute

@@ -2130,6 +2130,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2399,6 +2410,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2623,6 +2645,50 @@ evaluates multiple times on different splits, giving a more reliable estimate.</
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>model.fit(X_train, y_train)</code> for <code>LinearRegression</code> is solving a concrete numerical
+optimization problem, not "learning" in any mystical sense: scikit-learn computes
+the coefficients that minimize the sum of squared differences between predicted and
+actual <code>price</code> values, typically via a <strong>least-squares</strong> solve using linear algebra
+(an SVD or normal-equations-based routine from the underlying LAPACK library numpy
+wraps) rather than any iterative guessing — for ordinary linear regression there's a
+closed-form matrix solution, which is why <code>.fit()</code> on this particular model is fast
+and deterministic given the same data. The <code>model.coef_</code> values are literally the
+entries of the solved coefficient vector, one weight per feature column in <code>X</code>,
+representing how much the prediction changes per unit change in that feature holding
+the others fixed.</p>
+<p><code>train_test_split(..., random_state=42)</code> doesn't do anything model-specific — it
+shuffles row indices using a seeded pseudorandom number generator and partitions
+them into two groups at the requested ratio. The seed matters mechanically because a
+PRNG is deterministic given its seed: the exact same <code>random_state</code> value always
+produces the exact same shuffle order on the exact same input, which is why fixing
+it makes an experiment reproducible across runs and across machines, while leaving
+it unset means a different random split (and slightly different resulting metrics)
+every time.</p>
+<p><code>StandardScaler().fit(X_train)</code> computes and stores the mean and standard deviation
+of <em>each column</em> of <code>X_train</code> as internal attributes; <code>.transform(X)</code> then applies
+<code>(x - mean) / std</code> element-wise to whatever data you pass it, using those <em>stored</em>
+values rather than recomputing them from <code>X</code> itself. This is precisely the
+mechanical reason for "fit only on training data, transform both": if you called
+<code>.fit_transform()</code> on the test set too, the mean/std used to scale it would be
+computed <em>including</em> test-set values, meaning information about the exact
+distribution of data the model will be "evaluated" on has leaked into the
+preprocessing step — an optimistic bias in the resulting metric that wouldn't
+reproduce on genuinely new, unseen data in production. A <code>Pipeline</code> structurally
+prevents this mistake by construction: calling <code>pipeline.fit(X_train, y_train)</code>
+internally calls <code>.fit_transform()</code> on each preprocessing step in sequence but
+<code>.transform()</code> only (never re-fitting) on <code>pipeline.predict(X_test)</code>, so the same
+learned mean/std automatically get reused correctly with no way to accidentally
+call the wrong method on the wrong split.</p>
+<p><code>cross_val_score(pipeline, X, y, cv=5)</code> partitions the <em>entire</em> dataset into 5
+roughly equal folds, then runs 5 separate full fit/evaluate cycles, each time
+holding out one fold as the test set and training fresh on the other four — a
+brand-new <code>Pipeline</code> (with brand-new fitted scaler and model) is fit each time, none
+sharing state with another fold's run. Averaging the 5 resulting scores gives a much
+more reliable performance estimate than one split because it's no longer sensitive
+to which particular rows happened to land in the one test set a single
+<code>train_test_split</code> would have produced — a lucky or unlucky split is averaged out
+across five independent measurements.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using the <code>iris</code> dataset, build a <code>Pipeline</code> with a <code>StandardScaler</code> and a
 <code>LogisticRegression</code> classifier. Evaluate it with 5-fold <code>cross_val_score</code>,

@@ -951,6 +951,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2334,6 +2356,33 @@ clash between projects:</p>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.github.com&quot;</span><span class="p">)</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>  <span class="c1"># 200</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>import shapes</code> runs the <strong>import system</strong>, and the single most important fact
+is that a module's code runs <em>once per process</em>:</p>
+<ol>
+<li><strong>Cache check.</strong> Python looks up <code>"shapes"</code> in <code>sys.modules</code>, a dict of
+   every module already imported. A hit returns immediately — this is why
+   circular imports don't loop forever and why a module is a natural
+   singleton.</li>
+<li><strong>Finding.</strong> On a miss, Python asks each <em>finder</em> in <code>sys.meta_path</code>. The
+   path-based finder walks <code>sys.path</code> (current dir / script dir, then
+   <code>PYTHONPATH</code>, then the standard library, then <code>site-packages</code>) looking for
+   <code>shapes.py</code>, a <code>shapes/</code> package with <code>__init__.py</code>, a C extension, etc.</li>
+<li><strong>Loading.</strong> The matching <em>loader</em> reads the source, checks for a valid
+   cached <code>__pycache__/shapes.cpython-XY.pyc</code> (compares source mtime/hash and
+   Python version), compiles it if stale, and writes the <code>.pyc</code> back.</li>
+<li><strong>Execution.</strong> Python creates an empty module object, inserts it into
+   <code>sys.modules</code> <em>first</em> (so partial circular imports can see it), then
+   executes the module body top to bottom in that module's namespace. <code>def</code>s
+   and assignments populate the module's <code>__dict__</code>.</li>
+<li><strong>Binding.</strong> Finally the name <code>shapes</code> is bound in <em>your</em> namespace to that
+   module object. <code>from shapes import area_circle</code> does the same load, then
+   copies just that one attribute into your namespace.</li>
+</ol>
+<p><code>__init__.py</code> is simply the code that runs when a package is first imported.
+<code>pip install requests</code> downloads a wheel and unpacks it into <code>site-packages/</code>,
+which is already on <code>sys.path</code> — so <code>import requests</code> then just works via the
+same five steps.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Split a script that manages a to-do list into two modules: <code>storage.py</code>
 (load/save the list to a JSON file) and <code>main.py</code> (the CLI logic that imports

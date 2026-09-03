@@ -2256,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#running-everything-locally" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2500,6 +2511,17 @@
     <span class="md-ellipsis">
       
         .github/workflows/ci.yml
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -3110,6 +3132,41 @@ functions exist.</p>
 <a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
 <a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker build -t habit-tracker:${{ github.sha }} .</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The <code>User -&gt; Habit -&gt; CheckIn</code> access-control model works because of a fact from
+Module 6's ORM internals: every <code>Habit</code> row carries a real <code>user_id</code> foreign-key
+column, and <code>crud.get_owned_habit(db, current_user, habit_id)</code> compiles to a <code>SELECT
+... WHERE id = ? AND user_id = ?</code> — the ownership check happens as part of the SQL
+<em>query itself</em>, at the database engine level, not as a Python-side <code>if habit.user_id
+!= current_user.id</code> check performed after an unscoped fetch. This matters: a query
+scoped this way returns nothing at all for another user's habit ID, which the route
+then correctly turns into a <code>404</code>, rather than fetching the row and then having to
+remember to check ownership in application code — a mistake that's easy to
+accidentally skip in one code path and not another as an API grows.</p>
+<p><code>current_user=Depends(security.get_current_user)</code> chains together two dependency
+resolutions from Module 4's production-API authentication and Module 8's own
+database session dependency: FastAPI's dependency graph (built by inspecting each
+route's, then each dependency's, own signature — the same introspection mechanism
+throughout this whole course) resolves <code>get_current_user</code>'s own <code>db: Session =
+Depends(get_db)</code> parameter first, then calls <code>get_current_user(token, db)</code>, which
+decodes and verifies the JWT (Module 4's HMAC-signature check), looks up the
+corresponding <code>User</code> row by the <code>sub</code> claim, and returns that ORM object — which is
+why every route handler in this file receives an already-authenticated,
+already-database-backed <code>User</code> instance with zero repeated authentication logic
+written per route.</p>
+<p>Wiring <code>tests/conftest.py</code>'s dependency overrides (Module 3's FastAPI
+<code>dependency_overrides</code> mechanism) together with an in-memory or temp-file SQLite
+database means the entire suite — auth, CRUD, and access control — runs against a
+real, disposable SQLAlchemy engine rather than mocks standing in for the database
+layer, which is precisely why a test asserting "user A cannot see user B's habit"
+here is testing the <em>actual</em> SQL <code>WHERE user_id = ?</code> scoping described above, not
+just a unit test's assumption about how that scoping is supposed to work.</p>
+<p>The CI workflow's <code>needs: test</code> gate (Module 8's job-dependency mechanism) applies
+one more time at the top of the whole stack: <code>docker build -t
+habit-tracker:${{ github.sha }} .</code> only ever runs after the full <code>pytest --cov=app</code>
+suite — covering every mechanism from every level of this course working together —
+has already exited successfully, which is the concrete reason a broken build of this
+capstone can never reach a built image.</p>
 <h2 id="running-everything-locally">Running everything locally<a class="headerlink" href="#running-everything-locally" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>pytest<span class="w"> </span>--cov<span class="o">=</span>app<span class="w"> </span>-v

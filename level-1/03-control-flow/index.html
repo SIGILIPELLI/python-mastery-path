@@ -783,6 +783,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2340,6 +2362,34 @@
 <a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">describe</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>       <span class="c1"># pair: 1, 2</span>
 <a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">describe</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ada&quot;</span><span class="p">}))</span>  <span class="c1"># has a name: Ada</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Control flow is a compile-time transformation into <strong>jumps</strong> in bytecode.
+Disassemble an <code>if</code>/<code>else</code> with <code>dis.dis</code> and you'll see it:</p>
+<ul>
+<li><code>if score &gt;= 90:</code> compiles to <code>COMPARE_OP &gt;=</code> followed by
+  <code>POP_JUMP_IF_FALSE</code> — evaluate the condition, and if the result is falsy,
+  jump straight to the address where the next <code>elif</code>/<code>else</code> branch begins.
+  There is no "if statement" at runtime, only conditional jumps between
+  bytecode offsets.</li>
+<li>"Falsy" is decided by calling the object's <code>__bool__</code> (or <code>__len__</code> if
+  <code>__bool__</code> is absent). <code>0</code>, <code>0.0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>None</code> all return
+  <code>False</code>; almost everything else returns <code>True</code>.</li>
+<li>A <code>while</code> loop is the same conditional jump plus an unconditional
+  <code>JUMP_BACKWARD</code> to re-test the condition.</li>
+<li>A <code>for</code> loop is different: <code>GET_ITER</code> calls <code>iter()</code> on the sequence to get
+  an <em>iterator object</em>, then <code>FOR_ITER</code> repeatedly calls <code>__next__</code> on it,
+  binding each result to the loop variable. When <code>__next__</code> raises
+  <code>StopIteration</code> internally, <code>FOR_ITER</code> catches it and jumps past the loop
+  body. This is why <code>for</code> works identically over lists, files, generators, and
+  any custom iterable.</li>
+<li>The loop <code>else</code> clause compiles as code placed <em>after</em> the normal loop exit
+  but <em>before</em> the target of any <code>break</code> jump — so <code>break</code> skips it and
+  natural completion falls into it.</li>
+<li><code>match</code> (3.10+) compiles to a decision tree of type checks, length checks,
+  attribute/key extraction, and equality tests using dedicated opcodes like
+  <code>MATCH_CLASS</code>, <code>MATCH_MAPPING</code>, and <code>MATCH_SEQUENCE</code> — not a hash-based
+  jump table like C's <code>switch</code>.</li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a program that prints FizzBuzz for numbers 1–30: multiples of 3 print
 "Fizz", multiples of 5 print "Buzz", multiples of both print "FizzBuzz",

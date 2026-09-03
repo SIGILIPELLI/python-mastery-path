@@ -1360,6 +1360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2505,6 +2527,38 @@ the same name.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Plain <code>assert</code> gives rich output because pytest rewrites your test files'
+bytecode as it imports them.</strong> pytest installs an <em>import hook</em> ahead of
+Python's normal machinery. When it loads <code>test_calculator.py</code>, it parses the
+source to an AST and rewrites every <code>assert</code> statement: instead of
+<code>assert add(2,2) == 5</code>, it becomes code that evaluates <code>add(2,2)</code> and <code>5</code> into
+temporary variables, and if the result is falsy, formats a message showing
+each sub-expression's value (<code>assert 4 == 5 / where 4 = add(2, 2)</code>). The
+rewritten module is cached as a <code>.pyc</code> so it isn't re-done every run. This is
+also why <code>assert</code> in your <em>application</em> code (imported normally) doesn't get
+the fancy output.</p>
+<p><strong>A test run has distinct phases:</strong></p>
+<ol>
+<li><strong>Collection.</strong> pytest recursively walks the target paths, imports each
+   <code>test_*.py</code> (triggering the rewrite), and gathers <code>test_*</code> functions and
+   <code>Test*</code> classes into a tree of <em>items</em>.</li>
+<li><strong>Fixture resolution.</strong> For each item, pytest inspects the test function's
+   parameter names, looks up matching fixtures (searching the test module,
+   then <code>conftest.py</code> files from the test's directory upward, then plugins),
+   and builds a dependency graph. Fixtures run in dependency order; anything
+   after a <code>yield</code> is registered as a <em>finalizer</em> on a stack.</li>
+<li><strong>Execution.</strong> Each item runs through a three-call protocol —
+   <code>setup</code> (instantiate fixtures), <code>call</code> (run the test body), <code>teardown</code>
+   (pop and run finalizers in LIFO order). Each phase produces a <em>report</em>;
+   an exception in <code>call</code> becomes a failure report with the captured
+   traceback and stdout.</li>
+<li><strong>Reporting.</strong> The collected reports are summarized into the
+   <code>N passed, M failed</code> line.</li>
+</ol>
+<p><code>@pytest.mark.parametrize</code> doesn't loop inside one test — it generates <em>N
+separate items</em> at collection time, which is why each shows up individually in
+<code>-v</code> output and can pass or fail independently.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write <code>stack.py</code> with a small <code>Stack</code> class (<code>push</code>, <code>pop</code>, <code>peek</code>, <code>is_empty</code>,
 raising a custom <code>EmptyStackError</code> when popping/peeking an empty stack). Then

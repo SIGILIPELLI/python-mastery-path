@@ -1974,6 +1974,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2540,6 +2562,46 @@ building framework-level tooling, never for ordinary business logic.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The <code>class</code> statement is itself compiled to a function call, not special
+class-building syntax evaluated by some separate code path: <code>class MyClass(
+metaclass=Meta): pass</code> compiles to roughly <code>MyClass = Meta("MyClass", (), namespace,
+**kwargs)</code> where <code>namespace</code> is the dict built by executing the class body as its own
+tiny scope. <code>type.__call__</code> (the metaclass's own <code>__call__</code>, inherited from <code>type</code>
+itself, since a metaclass is a class too) is what actually orchestrates calling
+<code>Meta.__new__</code> to build the class object and then <code>Meta.__init__</code> to further
+initialize it — the exact same two-phase <code>__new__</code>/<code>__init__</code> split ordinary
+instances go through, just one level up the type hierarchy, which is why both hooks
+print in that order at <em>import</em> time, before <code>MyClass()</code> is ever called to make an
+instance.</p>
+<p><code>PluginMeta.registry[name] = cls</code> runs inside <code>__new__</code>, which fires <strong>every single
+time</strong> any class using that metaclass is defined — including transitively for every
+subclass, since a metaclass is inherited by default (a subclass of a class with
+<code>metaclass=PluginMeta</code> automatically gets built by <code>PluginMeta</code> too, unless overridden).
+This is the entire mechanism behind "automatic" plugin registration: there is no
+scanning of the filesystem or reflection over already-loaded classes — registration
+happens as a side effect of the class object being constructed, which only occurs
+once each subclass's <code>class</code> statement actually executes (i.e., once its defining
+module is imported).</p>
+<p><code>__init_subclass__</code> achieves the same effect through a narrower, purpose-built hook:
+<code>type.__new__</code> itself calls <code>cls.__init_subclass__(cls=new_subclass, **kwargs)</code> as a
+final step of building any new class that has a base class defining it (implemented
+as an implicit classmethod) — so you get a callback exactly when a subclass is
+created, without needing to write your own metaclass or override <code>__new__</code>
+yourself. It runs strictly <em>after</em> the class object already fully exists, though,
+which is precisely why it can't do what a metaclass's <code>__new__</code> can: reject or
+rewrite the namespace <em>before</em> the class is built.</p>
+<p><code>type("Point", (), {...})</code> is not a special-cased shortcut — it is calling the exact
+same <code>type</code> callable that implicitly builds every class from a <code>class</code> statement,
+just supplying the three positional arguments (name, bases tuple, namespace dict)
+explicitly rather than letting the compiler derive them from source syntax. <code>exec(code,
+namespace)</code> compiles and runs the given string exactly as if it were a module's top-
+level code, executing inside the given dict as its namespace — that's the same
+compile-and-execute pipeline from Level 1's <code>python3 hello.py</code> walkthrough,
+just triggered manually at runtime on a string instead of a file, which is why
+<code>dataclasses</code> can generate an actual, fast <code>__init__</code> method (compiled bytecode, no
+per-call overhead) rather than a slower generic one built from introspecting fields
+at call time.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Build a small validation framework using <code>__init_subclass__</code>: a base class
 <code>Model</code> that auto-registers every subclass by name (like the plugin registry

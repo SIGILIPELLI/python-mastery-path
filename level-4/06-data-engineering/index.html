@@ -2091,6 +2091,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2377,6 +2388,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2587,6 +2609,49 @@ an in-memory <code>DataFrame</code>, no file I/O required.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A <code>numpy</code> array's speed comes from a fundamentally different memory layout than a
+Python <code>list</code>: a list is an array of <em>pointers</em> to separately heap-allocated
+objects scattered across memory, while a <code>numpy</code> array is one contiguous block of
+raw, fixed-width machine values (all <code>float64</code>, all <code>int32</code>, etc., decided once at
+creation) with no per-element Python object overhead at all. <code>prices * quantities</code>
+doesn't loop in Python bytecode calling <code>__mul__</code> per element — it dispatches once
+into a compiled C (or SIMD-vectorized) loop that walks both underlying memory
+buffers directly, multiplying raw values using the CPU's native arithmetic
+instructions, often processing several elements per CPU cycle via vector
+instructions. This is precisely why "vectorized" numpy code that looks like Python
+runs at compiled-language speed: the actual arithmetic never touches the Python
+interpreter's per-instruction dispatch overhead at all, only the <em>call</em> into numpy
+does.</p>
+<p>A <code>pandas</code> <code>DataFrame</code> is built on top of exactly this: each column is stored as a
+numpy array (or an Arrow-backed block, in newer pandas), and the <code>DataFrame</code> itself
+is essentially a dict-like collection of these column arrays sharing a common row
+index. This is why <code>df["price"]</code> is cheap (it just returns a view referencing the
+existing underlying array, wrapped as a <code>Series</code>) while adding a differently-typed
+column can trigger a new array allocation. <code>df[df["quantity"] &gt; 5]</code> works in two
+steps mechanically: <code>df["quantity"] &gt; 5</code> runs the same vectorized comparison as
+<code>numpy</code> to produce a boolean array the same length as the DataFrame, and the outer
+<code>df[...]</code> then uses that boolean array as a <em>mask</em> — a single vectorized selection
+pass over each column's underlying array picking out only the <code>True</code> positions —
+rather than a Python-level loop checking each row one at a time.</p>
+<p><code>df.groupby("product")</code> doesn't recompute per-group results directly — it first
+performs a <strong>hash-based partition</strong>: it computes a hash of the grouping column's
+values (the same hashing mechanism behind Python's own <code>dict</code>/<code>set</code>) to bucket row
+positions by their <code>product</code> value into an internal grouping object, without
+copying the underlying data yet. Only when you call <code>.sum()</code> or <code>.agg(...)</code> does it
+apply the requested reduction separately over the row-index buckets already
+computed, materializing a new, smaller result — which is why chaining multiple
+aggregations off one <code>groupby(...)</code> call (as <code>.agg(total_revenue=..., avg_price=...,
+orders=...)</code> does) is more efficient than calling <code>groupby</code> fresh for each one: the
+expensive bucketing step happens exactly once and is reused for every aggregate
+computed from it.</p>
+<p><code>orders.merge(customers, on="customer_id", how="left")</code> implements a <strong>relational
+join</strong> the same way a SQL database's join operator does — for reasonably sized data,
+pandas builds a hash table keyed by the join column from the smaller side (<code>customers</code>), then does a single pass over <code>orders</code> looking up each <code>customer_id</code> in
+that hash table (an O(1) average lookup per row, the same hash-table mechanism as
+Python <code>dict</code>) rather than comparing every row of <code>orders</code> against every row of
+<code>customers</code> (which would be the much slower, naive O(n×m) nested-loop join a
+hand-written merge might accidentally implement).</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Build the ETL pipeline above into a real script with a <code>tests/test_transform.py</code>
 file that constructs a small in-memory <code>DataFrame</code> with a missing value, a

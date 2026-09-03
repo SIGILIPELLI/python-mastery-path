@@ -1276,6 +1276,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2484,6 +2506,33 @@ match:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;I love Python&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>   <span class="c1"># case-insensitive</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\d+&quot;</span><span class="p">,</span> <span class="s2">&quot;1 apple</span><span class="se">\n</span><span class="s2">2 pears&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span>   <span class="c1"># ^ matches start of EACH line</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>re</code> is a <strong>compiler and a virtual machine</strong>, just like CPython itself:</p>
+<ol>
+<li><strong>Parse.</strong> <code>re.compile(r"user=(\d+)")</code> parses the pattern string into a
+   small syntax tree of nodes (literal, character class, group, repeat,
+   branch).</li>
+<li><strong>Compile.</strong> That tree is lowered to a flat program of opcodes for the
+   <code>sre</code> (Secret Labs regex engine) VM — things like <code>LITERAL 117</code> ("match
+   'u'"), <code>IN</code> (character set), <code>MARK</code> (record a group boundary),
+   <code>REPEAT_ONE</code>, <code>BRANCH</code>, <code>JUMP</code>.</li>
+<li><strong>Cache.</strong> <code>re.search(pattern_string, ...)</code> without pre-compiling still
+   compiles internally, then caches the compiled object (last 512 distinct
+   patterns) so a loop calling <code>re.search</code> with the same literal pattern isn't
+   recompiling every iteration — though pre-compiling is still clearer.</li>
+<li><strong>Execute.</strong> Matching runs the VM against the subject string with a
+   <strong>backtracking</strong> strategy: on a quantifier like <code>.*</code>, the engine greedily
+   consumes as much as possible, then <em>backs up</em> one character at a time
+   whenever the rest of the pattern fails to match. Group positions are saved
+   and restored as <code>MARK</code> opcodes execute.</li>
+</ol>
+<p>This backtracking model is the whole reason for greedy-vs-lazy (<code>.*</code> vs <code>.*?</code>
+just change which direction the engine tries first) and for <strong>catastrophic
+backtracking</strong>: a pattern like <code>(a+)+$</code> against <code>"aaaa...b"</code> forces the engine
+to try an exponential number of ways to partition the a's before concluding
+failure. <code>re.match</code> vs <code>re.search</code> is not a VM difference — <code>match</code> simply
+starts the VM only at position 0, while <code>search</code> retries it at each successive
+start position.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a function <code>extract_hashtags(text)</code> that returns a list of unique
 hashtags (without the <code>#</code>) found in a piece of text using <code>re.findall</code>, and a

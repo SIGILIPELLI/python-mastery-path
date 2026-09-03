@@ -2030,6 +2030,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2575,6 +2597,50 @@ push/PR means broken code never merges silently.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Fixture <code>scope=</code> controls a <strong>cache key</strong>, not a different code path: pytest keeps a
+cache of already-created fixture values keyed by (fixture function, scope
+identifier) — for <code>scope="module"</code>, the identifier is the test file being run; for
+<code>scope="session"</code>, it's the whole test run. When a test requests a fixture, pytest
+checks that cache first and only calls your fixture function (running its setup and
+registering its <code>yield</code>-based teardown) if there's no cached value yet for the
+current scope identifier — which is exactly why a <code>module</code>-scoped fixture's "setting
+up" print only appears once even though many test functions in that file request it,
+and precisely why mutating it leaks: every subsequent test in that scope is handed
+the <em>same</em> cached object reference, not a fresh copy.</p>
+<p>Fixture composition (<code>existing_user(db_session)</code>) works through the same
+signature-introspection dependency injection covered in Module 9 — pytest builds a
+dependency graph by inspecting each fixture function's own parameters recursively,
+resolving <code>db_session</code> first because <code>existing_user</code> declares it, and only then
+calling <code>existing_user</code> with that resolved value. A test requesting both
+<code>db_session</code> and <code>existing_user</code> gets the <em>same</em> <code>db_session</code> instance in both
+places specifically because that resolution is itself cached per test (function
+scope, by default) — the dependency graph is walked once per test, not once per
+fixture reference.</p>
+<p><code>@patch("weather_service.requests.get")</code> works, and patching <code>requests.get</code> directly
+doesn't, because of the same "modules are mutable namespaces, attributes are looked
+up at call time" fact from Level 2's monkeypatch discussion: <code>get_temperature</code>
+reads <code>requests.get</code> by looking it up on whatever object the name <code>requests</code> is
+bound to <em>inside <code>weather_service</code>'s own namespace</em> at call time. <code>weather_service</code>
+imported <code>requests</code> once and bound the name <code>requests</code> in its own module dict to the
+real <code>requests</code> module object — patching <code>weather_service.requests.get</code> walks that
+exact same attribute path (<code>weather_service</code> → its <code>requests</code> reference → <code>.get</code>)
+and swaps the final attribute, so the lookup <code>get_temperature</code> performs at call time
+finds the replacement. Patching the separate name <code>requests.get</code> in the standalone
+<code>requests</code> module wouldn't matter here only if <code>weather_service</code> had already
+resolved and cached a direct reference elsewhere — but since it hasn't, both paths
+usually point at the same object; the real gotcha this note is guarding against is
+code that did <code>from requests import get</code> (binding its own local name <code>get</code>,
+unaffected by patching the module's own attribute).</p>
+<p>Hypothesis's engine works by treating each <code>@given(st.integers())</code>-style strategy as
+a generator of structured random values, run through hundreds of iterations by
+default. When an iteration raises an <code>AssertionError</code>, Hypothesis doesn't just
+report that one random input — it engages a <strong>shrinking</strong> phase: it systematically
+tries smaller/simpler variations of the failing input (fewer list elements, smaller
+integers, shorter strings) using its own search heuristics, re-running the test each
+time, and keeps the smallest input it can find that still fails — which is why a
+found bug reports something like <code>[0, 1]</code> rather than the sprawling random list that
+first triggered it.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the Book Catalog API's <code>crud.py</code> from Level 3 and add: a <code>module</code>-scoped
 fixture wrapping a shared in-memory engine, a <code>@patch</code>-based test that mocks

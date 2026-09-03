@@ -934,6 +934,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2267,6 +2278,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2379,6 +2401,35 @@
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Entering a <code>try</code> block is now free.</strong> Up to Python 3.10, <code>try</code> emitted a
+<code>SETUP_FINALLY</code> opcode that pushed a handler entry onto a runtime block stack
+on every execution. Since 3.11, the compiler instead builds a static
+<strong>exception table</strong>: a side table mapping ranges of bytecode offsets to the
+handler that covers them. If no exception is raised, that table is never
+consulted — so <code>try</code> costs nothing until something actually goes wrong
+("zero-cost exceptions").</p>
+<p><strong>When an exception is raised:</strong></p>
+<ol>
+<li><code>raise</code> (or a failing operation) creates an exception <em>object</em> and starts
+   unwinding. The interpreter also attaches a <em>traceback</em> object, and as each
+   frame is unwound it prepends that frame's location — this is why a
+   traceback reads outermost-call-first, bottom-up.</li>
+<li>For the current frame, the interpreter looks up the instruction pointer in
+   the exception table. If a handler covers it, execution jumps there with the
+   exception pushed onto the value stack.</li>
+<li>Each <code>except X</code> clause runs an <code>isinstance(exc, X)</code> check. The <em>first</em>
+   matching clause wins, which is why you order narrow-to-broad. No match
+   means the exception keeps unwinding into the calling frame, repeating from
+   step 2.</li>
+<li>If it reaches the top frame unhandled, CPython prints the traceback to
+   <code>stderr</code> and exits with status 1.</li>
+</ol>
+<p><code>finally</code> and <code>with</code>-cleanup are woven in as handler entries that run their
+code and then <em>re-raise</em>. <code>raise X from Y</code> sets <code>X.__cause__ = Y</code>; an
+exception raised while handling another automatically gets <code>__context__</code> set —
+both are what produce "During handling of the above exception, another
+occurred".</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a function <code>divide_safely(a, b)</code> that returns the division result, or a
 descriptive error message string if <code>b</code> is zero or either argument isn't a

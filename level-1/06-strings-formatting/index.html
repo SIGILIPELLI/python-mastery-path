@@ -867,6 +867,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2320,6 +2342,29 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>      <span class="c1"># returns &quot;HELLO&quot; but doesn&#39;t change s</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># you must reassign to keep the result</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A <code>str</code> is an immutable array of Unicode code points</strong>, and CPython stores it
+compactly using a "flexible string representation" (PEP 393): it picks the
+smallest element width the string needs — 1 byte per character if every code
+point fits in Latin-1, 2 bytes if it fits in the Basic Multilingual Plane,
+4 bytes otherwise. So a plain ASCII string uses 1 byte per character plus a
+header; adding one emoji forces the whole string to 4-byte storage. The object
+also caches its length and hash.</p>
+<p><strong>Immutability</strong> is enforced because there is simply no bytecode or method that
+writes into an existing string's buffer. <code>s.upper()</code> allocates a <em>new</em> string
+object and returns it; <code>s</code> still points at the old one until you reassign.
+This is what lets CPython safely <em>intern</em> strings — identifier-like literals
+are stored once in a global table and reused, so <code>a = "hello"; b = "hello"</code>
+often gives <code>a is b</code>.</p>
+<p><strong>f-strings are resolved at compile time, not by parsing at runtime.</strong> The
+compiler splits <code>f"{name} is {age}"</code> into literal chunks and expression
+chunks, compiles each <code>{...}</code> as real bytecode, and emits instructions to
+evaluate them and join the pieces (via <code>FORMAT_VALUE</code>/<code>BUILD_STRING</code>, or the
+dedicated <code>FORMAT_SIMPLE</code>/<code>FORMAT_WITH_SPEC</code> opcodes in 3.12+). The
+format spec after <code>:</code> (like <code>.2f</code>) is handed to the value's <code>__format__</code>
+method. Because it's compiled, an f-string has no dictionary lookup overhead
+the way <code>str.format</code> or <code>%</code> do, and syntax errors inside <code>{}</code> are caught when
+the file is compiled.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a function <code>slugify(title: str) -&gt; str</code> that converts <code>"Hello, World!  "</code>
 into <code>"hello-world"</code> — lowercase, punctuation stripped, spaces replaced with

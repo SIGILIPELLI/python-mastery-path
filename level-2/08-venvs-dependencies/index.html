@@ -1343,6 +1343,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,6 +2344,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2476,6 +2498,40 @@ only needed while developing it (test runners, linters).</p>
 </code></pre></div>
 <p>The <code>.venv</code> folder itself should never be committed to version control — it's
 large, platform-specific, and fully reproducible from <code>requirements.txt</code>.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A virtual environment is mostly a directory layout plus one config file.</strong>
+<code>python3 -m venv .venv</code> creates:</p>
+<ul>
+<li><code>.venv/bin/python</code> — a symlink (or small copy) pointing back at the base
+  interpreter.</li>
+<li><code>.venv/pyvenv.cfg</code> — a text file recording the <code>home</code> (the base Python) and
+  <code>include-system-site-packages = false</code>.</li>
+<li><code>.venv/lib/pythonX.Y/site-packages/</code> — an empty install target.</li>
+</ul>
+<p>The magic is in interpreter startup. When <em>any</em> Python starts, it walks up
+from its own executable looking for a <code>pyvenv.cfg</code>. Finding one, it sets
+<code>sys.prefix</code> to the venv directory and puts the venv's <code>site-packages</code> on
+<code>sys.path</code> <em>instead of</em> the system one. So "activating" is almost cosmetic:
+<code>source .venv/bin/activate</code> just prepends <code>.venv/bin</code> to <code>$PATH</code> and sets
+<code>$VIRTUAL_ENV</code>, so typing <code>python</code> finds the venv's interpreter — which would
+have used the venv's packages anyway. Running <code>.venv/bin/python</code> directly,
+with no activation, works identically.</p>
+<p><strong><code>pip install requests</code></strong> then:</p>
+<ol>
+<li>Queries the PyPI "simple" index for the <code>requests</code> project page, reads the
+   list of released files, and picks the best-matching <strong>wheel</strong>
+   (<code>.whl</code> — a ZIP with a specific naming scheme) for your Python version and
+   platform.</li>
+<li>Recursively resolves dependencies (<code>urllib3</code>, <code>certifi</code>, <code>idna</code>,
+   <code>charset-normalizer</code>), backtracking if version constraints conflict.</li>
+<li>Downloads each wheel and unpacks it straight into <code>site-packages/</code>, then
+   writes a <code>&lt;pkg&gt;.dist-info/</code> folder containing <code>METADATA</code>, <code>RECORD</code> (a
+   manifest with hashes of every installed file), and <code>entry_points.txt</code>.</li>
+</ol>
+<p><code>pip freeze</code> just reads those <code>dist-info</code> folders and prints
+<code>name==version</code> for each; <code>pip install -r</code> replays them. The <code>.venv</code> folder
+is disposable precisely because all of this is reconstructible from
+<code>requirements.txt</code>.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Starting from an empty folder, create a virtual environment, activate it,
 install <code>requests</code> and any one other package of your choice, generate a

@@ -1570,6 +1570,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2548,6 +2570,43 @@ you use <code>@property</code>, you're using a descriptor that Python provides f
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>@wraps(fn)</code> fixes an identity problem that exists because a decorator's wrapper
+really is a brand-new <code>function</code> object — it has its own freshly built <code>__name__</code>
+(<code>"wrapper"</code>), its own <code>__doc__</code> (<code>None</code>, since your wrapper has no docstring), and
+its own <code>__dict__</code>. <code>functools.wraps</code> doesn't do anything magical to prevent this —
+it runs <em>after</em> <code>wrapper</code> is defined and copies over a fixed list of attributes
+(<code>__name__</code>, <code>__doc__</code>, <code>__module__</code>, <code>__qualname__</code>, and merges <code>__dict__</code>) from
+<code>fn</code> onto <code>wrapper</code>, and additionally sets <code>wrapper.__wrapped__ = fn</code>, which is what
+lets introspection tools like <code>inspect.signature</code> see through one or more layers of
+wrapping to the original function's real parameter list.</p>
+<p>A decorator factory like <code>retry(times=3)</code> works through ordinary closures, nothing
+special to decorators: calling <code>retry(times=3, delay=0)</code> runs immediately and
+returns <code>decorator</code>, a function that has closed over <code>times</code> and <code>delay</code> in its own
+cell variables (exactly the closure mechanism from Level 2). <code>@retry(times=3,
+delay=0)</code> above <code>def flaky(): ...</code> then compiles to <code>flaky = decorator(flaky)</code> — the
+"factory" layer exists purely because the compiler always calls exactly what
+immediately follows <code>@</code> with the decorated function as its single argument, so a
+parameterized decorator needs one extra function call in between to produce the
+actual single-argument decorator.</p>
+<p><code>@CountCalls</code> above <code>def greet</code> works because Python's call syntax <code>obj(...)</code>
+compiles to <code>type(obj).__call__(obj, ...)</code> regardless of whether <code>obj</code> is a plain
+function or a class instance — <code>greet</code> after decoration is literally a <code>CountCalls</code>
+instance, and <code>greet("Ada")</code> dispatches to <code>CountCalls.__call__</code>, which is why state
+like <code>self.calls</code> persists naturally between calls without needing <code>global</code> or a
+closure cell.</p>
+<p>The descriptor protocol is the real backbone here: attribute lookup on an instance
+(<code>obj.attr</code>) first checks <code>type(obj).__mro__</code> for <code>attr</code>; if what it finds there
+defines <code>__get__</code> <em>and</em> <code>__set__</code> (a <strong>data descriptor</strong>, like <code>PositiveNumber</code> or
+<code>property</code>), that descriptor wins even over an entry already sitting in
+<code>obj.__dict__</code>. <code>p.price = 9.99</code> therefore doesn't write into <code>p.__dict__["price"]</code>
+at all — it's intercepted by <code>PositiveNumber.__set__</code>, which validates and stores the
+value under <code>p.__dict__["_price"]</code> instead. <code>__set_name__</code> is a hook the class
+machinery calls automatically, once, right after the class body finishes executing,
+telling each descriptor instance what attribute name it was assigned to — which is
+exactly how one <code>PositiveNumber()</code> instance shared by <code>price</code> and <code>quantity</code> knows to
+store each under a different private name (<code>_price</code> vs. <code>_quantity</code>) without you
+passing the name explicitly.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a decorator factory <code>@cache_for(seconds)</code> that caches a function's
 return value per unique set of arguments, re-running the function only after

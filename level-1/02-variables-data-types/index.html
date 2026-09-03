@@ -766,6 +766,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2267,6 +2278,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2350,6 +2372,38 @@
 <li>Constants are written <code>UPPER_SNAKE_CASE</code> (<code>MAX_RETRIES = 3</code>) by convention —
   Python doesn't enforce true immutability here.</li>
 </ul>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>In Python, a variable is not a box that holds a value — it's a <strong>name bound to
+an object</strong> in a namespace.</p>
+<ul>
+<li>Every value is a heap-allocated object with (at minimum) a <em>type pointer</em> and
+  a <em>reference count</em>. <code>42</code> is a full <code>int</code> object; <code>"Ada"</code> is a full <code>str</code>
+  object. There are no "primitive" types the way C or Java have them.</li>
+<li><code>age = 25</code> compiles to roughly: build (or fetch) the <code>int</code> object <code>25</code>, then
+  store a pointer to it under the key <code>"age"</code> in the current namespace, which
+  is itself a dictionary (module globals) or an optimized array slot (function
+  locals).</li>
+<li><code>type(x)</code> just follows that object's type pointer. <code>int</code>, <code>float</code>, <code>str</code>,
+  <code>bool</code>, and <code>NoneType</code> are themselves objects (instances of <code>type</code>).</li>
+<li><strong>Reference counting</strong> drives memory: each new name or container slot
+  pointing at an object increments its count; each rebind or scope exit
+  decrements it; at zero the object is freed immediately. A separate
+  cyclic garbage collector cleans up reference cycles.</li>
+</ul>
+<p>This model explains two surprises:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">256</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">256</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span><span class="p">)</span>   <span class="c1"># True  — CPython pre-creates and caches small ints (-5..256)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">a</span> <span class="o">=</span> <span class="mi">257</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">b</span> <span class="o">=</span> <span class="mi">257</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span><span class="p">)</span>   <span class="c1"># often False — these are two separately allocated int objects</span>
+</code></pre></div>
+<p><code>==</code> asks the objects "do you represent the same value?" (calls <code>__eq__</code>);
+<code>is</code> asks "are these two names pointing at the exact same object in memory?"
+(compares pointers). <code>5 == 5.0</code> is <code>True</code> because <code>int.__eq__</code> compares
+numeric value; <code>5 is 5.0</code> is <code>False</code> because they're distinct objects of
+different types.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a script that stores a rectangle's <code>width</code> and <code>height</code>, computes its area
 and perimeter, and prints both formatted to 2 decimal places.</p>

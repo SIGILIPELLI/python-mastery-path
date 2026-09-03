@@ -895,6 +895,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2337,6 +2359,33 @@
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">file_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">())</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>open()</code> doesn't read anything — it asks the operating system for a <strong>file
+descriptor</strong> (a small integer the kernel uses to track the open file), then
+wraps that descriptor in a stack of Python objects:</p>
+<ol>
+<li><strong><code>FileIO</code></strong> — the raw layer. It translates <code>.read()</code>/<code>.write()</code> into the
+   <code>read(2)</code>/<code>write(2)</code> system calls on the descriptor. System calls are
+   relatively expensive (a switch into the kernel), so you don't want one per
+   character.</li>
+<li><strong><code>BufferedReader</code>/<code>BufferedWriter</code></strong> — an in-memory buffer (8 KB by
+   default). Reads pull a big chunk from the OS and hand you slices of it;
+   writes accumulate in the buffer and flush to the OS only when it fills, when
+   you call <code>.flush()</code>, or when the file closes. This is why data you "wrote"
+   can be missing from the file until close.</li>
+<li><strong><code>TextIOWrapper</code></strong> — only for text mode. It decodes incoming bytes to <code>str</code>
+   using the specified (or locale-default) encoding, encodes outgoing <code>str</code>
+   back to bytes, and does newline translation (<code>\r\n</code> ↔ <code>\n</code> on Windows).
+   <code>newline=""</code> for <code>csv</code> disables that translation.</li>
+</ol>
+<p><strong><code>with open(...) as f:</code></strong> compiles to: call <code>open()</code>, call its <code>__enter__</code>
+(which returns the file object itself), run the body, then <em>guaranteed</em> call
+<code>f.__exit__()</code> — even on an exception or <code>return</code> — which calls <code>.close()</code>.
+<code>close()</code> flushes the buffer and then calls <code>close(2)</code> to release the
+descriptor back to the kernel. Descriptors are a limited per-process resource,
+so leaking them (never closing) eventually raises "Too many open files".
+<code>pathlib.Path.read_text()</code> is a convenience that does the whole
+open → read → close cycle in one call.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a script that reads a text file, counts how many times each word
 appears (case-insensitive), and writes the results as <code>word,count</code> lines to a

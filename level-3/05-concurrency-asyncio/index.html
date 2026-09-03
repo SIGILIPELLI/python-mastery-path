@@ -1626,6 +1626,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2527,6 +2549,45 @@ many run at once, using a semaphore, to avoid overwhelming a server.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>async def</code> marks a function so that calling it doesn't run any code — it returns a
+<strong>coroutine object</strong>, a suspendable frame conceptually identical to a generator's
+(in fact, <code>async def</code> coroutines and generators share the same underlying frame
+machinery in CPython). <code>asyncio.run(main())</code> creates an <strong>event loop</strong> — really just
+a <code>while True:</code> loop running in the current thread — and drives that coroutine object
+by repeatedly calling into it and letting it run until it hits an <code>await</code> on
+something not yet ready, at which point control returns to the loop.</p>
+<p><code>await asyncio.sleep(delay)</code> is the crucial mechanism: <code>asyncio.sleep</code> doesn't
+actually block anything — it registers a callback with the event loop's internal
+scheduler (via the OS's timer/<code>select</code>/<code>epoll</code>/<code>kqueue</code> mechanism, whichever the
+platform's default loop implementation uses) to be woken up after <code>delay</code> seconds,
+and then suspends the <em>coroutine's own frame</em> right there, handing control back to
+the event loop. The loop, now free, checks its list of ready callbacks and other
+pending tasks and runs whichever one is ready next — this is why <code>await
+asyncio.sleep(1)</code> in two coroutines finishes in ~1 second total when run
+concurrently (both timers are ticking down in the same loop iteration) rather than 2
+seconds sequentially: it's genuinely cooperative multitasking on a <em>single</em> OS
+thread, with no GIL contention because there's only ever one thread running Python
+bytecode at a time by construction, not by lock.</p>
+<p><code>asyncio.create_task(worker(2))</code> is what actually schedules a coroutine to run
+independently: it wraps the coroutine object in a <code>Task</code>, hands it to the event
+loop's ready queue immediately, and returns right away — this is different from
+<code>await worker(2)</code>, which drives the coroutine inline in the current frame and blocks
+progress on <em>this</em> line until it's done. <code>asyncio.gather(*coros)</code> internally wraps
+each argument in a <code>Task</code> (scheduling all of them essentially at once) and then
+awaits all of them together, collecting results in the original order regardless of
+completion order — this is exactly why two independently-created tasks can be
+"running in the background" between the two lines that create them and the lines
+that await them.</p>
+<p>A coroutine only ever yields control voluntarily, at an <code>await</code> — nothing preempts
+it mid-execution the way an OS thread can be preempted between bytecode instructions.
+This is why <code>asyncio.Semaphore(3)</code> limiting "concurrent" fetches works with none of
+<code>threading.Lock</code>'s contention concerns: at most 3 coroutines are ever mid-flight
+between their own <code>await</code> points at once, and since only one Python frame is ever
+actually executing at any instant regardless, there's no possibility of two
+coroutines corrupting shared state through simultaneous non-atomic mutation the way
+threads can — the only hazard is a coroutine holding a resource across an <code>await</code>
+longer than intended, not a torn read-modify-write.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write an async function <code>fetch_all(urls)</code> that "fetches" each URL by awaiting
 <code>asyncio.sleep(random.uniform(0.2, 0.6))</code> and returning a fake response

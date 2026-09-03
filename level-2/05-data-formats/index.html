@@ -1270,6 +1270,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2355,6 +2366,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2554,6 +2576,32 @@ blank lines on some platforms.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Each parser is a small <strong>state machine</strong> turning a byte/character stream into
+Python objects — they differ in what grammar they implement:</p>
+<ul>
+<li><strong><code>csv</code></strong> is a C-level character-by-character state machine implementing
+  RFC 4180. It tracks states like <em>start-of-field</em>, <em>in-quoted-field</em>,
+  <em>in-unquoted-field</em>, <em>quote-in-quoted-field</em>. That's why you can't just
+  <code>line.split(",")</code>: a quoted field may contain commas, embedded newlines, or
+  doubled quotes (<code>""</code> → <code>"</code>), and only the state machine handles them
+  correctly. <code>DictReader</code> runs the same machine, then zips the first row
+  (header) against each subsequent row.</li>
+<li><strong><code>json</code></strong> tokenizes the text (<code>{</code>, <code>}</code>, <code>[</code>, <code>]</code>, <code>:</code>, <code>,</code>, strings,
+  numbers, <code>true</code>/<code>false</code>/<code>null</code>) and recursively builds objects: a <code>{</code> starts
+  a <code>dict</code>, keys/values fill it until <code>}</code>. CPython ships a C accelerator
+  (<code>_json</code>) that does this in one pass; there's a pure-Python fallback with
+  identical behavior. <code>json.dumps</code> is the reverse recursion, emitting text for
+  each object and raising <code>TypeError</code> on anything it doesn't know how to
+  represent (e.g. a <code>datetime</code>). The <code>JSONDecodeError</code> carries <code>lineno</code>/<code>colno</code>
+  because the scanner tracks its position as it goes.</li>
+<li><strong><code>xml.etree.ElementTree</code></strong> drives the C <strong>expat</strong> library, a streaming
+  (SAX-style) parser that fires callbacks — <em>start tag</em>, <em>text</em>, <em>end tag</em> —
+  as it reads. <code>ET.fromstring</code> uses a <code>TreeBuilder</code> that responds to those
+  callbacks by constructing <code>Element</code> nodes and nesting them, giving you the
+  finished tree. This streaming core is why <code>iterparse</code> can process
+  gigabyte-scale XML without loading it all into memory.</li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Given a CSV file of products (<code>name,price,quantity</code>), write a script that:
 reads it with <code>csv.DictReader</code>, converts <code>price</code> to <code>float</code> and <code>quantity</code> to

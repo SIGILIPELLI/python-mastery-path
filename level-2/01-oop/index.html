@@ -1125,6 +1125,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2289,6 +2300,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2528,6 +2550,35 @@ can validate or compute values without changing the calling code.</p>
 <a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">Pizza</span><span class="o">.</span><span class="n">margherita</span><span class="p">()</span><span class="o">.</span><span class="n">toppings</span><span class="p">)</span>
 <a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">Pizza</span><span class="o">.</span><span class="n">slice_count</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>   <span class="c1"># 6</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A <code>class</code> statement is executable code that builds an object.</strong> When the
+interpreter reaches <code>class Dog:</code>, it:</p>
+<ol>
+<li>Runs the class body as a mini-scope, collecting every name it defines
+   (<code>species</code>, <code>__init__</code>, <code>bark</code>) into a fresh namespace dict.</li>
+<li>Calls the metaclass — <code>type</code> by default — as
+   <code>type("Dog", (object,), namespace)</code>. That call allocates a new <em>class
+   object</em> whose <code>__dict__</code> is (a mappingproxy over) that namespace, links its
+   <code>__bases__</code> and computes its <code>__mro__</code>.</li>
+<li>Binds the name <code>Dog</code> to that class object. Classes are just objects; <code>Dog</code>
+   is an instance of <code>type</code>.</li>
+</ol>
+<p><strong>Creating an instance:</strong> <code>Dog("Rex", 3)</code> calls <code>type.__call__(Dog, ...)</code>,
+which does <code>instance = Dog.__new__(Dog)</code> (allocates a blank object with its own
+<code>__dict__</code>), then <code>instance.__init__("Rex", 3)</code> (your constructor, which fills
+that dict), then returns the instance.</p>
+<p><strong>Attribute lookup</strong> (<code>rex.bark</code>) is <code>type.__getattribute__</code> running a
+precise algorithm: check the type's MRO for a <em>data descriptor</em> named <code>bark</code>;
+if none, check the instance's own <code>__dict__</code>; if none, check the MRO for a
+non-data descriptor or plain class attribute. Functions stored on a class are
+<em>non-data descriptors</em>: <code>Dog.__dict__["bark"].__get__(rex, Dog)</code> returns a
+<strong>bound method</strong> that remembers <code>rex</code>, which is how <code>self</code> gets passed
+automatically. <code>rex.species</code> misses the instance dict and finds the shared
+class attribute — assign <code>rex.species = ...</code> and you create an instance-level
+entry that shadows it.</p>
+<p><code>super().describe()</code> doesn't mean "my parent" — it walks to <em>the next class
+after the current one in the instance's MRO</em>, which is what makes cooperative
+multiple inheritance work.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Model a small library system: a <code>Book</code> class with <code>title</code>, <code>author</code>, and a
 <code>checked_out</code> boolean; and a <code>Library</code> class that holds a list of <code>Book</code>

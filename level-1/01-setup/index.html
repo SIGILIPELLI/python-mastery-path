@@ -716,6 +716,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2223,6 +2234,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2298,6 +2320,35 @@ directly, not when it's imported by another module (covered in <a href="../09-mo
 <p>Any of these work well for this program: VS Code (free, huge Python extension
 ecosystem), PyCharm Community (free, Python-specific), or even a plain text editor
 plus the terminal. Pick one and move on — the editor matters far less than practice.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>When you type <code>python3 hello.py</code>, a lot happens before "Hello, world!" appears:</p>
+<ol>
+<li><strong>Interpreter startup.</strong> The OS loads the <code>python3</code> executable, which
+   initializes the CPython runtime: it sets up the interpreter state, builds
+   <code>sys.path</code> (from the executable's location, <code>PYTHONPATH</code>, and compiled-in
+   defaults), and imports a handful of bootstrap modules written in C and
+   frozen into the binary.</li>
+<li><strong>Reading and compiling your file.</strong> CPython reads <code>hello.py</code> as text,
+   tokenizes it, parses the tokens into an Abstract Syntax Tree, and compiles
+   that AST into <strong>bytecode</strong> — a compact instruction set for CPython's virtual
+   machine. Your <code>def greet</code> becomes a <em>code object</em> holding those
+   instructions plus metadata (argument names, constants, line numbers).</li>
+<li><strong><code>.pyc</code> caching.</strong> For imported modules CPython writes the compiled
+   bytecode to <code>__pycache__/*.pyc</code> so it can skip recompilation next time,
+   keyed by the source file's hash or mtime. The top-level script you run
+   directly is <em>not</em> cached this way.</li>
+<li><strong>Execution.</strong> CPython creates a module object, sets its <code>__name__</code> to
+   <code>"__main__"</code> (this is the whole reason the <code>if __name__ == "__main__"</code>
+   guard works), and runs the module's bytecode top to bottom in the
+   evaluation loop — a big C <code>switch</code> over bytecode instructions. <code>def greet</code>
+   executes as a "make a function object and bind the name <code>greet</code>"
+   instruction; the <code>if</code> block then calls it.</li>
+<li><strong>Shutdown.</strong> After the last instruction, CPython runs cleanup (flushing
+   <code>stdout</code>, running <code>atexit</code> handlers, garbage-collecting), then the process
+   exits with status code 0.</li>
+</ol>
+<p>The REPL runs this same read → compile → execute loop, but once per line you
+type instead of once per file.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a script <code>greet_many.py</code> that defines a list of three names and prints a
 greeting for each one using the <code>greet</code> function above.</p>

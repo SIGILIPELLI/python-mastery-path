@@ -1838,6 +1838,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2399,6 +2410,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2740,6 +2762,47 @@ every test run starts from a clean slate and never touches the real
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># tests/test_books.py::test_update_book_partial PASSED</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># tests/test_books.py::test_delete_book PASSED</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>get_db()</code> being a generator function is exactly what makes it work as a FastAPI
+dependency with cleanup: FastAPI recognizes that <code>Depends(get_db)</code> wraps a generator,
+so instead of calling it once and using the return value, it calls <code>next()</code> on it to
+run up to the <code>yield</code>, hands the yielded <code>Session</code> to your route as the dependency
+value, and — after the route function fully returns (success <em>or</em> exception) —
+resumes the generator past <code>yield</code> to run <code>db.close()</code> inside the <code>finally</code> block.
+This is the identical generator-suspend-and-resume mechanism from Level 2's
+context managers, applied here to guarantee a <code>Session</code> (and the underlying
+database connection it holds) is released after every single request, even one that
+raises partway through.</p>
+<p><code>connect_args={"check_same_thread": False}</code> exists because of a genuine mismatch
+between two different concurrency models: SQLite's C library, by default, raises an
+error if you use a connection from a different OS thread than the one that created
+it (its own safety check against cross-thread misuse of a non-thread-safe handle).
+FastAPI, run by <code>uvicorn</code>, executes synchronous (non-<code>async def</code>) route functions in
+a worker thread pool so they don't block the event loop — meaning a request's
+database work can genuinely happen on a different thread than the one that opened
+the connection. This flag tells SQLite's driver to skip that check, which is safe
+here specifically because SQLAlchemy's <code>sessionmaker</code> hands out one dedicated
+connection per request (via <code>get_db</code>) rather than sharing one connection
+concurrently across threads.</p>
+<p>Separating <code>schemas.py</code> (<code>BookOut</code>) from <code>models.py</code> (<code>Book</code>) is enforced
+mechanically by <code>ConfigDict(from_attributes=True)</code>: without it, Pydantic's model
+constructor only accepts a dict-like mapping of keys to values, but a SQLAlchemy
+<code>Book</code> instance is a plain Python object whose data lives in attributes
+(<code>book.title</code>), not dict keys. <code>from_attributes=True</code> tells Pydantic's validator to
+read each declared field via <code>getattr</code> instead of <code>__getitem__</code>, which is the entire
+mechanism letting <code>response_model=BookOut</code> turn an ORM row into a JSON-serializable
+model automatically — and it also means only the fields <em>declared</em> on <code>BookOut</code> are
+ever read off the ORM object, so a sensitive column added to <code>Book</code> later doesn't
+silently start appearing in API responses; it has to be added to <code>BookOut</code>
+explicitly first.</p>
+<p><code>tests/conftest.py</code>'s isolated test database works by dependency <strong>override</strong>, not
+by re-pointing the real one: FastAPI stores dependencies in a resolvable registry
+keyed by the dependency function object itself, and <code>app.dependency_overrides[get_db]
+= override_get_db</code> swaps in a different generator function purely for the duration
+of the test session — every route that declares <code>Depends(get_db)</code> transparently
+receives the overridden version instead, with zero changes to <code>main.py</code>'s route
+code, because the override lookup happens by function identity at request time, not
+by anything baked into the route definitions themselves.</p>
 <h2 id="stretch-goals">Stretch goals<a class="headerlink" href="#stretch-goals" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Add pagination (<code>?limit=&amp;offset=</code>) to <code>GET /books</code>.</li>

@@ -1676,6 +1676,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2355,6 +2366,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2584,6 +2606,43 @@ changes are tracked, reversible, and repeatable across environments.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>sqlite3.connect("app.db")</code> doesn't start a separate database server — SQLite is
+<strong>embedded</strong>: the entire database engine (parser, query planner, B-tree storage
+engine, transaction manager) is a C library linked directly into your Python process,
+and "the database" is just that one <code>.db</code> file on disk, formatted as a set of
+B-tree pages. Every table and every index is its own B-tree inside that file; a
+<code>CREATE TABLE</code> writes a new B-tree root page and records its schema in a special
+<code>sqlite_master</code> table stored the same way.</p>
+<p>Parameterized queries (<code>?</code> placeholders) matter mechanically, not just stylistically:
+<code>cursor.execute("... WHERE name = ?", (name,))</code> sends the SQL text and the value
+<em>separately</em> to SQLite's prepared-statement API — SQLite compiles the query's
+structure once (with a placeholder hole) and later binds <code>name</code> directly as a typed
+value into that hole, never re-parsing it as SQL syntax. An f-string
+(<code>f"... = '{name}'"</code>), by contrast, splices untrusted text directly into the SQL
+<em>before</em> parsing, so a value like <code>' OR '1'='1</code> becomes part of the query's grammar
+instead of staying a data value — that's the entire mechanism behind SQL injection,
+and exactly what parameter binding structurally prevents.</p>
+<p><code>with connection:</code> context-manager behavior (commit on success, rollback on
+exception, but no close) exists because a <code>Connection</code>'s <code>__enter__</code>/<code>__exit__</code> are
+scoped specifically to the SQL transaction, not the OS-level file handle — SQLite
+wraps every write in an implicit transaction anyway (journaling the original page
+contents before modifying them, so a crash mid-write can roll back to a consistent
+state), and the context manager just decides whether to <code>COMMIT</code> (making changes
+durable) or <code>ROLLBACK</code> (discarding them) based on whether an exception propagated out
+of the block.</p>
+<p>SQLAlchemy's ORM sits on top of all this as a <strong>translation layer</strong>, not a different
+storage engine: <code>select(User).where(User.name.like("%Johnson%"))</code> builds an
+in-memory expression tree of Python objects representing the query, which
+SQLAlchemy's SQL compiler then renders into an actual SQL string with <code>?</code>
+placeholders (or <code>%s</code> for other backends) — the <em>exact</em> same parameterized-query
+mechanism as raw <code>sqlite3</code>, just generated programmatically. A <code>Session</code> additionally
+implements the <strong>unit-of-work pattern</strong>: it tracks every object you've loaded or
+modified in an "identity map" keyed by primary key, and <code>session.commit()</code> diffs
+each tracked object's current attribute values against what was loaded from the
+database, generating exactly the <code>UPDATE</code>/<code>INSERT</code>/<code>DELETE</code> statements needed —
+which is why simply setting <code>user.name = "..."</code> on a session-attached object, with no
+explicit <code>UPDATE</code> call, is enough to persist the change.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using plain <code>sqlite3</code>, create a <code>tasks</code> table (<code>id</code>, <code>title</code>, <code>done</code>) and write
 functions <code>add_task</code>, <code>complete_task</code>, <code>list_tasks</code> using parameterized

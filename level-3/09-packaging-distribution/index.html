@@ -1760,6 +1760,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2355,6 +2366,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2553,6 +2575,44 @@ each release to anyone depending on your package.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>pip install -e .</code> ("editable install") doesn't copy your source into
+<code>site-packages</code> the way a normal install does — it registers a small pointer instead
+(historically an <code>.egg-link</code> file plus a <code>.pth</code> file; modern <code>pip</code>/<code>setuptools</code> use a
+PEP 660-compliant import hook shipped as a tiny generated package). Either mechanism
+causes <code>sys.path</code> to include your <code>src/</code> directory directly, so <code>import my_package</code>
+resolves straight to your working tree's actual files — which is exactly why
+editing <code>core.py</code> and rerunning takes effect immediately with no reinstall step:
+there's no copy to go stale.</p>
+<p>The <code>src/</code> layout matters because of how <code>sys.path</code> is built at interpreter startup:
+one of its default entries is the current working directory (or the running
+script's directory). If your package lived directly next to <code>pyproject.toml</code> at the
+repo root, running <code>pytest</code> from that root could import the <em>bare source directory</em>
+as a package purely by proximity, silently skipping whatever installed version (with
+its dependencies and any C extensions) actually got built — masking packaging bugs
+that would only surface for a real end user. Nesting the package under <code>src/</code> means
+nothing on the default path finds it by accident; only an actual install (editable
+or not) makes it importable, so your tests exercise the same import path a real user
+gets.</p>
+<p><code>python -m build</code> produces two genuinely different artifacts because they solve
+different problems: the <strong>sdist</strong> (<code>.tar.gz</code>) is essentially your source tree plus
+<code>pyproject.toml</code> — pip can build a wheel from it locally, running your build backend,
+which matters for platforms without a prebuilt wheel or packages with C extensions.
+The <strong>wheel</strong> (<code>.whl</code>) is a pre-built ZIP archive laid out exactly like a
+<code>site-packages</code> directory — installing a wheel is just an unzip-and-copy, no build
+step at all, which is why wheels install dramatically faster and are what <code>pip</code>
+prefers whenever one matching your platform and Python version is available. The
+<code>py3-none-any</code> tag in the wheel's filename declares it's pure Python (works on any
+Python 3 minor version, any platform, any ABI) — a package with compiled extensions
+would carry a much more specific tag naming the exact CPython version and platform
+it was built for.</p>
+<p><code>[project.scripts]</code> doesn't wire up a shell alias — during install, <code>setuptools</code>
+generates a tiny, real executable file (a Python script with a shebang line) named
+<code>my-cli</code> inside the environment's <code>bin/</code> (or <code>Scripts/</code> on Windows) directory, whose
+entire body is an import of <code>my_package.core</code> followed by a call to <code>main()</code>. That
+file lands on <code>PATH</code> because it's inside the same <code>bin/</code> directory <code>python</code>/<code>pip</code>
+themselves live in — running <code>my-cli</code> at the shell is just executing that generated
+script like any other program.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the <code>Stack</code> class you wrote in Level 2's testing exercise and turn it
 into a real installable package: create the <code>src/</code>-layout structure above, a

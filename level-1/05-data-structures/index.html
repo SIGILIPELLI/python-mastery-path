@@ -839,6 +839,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2347,6 +2369,33 @@
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Each of these types is a different memory layout with different performance
+consequences:</p>
+<ul>
+<li><strong><code>list</code></strong> is a <em>dynamic array of pointers</em> — a contiguous C block holding
+  <code>PyObject*</code> values, plus a length and a capacity. Indexing is O(1) pointer
+  arithmetic. <code>append</code> is <em>amortized</em> O(1): when the array fills, CPython
+  allocates a bigger block (growth factor ~1.125, over-allocating on purpose)
+  and copies the pointers over. <code>insert(0, x)</code> and <code>pop(0)</code> are O(n) because
+  every following pointer must shift.</li>
+<li><strong><code>tuple</code></strong> is the same pointer array but fixed-size and allocated once, so
+  it's slightly smaller and lets CPython cache/reuse small tuples. Immutability
+  is what makes it hashable (if its contents are).</li>
+<li><strong><code>dict</code></strong> is an <em>open-addressing hash table</em>. A key's <code>__hash__</code> is masked
+  to an index; on collision CPython probes other slots by a perturbation
+  sequence. Since 3.6 the layout is "compact": a dense insertion-ordered array
+  of <code>(hash, key, value)</code> entries plus a sparse index array of positions —
+  that's why dicts preserve insertion order <em>and</em> use less memory. Average
+  lookup is O(1); it triggers a resize (rehash of all entries) when about
+  two-thirds full.</li>
+<li><strong><code>set</code></strong> is a hash table with keys only, same probing scheme. <code>x in a_set</code>
+  is O(1) average; <code>x in a_list</code> is O(n).</li>
+</ul>
+<p>Everything hinges on hashing: <code>dict</code>/<code>set</code> keys must be hashable (implement
+<code>__hash__</code> and not mutate in a way that changes it), which is why lists can't
+be keys but tuples of immutables can. <code>hash(x) == hash(y)</code> for equal objects
+is a required invariant — break it and lookups silently fail.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Given a list of words, use a dictionary comprehension to build a mapping of
 each unique word to its length, then use a set to find which words appear more

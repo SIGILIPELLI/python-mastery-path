@@ -2125,6 +2125,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2326,6 +2337,17 @@
     <span class="md-ellipsis">
       
         A minimal deployment checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2554,6 +2576,42 @@ published as a deployable image — a fundamental CI/CD safety property.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A Docker image is a stack of <strong>read-only layers</strong>, each one a filesystem diff from
+the layer below it — every <code>FROM</code>, <code>COPY</code>, and <code>RUN</code> instruction in a Dockerfile
+produces exactly one new layer, identified by a content hash of its resulting
+filesystem changes. When you rebuild, Docker checks whether a given instruction's
+inputs (its command text, and for <code>COPY</code>, the hash of the files being copied) match
+a previously built layer with that same hash — if so, it reuses the cached layer
+instead of re-executing the instruction. This is the entire mechanism behind the
+"copy requirements.txt first" trick: as long as <code>requirements.txt</code> hasn't changed,
+the <code>RUN pip install</code> layer's cache key matches and Docker skips reinstalling
+everything, even though the <code>COPY app/</code> step after it (which changes on every code
+edit) always misses cache and reruns — ordering instructions from least-to-most
+frequently changing is what maximizes how much of the stack stays cached.</p>
+<p><code>docker run -p 8000:8000</code> sets up a <strong>network address translation (NAT) rule</strong> on
+the host: the container gets its own isolated network namespace (its own virtual
+network interface, its own view of <code>localhost</code>) via Linux kernel namespaces, and the
+port mapping tells the host's networking stack to forward incoming connections on
+host port 8000 to the container's internal port 8000. This is why the app inside the
+container can simply bind to <code>0.0.0.0:8000</code> without knowing anything about the host
+machine's actual IP or port configuration — the kernel-level translation is what
+makes "8000:8000" work identically regardless of what else is running on the host.</p>
+<p>Inside <code>docker-compose</code>'s network, the API reaching the database via the hostname
+<code>db</code> isn't magic service discovery — Compose creates a private Docker network for
+the whole <code>docker-compose.yml</code> file and runs an embedded DNS server on it that
+resolves each service's name (from the YAML key, <code>db</code>) to that container's internal
+IP address on the shared network, refreshed automatically as containers restart with
+new IPs — ordinary DNS resolution, just scoped to containers on that one
+Compose-created network rather than the wider internet.</p>
+<p><code>needs: test</code> in the GitHub Actions workflow creates an explicit dependency edge in
+the workflow's job graph: GitHub Actions computes which jobs can run in parallel and
+which must wait, and a job listed in another's <code>needs</code> only starts after that
+dependency job's steps have all completed <em>and</em> exited successfully (non-zero exit
+from any step fails the whole job). <code>build-and-push</code> therefore literally cannot
+begin — its runner isn't even provisioned — until every step of <code>test</code> (including
+the <code>pytest</code> run) has returned a zero exit code, which is the concrete mechanism
+making "broken code can't reach the registry" true rather than aspirational.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a <code>Dockerfile</code> and <code>docker-compose.yml</code> for the Level 3 Book Catalog API
 that runs the API alongside a Postgres container (swap the SQLAlchemy URL to

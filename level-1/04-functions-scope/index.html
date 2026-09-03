@@ -822,6 +822,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2267,6 +2278,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2373,6 +2395,31 @@ like <code>mypy</code> and your editor catch mistakes before you run the code.</
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">apply_twice</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># 81</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A <code>def</code> statement is an instruction that <em>runs</em>: at the point the interpreter
+reaches it, it builds a <strong>function object</strong> from a pre-compiled code object and
+binds it to a name. The code object (fixed at compile time) holds the
+bytecode, the constant pool, and — crucially — the list of local variable
+names. The function object (created fresh each time <code>def</code> runs) holds the
+defaults, the closure cells, and a reference to the code object.</p>
+<p><strong>Local variables are array slots, not dict entries.</strong> When CPython compiles a
+function it counts the local names and assigns each a numbered slot. Inside
+the function, <code>x = 1</code> compiles to <code>STORE_FAST 0</code> and reading <code>x</code> compiles to
+<code>LOAD_FAST 0</code> — a direct array index, much faster than the dictionary lookup
+that module-level globals require (<code>LOAD_GLOBAL</code>). This is also why assigning
+to a name <em>anywhere</em> in a function makes it local <em>everywhere</em> in that
+function, and why <code>global</code>/<code>nonlocal</code> exist to opt back out.</p>
+<p><strong>LEGB is a compile-time decision.</strong> The compiler already knows, for each
+name, whether it's local (<code>LOAD_FAST</code>), a closure variable
+(<code>LOAD_DEREF</code> — reads a <em>cell object</em> shared with the enclosing function),
+a global (<code>LOAD_GLOBAL</code>), or a builtin (falls through to the builtins module).</p>
+<p><strong>Calling</strong> pushes a new <em>frame object</em> onto the call stack: it holds the
+local-variable array, a value stack for intermediate results, and a pointer
+back to the caller's frame (that back-chain is what a traceback walks).
+<code>return</code> pops the frame and pushes the return value onto the caller's stack.
+<code>*args</code> collects surplus positionals into a new tuple; <code>**kwargs</code> collects
+surplus keywords into a new dict — both built by the interpreter as part of
+the call sequence.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a function <code>summarize(*values, **options)</code> that returns the min, max, and
 average of <code>values</code>, rounding the average to the number of decimal places given

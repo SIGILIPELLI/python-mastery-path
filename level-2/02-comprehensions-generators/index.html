@@ -1153,6 +1153,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2289,6 +2300,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2442,6 +2464,34 @@ generator's output.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A comprehension is compiled into a hidden nested function.</strong> When the
+compiler sees <code>[n * n for n in numbers]</code>, it builds an anonymous code object
+whose body is roughly <code>result = []; for n in numbers: result.append(n * n);
+return result</code>, then emits code to call that function immediately with
+<code>numbers</code> as its argument. This is why the loop variable <code>n</code> doesn't leak into
+the surrounding scope (it's local to that hidden function) and why a
+comprehension has its own frame. A dict/set comprehension is the same with
+<code>{}</code> and <code>__setitem__</code>/<code>.add</code> instead. (In 3.12+ this is inlined for speed but
+keeps the same isolation.)</p>
+<p><strong>A generator is a suspended stack frame.</strong> A function containing <code>yield</code>
+compiles with a <code>GENERATOR</code> flag; <em>calling</em> it doesn't run any body code — it
+allocates a <strong>generator object</strong> that holds a frozen frame (its own local
+variables, value stack, and instruction pointer). Each <code>next(gen)</code>:</p>
+<ol>
+<li>Resumes the interpreter's eval loop at the saved instruction pointer, with
+   the saved frame state restored.</li>
+<li>Runs until it hits a <code>YIELD_VALUE</code> opcode, which pushes the yielded value
+   out to the caller and <em>freezes the frame again exactly where it is</em> —
+   locals and all.</li>
+<li>When the function body finally returns (or falls off the end), the
+   generator raises <code>StopIteration</code>, which <code>for</code> loops catch silently.</li>
+</ol>
+<p>So <code>fibonacci()</code> can loop <code>while True</code> without hanging: nothing runs between
+your <code>next()</code> calls. A generator expression <code>(x for x in ...)</code> is that same
+machinery with an anonymous generator code object. <code>yield from sub</code> delegates:
+it drives <code>sub</code> to exhaustion, forwarding values out and <code>.send()</code>/<code>.throw()</code>
+inputs in, then continues.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Given a large text file (simulate it with a list of strings), write a
 generator function <code>long_lines(lines, min_length)</code> that yields only the lines

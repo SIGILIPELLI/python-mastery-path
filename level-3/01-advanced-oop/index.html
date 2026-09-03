@@ -1492,6 +1492,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2267,6 +2278,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2484,6 +2506,44 @@ class object itself gets built.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>An ABC's enforcement isn't checked at method-call time — it's checked at
+<strong>instantiation time</strong>, and the mechanism is a metaclass. <code>ABC</code> is built on
+<code>ABCMeta</code>, a subclass of <code>type</code>; <code>@abstractmethod</code> just tags a function object with
+a <code>__isabstractmethod__ = True</code> attribute. When a class body finishes executing,
+<code>ABCMeta.__new__</code> scans the resulting namespace (and inherited members) for anything
+still carrying that flag and stores the set of unimplemented names on the class as
+<code>__abstractmethods__</code>. <code>object.__new__</code> (called during instantiation) checks that set
+and raises <code>TypeError</code> immediately if it's non-empty — which is exactly why
+<code>PaymentMethod()</code> fails before <code>__init__</code> ever runs, and why a subclass that
+overrides every abstract method with a concrete one becomes instantiable again: its
+own <code>__abstractmethods__</code> computes to empty.</p>
+<p>The MRO for <code>class D(B, C)</code> is not "depth-first left-to-right" (the old, broken
+classic algorithm) — CPython computes it with <strong>C3 linearization</strong>: merge the MROs
+of <code>B</code> and <code>C</code> plus the list <code>[B, C]</code> itself, taking the head of the first list that
+doesn't appear in the tail of any other list, repeating until nothing's left. This
+guarantees each ancestor appears exactly once and <em>before</em> its own parents, and that
+the order respects each base's own local precedence — that's why <code>D → B → C → A</code>,
+not <code>D → B → A → C → A</code>. <code>super().greet()</code> doesn't call "the parent" — it looks up
+<code>type(self).__mro__</code>, finds the calling class's position in it, and calls the <em>next</em>
+entry — which is why <code>B.greet</code> and <code>C.greet</code> both run exactly once even though both
+ultimately inherit from <code>A</code>: each <code>super()</code> call advances one shared position along
+one shared list, not down two independent lineages.</p>
+<p><code>@cached_property</code> is a <strong>non-data descriptor</strong> (it defines <code>__get__</code> but not
+<code>__set__</code>), which matters specifically because of attribute lookup priority: a
+non-data descriptor is checked only if the instance's own <code>__dict__</code> doesn't already
+have that name. The first access to <code>report.total</code> runs your function, computes the
+result, and then manually writes <code>self.__dict__["total"] = 60</code> — after that, ordinary
+attribute lookup finds <code>total</code> sitting directly in the instance's <code>__dict__</code> and
+never consults the descriptor's <code>__get__</code> again, which is the entire caching
+mechanism (and why the class needs a real, writable instance <code>__dict__</code> to work at
+all).</p>
+<p>Finally, <code>class Bad(Base): ...</code> triggers <code>ValidatingMeta.__new__</code> before <code>Bad</code> even
+exists as an object: the <code>class</code> statement itself compiles to a call to the
+metaclass — <code>ValidatingMeta("Bad", (Base,), namespace)</code> — and only if that call
+returns successfully does the name <code>Bad</code> get bound. Raising <code>TypeError</code> inside
+<code>__new__</code> means the class object is never created at all, not merely rejected after
+the fact.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Define an ABC <code>Shape</code> with abstract methods <code>area()</code> and <code>perimeter()</code>, plus a
 concrete method <code>describe()</code> that returns a formatted string using both. Add a

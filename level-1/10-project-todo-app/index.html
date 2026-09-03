@@ -979,6 +979,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2388,6 +2410,32 @@ structures, strings, file I/O, error handling, and modules.</p>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># [x] 1. Write Level 1 exercises</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># [ ] 2. Review Level 2 outline</span>
 </code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Each time you run <code>python3 todo.py add "..."</code>, a <strong>brand-new process</strong> starts
+with no memory of previous runs. The only thing that carries state between
+invocations is <code>tasks.json</code> on disk. Every command follows the same cycle:</p>
+<ol>
+<li><strong>Startup.</strong> The OS hands the process its command-line words as an array;
+   CPython exposes them as <code>sys.argv</code> (with <code>sys.argv[0]</code> being the script
+   path). <code>args = sys.argv[1:]</code> drops the script name.</li>
+<li><strong>Load.</strong> <code>load_tasks()</code> calls <code>DB_PATH.read_text()</code>, which opens the file,
+   reads its bytes, decodes them to a <code>str</code>, and closes the file. <code>json.loads</code>
+   then runs a C tokenizer over that string, building Python <code>list</code>/<code>dict</code>/
+   <code>str</code>/<code>bool</code> objects as it recognizes JSON tokens — turning stored text
+   back into live objects.</li>
+<li><strong>Mutate in memory.</strong> <code>add_task</code>/<code>complete_task</code>/<code>delete_task</code> change the
+   in-memory <code>tasks</code> list. At this point the file on disk is still the old
+   version.</li>
+<li><strong>Save.</strong> <code>save_tasks()</code> calls <code>json.dumps(tasks, indent=2)</code> — a recursive
+   walk that emits JSON text for each object — then <code>write_text()</code> opens the
+   file in write mode (<strong>truncating it to zero length first</strong>), writes the new
+   text, and closes it. The close flushes the OS buffer to disk.</li>
+<li><strong>Exit.</strong> The process ends; all in-memory objects are freed. The next
+   command starts over from step 1.</li>
+</ol>
+<p>The <code>try/except json.JSONDecodeError</code> around the load matters because step 4
+isn't atomic: if the process were killed mid-write, the file could be left
+half-written, and the next run needs to degrade gracefully rather than crash.</p>
 <h2 id="stretch-goals">Stretch goals<a class="headerlink" href="#stretch-goals" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Add due dates and sort tasks by them.</li>

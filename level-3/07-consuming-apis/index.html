@@ -1715,6 +1715,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2377,6 +2388,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2604,6 +2626,40 @@ a hand-rolled loop.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>requests.get(url)</code> sits on top of <code>urllib3</code>, which manages a <strong>connection pool</strong>:
+opening a TCP socket and completing a TLS handshake is expensive (multiple network
+round trips), so a <code>requests.Session()</code> keeps underlying connections open and reuses
+them for subsequent requests to the same host — this is why the docs recommend a
+<code>Session</code> for repeated calls to the same API rather than bare <code>requests.get</code>, which
+creates and tears down a fresh connection pool adapter every call.</p>
+<p><code>timeout=5</code> doesn't limit total request time as a single wall-clock deadline the way
+it might sound — under the hood it's implemented as two separate socket-level
+timeouts: a <strong>connect timeout</strong> (how long to wait for the TCP handshake) and a
+<strong>read timeout</strong> (how long to wait between receiving chunks of the response body
+once connected). Without it, the underlying socket's <code>recv()</code> call blocks
+indefinitely if the server accepts the connection but never sends data — a
+deliberately slow or hung server can otherwise freeze your program forever, since
+nothing in the OS or Python enforces a default timeout on a socket read.</p>
+<p><code>response.raise_for_status()</code> works by checking <code>self.status_code</code> against ranges
+(anything ≥ 400) and constructing an <code>HTTPError</code> only then — the HTTP response
+itself already arrived successfully at the transport level (TCP/TLS completed fine,
+bytes were received); "success" or "failure" is purely an application-level status
+code the server chose to send, which is exactly why <code>raise_for_status()</code> is a
+separate, optional call rather than something that happens automatically: a 404
+isn't a network failure, it's valid HTTP that your code has to decide how to
+interpret.</p>
+<p><code>json=</code> on a POST works by JSON-encoding your dict with <code>json.dumps</code> (the same
+mechanism from Module 5) and setting the <code>Content-Type: application/json</code> header
+before the request line is ever sent — this is purely a client-side convenience
+built on top of the same body/headers that <code>requests.post(..., data=..., headers=...)</code>
+would let you set manually. <code>Retry</code>/<code>HTTPAdapter</code> intercept requests at the
+connection-pool level below <code>requests</code> itself: when a request fails or returns a
+listed status code, <code>urllib3</code> catches it, computes a delay using the configured
+backoff formula, and re-sends the <em>exact same</em> prepared request over the pool's
+connection — the retry logic lives below the point where <code>requests</code>'s own API even
+sees the failure, which is why it applies uniformly to <code>get</code>, <code>post</code>, and every other
+method through one shared adapter.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a small client <code>github_client.py</code> with a function
 <code>list_public_repos(username)</code> that calls GitHub's public API

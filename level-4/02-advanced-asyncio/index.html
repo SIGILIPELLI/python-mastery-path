@@ -1935,6 +1935,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2289,6 +2300,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2518,6 +2540,44 @@ coroutines safely, including backpressure via <code>maxsize</code>.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A fire-and-forget <code>asyncio.create_task(...)</code> fails silently because of exactly how
+task results are stored: a <code>Task</code> object holds its outcome (return value or raised
+exception) internally once its coroutine finishes, but nothing ever <em>reads</em> that
+outcome unless something calls <code>.result()</code> or <code>await</code>s the task. If the task raised
+and nobody ever retrieves that result, the exception just sits there — the event
+loop's garbage collector eventually notices the exception was never fetched when the
+<code>Task</code> object itself is finally collected, and only <em>then</em> logs the "Task exception
+was never retrieved" warning, which is why it can appear seemingly late and
+disconnected from where the actual failure happened.</p>
+<p><code>asyncio.TaskGroup</code> fixes this by tracking every task created through <code>tg.create_task</code>
+in an internal set for the lifetime of the <code>async with</code> block. Its <code>__aexit__</code>
+(the async version of <code>__exit__</code> from Level 2's context managers) does not return
+until every tracked task has finished, and if any of them raised, it actively calls
+<code>.cancel()</code> on every other still-running sibling task before re-raising — collecting
+every exception that occurred (including from cancellation cleanup) into a single
+<strong><code>ExceptionGroup</code></strong>, a real container type (added in 3.11) that can hold multiple
+unrelated exceptions at once, since more than one task can legitimately fail
+independently. <code>except* ValueError</code> is special <em>syntax</em>, not a smarter <code>except</code>: it
+partitions the group's exceptions by type, handles the matching subset, and
+re-raises a new <code>ExceptionGroup</code> containing whatever didn't match — enabling
+selective handling across a naturally plural failure.</p>
+<p><code>task.cancel()</code> doesn't forcibly stop a coroutine's execution the instant it's
+called — it schedules a <code>CancelledError</code> to be raised <em>at the next <code>await</code> point</em>
+inside that coroutine's frame, using the exact same "inject an exception into a
+suspended frame" mechanism as <code>generator.throw()</code> from Module 2. This is why
+<code>long_running</code>'s <code>try/except CancelledError</code> block only sees the exception once
+control returns to its <code>await asyncio.sleep(10)</code> line — cancellation is cooperative,
+not preemptive, so a coroutine stuck in a long synchronous computation with no
+<code>await</code> inside it cannot be cancelled until it reaches one.</p>
+<p><code>asyncio.Queue</code> coordinates producer and consumer safely without any lock because
+<code>put</code>/<code>get</code> are themselves coroutines that suspend at <code>await</code> when the queue is
+full/empty respectively — the queue's internal waiting logic uses <code>asyncio</code>'s own
+event objects to wake up a waiting <code>get()</code> the moment an item is <code>put()</code> (and vice
+versa for a full queue blocking <code>put()</code>), all scheduled through the same single-
+threaded event loop, so there's no possibility of the classic race condition between
+"check if empty" and "take an item" that a hand-rolled queue on a list would have
+under real thread-based concurrency.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Build a small "web crawler" simulation: a <code>TaskGroup</code> that fetches 15 fake
 "pages" (each an <code>async def</code> sleeping a random short duration), bounded by a

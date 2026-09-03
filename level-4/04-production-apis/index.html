@@ -2002,6 +2002,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2311,6 +2322,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2570,6 +2592,47 @@ a consistent JSON shape, rather than each route formatting errors differently.</
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><code>pwd_context.hash(password)</code> doesn't just run one hash function — bcrypt combines a
+randomly generated <strong>salt</strong> with the password and runs the result through the
+Blowfish-derived cipher a configurable number of rounds (a "cost factor," commonly
+2^12 or higher), producing an output string that embeds the salt, the cost factor,
+and the hash together. This is deliberately, tunably slow: a fast general-purpose
+hash like SHA-256 can be brute-forced at billions of guesses per second on commodity
+hardware, while bcrypt's cost factor can be dialed up over time to keep pace with
+faster hardware, and the embedded random salt means two users with the identical
+password get completely different stored hashes — defeating precomputed
+("rainbow table") attacks. <code>verify_password</code> re-derives the hash using the <em>same</em>
+embedded salt and cost factor pulled out of the stored string, then compares the
+result — it never "decrypts" anything, because there's nothing reversible here at
+all.</p>
+<p>A JWT is not encrypted (with <code>HS256</code> specifically) — <code>jwt.encode</code> builds a header and
+a payload dict (your data plus <code>exp</code>), base64url-encodes each separately, and
+computes an <strong>HMAC-SHA256 signature</strong> over the concatenated header and payload using
+<code>SECRET_KEY</code>, appending that as a third dot-separated segment. Anyone can decode the
+header and payload from a JWT with no key at all (they're just base64, not
+encryption) — the entire security property lives in the third segment: only someone
+holding <code>SECRET_KEY</code> can produce a signature that will verify, so <code>jwt.decode</code>
+recomputes the HMAC from the received header/payload and rejects the token (raising
+<code>JWTError</code>) if it doesn't match, which is exactly why a stolen or forged token
+without the real secret is worthless even though its contents are fully readable.</p>
+<p><code>@app.middleware("http")</code> works by wrapping every route handler in an onion of
+nested async calls: FastAPI (built on Starlette) chains each registered middleware
+function so that <code>call_next(request)</code> inside your <code>add_request_id_and_timing</code>
+function is itself a call into the next layer of that chain — either another
+middleware or, at the innermost layer, the matched route handler. Because your code
+runs both <em>before</em> <code>await call_next(request)</code> (timing starts, request ID generated)
+and <em>after</em> it returns (headers added to the real response object), the same
+function naturally wraps every request regardless of which route ultimately handles
+it — there's no need to duplicate that logic in each route function.</p>
+<p>Prefix-based versioning (<code>APIRouter(prefix="/api/v1")</code>) works through simple path
+matching at request-dispatch time: FastAPI/Starlette's router holds an ordered list
+of (path pattern, handler) pairs, and <code>include_router</code> just merges each router's
+routes into that list with the prefix prepended to every path pattern — a request
+for <code>/api/v1/books/3</code> and one for <code>/api/v2/books/3</code> are matched against entirely
+separate compiled path patterns pointing at entirely separate handler functions, so
+"v1" and "v2" coexisting is simply two independent entries in the same routing
+table, not any kind of runtime branching inside one shared handler.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Take the Book Catalog API from Level 3's capstone project and add: a
 <code>/token</code> login endpoint and JWT-protected <code>POST</code>/<code>PATCH</code>/<code>DELETE</code> routes

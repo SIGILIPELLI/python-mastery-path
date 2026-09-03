@@ -1885,6 +1885,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2245,6 +2256,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2447,6 +2469,45 @@ arguments the first time it's created), override <code>__new__</code>:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The factory pattern's dict-of-constructors trick works because a <strong>class itself is a
+callable object</strong> — <code>EmailNotifier</code> is not sugar for anything else, it's a real value
+of type <code>type</code> that supports <code>()</code> to invoke <code>__call__</code> on its metaclass, which runs
+<code>__new__</code> then <code>__init__</code>. Storing <code>{"email": EmailNotifier}</code> is therefore storing an
+ordinary reference to a first-class object, exactly like storing a function in a
+dict — <code>notifiers[kind]()</code> is just "look up a callable, then call it," with no
+special-casing for the fact that the callable happens to be a class rather than a
+plain function.</p>
+<p>The strategy pattern needs no <code>Strategy</code> base class specifically because Python's
+call syntax <code>discount_strategy(subtotal)</code> is <strong>duck-typed</strong>: the bytecode compiles to
+<code>CALL</code>, which just checks that whatever object sits in that variable defines
+<code>__call__</code> (which every plain function does, via its type's <code>tp_call</code> slot in C) and
+invokes it with the given arguments — there's no interface check against a declared
+type anywhere in this path. This is different from a language with nominal typing,
+where "any object implementing an interface" needs that interface declared
+explicitly; here, "has the right shape and is callable with the right arguments" is
+sufficient at the point of the call.</p>
+<p><code>EventBus.publish</code> uses <code>callback(**data)</code> to invoke every subscriber with the same
+keyword arguments regardless of what each specific callback's parameter names are —
+this works because Python resolves keyword arguments by matching them against the
+receiving function's parameter <em>names</em> at call time (a dict-like binding step done by
+the interpreter before the function body runs), so as long as each subscribed
+function declares parameters named <code>order_id</code> and <code>total</code>, the dispatch is uniform
+even though the functions themselves are otherwise unrelated.</p>
+<p>The module-as-singleton pattern relies directly on the import-caching mechanism from
+Level 1: <code>sys.modules["config"]</code> is created exactly once per process, and every
+subsequent <code>import config</code> anywhere in the codebase returns that <em>same</em> module
+object rather than re-running its top-level code — <code>_settings</code> is therefore one
+dictionary shared by reference across every importer, with no synchronization needed
+because there's only ever one copy to begin with. The <code>__new__</code>-based class
+singleton achieves the same one-instance guarantee through a different, more
+explicit mechanism: <code>__new__</code> is the method actually responsible for allocating a new
+object (called before <code>__init__</code>, which only initializes an already-allocated one),
+so caching and returning the same instance from <code>__new__</code> means <code>Logger()</code> a second
+time never allocates a new object at all — <code>__init__</code> still runs again on that
+cached instance afterward (Python calls it unconditionally after <code>__new__</code> returns
+an instance of the class), which is worth knowing since it can silently reset state
+if you're not careful.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Build a small "report exporter" using the strategy pattern: a function
 <code>export_report(data, format_strategy)</code> that accepts strategies

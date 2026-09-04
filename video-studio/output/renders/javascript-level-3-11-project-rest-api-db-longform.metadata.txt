@@ -1,0 +1,15 @@
+Title: Build a REST API With a Real SQLite Database — Full Node.js + Express + Jest Capstone Walkthrough
+
+Description:
+This is the Level 3 capstone of the JavaScript Mastery Path, built one file at a time: a Book Catalog API with full CRUD, backed by a real SQLite database file, with centralized error handling and a Jest plus supertest suite covering every route. We walk through the project layout, the package.json toolchain, the database setup in db.js, a controller that prepares its SQL once and validates input into an errors array, the Express router that maps every HTTP verb to a controller call and hands failures off to one error handler, the app wiring with its 404 and 500 safety nets, the tiny server entry point, and a test suite that runs against a fresh in-memory database per test. We finish by running it with curl, watching all eight tests pass, and walking through the lesson's stretch goals. Every line of code shown is pulled directly from the lesson — nothing invented.
+
+Lessons covered in this video:
+- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/
+
+Tags: javascript, node.js, express, sqlite, rest api tutorial, better-sqlite3, jest testing, supertest, crud api, error handling middleware, backend development, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/

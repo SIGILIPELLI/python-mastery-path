@@ -1,0 +1,14 @@
+Title: Your await calls are running one at a time (and slowing you down)
+
+Description:
+Two async operations that don't depend on each other should not be awaited one after another. Sequential awaits make a 200ms + 200ms job take 400ms; Promise.all fires both immediately and finishes in ~200ms. This Short shows the exact fix from the JavaScript Mastery Path Promises & Async/Await lesson, plus the one catch: Promise.all rejects the moment any single promise fails.
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/
+
+#Shorts
+
+Tags: javascript, promises, async await, promise.all, concurrency, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/

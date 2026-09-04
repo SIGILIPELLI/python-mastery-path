@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "javascript",
+  "title": "Why a Promise always beats setTimeout(0) in JavaScript",
+  "description": "A zero millisecond setTimeout still runs after every line of synchronous code, and a Promise callback jumps ahead of it every time. This Short walks through the event loop's three lanes: sync code on the call stack, then the microtask queue, then the task queue. Once you can see those lanes, async JavaScript stops feeling like magic.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/\n\n#Shorts",
+  "tags": ["javascript", "async javascript", "event loop", "microtask queue", "setTimeout", "promises", "web development", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/"],
+  "beats": [
+    {
+      "narration": "This line has a zero millisecond timeout. So it fires immediately, right? Nope. It runs dead last, after every other line.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "Zero delay?",
+        "subheading": "still runs last"
+      }
+    },
+    {
+      "narration": "JavaScript runs all the synchronous code first. That timeout callback has to wait for the call stack to empty, even when the delay is zero.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "console.log(\"1: sync\");\n\nsetTimeout(() => console.log(\"3: timeout callback\"), 0);\n\nconsole.log(\"2: sync\");\n// 1: sync\n// 2: sync\n// 3: timeout callback"
+      }
+    },
+    {
+      "narration": "Add a promise and it gets stranger. The promise callback cuts ahead of the timeout. Promise callbacks go in the microtask queue, and the event loop fully drains that before it touches a single setTimeout.",
+      "display": {
+        "kind": "terminal",
+        "lang": "javascript",
+        "code": "console.log(\"1: sync start\");\n\nsetTimeout(() => console.log(\"4: setTimeout (task queue)\"), 0);\n\nPromise.resolve().then(() => console.log(\"3: promise (microtask queue)\"));\n\nconsole.log(\"2: sync end\");",
+        "output": "1: sync start\n2: sync end\n3: promise (microtask queue)\n4: setTimeout (task queue)"
+      }
+    },
+    {
+      "narration": "So the real order is: all sync code, then every microtask, then the next task. Once you see those three lanes, the event loop stops feeling like magic.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Three lanes",
+        "subheading": "sync, micro, macro"
+      }
+    },
+    {
+      "narration": "Full lesson and runnable code are linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/"
+      }
+    }
+  ]
+}

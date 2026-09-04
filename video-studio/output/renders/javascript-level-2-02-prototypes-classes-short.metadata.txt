@@ -1,0 +1,14 @@
+Title: JavaScript classes are just functions in disguise
+
+Description:
+JavaScript objects link to a prototype and look up missing properties there — that's why methods "just work" on objects you never defined them on. Constructor functions put shared methods on .prototype so every instance points at one function in memory, and the class keyword is syntactic sugar over that exact same mechanism. Ask the engine what a class is and it answers: function.
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/
+
+#Shorts
+
+Tags: javascript, prototypes, javascript classes, prototype chain, object.create, constructor functions, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/

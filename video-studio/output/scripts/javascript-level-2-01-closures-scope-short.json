@@ -1,0 +1,54 @@
+{
+  "type": "short",
+  "language": "javascript",
+  "title": "Why this JavaScript loop prints 3, 3, 3",
+  "description": "A classic JavaScript gotcha: a loop that looks like it counts 0, 1, 2 actually logs 3, 3, 3. The reason is that var is function-scoped, so every callback closes over the same single variable. Swap in let and each iteration gets a fresh binding. This is the heart of how closures work -- they capture variables, not values.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/\n\n#Shorts",
+  "tags": ["javascript", "closures", "scope", "var vs let", "hoisting", "programming tutorial", "js interview"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/"],
+  "beats": [
+    {
+      "narration": "Here's a classic JavaScript trick question. This loop counts from zero to two and schedules three callbacks. You'd expect zero, one, two. It actually prints three, three, three.",
+      "display": {
+        "kind": "stick",
+        "scene": "confused",
+        "heading": "3, 3, 3?",
+        "subheading": "expected 0, 1, 2"
+      }
+    },
+    {
+      "narration": "The reason is that var isn't block scoped. There's only ever one i for the whole loop. By the time the callbacks run, the loop has finished and i is three for every one of them.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// all three callbacks share ONE `i`\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(\"var i:\", i), 0);\n}\n// var i: 3\n// var i: 3\n// var i: 3"
+      }
+    },
+    {
+      "narration": "Swap var for let and it just works. let creates a fresh binding on every iteration, so each callback closes over its own copy of the counter.",
+      "display": {
+        "kind": "terminal",
+        "lang": "javascript",
+        "code": "for (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(\"let j:\", j), 0);\n}",
+        "output": "let j: 0\nlet j: 1\nlet j: 2"
+      }
+    },
+    {
+      "narration": "That's the key to closures. They capture variables, not values. A function remembers the scope it was born in, and it sees that variable live, not a snapshot.",
+      "display": {
+        "kind": "stick",
+        "scene": "idea",
+        "heading": "Closures",
+        "subheading": "variables, not values"
+      }
+    },
+    {
+      "narration": "The full lesson has the counter example, the module pattern, and the IIFE fix for older code. Link's below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/"
+      }
+    }
+  ]
+}

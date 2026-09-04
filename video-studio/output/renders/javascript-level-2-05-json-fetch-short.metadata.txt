@@ -1,0 +1,14 @@
+Title: Why your fetch() call ignores a 404
+
+Description:
+One of the most common JavaScript networking bugs: fetch() does not throw on HTTP errors. A 404 or 500 response still resolves successfully, so a missing check silently passes broken data downstream. This Short shows the gotcha and the one-line fix using response.ok.
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/05-json-fetch/
+
+#Shorts
+
+Tags: javascript, fetch api, http errors, async await, json, web development, programming tutorial
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/05-json-fetch/

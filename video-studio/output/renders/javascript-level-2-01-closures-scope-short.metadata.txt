@@ -1,0 +1,14 @@
+Title: Why this JavaScript loop prints 3, 3, 3
+
+Description:
+A classic JavaScript gotcha: a loop that looks like it counts 0, 1, 2 actually logs 3, 3, 3. The reason is that var is function-scoped, so every callback closes over the same single variable. Swap in let and each iteration gets a fresh binding. This is the heart of how closures work -- they capture variables, not values.
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/
+
+#Shorts
+
+Tags: javascript, closures, scope, var vs let, hoisting, programming tutorial, js interview
+
+Source lesson(s):
+- https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/

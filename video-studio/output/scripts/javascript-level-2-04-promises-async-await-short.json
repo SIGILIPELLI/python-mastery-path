@@ -1,0 +1,53 @@
+{
+  "type": "short",
+  "language": "javascript",
+  "title": "Your await calls are running one at a time (and slowing you down)",
+  "description": "Two async operations that don't depend on each other should not be awaited one after another. Sequential awaits make a 200ms + 200ms job take 400ms; Promise.all fires both immediately and finishes in ~200ms. This Short shows the exact fix from the JavaScript Mastery Path Promises & Async/Await lesson, plus the one catch: Promise.all rejects the moment any single promise fails.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/\n\n#Shorts",
+  "tags": ["javascript", "promises", "async await", "promise.all", "concurrency", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/"],
+  "beats": [
+    {
+      "narration": "Two async calls that don't need each other. Written the obvious way, your code waits for the first one to finish before it even starts the second. That's double the wait for nothing.",
+      "display": {
+        "kind": "stick",
+        "scene": "sequential",
+        "heading": "One at a time",
+        "subheading": "awaits in a row"
+      }
+    },
+    {
+      "narration": "Each await pauses the function until that promise settles. The second line doesn't start until the first is done, so two 200 millisecond calls cost you 400.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "const a = await delay(200, \"profile\");\nconst b = await delay(200, \"settings\");\n// total: ~400ms"
+      }
+    },
+    {
+      "narration": "Promise dot all kicks off both right away and waits for whichever one is slower. Same result, half the time.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "const [profile, settings] = await Promise.all([\n  delay(200, \"profile\"),\n  delay(200, \"settings\"),\n]);\n// total: ~200ms"
+      }
+    },
+    {
+      "narration": "So await dependent steps in sequence, but fire independent work off together. One catch: Promise dot all rejects the moment any single promise fails.",
+      "display": {
+        "kind": "stick",
+        "scene": "parallel",
+        "heading": "All at once",
+        "subheading": "Promise.all"
+      }
+    },
+    {
+      "narration": "Full lesson, with the parallel patterns and runnable code, is linked below.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/"
+      }
+    }
+  ]
+}

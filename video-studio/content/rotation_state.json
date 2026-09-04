@@ -98,7 +98,12 @@
       "level-1/07-dom-events": 1,
       "level-1/08-error-handling": 1,
       "level-1/09-modules-npm": 1,
-      "level-1/10-project-todo-app": 1
+      "level-1/10-project-todo-app": 1,
+      "level-2/01-closures-scope": 1,
+      "level-2/02-prototypes-classes": 1,
+      "level-2/03-async-javascript-i": 1,
+      "level-2/04-promises-async-await": 1,
+      "level-2/05-json-fetch": 1
     },
     "shell": {
       "level-1/01-setup": 1,
@@ -290,6 +295,11 @@
         "kind": "level_capstone",
         "level": "level-4",
         "slug": "level-4/10-capstone-project"
+      },
+      {
+        "kind": "level_capstone",
+        "level": "level-3",
+        "slug": "level-3/11-project-rest-api-db"
       }
     ],
     "shell": [

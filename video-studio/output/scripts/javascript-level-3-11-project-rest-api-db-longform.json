@@ -1,0 +1,246 @@
+{
+  "type": "longform",
+  "language": "javascript",
+  "title": "Build a REST API With a Real SQLite Database — Full Node.js + Express + Jest Capstone Walkthrough",
+  "description": "This is the Level 3 capstone of the JavaScript Mastery Path, built one file at a time: a Book Catalog API with full CRUD, backed by a real SQLite database file, with centralized error handling and a Jest plus supertest suite covering every route. We walk through the project layout, the package.json toolchain, the database setup in db.js, a controller that prepares its SQL once and validates input into an errors array, the Express router that maps every HTTP verb to a controller call and hands failures off to one error handler, the app wiring with its 404 and 500 safety nets, the tiny server entry point, and a test suite that runs against a fresh in-memory database per test. We finish by running it with curl, watching all eight tests pass, and walking through the lesson's stretch goals. Every line of code shown is pulled directly from the lesson — nothing invented.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/",
+  "tags": ["javascript", "node.js", "express", "sqlite", "rest api tutorial", "better-sqlite3", "jest testing", "supertest", "crud api", "error handling middleware", "backend development", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/"],
+  "beats": [
+    {
+      "narration": "Welcome to the Level 3 capstone of the JavaScript Mastery Path. Over the last ten modules you've picked up Express, SQLite, input validation, error handling, and testing. In this video we build one project that uses all of it: a Book Catalog REST API backed by a real database, step by step, file by file.",
+      "display": {
+        "kind": "stick",
+        "scene": "wave",
+        "heading": "The Level 3 Capstone",
+        "subheading": "one project, every skill"
+      }
+    },
+    {
+      "narration": "Step one is knowing what you're building. The goal is a Book Catalog API with full CRUD. Five endpoints: list all books, get one book by id, create a book, update a book, and delete a book. Creating and updating both run through validation, and a centralized error handler makes sure a bad request never crashes the server.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 1: What You'll Build",
+        "subheading": "A Book Catalog API — full CRUD"
+      }
+    },
+    {
+      "narration": "Here's the contract we're building to. Get books returns the whole list. Get books with an id returns one, or a 404. Post creates a book after validation. Put updates one after validation. Delete removes it and returns an empty 204. And a Jest plus supertest suite covers every one of those routes.",
+      "display": {
+        "kind": "stick",
+        "scene": "checklist",
+        "heading": "The Endpoints",
+        "subheading": "five routes, all tested"
+      }
+    },
+    {
+      "narration": "The whole thing is seven files. A package.json at the root. Inside src, we have db dot js for the database, booksController dot js for data access and validation, routes dot js for the Express router, app dot js to wire it together, and server dot js as the entry point. Tests live in their own folder.",
+      "display": {
+        "kind": "editor",
+        "lang": "text",
+        "code": "book-catalog-api/\n    package.json\n    src/\n        db.js\n        booksController.js\n        routes.js\n        app.js\n        server.js\n    test/\n        books.test.js"
+      }
+    },
+    {
+      "narration": "The package.json is deliberately small. Type is module, so we use import syntax everywhere. Two scripts: start runs the server, test runs Jest. Two runtime dependencies, better-sqlite3 and express, and two dev dependencies, jest and supertest. That's the entire toolchain for a working, tested API.",
+      "display": {
+        "kind": "editor",
+        "lang": "json",
+        "code": "{\n  \"name\": \"book-catalog-api\",\n  \"version\": \"1.0.0\",\n  \"type\": \"module\",\n  \"main\": \"src/server.js\",\n  \"scripts\": {\n    \"start\": \"node src/server.js\",\n    \"test\": \"jest\"\n  },\n  \"dependencies\": {\n    \"better-sqlite3\": \"^11.0.0\",\n    \"express\": \"^4.19.0\"\n  },\n  \"devDependencies\": {\n    \"jest\": \"^29.7.0\",\n    \"supertest\": \"^7.0.0\"\n  }\n}"
+      }
+    },
+    {
+      "narration": "db dot js exports one function, createDb. It takes a filename, defaulting to catalog dot db, opens a better-sqlite3 database, and turns on write-ahead logging mode for better concurrency. Then it runs a create table if not exists for books, with an auto-incrementing id, a required title and author, and an optional year.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/db.js\nimport Database from \"better-sqlite3\";\n\nexport function createDb(filename = \"catalog.db\") {\n  const db = new Database(filename);\n  db.pragma(\"journal_mode = WAL\");\n\n  db.exec(`\n    CREATE TABLE IF NOT EXISTS books (\n      id INTEGER PRIMARY KEY AUTOINCREMENT,\n      title TEXT NOT NULL,\n      author TEXT NOT NULL,\n      year INTEGER\n    )\n  `);\n\n  return db;\n}\n\nexport default createDb;"
+      }
+    },
+    {
+      "narration": "Notice the filename is a parameter, not a hardcoded string. That one choice is what makes this testable. The running app passes catalog dot db, a real file on disk. The tests pass colon memory colon, an in-memory database that vanishes when the process exits. Same schema, same logic, and the tests never touch your real data.",
+      "display": {
+        "kind": "stick",
+        "scene": "balance",
+        "heading": "Two Databases",
+        "subheading": "file on disk vs in-memory"
+      }
+    },
+    {
+      "narration": "The controller is a factory: give it a database, get back an object of functions. Up top it prepares five SQL statements once — insert, select all, select by id, update, and delete. Preparing them a single time and reusing them is both faster and safer than building query strings on every request.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/booksController.js\n\nexport function createBooksController(db) {\n  const insertStmt = db.prepare(\n    \"INSERT INTO books (title, author, year) VALUES (?, ?, ?)\"\n  );\n  const selectAllStmt = db.prepare(\"SELECT * FROM books ORDER BY id\");\n  const selectByIdStmt = db.prepare(\"SELECT * FROM books WHERE id = ?\");\n  const updateStmt = db.prepare(\n    \"UPDATE books SET title = ?, author = ?, year = ? WHERE id = ?\"\n  );\n  const deleteStmt = db.prepare(\"DELETE FROM books WHERE id = ?\");"
+      }
+    },
+    {
+      "narration": "validateBook collects errors into an array instead of throwing on the first problem, so the client sees everything that's wrong at once. Title and author must be non-empty strings. Year, if it's provided, must be an integer. There's a partial flag: in partial mode, only the fields actually present get checked, which is exactly what an update needs.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "  function validateBook(body, { partial = false } = {}) {\n    const errors = [];\n\n    if (!partial || body.title !== undefined) {\n      if (typeof body.title !== \"string\" || body.title.trim() === \"\") {\n        errors.push(\"title is required and must be a non-empty string\");\n      }\n    }\n    if (!partial || body.author !== undefined) {\n      if (typeof body.author !== \"string\" || body.author.trim() === \"\") {\n        errors.push(\"author is required and must be a non-empty string\");\n      }\n    }\n    if (body.year !== undefined && !Number.isInteger(body.year)) {\n      errors.push(\"year must be an integer when provided\");\n    }\n\n    return errors;\n  }"
+      }
+    },
+    {
+      "narration": "The rest are thin wrappers. listBooks returns every row. getBook fetches one by id. createBook inserts, then immediately reads the new row back using lastInsertRowid, so the response includes the generated id. updateBook merges incoming fields over the existing ones. deleteBook returns true only if a row actually changed.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "  function listBooks() {\n    return selectAllStmt.all();\n  }\n\n  function getBook(id) {\n    return selectByIdStmt.get(id);\n  }\n\n  function createBook({ title, author, year }) {\n    const result = insertStmt.run(title, author, year ?? null);\n    return getBook(result.lastInsertRowid);\n  }\n\n  function updateBook(id, existing, updates) {\n    const merged = {\n      title: updates.title ?? existing.title,\n      author: updates.author ?? existing.author,\n      year: updates.year ?? existing.year,\n    };\n    updateStmt.run(merged.title, merged.author, merged.year, id);\n    return getBook(id);\n  }\n\n  function deleteBook(id) {\n    const result = deleteStmt.run(id);\n    return result.changes > 0;\n  }\n\n  return { validateBook, listBooks, getBook, createBook, updateBook, deleteBook };\n}"
+      }
+    },
+    {
+      "narration": "routes dot js builds an Express router and wires each HTTP verb to a controller call. The list route is one line — return listBooks as JSON. The get-one route converts the id param to a number, and if the controller returns nothing, it replies 404 with a JSON error instead of undefined.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/routes.js\nimport { Router } from \"express\";\nimport { createBooksController } from \"./booksController.js\";\n\nexport function createBooksRouter(db) {\n  const router = Router();\n  const controller = createBooksController(db);\n\n  router.get(\"/\", (req, res) => {\n    res.json(controller.listBooks());\n  });\n\n  router.get(\"/:id\", (req, res, next) => {\n    try {\n      const book = controller.getBook(Number(req.params.id));\n      if (!book) return res.status(404).json({ error: \"book not found\" });\n      res.json(book);\n    } catch (error) {\n      next(error);\n    }\n  });"
+      }
+    },
+    {
+      "narration": "Post validates first; if the errors array isn't empty it returns 400 with the list, otherwise it creates and returns 201. Put does both checks — 404 if the book doesn't exist, 400 if the partial validation fails — then updates. Delete returns 204 with an empty body on success, or 404 if nothing was removed.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "  router.post(\"/\", (req, res, next) => {\n    try {\n      const errors = controller.validateBook(req.body);\n      if (errors.length > 0) return res.status(400).json({ errors });\n      const book = controller.createBook(req.body);\n      res.status(201).json(book);\n    } catch (error) {\n      next(error);\n    }\n  });\n\n  router.put(\"/:id\", (req, res, next) => {\n    try {\n      const id = Number(req.params.id);\n      const existing = controller.getBook(id);\n      if (!existing) return res.status(404).json({ error: \"book not found\" });\n\n      const errors = controller.validateBook(req.body, { partial: true });\n      if (errors.length > 0) return res.status(400).json({ errors });\n\n      const updated = controller.updateBook(id, existing, req.body);\n      res.json(updated);\n    } catch (error) {\n      next(error);\n    }\n  });\n\n  router.delete(\"/:id\", (req, res, next) => {\n    try {\n      const deleted = controller.deleteBook(Number(req.params.id));\n      if (!deleted) return res.status(404).json({ error: \"book not found\" });\n      res.status(204).end();\n    } catch (error) {\n      next(error);\n    }\n  });\n\n  return router;\n}"
+      }
+    },
+    {
+      "narration": "Every route handler is wrapped in try-catch, and the catch calls next with the error. It doesn't handle the failure there — it hands it off. That keeps each route focused on the happy path, and sends every unexpected error to one place: the error handler in app dot js.",
+      "display": {
+        "kind": "stick",
+        "scene": "handoff",
+        "heading": "next(error)",
+        "subheading": "one place handles failures"
+      }
+    },
+    {
+      "narration": "app dot js creates the Express app and stacks middleware in order. First, express dot json to parse request bodies. Then a tiny logger that prints the method and URL of every request. Then the books router, mounted at slash books. Order matters here — each piece runs top to bottom.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/app.js\nimport express from \"express\";\nimport { createBooksRouter } from \"./routes.js\";\n\nexport function createApp(db) {\n  const app = express();\n  app.use(express.json());\n\n  app.use((req, res, next) => {\n    console.log(`${req.method} ${req.url}`);\n    next();\n  });\n\n  app.use(\"/books\", createBooksRouter(db));\n\n  // 404 fallback for unknown routes\n  app.use((req, res) => {\n    res.status(404).json({ error: \"route not found\" });\n  });\n\n  // Centralized error handler — catches anything passed to next(error)\n  app.use((err, req, res, next) => {\n    console.error(err.stack);\n    res.status(500).json({ error: \"internal server error\" });\n  });\n\n  return app;\n}"
+      }
+    },
+    {
+      "narration": "After the router come two catch-alls. A 404 handler for any route that didn't match, so unknown URLs get a clean JSON message. And last of all, the four-argument error handler — that's the one next(error) feeds. It logs the stack and returns a generic 500, never leaking internals to the caller.",
+      "display": {
+        "kind": "stick",
+        "scene": "point",
+        "heading": "Two Safety Nets",
+        "subheading": "unknown route, and 500"
+      }
+    },
+    {
+      "narration": "server dot js is the smallest file in the project, and that's the point. It creates a real database with the catalog dot db file, builds the app around it, reads a port from the environment or defaults to 3000, and starts listening. All the logic lives elsewhere, already tested.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// src/server.js\nimport { createDb } from \"./db.js\";\nimport { createApp } from \"./app.js\";\n\nconst db = createDb(\"catalog.db\");\nconst app = createApp(db);\n\nconst PORT = process.env.PORT ?? 3000;\napp.listen(PORT, () => {\n  console.log(`Book Catalog API listening on http://localhost:${PORT}`);\n});"
+      }
+    },
+    {
+      "narration": "The tests import createDb and createApp directly — there's no running server. A beforeEach hook builds a fresh in-memory database and a new app before every single test, so tests are fully isolated and never share state. The first test checks that getting books from an empty database returns an empty array.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "// test/books.test.js\nimport request from \"supertest\";\nimport { createDb } from \"../src/db.js\";\nimport { createApp } from \"../src/app.js\";\n\nlet app;\n\nbeforeEach(() => {\n  const db = createDb(\":memory:\"); // fresh in-memory database per test\n  app = createApp(db);\n});\n\ntest(\"GET /books starts empty\", async () => {\n  const response = await request(app).get(\"/books\");\n  expect(response.status).toBe(200);\n  expect(response.body).toEqual([]);\n});"
+      }
+    },
+    {
+      "narration": "supertest drives real HTTP requests against the app. One test posts a full book and expects 201, with a matching body and a defined id. Another posts a book with no title and expects 400, with the errors array containing the exact message about title being required. Happy path and failure path, side by side.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "test(\"POST /books creates a book\", async () => {\n  const response = await request(app)\n    .post(\"/books\")\n    .send({ title: \"Dune\", author: \"Frank Herbert\", year: 1965 });\n\n  expect(response.status).toBe(201);\n  expect(response.body).toMatchObject({ title: \"Dune\", author: \"Frank Herbert\", year: 1965 });\n  expect(response.body.id).toBeDefined();\n});\n\ntest(\"POST /books rejects a missing title\", async () => {\n  const response = await request(app).post(\"/books\").send({ author: \"Unknown\" });\n\n  expect(response.status).toBe(400);\n  expect(response.body.errors).toContain(\"title is required and must be a non-empty string\");\n});"
+      }
+    },
+    {
+      "narration": "The update test creates a book, then sends a put with only a new title, and asserts the title changed while the author stayed untouched — that's the partial-update behavior, verified. The delete test removes a book, expects 204, then does a follow-up get and expects 404 to prove it's really gone.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "test(\"PUT /books/:id updates only the provided fields\", async () => {\n  const created = await request(app)\n    .post(\"/books\")\n    .send({ title: \"Old Title\", author: \"Someone\", year: 2000 });\n\n  const response = await request(app)\n    .put(`/books/${created.body.id}`)\n    .send({ title: \"New Title\" });\n\n  expect(response.status).toBe(200);\n  expect(response.body.title).toBe(\"New Title\");\n  expect(response.body.author).toBe(\"Someone\"); // untouched fields preserved\n});\n\ntest(\"DELETE /books/:id removes the book\", async () => {\n  const created = await request(app)\n    .post(\"/books\")\n    .send({ title: \"Temporary\", author: \"Nobody\" });\n\n  const deleteResponse = await request(app).delete(`/books/${created.body.id}`);\n  expect(deleteResponse.status).toBe(204);\n\n  const getResponse = await request(app).get(`/books/${created.body.id}`);\n  expect(getResponse.status).toBe(404);\n});"
+      }
+    },
+    {
+      "narration": "Count them: empty list, create, reject a missing title, get by id, 404 on an unknown id, partial update, delete then confirm it's gone, and unknown routes return 404. Eight tests, and between them they exercise every endpoint and every error branch we wrote.",
+      "display": {
+        "kind": "stick",
+        "scene": "checklist",
+        "heading": "Every Route Covered",
+        "subheading": "eight tests, all branches"
+      }
+    },
+    {
+      "narration": "To run it for real: npm install, then npm start. The server comes up and logs that it's listening on localhost 3000. From here it's a normal Node process talking to a real SQLite file on disk.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "npm install\nnpm start",
+        "output": "Book Catalog API listening on http://localhost:3000"
+      }
+    },
+    {
+      "narration": "A plain get on books returns an empty array to start. Post a book with a JSON body and the right content-type header, and the API responds with the created record — id one, plus the title, author, and year you sent. That's the full create round-trip against a real database.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "curl http://localhost:3000/books\n\ncurl -X POST http://localhost:3000/books \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"title\":\"Dune\",\"author\":\"Frank Herbert\",\"year\":1965}'",
+        "output": "[]\n\n{\"id\":1,\"title\":\"Dune\",\"author\":\"Frank Herbert\",\"year\":1965}"
+      }
+    },
+    {
+      "narration": "And npm test runs the whole suite. Eight checks, all green, in a fraction of a second, because the in-memory database needs no setup and no teardown between tests.",
+      "display": {
+        "kind": "terminal",
+        "lang": "bash",
+        "code": "npm test",
+        "output": "PASS  test/books.test.js\n ✓ GET /books starts empty\n ✓ POST /books creates a book\n ✓ POST /books rejects a missing title\n ✓ GET /books/:id returns a created book\n ✓ GET /books/:id returns 404 for an unknown id\n ✓ PUT /books/:id updates only the provided fields\n ✓ DELETE /books/:id removes the book\n ✓ unknown routes return 404"
+      }
+    },
+    {
+      "narration": "That's a complete REST API — routed, validated, error-handled, backed by a real database, and covered by tests that prove every route behaves. This is the shape of the backend services you'll build on the job, just with a smaller data model.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "It Works",
+        "subheading": "a real service, end to end"
+      }
+    },
+    {
+      "narration": "The lesson leaves you five ways to push further. Add an author query filter and pagination to the list route. Add a second authors table with a foreign key from books, and a route for one author's books. Add API-key middleware protecting the write routes, with a test asserting 401 when the key is missing.",
+      "display": {
+        "kind": "title_card",
+        "heading": "Step 11: Stretch Goals",
+        "subheading": "five ways to extend it"
+      }
+    },
+    {
+      "narration": "Then two bigger swaps: replace the hand-written validation with zod schemas, and replace SQLite with MongoDB — changing only the controller, while the routes and tests stay exactly the same. That last one shows you just how cleanly this layering isolates the data layer from everything else.",
+      "display": {
+        "kind": "text",
+        "heading": "The Data Layer Swap",
+        "subheading": "same routes, same tests"
+      }
+    },
+    {
+      "narration": "If you built this alongside the video, you've done something real — a full CRUD service from an empty folder, with a test suite that actually proves it. The lesson says it plainly: finishing this project means you're ready for Level 4, Master. Take the win and keep climbing.",
+      "display": {
+        "kind": "stick",
+        "scene": "climb",
+        "heading": "On to Level 4",
+        "subheading": "you're ready for Master"
+      }
+    },
+    {
+      "narration": "The complete lesson, with every file in full and the stretch-goal links, is on screen now. Build it once by following along, then build it again from memory — that's when it really sticks.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/"
+      }
+    }
+  ]
+}

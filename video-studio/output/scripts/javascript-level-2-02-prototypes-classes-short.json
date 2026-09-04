@@ -1,0 +1,63 @@
+{
+  "type": "short",
+  "language": "javascript",
+  "title": "JavaScript classes are just functions in disguise",
+  "description": "JavaScript objects link to a prototype and look up missing properties there — that's why methods \"just work\" on objects you never defined them on. Constructor functions put shared methods on .prototype so every instance points at one function in memory, and the class keyword is syntactic sugar over that exact same mechanism. Ask the engine what a class is and it answers: function.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/\n\n#Shorts",
+  "tags": ["javascript", "prototypes", "javascript classes", "prototype chain", "object.create", "constructor functions", "programming tutorial"],
+  "voice": "en-US-JennyNeural",
+  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/"],
+  "beats": [
+    {
+      "narration": "You can call a method on an object you never defined it on, and JavaScript just finds it. That's the prototype chain.",
+      "display": {
+        "kind": "stick",
+        "scene": "think",
+        "heading": "Where's that method?",
+        "subheading": "you never wrote it"
+      }
+    },
+    {
+      "narration": "Every object links to another one, its prototype. Here rabbit is created from animal. Ask rabbit for eats or describe, and JavaScript walks up the chain to animal.",
+      "display": {
+        "kind": "editor",
+        "lang": "javascript",
+        "code": "const animal = {\n  eats: true,\n  describe() {\n    return \"an animal that eats\";\n  },\n};\n\nconst rabbit = Object.create(animal); // rabbit's prototype is `animal`\nrabbit.jumps = true;\n\nconsole.log(rabbit.eats);       // true — found on the prototype\nconsole.log(rabbit.describe()); // an animal that eats — inherited method"
+      }
+    },
+    {
+      "narration": "Constructor functions put shared methods on dot prototype. So Ada and Grace don't each get their own greet. They point at one function in memory.",
+      "display": {
+        "kind": "terminal",
+        "lang": "javascript",
+        "code": "function Person(name, age) {\n  this.name = name;\n  this.age = age;\n}\n\nPerson.prototype.greet = function () {\n  return `Hi, I'm ${this.name}`;\n};\n\nconst ada = new Person(\"Ada\", 30);\nconst grace = new Person(\"Grace\", 45);\n\nconsole.log(ada.greet === grace.greet);",
+        "output": "true"
+      }
+    },
+    {
+      "narration": "The class keyword looks different, but ask JavaScript what Animal is, and it says function. Classes compile straight down to the same functions and prototypes.",
+      "display": {
+        "kind": "terminal",
+        "lang": "javascript",
+        "code": "class Animal {\n  constructor(name) {\n    this.name = name;\n  }\n\n  speak() {\n    return `${this.name} makes a sound.`;\n  }\n}\n\nconst dog = new Animal(\"Rex\");\nconsole.log(dog.speak());\nconsole.log(typeof Animal); // classes are functions under the hood",
+        "output": "Rex makes a sound.\nfunction"
+      }
+    },
+    {
+      "narration": "So once prototypes click, classes stop being magic. Extends, super, private fields, it's all sugar on one simple lookup chain.",
+      "display": {
+        "kind": "stick",
+        "scene": "celebrate",
+        "heading": "It clicks",
+        "subheading": "sugar over prototypes"
+      }
+    },
+    {
+      "narration": "Full lesson with runnable code is on Mastery Path.",
+      "display": {
+        "kind": "text",
+        "heading": "Full lesson + runnable code:",
+        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/"
+      }
+    }
+  ]
+}

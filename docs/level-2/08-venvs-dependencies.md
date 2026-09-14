@@ -1,5 +1,10 @@
 # 08 · Virtual Environments & Dependencies
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/ihUHr1imsxk" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Every non-trivial Python project depends on third-party packages, and
 different projects on the same machine often need different, incompatible
 versions of them. Virtual environments solve this by giving each project its

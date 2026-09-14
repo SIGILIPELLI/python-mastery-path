@@ -1,5 +1,10 @@
 # 03 · Functional Programming
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/S6jMCbCMbXY" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Python isn't a purely functional language, but it borrows some of the most
 useful ideas from that world: treating functions as values, transforming data
 with `map`/`filter`/`reduce`, and writing small anonymous functions with

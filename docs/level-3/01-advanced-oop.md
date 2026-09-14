@@ -1,5 +1,10 @@
 # 01 · Advanced OOP
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/oksre1Eu0XU" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Level 2 covered classes, inheritance, and dunder methods. This module goes
 further: formal interfaces with abstract base classes, composing behavior with
 mixins, and a first look at metaclasses — the mechanism that creates classes

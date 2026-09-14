@@ -1,5 +1,10 @@
 # 05 · Concurrency II — Asyncio
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/NYOIl7cwOYw" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 `asyncio` gives you concurrency for I/O-bound work using a single thread and
 an event loop, instead of OS threads. Instead of the operating system
 switching between threads, your own code cooperatively yields control at

@@ -1,5 +1,10 @@
 # 08 · Building APIs (Flask/FastAPI)
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/OdcDezY1218" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 So far you've been a client of other people's APIs. This module flips that:
 building your own web API with **FastAPI**, a modern framework built on type
 hints, automatic request validation via Pydantic, and automatically generated

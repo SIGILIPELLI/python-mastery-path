@@ -1,5 +1,10 @@
 # 02 · Comprehensions & Generators
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/Hy4lilhFRnM" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Comprehensions are a compact, readable way to build lists, dicts, and sets from
 existing iterables. Generators take the same idea further: instead of building
 a whole collection in memory, they produce values one at a time, on demand.

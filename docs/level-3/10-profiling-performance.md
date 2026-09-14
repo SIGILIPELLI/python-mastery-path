@@ -1,5 +1,10 @@
 # 10 · Profiling & Performance
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/zUwq_Brn9ag" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 "Make it work, make it right, make it fast" — in that order. Before optimizing
 anything, measure where time is actually being spent; intuition about
 performance is frequently wrong. This module covers Python's built-in

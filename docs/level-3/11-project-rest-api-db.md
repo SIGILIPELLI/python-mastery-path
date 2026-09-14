@@ -1,5 +1,10 @@
 # 11 · Project — REST API + Database
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/9iOLFc9RE8I" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 The Level 3 capstone: a complete FastAPI service backed by a real SQLite
 database via SQLAlchemy, with full CRUD, Pydantic validation, proper error
 handling, and a `pytest` test suite that exercises the whole stack.

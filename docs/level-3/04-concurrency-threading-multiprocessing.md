@@ -1,5 +1,10 @@
 # 04 · Concurrency I — Threading & Multiprocessing
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/YkMYpYwkiPk" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 When a program needs to do more than one thing "at once," Python offers two
 very different tools depending on *what kind* of work is involved:
 `threading` for I/O-bound work, and `multiprocessing` for CPU-bound work. This

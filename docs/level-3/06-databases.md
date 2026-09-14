@@ -1,5 +1,10 @@
 # 06 · Databases (SQLite & SQLAlchemy)
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/lhqfQap5rqg" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Most applications need to persist structured data beyond a single run. This
 module covers `sqlite3` — a full SQL database built into the standard
 library, requiring no server — and then SQLAlchemy, the most widely used ORM

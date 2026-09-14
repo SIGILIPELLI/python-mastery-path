@@ -1,5 +1,10 @@
 # 04 · Custom Exceptions & Context Managers
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/F0q9qOOlcM0" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Level 1 covered catching built-in exceptions. Real projects usually define
 their own exception types to represent domain-specific failures, and rely on
 context managers (the `with` statement) to guarantee cleanup code runs even

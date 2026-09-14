@@ -1,5 +1,10 @@
 # 07 · Dates & Times
 
+## 🎥 Video walkthrough
+
+<iframe width="100%" height="400" style="max-width:720px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/vDuEXmjhk4M" title="Video walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 Nearly every real application deals with dates and times somewhere: timestamps
 in logs, expiration dates, scheduling. Python's `datetime` module is the
 standard tool for representing, comparing, and formatting them.

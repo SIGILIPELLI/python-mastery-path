@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A structured, module-wise Python training program from entry level to master level.">
+        <meta name="description" content="Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs.">
       
       
       
@@ -67,14 +67,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Python Mastery Path">
   <meta property="og:title" content="08 · Error Handling Basics">
-  <meta property="og:description" content="A structured, module-wise Python training program from entry level to master level — free, with runnable code in every module.">
+  <meta property="og:description" content="Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs.">
   <meta property="og:url" content="https://sigilipelli.github.io/python-mastery-path/level-1/08-error-handling/">
   <meta property="og:image" content="https://sigilipelli.github.io/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="08 · Error Handling Basics">
-  <meta name="twitter:description" content="A structured, module-wise Python training program from entry level to master level — free, with runnable code in every module.">
+  <meta name="twitter:description" content="Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs.">
   <meta name="twitter:image" content="https://sigilipelli.github.io/og-image.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
      crossorigin="anonymous"></script>
@@ -990,6 +990,17 @@
     <span class="md-ellipsis">
       
         How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-this-in-another-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 See this in another language
       
     </span>
   </a>
@@ -2341,6 +2352,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#see-this-in-another-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 See this in another language
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2371,6 +2393,8 @@
   
 
 
+<hr />
+<p>description: "Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs."---</p>
 <h1 id="08-error-handling-basics">08 · Error Handling Basics<a class="headerlink" href="#08-error-handling-basics" title="Permanent link">&para;</a></h1>
 <h2 id="try-except">try / except<a class="headerlink" href="#try-except" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">try</span><span class="p">:</span>
@@ -2482,6 +2506,12 @@ code and then <em>re-raise</em>. <code>raise X from Y</code> sets <code>X.__caus
 exception raised while handling another automatically gets <code>__context__</code> set —
 both are what produce "During handling of the above exception, another
 occurred".</p>
+<h2 id="see-this-in-another-language">🔀 See this in another language<a class="headerlink" href="#see-this-in-another-language" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://sigilipelli.github.io/java-mastery-path/level-1/08-exception-handling/">Java — Exception Handling Basics</a></li>
+<li><a href="https://sigilipelli.github.io/go-mastery-path/level-1/08-error-handling/">Go — Error Handling</a></li>
+<li><a href="https://sigilipelli.github.io/scala-mastery-path/level-1/08-pattern-matching-intro/">Scala — Pattern Matching Intro</a></li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a function <code>divide_safely(a, b)</code> that returns the division result, or a
 descriptive error message string if <code>b</code> is zero or either argument isn't a
@@ -2492,6 +2522,9 @@ number — without crashing the program either way.</p>
 
 
 
+
+  
+  
 
 
 

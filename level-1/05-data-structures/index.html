@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A structured, module-wise Python training program from entry level to master level.">
+        <meta name="description" content="Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…">
       
       
       
@@ -67,14 +67,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Python Mastery Path">
   <meta property="og:title" content="05 · Core Data Structures">
-  <meta property="og:description" content="A structured, module-wise Python training program from entry level to master level — free, with runnable code in every module.">
+  <meta property="og:description" content="Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…">
   <meta property="og:url" content="https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/">
   <meta property="og:image" content="https://sigilipelli.github.io/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="05 · Core Data Structures">
-  <meta name="twitter:description" content="A structured, module-wise Python training program from entry level to master level — free, with runnable code in every module.">
+  <meta name="twitter:description" content="Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…">
   <meta name="twitter:image" content="https://sigilipelli.github.io/og-image.png">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
      crossorigin="anonymous"></script>
@@ -895,6 +895,17 @@
     <span class="md-ellipsis">
       
         How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-this-in-another-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 See this in another language
       
     </span>
   </a>
@@ -2319,6 +2330,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#see-this-in-another-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 See this in another language
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2371,8 @@
   
 
 
+<hr />
+<p>description: "Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement <strong>hash</strong> and not mutate in a way that changes it), which is…"---</p>
 <h1 id="05-core-data-structures">05 · Core Data Structures<a class="headerlink" href="#05-core-data-structures" title="Permanent link">&para;</a></h1>
 <h2 id="lists-ordered-mutable">Lists — ordered, mutable<a class="headerlink" href="#lists-ordered-mutable" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="s2">"banana"</span><span class="p">,</span> <span class="s2">"cherry"</span><span class="p">]</span>
@@ -2448,6 +2472,12 @@ consequences:</p>
 <code>__hash__</code> and not mutate in a way that changes it), which is why lists can't
 be keys but tuples of immutables can. <code>hash(x) == hash(y)</code> for equal objects
 is a required invariant — break it and lookups silently fail.</p>
+<h2 id="see-this-in-another-language">🔀 See this in another language<a class="headerlink" href="#see-this-in-another-language" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/">Java — Arrays &amp; Basic Collections</a></li>
+<li><a href="https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/">Go — Arrays, Slices &amp; Maps</a></li>
+<li><a href="https://sigilipelli.github.io/scala-mastery-path/level-1/05-collections-basics/">Scala — Collections Basics</a></li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Given a list of words, use a dictionary comprehension to build a mapping of
 each unique word to its length, then use a set to find which words appear more
@@ -2458,6 +2488,9 @@ than once in the original list.</p>
 
 
 
+
+  
+  
 
 
 

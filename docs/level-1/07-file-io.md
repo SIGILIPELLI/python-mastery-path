@@ -1,3 +1,10 @@
+---
+description: "File I/O Basics — Always use with — it guarantees the file is closed even if an error occurs."
+---
+
+---
+description: "File I/O Basics — Always use with — it guarantees the file is closed even if an error occurs."---
+
 # 07 · File I/O Basics
 
 ## Writing and reading text files
@@ -81,6 +88,12 @@ descriptor back to the kernel. Descriptors are a limited per-process resource,
 so leaking them (never closing) eventually raises "Too many open files".
 `pathlib.Path.read_text()` is a convenience that does the whole
 open → read → close cycle in one call.
+
+## 🔀 See this in another language
+
+- [Java — Classes & Objects Basics](https://sigilipelli.github.io/java-mastery-path/level-1/07-classes-objects/)
+- [Go — Pointers](https://sigilipelli.github.io/go-mastery-path/level-1/07-pointers/)
+- [Scala — Case Classes](https://sigilipelli.github.io/scala-mastery-path/level-1/07-case-classes/)
 
 ## Exercise
 

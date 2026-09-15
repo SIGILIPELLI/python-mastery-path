@@ -1,3 +1,10 @@
+---
+description: "Modules, Packages & pip — __init__.py is simply the code that runs when a package is first imported. pip install requests downloads a wheel and unpacks it…"
+---
+
+---
+description: "Modules, Packages & pip — __init__.py is simply the code that runs when a package is first imported. pip install requests downloads a wheel and unpacks it…"---
+
 # 09 · Modules, Packages & pip
 
 ## Importing from the standard library
@@ -111,6 +118,12 @@ is that a module's code runs *once per process*:
 `pip install requests` downloads a wheel and unpacks it into `site-packages/`,
 which is already on `sys.path` — so `import requests` then just works via the
 same five steps.
+
+## 🔀 See this in another language
+
+- [Java — Packages & Build Tools Intro](https://sigilipelli.github.io/java-mastery-path/level-1/09-packages-build-tools/)
+- [Go — Packages & Modules](https://sigilipelli.github.io/go-mastery-path/level-1/09-packages-modules/)
+- [Scala — Traits Basics](https://sigilipelli.github.io/scala-mastery-path/level-1/09-traits-basics/)
 
 ## Exercise
 

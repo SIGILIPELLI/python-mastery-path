@@ -1,3 +1,10 @@
+---
+description: "Security Best Practices — Writing correct, well-tested code isn't enough if it's also exploitable. This module covers secrets management, input…"
+---
+
+---
+description: "Security Best Practices — Writing correct, well-tested code isn't enough if it's also exploitable. This module covers secrets management, input…"---
+
 # 09 · Security Best Practices
 
 Writing correct, well-tested code isn't enough if it's also exploitable. This

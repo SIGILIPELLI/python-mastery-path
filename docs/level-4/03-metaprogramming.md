@@ -1,3 +1,10 @@
+---
+description: "Metaprogramming — Metaprogramming means writing code that manipulates code or classes as data — inspecting, generating, or modifying them at runtime.…"
+---
+
+---
+description: "Metaprogramming — Metaprogramming means writing code that manipulates code or classes as data — inspecting, generating, or modifying them at runtime.…"---
+
 # 03 · Metaprogramming
 
 Metaprogramming means writing code that manipulates code or classes as data —

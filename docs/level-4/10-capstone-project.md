@@ -1,3 +1,10 @@
+---
+description: "Capstone Project — The final project ties together everything from all four levels: a production-shaped FastAPI service with a real database…"
+---
+
+---
+description: "Capstone Project — The final project ties together everything from all four levels: a production-shaped FastAPI service with a real database…"---
+
 # 10 · Capstone Project
 
 The final project ties together everything from all four levels: a

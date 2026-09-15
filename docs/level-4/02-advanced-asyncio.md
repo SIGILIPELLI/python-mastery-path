@@ -1,3 +1,10 @@
+---
+description: "Advanced Asyncio Patterns — Level 3 covered the basics of async/await, gather, and semaphores. This module goes into patterns needed for production-grade…"
+---
+
+---
+description: "Advanced Asyncio Patterns — Level 3 covered the basics of async/await, gather, and semaphores. This module goes into patterns needed for production-grade…"---
+
 # 02 · Advanced Asyncio Patterns
 
 Level 3 covered the basics of `async`/`await`, `gather`, and semaphores. This

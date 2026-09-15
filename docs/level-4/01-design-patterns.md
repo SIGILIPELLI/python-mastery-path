@@ -1,3 +1,10 @@
+---
+description: "Design Patterns in Python — Design patterns are named, reusable solutions to common design problems. This module covers four of the most useful ones…"
+---
+
+---
+description: "Design Patterns in Python — Design patterns are named, reusable solutions to common design problems. This module covers four of the most useful ones…"---
+
 # 01 · Design Patterns in Python
 
 Design patterns are named, reusable solutions to common design problems. This

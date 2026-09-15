@@ -1,3 +1,10 @@
+---
+description: "Object-Oriented Programming — Object-oriented programming lets you bundle data and the behavior that acts on it into a single unit — a class. Level 1 used…"
+---
+
+---
+description: "Object-Oriented Programming — Object-oriented programming lets you bundle data and the behavior that acts on it into a single unit — a class. Level 1 used…"---
+
 # 01 · Object-Oriented Programming
 
 Object-oriented programming lets you bundle data and the behavior that acts on

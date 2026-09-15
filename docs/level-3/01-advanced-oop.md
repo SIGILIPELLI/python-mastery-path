@@ -1,3 +1,10 @@
+---
+description: "Advanced OOP — An ABC defines a contract: subclasses must implement certain methods, or Python refuses to let you instantiate them. This catches missing…"
+---
+
+---
+description: "Advanced OOP — An ABC defines a contract: subclasses must implement certain methods, or Python refuses to let you instantiate them. This catches missing…"---
+
 # 01 · Advanced OOP
 
 ## 🎥 Video walkthrough

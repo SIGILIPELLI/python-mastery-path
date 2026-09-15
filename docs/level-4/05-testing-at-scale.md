@@ -1,3 +1,10 @@
+---
+description: "Testing at Scale — Level 2 covered pytest basics. As a codebase and test suite grow, you need more powerful fixture composition, a reliable way to isolate…"
+---
+
+---
+description: "Testing at Scale — Level 2 covered pytest basics. As a codebase and test suite grow, you need more powerful fixture composition, a reliable way to isolate…"---
+
 # 05 · Testing at Scale
 
 Level 2 covered `pytest` basics. As a codebase and test suite grow, you need

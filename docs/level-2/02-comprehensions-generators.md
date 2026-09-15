@@ -1,3 +1,10 @@
+---
+description: "Comprehensions & Generators — The general shape is [expression for item in iterable if condition]. The if clause is optional; the conditional expression…"
+---
+
+---
+description: "Comprehensions & Generators — The general shape is [expression for item in iterable if condition]. The if clause is optional; the conditional expression…"---
+
 # 02 · Comprehensions & Generators
 
 ## 🎥 Video walkthrough

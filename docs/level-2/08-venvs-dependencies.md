@@ -1,3 +1,10 @@
+---
+description: "Virtual Environments & Dependencies — Without a virtual environment, pip install affects your entire system (or user) Python installation. Project A…"
+---
+
+---
+description: "Virtual Environments & Dependencies — Without a virtual environment, pip install affects your entire system (or user) Python installation. Project A…"---
+
 # 08 · Virtual Environments & Dependencies
 
 ## 🎥 Video walkthrough

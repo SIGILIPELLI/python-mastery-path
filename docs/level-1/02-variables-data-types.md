@@ -1,3 +1,10 @@
+---
+description: "Variables, Data Types & Operators — Python variables are just names bound to objects — no type declaration needed."
+---
+
+---
+description: "Variables, Data Types & Operators — Python variables are just names bound to objects — no type declaration needed."---
+
 # 02 · Variables, Data Types & Operators
 
 ## Variables
@@ -104,6 +111,12 @@ print(a is b)   # often False — these are two separately allocated int objects
 (compares pointers). `5 == 5.0` is `True` because `int.__eq__` compares
 numeric value; `5 is 5.0` is `False` because they're distinct objects of
 different types.
+
+## 🔀 See this in another language
+
+- [Java — Variables, Data Types & Operators](https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/)
+- [Go — Variables, Types & Operators](https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/)
+- [Scala — Variables & Types](https://sigilipelli.github.io/scala-mastery-path/level-1/02-variables-types/)
 
 ## Exercise
 

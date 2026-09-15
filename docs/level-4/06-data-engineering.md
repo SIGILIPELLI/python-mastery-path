@@ -1,3 +1,10 @@
+---
+description: "Data Engineering — Data engineering is about moving and reshaping data reliably: extracting it from sources, transforming it into a usable shape, and…"
+---
+
+---
+description: "Data Engineering — Data engineering is about moving and reshaping data reliably: extracting it from sources, transforming it into a usable shape, and…"---
+
 # 06 · Data Engineering
 
 Data engineering is about moving and reshaping data reliably: extracting it

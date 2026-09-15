@@ -1,3 +1,10 @@
+---
+description: "Advanced Decorators & Descriptors — Without help, the wrapper function replaces the original's identity — __name__, __doc__, and introspection tools all…"
+---
+
+---
+description: "Advanced Decorators & Descriptors — Without help, the wrapper function replaces the original's identity — __name__, __doc__, and introspection tools all…"---
+
 # 03 · Advanced Decorators & Descriptors
 
 ## 🎥 Video walkthrough

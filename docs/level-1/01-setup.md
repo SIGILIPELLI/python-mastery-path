@@ -1,3 +1,10 @@
+---
+description: "Setup & First Program — if __name__ == '__main__': guards code so it only runs when the file is executed directly, not when it's imported by another…"
+---
+
+---
+description: "Setup & First Program — if __name__ == '__main__': guards code so it only runs when the file is executed directly, not when it's imported by another…"---
+
 # 01 · Setup & First Program
 
 ## Install Python
@@ -95,6 +102,12 @@ When you type `python3 hello.py`, a lot happens before "Hello, world!" appears:
 
 The REPL runs this same read → compile → execute loop, but once per line you
 type instead of once per file.
+
+## 🔀 See this in another language
+
+- [Java — Setup & First Program](https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/)
+- [Go — Setup & First Program](https://sigilipelli.github.io/go-mastery-path/level-1/01-setup/)
+- [Scala — Setup & First Program](https://sigilipelli.github.io/scala-mastery-path/level-1/01-setup/)
 
 ## Exercise
 

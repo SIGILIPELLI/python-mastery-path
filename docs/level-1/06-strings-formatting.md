@@ -1,3 +1,10 @@
+---
+description: "Strings & Formatting — Write a function slugify(title: str) -> str that converts 'Hello, World! ' into 'hello-world' — lowercase, punctuation stripped…"
+---
+
+---
+description: "Strings & Formatting — Write a function slugify(title: str) -> str that converts 'Hello, World! ' into 'hello-world' — lowercase, punctuation stripped…"---
+
 # 06 · Strings & Formatting
 
 ## String basics
@@ -86,6 +93,12 @@ format spec after `:` (like `.2f`) is handed to the value's `__format__`
 method. Because it's compiled, an f-string has no dictionary lookup overhead
 the way `str.format` or `%` do, and syntax errors inside `{}` are caught when
 the file is compiled.
+
+## 🔀 See this in another language
+
+- [Java — Strings & String Formatting](https://sigilipelli.github.io/java-mastery-path/level-1/06-strings-formatting/)
+- [Go — Structs](https://sigilipelli.github.io/go-mastery-path/level-1/06-structs/)
+- [Scala — Classes & Objects Basics](https://sigilipelli.github.io/scala-mastery-path/level-1/06-classes-objects/)
 
 ## Exercise
 

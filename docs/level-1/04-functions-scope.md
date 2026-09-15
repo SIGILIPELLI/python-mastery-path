@@ -1,3 +1,7 @@
+---
+description: "Functions & Scope — Type hints don't change runtime behavior — they document intent and let tools like mypy and your editor catch mistakes before you run…"
+---
+
 # 04 · Functions & Scope
 
 ## 🎥 Video walkthrough
@@ -132,6 +136,12 @@ back to the caller's frame (that back-chain is what a traceback walks).
 `*args` collects surplus positionals into a new tuple; `**kwargs` collects
 surplus keywords into a new dict — both built by the interpreter as part of
 the call sequence.
+
+## 🔀 See this in another language
+
+- [Java — Methods & Parameters](https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/)
+- [Go — Functions & Multiple Returns](https://sigilipelli.github.io/go-mastery-path/level-1/04-functions-multiple-returns/)
+- [Scala — Functions](https://sigilipelli.github.io/scala-mastery-path/level-1/04-functions/)
 
 ## Exercise
 

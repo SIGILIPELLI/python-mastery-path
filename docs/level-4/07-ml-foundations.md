@@ -1,3 +1,10 @@
+---
+description: "ML Foundations — This module isn't a full machine learning course — it's the minimum numpy/pandas/scikit-learn fluency a Python engineer needs to…"
+---
+
+---
+description: "ML Foundations — This module isn't a full machine learning course — it's the minimum numpy/pandas/scikit-learn fluency a Python engineer needs to…"---
+
 # 07 · ML Foundations
 
 This module isn't a full machine learning course — it's the minimum

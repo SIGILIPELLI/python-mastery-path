@@ -1,3 +1,10 @@
+---
+description: "Iterators, Generators & Coroutines — A for loop over any object relies on two dunder methods working together: __iter__ (returns an iterator) and __next__…"
+---
+
+---
+description: "Iterators, Generators & Coroutines — A for loop over any object relies on two dunder methods working together: __iter__ (returns an iterator) and __next__…"---
+
 # 02 · Iterators, Generators & Coroutines
 
 ## 🎥 Video walkthrough

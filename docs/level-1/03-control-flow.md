@@ -1,3 +1,10 @@
+---
+description: "Control Flow — Write a program that prints FizzBuzz for numbers 1–30: multiples of 3 print 'Fizz', multiples of 5 print 'Buzz', multiples of both print…"
+---
+
+---
+description: "Control Flow — Write a program that prints FizzBuzz for numbers 1–30: multiples of 3 print 'Fizz', multiples of 5 print 'Buzz', multiples of both print…"---
+
 # 03 · Control Flow
 
 ## if / elif / else
@@ -109,6 +116,12 @@ Disassemble an `if`/`else` with `dis.dis` and you'll see it:
   attribute/key extraction, and equality tests using dedicated opcodes like
   `MATCH_CLASS`, `MATCH_MAPPING`, and `MATCH_SEQUENCE` — not a hash-based
   jump table like C's `switch`.
+
+## 🔀 See this in another language
+
+- [Java — Control Flow](https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/)
+- [Go — Control Flow](https://sigilipelli.github.io/go-mastery-path/level-1/03-control-flow/)
+- [Scala — Control Flow](https://sigilipelli.github.io/scala-mastery-path/level-1/03-control-flow/)
 
 ## Exercise
 

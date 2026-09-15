@@ -1,3 +1,10 @@
+---
+description: "Project — REST API + Database — Keeping schemas.py (API shape) separate from models.py (database shape) is deliberate: it lets the API contract evolve…"
+---
+
+---
+description: "Project — REST API + Database — Keeping schemas.py (API shape) separate from models.py (database shape) is deliberate: it lets the API contract evolve…"---
+
 # 11 · Project — REST API + Database
 
 ## 🎥 Video walkthrough

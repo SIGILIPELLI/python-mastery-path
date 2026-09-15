@@ -1,3 +1,10 @@
+---
+description: "Regular Expressions — re.match is a common source of confusion: it silently anchors to position 0, so a pattern that would obviously match 'somewhere' in…"
+---
+
+---
+description: "Regular Expressions — re.match is a common source of confusion: it silently anchors to position 0, so a pattern that would obviously match 'somewhere' in…"---
+
 # 06 · Regular Expressions
 
 ## 🎥 Video walkthrough

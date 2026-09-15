@@ -1,3 +1,10 @@
+---
+description: "Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…"
+---
+
+---
+description: "Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…"---
+
 # 05 · Core Data Structures
 
 ## Lists — ordered, mutable
@@ -93,6 +100,12 @@ Everything hinges on hashing: `dict`/`set` keys must be hashable (implement
 `__hash__` and not mutate in a way that changes it), which is why lists can't
 be keys but tuples of immutables can. `hash(x) == hash(y)` for equal objects
 is a required invariant — break it and lookups silently fail.
+
+## 🔀 See this in another language
+
+- [Java — Arrays & Basic Collections](https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/)
+- [Go — Arrays, Slices & Maps](https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/)
+- [Scala — Collections Basics](https://sigilipelli.github.io/scala-mastery-path/level-1/05-collections-basics/)
 
 ## Exercise
 

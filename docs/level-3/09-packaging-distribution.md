@@ -1,3 +1,10 @@
+---
+description: "Packaging & Distribution — The src/ layout (package code lives inside src/my_package/, not directly next to pyproject.toml) is the modern recommendation …"
+---
+
+---
+description: "Packaging & Distribution — The src/ layout (package code lives inside src/my_package/, not directly next to pyproject.toml) is the modern recommendation …"---
+
 # 09 · Packaging & Distribution
 
 ## 🎥 Video walkthrough

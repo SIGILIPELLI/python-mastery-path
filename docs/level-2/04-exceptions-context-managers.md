@@ -1,3 +1,10 @@
+---
+description: "Custom Exceptions & Context Managers — A custom exception is just a class that inherits from Exception (directly or indirectly)."
+---
+
+---
+description: "Custom Exceptions & Context Managers — A custom exception is just a class that inherits from Exception (directly or indirectly)."---
+
 # 04 · Custom Exceptions & Context Managers
 
 ## 🎥 Video walkthrough

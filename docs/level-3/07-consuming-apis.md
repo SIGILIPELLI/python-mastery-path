@@ -1,3 +1,10 @@
+---
+description: "Consuming APIs — Without a timeout, a hung server can block your program forever."
+---
+
+---
+description: "Consuming APIs — Without a timeout, a hung server can block your program forever."---
+
 # 07 · Consuming APIs
 
 ## 🎥 Video walkthrough

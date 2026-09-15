@@ -1,3 +1,10 @@
+---
+description: "Testing Basics (pytest) — pytest discovers test files named test_.py or _test.py, and inside them, functions named test_*."
+---
+
+---
+description: "Testing Basics (pytest) — pytest discovers test files named test_.py or _test.py, and inside them, functions named test_*."---
+
 # 09 · Testing Basics (pytest)
 
 ## 🎥 Video walkthrough

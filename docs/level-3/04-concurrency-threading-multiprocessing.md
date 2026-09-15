@@ -1,3 +1,10 @@
+---
+description: "Concurrency I — Threading & Multiprocessing — CPython's Global Interpreter Lock allows only one thread to execute Python bytecode at a time, even on a…"
+---
+
+---
+description: "Concurrency I — Threading & Multiprocessing — CPython's Global Interpreter Lock allows only one thread to execute Python bytecode at a time, even on a…"---
+
 # 04 · Concurrency I — Threading & Multiprocessing
 
 ## 🎥 Video walkthrough

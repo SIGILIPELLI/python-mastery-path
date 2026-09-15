@@ -1,3 +1,10 @@
+---
+description: "Project — CLI To-Do App — A small end-to-end project combining everything from Level 1: functions, data structures, strings, file I/O, error handling, and…"
+---
+
+---
+description: "Project — CLI To-Do App — A small end-to-end project combining everything from Level 1: functions, data structures, strings, file I/O, error handling, and…"---
+
 # 10 · Project — CLI To-Do App
 
 A small end-to-end project combining everything from Level 1: functions, data
@@ -163,3 +170,9 @@ half-written, and the next run needs to degrade gracefully rather than crash.
   in [Level 2](../level-2/09-testing-basics.md)).
 
 Completing this project means you're ready for **Level 2 · Intermediate**.
+
+## 🔀 See this in another language
+
+- [Java — Project — CLI Contact Book](https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/)
+- [Go — Project — CLI To-Do App](https://sigilipelli.github.io/go-mastery-path/level-1/10-project-todo-cli/)
+- [Scala — Project — CLI To-Do App](https://sigilipelli.github.io/scala-mastery-path/level-1/10-project-todo-app/)

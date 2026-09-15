@@ -1,3 +1,10 @@
+---
+description: "Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs."
+---
+
+---
+description: "Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs."---
+
 # 08 · Error Handling Basics
 
 ## try / except
@@ -104,6 +111,12 @@ code and then *re-raise*. `raise X from Y` sets `X.__cause__ = Y`; an
 exception raised while handling another automatically gets `__context__` set —
 both are what produce "During handling of the above exception, another
 occurred".
+
+## 🔀 See this in another language
+
+- [Java — Exception Handling Basics](https://sigilipelli.github.io/java-mastery-path/level-1/08-exception-handling/)
+- [Go — Error Handling](https://sigilipelli.github.io/go-mastery-path/level-1/08-error-handling/)
+- [Scala — Pattern Matching Intro](https://sigilipelli.github.io/scala-mastery-path/level-1/08-pattern-matching-intro/)
 
 ## Exercise
 

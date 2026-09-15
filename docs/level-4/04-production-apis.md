@@ -286,6 +286,10 @@ separate compiled path patterns pointing at entirely separate handler functions,
 "v1" and "v2" coexisting is simply two independent entries in the same routing
 table, not any kind of runtime branching inside one shared handler.
 
+## 🔀 See this in another language
+
+- [Go — 04 · Production-Grade APIs](https://sigilipelli.github.io/go-mastery-path/level-4/04-production-grade-apis/)
+
 ## Exercise
 
 Take the Book Catalog API from Level 3's capstone project and add: a

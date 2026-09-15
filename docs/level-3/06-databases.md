@@ -266,6 +266,10 @@ database, generating exactly the `UPDATE`/`INSERT`/`DELETE` statements needed �
 which is why simply setting `user.name = "..."` on a session-attached object, with no
 explicit `UPDATE` call, is enough to persist the change.
 
+## 🔀 See this in another language
+
+- [Kotlin — 03 · Databases (Exposed/SQLite)](https://sigilipelli.github.io/kotlin-mastery-path/level-3/03-databases-exposed-sqlite/)
+
 ## Exercise
 
 Using plain `sqlite3`, create a `tasks` table (`id`, `title`, `done`) and write

@@ -427,3 +427,9 @@ inheritance.
 - Add a 3-day forecast view using Open-Meteo's `daily` parameters.
 
 Completing this project means you're ready for **Level 3 · Advanced**.
+
+## 🔀 See this in another language
+
+- [C# — 10 · Project — Weather CLI](https://sigilipelli.github.io/csharp-mastery-path/level-2/10-project-weather-cli/)
+- [Go — 10 · Project — Weather CLI](https://sigilipelli.github.io/go-mastery-path/level-2/10-project-weather-cli/)
+- [Rust — 10 · Project — Weather CLI](https://sigilipelli.github.io/rust-mastery-path/level-2/10-project-weather-cli/)

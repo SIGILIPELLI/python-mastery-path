@@ -191,6 +191,10 @@ Python objects — they differ in what grammar they implement:
   finished tree. This streaming core is why `iterparse` can process
   gigabyte-scale XML without loading it all into memory.
 
+## 🔀 See this in another language
+
+- [PowerShell — 09 · Working with CSV/Excel Data](https://sigilipelli.github.io/powershell-mastery-path/level-2/09-csv-excel-data/)
+
 ## Exercise
 
 Given a CSV file of products (`name,price,quantity`), write a script that:

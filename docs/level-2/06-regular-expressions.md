@@ -170,6 +170,12 @@ failure. `re.match` vs `re.search` is not a VM difference — `match` simply
 starts the VM only at position 0, while `search` retries it at each successive
 start position.
 
+## 🔀 See this in another language
+
+- [JavaScript — 06 · Regular Expressions in JS](https://sigilipelli.github.io/javascript-mastery-path/level-2/06-regular-expressions/)
+- [Shell/Bash — 03 · Regular Expressions in Bash](https://sigilipelli.github.io/shell-mastery-path/level-2/03-regular-expressions/)
+- [PowerShell — 04 · Regular Expressions in PowerShell](https://sigilipelli.github.io/powershell-mastery-path/level-2/04-regular-expressions/)
+
 ## Exercise
 
 Write a function `extract_hashtags(text)` that returns a list of unique

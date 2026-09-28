@@ -1,7 +1,8 @@
 # Trading-ops virtual employee
 
 Oversight layer for the live Paytm Money trading bot at
-`~/Desktop/my_claude_project/trading_bot`. This does **not** contain any
+`~/Desktop/my_claude_project/trading_bot`
+(override with the `TRADING_BOT_DIR` env var). This does **not** contain any
 trading logic — the bot already has its own multi-agent strategy, risk
 manager, and daily-loss circuit breaker. This is process supervision,
 alerting, and reporting on top of it.
@@ -56,7 +57,7 @@ One-time fix: **System Settings → Privacy & Security → Full Disk Access**,
 add and enable:
 - `/usr/bin/python3`
 - `/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11`
-- `/Users/bhanuja/.local/bin/claude`
+- `~/.local/bin/claude`
 
 (Use Cmd+Shift+G in the file picker to type each path directly.) Jobs pick
 this up on their next scheduled tick — no restart needed, though you can
@@ -68,3 +69,26 @@ force one with `launchctl kickstart -k gui/$(id -u)/com.vremployee.trading-super
 launchctl unload ~/Library/LaunchAgents/com.vremployee.trading-supervisor.plist
 launchctl unload ~/Library/LaunchAgents/com.vremployee.trading-weekly-tuning.plist
 ```
+
+## Installing the launchd jobs
+
+The plists are templates — no usernames or absolute paths are committed.
+Fill them in when installing:
+
+```bash
+cd ~/Desktop/vremployee/trading-ops
+for f in com.vremployee.trading-*.plist; do
+  sed -e "s|__VREMPLOYEE_DIR__|$HOME/Desktop/vremployee|g" -e "s|__HOME__|$HOME|g" \
+    "$f" > ~/Library/LaunchAgents/"$f"
+  launchctl unload ~/Library/LaunchAgents/"$f" 2>/dev/null
+  launchctl load ~/Library/LaunchAgents/"$f"
+done
+```
+
+`weekly_tuning.sh` needs `envsubst` (`brew install gettext`).
+
+## Security
+
+This repo is **public**. Never commit credentials or trading data here:
+`.env`, `.paytm_token.json`, `state.json`, `tuning_proposals/`, `*.log`
+and `*.db` are gitignored. Runtime files are created owner-only (0600).

@@ -9,3 +9,12 @@ TASKS.md
 linkedin-content/profile.json
 linkedin-content/.env
 linkedin-content/drafts/
+
+# trading-ops: runtime state, trading data and credentials never go in git
+trading-ops/state.json
+trading-ops/tuning_proposals/
+trading-ops/*.log
+trading-ops/PAUSE_AUTORESTART
+**/.env
+**/.paytm_token.json
+*.db

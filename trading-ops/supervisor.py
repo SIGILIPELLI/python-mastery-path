@@ -30,6 +30,7 @@ and is left entirely to the human owner).
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime
@@ -39,8 +40,14 @@ from zoneinfo import ZoneInfo
 IST = ZoneInfo("Asia/Kolkata")
 
 OPS_DIR = Path(__file__).parent
-BOT_DIR = Path("/Users/bhanuja/Desktop/my_claude_project/trading_bot")
-NOTIFY_SH = Path("/Users/bhanuja/Desktop/vremployee/whatsapp-bridge/notify.sh")
+# Machine-specific paths come from the environment so no usernames or local
+# layout are hardcoded in this (public) repo. Defaults assume ~/Desktop.
+BOT_DIR = Path(os.environ.get(
+    "TRADING_BOT_DIR", Path.home() / "Desktop" / "my_claude_project" / "trading_bot"
+)).expanduser()
+NOTIFY_SH = Path(os.environ.get(
+    "NOTIFY_SH", OPS_DIR.parent / "whatsapp-bridge" / "notify.sh"
+)).expanduser()
 STATE_PATH = OPS_DIR / "state.json"
 PAUSE_FLAG = OPS_DIR / "PAUSE_AUTORESTART"
 
@@ -70,7 +77,11 @@ def load_state() -> dict:
 
 
 def save_state(state: dict) -> None:
-    STATE_PATH.write_text(json.dumps(state, indent=2))
+    # Owner-only (0600): state reveals trading activity/restart history.
+    fd = os.open(STATE_PATH, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w") as f:
+        f.write(json.dumps(state, indent=2))
+    os.chmod(STATE_PATH, 0o600)
 
 
 def fresh_state_for_today() -> dict:
@@ -173,7 +184,8 @@ def token_is_fresh() -> bool:
 
 def attempt_restart() -> None:
     log_file = BOT_DIR / "logs" / "live_restart_stdout.log"
-    with log_file.open("a") as out:
+    fd = os.open(log_file, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+    with os.fdopen(fd, "a") as out:
         proc = subprocess.Popen(
             [str(VENV_PYTHON), "main.py", "--mode", "live"],
             cwd=str(BOT_DIR),
@@ -203,6 +215,7 @@ def run_daily_report() -> None:
 
 
 def main() -> None:
+    os.umask(0o077)  # anything this script creates is owner-only
     state = load_state()
     if state.get("date") != today_str():
         state = fresh_state_for_today()

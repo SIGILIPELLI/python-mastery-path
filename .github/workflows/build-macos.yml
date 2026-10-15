@@ -1,0 +1,38 @@
+name: Build macOS app
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "mobile-app/**"
+      - ".github/workflows/build-macos.yml"
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: mobile-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build macos --release
+      - name: Package .app and .dmg
+        run: |
+          APP="build/macos/Build/Products/Release/quiz_academy.app"
+          test -d "$APP"
+          ditto -c -k --sequesterRsrc --keepParent "$APP" QuizAcademy-macos.zip
+          hdiutil create -volname "Quiz Academy" -srcfolder "$APP" -ov -format UDZO QuizAcademy-macos.dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuizAcademy-macos
+          path: |
+            mobile-app/QuizAcademy-macos.zip
+            mobile-app/QuizAcademy-macos.dmg

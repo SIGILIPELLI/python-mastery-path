@@ -1,13 +1,24 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter/services.dart' show rootBundle;
 import 'models.dart';
 
 /// Base URL the rendered lesson videos are served from.
 ///
-/// 10.0.2.2 is the Android emulator's alias for the host machine's
-/// localhost, matching the local dev server started for `video-studio/output/renders`.
-/// Swap this for a real hosted URL once the videos are published publicly.
-const String videoBaseUrl = 'http://10.0.2.2:8000';
+/// Override at build/run time with
+/// `--dart-define=VIDEO_BASE_URL=https://example.com/videos`.
+/// Defaults to the local dev server serving `video-studio/output/renders`
+/// (`python3 -m http.server 8000`); the Android emulator reaches the host
+/// machine via 10.0.2.2, every other platform via localhost.
+const String _videoBaseUrlOverride = String.fromEnvironment('VIDEO_BASE_URL');
+
+String get videoBaseUrl {
+  if (_videoBaseUrlOverride.isNotEmpty) return _videoBaseUrlOverride;
+  final host = (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)
+      ? '10.0.2.2'
+      : 'localhost';
+  return 'http://$host:8000';
+}
 
 class ContentRepository {
   ContentManifest? _cached;

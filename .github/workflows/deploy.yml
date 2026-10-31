@@ -17,5 +17,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - run: pip install mkdocs-material pymdown-extensions
-      - run: mkdocs gh-deploy --force
+      - run: pip install mkdocs-material pymdown-extensions ghp-import
+      - run: mkdocs build
+      - run: mkdocs build
+        working-directory: vector-databases-mastery-path
+      - run: ghp-import -p -f -m "Deploy site (main + vector-databases-mastery-path)" site

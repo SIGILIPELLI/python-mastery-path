@@ -1,0 +1,111 @@
+site_name: Vector Databases Mastery Path
+site_description: A structured, module-wise Vector Databases training program from entry level to master level.
+site_url: https://sigilipelli.github.io/python-mastery-path/vector-databases-mastery-path/
+repo_url: https://github.com/sigilipelli/python-mastery-path
+repo_name: python-mastery-path
+edit_uri: edit/main/vector-databases-mastery-path/docs/
+site_dir: ../site/vector-databases-mastery-path
+
+theme:
+  name: material
+  favicon: assets/favicon.svg
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/progress-tracker.css
+
+extra_javascript:
+  - javascripts/progress-tracker.js
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - License: license.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · What Are Embeddings & Why Vector Search": level-1/01-embeddings-intro.md
+      - "02 · Setup: Python, NumPy & Your First Vectors": level-1/02-setup-numpy.md
+      - "03 · Distance Metrics (Cosine, Euclidean, Dot Product)": level-1/03-distance-metrics.md
+      - "04 · Brute-Force Similarity Search": level-1/04-brute-force-search.md
+      - "05 · Generating Real Embeddings": level-1/05-generating-embeddings.md
+      - "06 · Intro to Approximate Nearest Neighbor Search": level-1/06-ann-intro.md
+      - "07 · Your First Vector DB: Chroma": level-1/07-chroma-basics.md
+      - "08 · Indexing & Querying Basics": level-1/08-indexing-querying.md
+      - "09 · Metadata Filtering": level-1/09-metadata-filtering.md
+      - "10 · Project — Semantic Search CLI": level-1/10-project-semantic-search-cli.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Pinecone Fundamentals": level-2/01-pinecone-fundamentals.md
+      - "02 · Weaviate: Schemas & Hybrid Search": level-2/02-weaviate-hybrid-search.md
+      - "03 · Qdrant: Collections & Payloads": level-2/03-qdrant-collections.md
+      - "04 · pgvector: Vectors Inside PostgreSQL": level-2/04-pgvector.md
+      - "05 · How HNSW Actually Works": level-2/05-hnsw-explained.md
+      - "06 · IVF & Product Quantization": level-2/06-ivf-product-quantization.md
+      - "07 · Choosing the Right Index": level-2/07-choosing-index.md
+      - "08 · Batch Upserts & Data Pipelines": level-2/08-batch-upserts-pipelines.md
+      - "09 · Namespaces, Sharding & Multi-Tenancy": level-2/09-namespaces-sharding.md
+      - "10 · Project — Multi-Source RAG Retrieval Service": level-2/10-project-rag-retrieval-service.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Hybrid Search — Dense + Sparse (BM25)": level-3/01-hybrid-dense-sparse.md
+      - "02 · Re-ranking with Cross-Encoders": level-3/02-reranking-cross-encoders.md
+      - "03 · Chunking Strategies for Retrieval Quality": level-3/03-chunking-strategies.md
+      - "04 · Embedding Model Selection & Fine-Tuning Basics": level-3/04-embedding-model-selection.md
+      - "05 · Benchmarking & Performance Tuning": level-3/05-benchmarking-performance.md
+      - "06 · Caching & Latency Optimization": level-3/06-caching-latency.md
+      - "07 · Monitoring & Observability for Vector Search": level-3/07-monitoring-observability.md
+      - "08 · Updates, Deletes & Consistency": level-3/08-updates-deletes-consistency.md
+      - "09 · Cost Optimization at Scale": level-3/09-cost-optimization.md
+      - "10 · Project — Benchmark & Optimize a RAG Pipeline": level-3/10-project-benchmark-rag.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Advanced RAG Architectures": level-4/01-advanced-rag-architectures.md
+      - "02 · Evaluating Retrieval Quality (Recall@K, MRR, NDCG)": level-4/02-evaluating-retrieval.md
+      - "03 · Security & Access Control for Vector Data": level-4/03-security-access-control.md
+      - "04 · Multi-Modal Vector Search": level-4/04-multimodal-search.md
+      - "05 · Vector DB Migration Strategies": level-4/05-migration-strategies.md
+      - "06 · High Availability & Disaster Recovery": level-4/06-ha-disaster-recovery.md
+      - "07 · Building a Vector DB Abstraction Layer": level-4/07-abstraction-layer.md
+      - "08 · Cost-Performance Tradeoffs at Enterprise Scale": level-4/08-cost-performance-tradeoffs.md
+      - "09 · Emerging Trends — Matryoshka & Binary Quantization": level-4/09-emerging-trends.md
+      - "10 · Capstone Project — Production-Grade RAG Platform": level-4/10-capstone-rag-platform.md

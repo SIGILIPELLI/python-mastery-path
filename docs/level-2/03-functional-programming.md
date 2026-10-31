@@ -2,9 +2,6 @@
 description: "Functional Programming — A function in Python is just another value: it can be assigned to a variable, stored in a data structure, or passed as an…"
 ---
 
----
-description: "Functional Programming — A function in Python is just another value: it can be assigned to a variable, stored in a data structure, or passed as an…"---
-
 # 03 · Functional Programming
 
 ## 🎥 Video walkthrough

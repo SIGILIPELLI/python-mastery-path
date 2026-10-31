@@ -2,9 +2,6 @@
 description: "Variables, Data Types & Operators — Python variables are just names bound to objects — no type declaration needed."
 ---
 
----
-description: "Variables, Data Types & Operators — Python variables are just names bound to objects — no type declaration needed."---
-
 # 02 · Variables, Data Types & Operators
 
 ## Variables

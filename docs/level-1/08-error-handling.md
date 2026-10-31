@@ -2,9 +2,6 @@
 description: "Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs."
 ---
 
----
-description: "Error Handling Basics — Always catch the narrowest exception type you can — a bare except: hides bugs."---
-
 # 08 · Error Handling Basics
 
 ## try / except

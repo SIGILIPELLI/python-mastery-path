@@ -2,9 +2,6 @@
 description: "Strings & Formatting — Write a function slugify(title: str) -> str that converts 'Hello, World! ' into 'hello-world' — lowercase, punctuation stripped…"
 ---
 
----
-description: "Strings & Formatting — Write a function slugify(title: str) -> str that converts 'Hello, World! ' into 'hello-world' — lowercase, punctuation stripped…"---
-
 # 06 · Strings & Formatting
 
 ## String basics

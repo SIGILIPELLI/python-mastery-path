@@ -2,9 +2,6 @@
 description: "Setup & First Program — if __name__ == '__main__': guards code so it only runs when the file is executed directly, not when it's imported by another…"
 ---
 
----
-description: "Setup & First Program — if __name__ == '__main__': guards code so it only runs when the file is executed directly, not when it's imported by another…"---
-
 # 01 · Setup & First Program
 
 ## Install Python

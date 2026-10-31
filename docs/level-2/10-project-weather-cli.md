@@ -2,9 +2,6 @@
 description: "Project — Weather/Data CLI — Splitting network calls (client.py) from parsing/formatting (report.py) keeps the parsing logic testable without ever hitting…"
 ---
 
----
-description: "Project — Weather/Data CLI — Splitting network calls (client.py) from parsing/formatting (report.py) keeps the parsing logic testable without ever hitting…"---
-
 # 10 · Project — Weather/Data CLI
 
 ## 🎥 Video walkthrough

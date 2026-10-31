@@ -2,9 +2,6 @@
 description: "Data Formats (CSV/JSON/XML) — Always pass newline='' when opening files for csv — it prevents extra blank lines on some platforms."
 ---
 
----
-description: "Data Formats (CSV/JSON/XML) — Always pass newline='' when opening files for csv — it prevents extra blank lines on some platforms."---
-
 # 05 · Data Formats (CSV/JSON/XML)
 
 ## 🎥 Video walkthrough

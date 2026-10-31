@@ -2,9 +2,6 @@
 description: "File I/O Basics — Always use with — it guarantees the file is closed even if an error occurs."
 ---
 
----
-description: "File I/O Basics — Always use with — it guarantees the file is closed even if an error occurs."---
-
 # 07 · File I/O Basics
 
 ## Writing and reading text files

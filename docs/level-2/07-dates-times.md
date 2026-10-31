@@ -2,9 +2,6 @@
 description: "Dates & Times — timedelta objects support arithmetic (+, -) and comparisons directly with datetime/date objects."
 ---
 
----
-description: "Dates & Times — timedelta objects support arithmetic (+, -) and comparisons directly with datetime/date objects."---
-
 # 07 · Dates & Times
 
 ## 🎥 Video walkthrough

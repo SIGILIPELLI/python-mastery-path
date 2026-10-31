@@ -2,9 +2,6 @@
 description: "Project — CLI To-Do App — A small end-to-end project combining everything from Level 1: functions, data structures, strings, file I/O, error handling, and…"
 ---
 
----
-description: "Project — CLI To-Do App — A small end-to-end project combining everything from Level 1: functions, data structures, strings, file I/O, error handling, and…"---
-
 # 10 · Project — CLI To-Do App
 
 A small end-to-end project combining everything from Level 1: functions, data

@@ -2,9 +2,6 @@
 description: "Modules, Packages & pip — __init__.py is simply the code that runs when a package is first imported. pip install requests downloads a wheel and unpacks it…"
 ---
 
----
-description: "Modules, Packages & pip — __init__.py is simply the code that runs when a package is first imported. pip install requests downloads a wheel and unpacks it…"---
-
 # 09 · Modules, Packages & pip
 
 ## Importing from the standard library

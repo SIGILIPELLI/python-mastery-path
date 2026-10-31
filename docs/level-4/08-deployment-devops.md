@@ -2,9 +2,6 @@
 description: "Deployment & DevOps — Writing an application is only part of the job — it needs to run reliably somewhere other than your laptop. This module covers…"
 ---
 
----
-description: "Deployment & DevOps — Writing an application is only part of the job — it needs to run reliably somewhere other than your laptop. This module covers…"---
-
 # 08 · Deployment & DevOps
 
 Writing an application is only part of the job — it needs to run reliably

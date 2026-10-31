@@ -2,9 +2,6 @@
 description: "Databases (SQLite & SQLAlchemy) — Never build SQL with an f-string or %-formatting when values come from user input — always use ? placeholders, which…"
 ---
 
----
-description: "Databases (SQLite & SQLAlchemy) — Never build SQL with an f-string or %-formatting when values come from user input — always use ? placeholders, which…"---
-
 # 06 · Databases (SQLite & SQLAlchemy)
 
 ## 🎥 Video walkthrough

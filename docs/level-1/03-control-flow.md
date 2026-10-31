@@ -2,9 +2,6 @@
 description: "Control Flow — Write a program that prints FizzBuzz for numbers 1–30: multiples of 3 print 'Fizz', multiples of 5 print 'Buzz', multiples of both print…"
 ---
 
----
-description: "Control Flow — Write a program that prints FizzBuzz for numbers 1–30: multiples of 3 print 'Fizz', multiples of 5 print 'Buzz', multiples of both print…"---
-
 # 03 · Control Flow
 
 ## if / elif / else

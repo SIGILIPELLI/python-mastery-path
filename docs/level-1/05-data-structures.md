@@ -2,9 +2,6 @@
 description: "Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…"
 ---
 
----
-description: "Core Data Structures — Everything hinges on hashing: dict/set keys must be hashable (implement __hash__ and not mutate in a way that changes it), which is…"---
-
 # 05 · Core Data Structures
 
 ## Lists — ordered, mutable

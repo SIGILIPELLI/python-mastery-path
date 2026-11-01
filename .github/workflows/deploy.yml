@@ -21,4 +21,6 @@ jobs:
       - run: mkdocs build
       - run: mkdocs build
         working-directory: vector-databases-mastery-path
-      - run: ghp-import -p -f -m "Deploy site (main + vector-databases-mastery-path)" site
+      - run: mkdocs build
+        working-directory: mcp-mastery-path
+      - run: ghp-import -p -f -m "Deploy site (main + vector-databases-mastery-path + mcp-mastery-path)" site

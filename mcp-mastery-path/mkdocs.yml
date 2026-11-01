@@ -1,0 +1,111 @@
+site_name: MCP Mastery Path
+site_description: A structured, module-wise Model Context Protocol (MCP) training program from entry level to master level.
+site_url: https://sigilipelli.github.io/python-mastery-path/mcp-mastery-path/
+repo_url: https://github.com/sigilipelli/python-mastery-path
+repo_name: python-mastery-path
+edit_uri: edit/main/mcp-mastery-path/docs/
+site_dir: ../site/mcp-mastery-path
+
+theme:
+  name: material
+  favicon: assets/favicon.svg
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/progress-tracker.css
+
+extra_javascript:
+  - javascripts/progress-tracker.js
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - License: license.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · What Is MCP & Why It Exists": level-1/01-what-is-mcp.md
+      - "02 · JSON-RPC 2.0: The Wire Protocol Underneath": level-1/02-json-rpc-basics.md
+      - "03 · MCP Architecture: Hosts, Clients & Servers": level-1/03-architecture-hosts-clients-servers.md
+      - "04 · Setup: Python SDK & Your First Server": level-1/04-setup-python-sdk.md
+      - "05 · Tools: Exposing Functions to an LLM": level-1/05-tools-basics.md
+      - "06 · Resources: Exposing Data to an LLM": level-1/06-resources-basics.md
+      - "07 · Prompts: Reusable Prompt Templates": level-1/07-prompts-basics.md
+      - "08 · The stdio Transport & Local Servers": level-1/08-stdio-transport.md
+      - "09 · Connecting Your Server to Claude Desktop": level-1/09-claude-desktop-integration.md
+      - "10 · Project — A Local Notes/Tasks MCP Server": level-1/10-project-notes-server.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · The TypeScript SDK": level-2/01-typescript-sdk.md
+      - "02 · Streamable HTTP & SSE Transport": level-2/02-http-sse-transport.md
+      - "03 · Authentication & OAuth 2.1 for Remote Servers": level-2/03-auth-oauth.md
+      - "04 · Resource Templates & Dynamic URIs": level-2/04-resource-templates.md
+      - "05 · Sampling: Letting a Server Ask the LLM for Completions": level-2/05-sampling.md
+      - "06 · Structured Output & Tool Input Schemas": level-2/06-structured-output-schemas.md
+      - "07 · Wrapping a Real API: GitHub as an MCP Server": level-2/07-wrapping-github-api.md
+      - "08 · Testing MCP Servers (Inspector & Unit Tests)": level-2/08-testing-mcp-servers.md
+      - "09 · Deploying a Remote MCP Server": level-2/09-deploying-remote-server.md
+      - "10 · Project — A GitHub Issues MCP Server": level-2/10-project-github-issues-server.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Multi-Server Clients: Connecting to Several Servers at Once": level-3/01-multi-server-clients.md
+      - "02 · Tool Selection & Namespacing at Scale": level-3/02-tool-selection-namespacing.md
+      - "03 · Error Handling & Resilience Patterns": level-3/03-error-handling-resilience.md
+      - "04 · Streaming Responses & Progress Notifications": level-3/04-streaming-progress-notifications.md
+      - "05 · Roots: Scoping a Server to a Workspace": level-3/05-roots-workspace-scoping.md
+      - "06 · Security: Prompt Injection & Tool Poisoning Risks": level-3/06-security-prompt-injection.md
+      - "07 · Scopes, Permissions & Least Privilege": level-3/07-scopes-permissions.md
+      - "08 · Caching & Rate Limiting Tool Calls": level-3/08-caching-rate-limiting.md
+      - "09 · Observability: Logging & Tracing MCP Calls": level-3/09-observability-logging-tracing.md
+      - "10 · Project — Orchestrating 3 MCP Servers for a Research Agent": level-3/10-project-research-agent.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · MCP vs. Function Calling vs. LangChain Tools": level-4/01-mcp-vs-function-calling.md
+      - "02 · Building a Custom Transport": level-4/02-custom-transports.md
+      - "03 · MCP for RAG: Servers as a Retrieval Layer": level-4/03-mcp-for-rag.md
+      - "04 · Multi-Agent Systems Built on MCP": level-4/04-multi-agent-systems.md
+      - "05 · An Internal MCP Server Registry/Gateway": level-4/05-server-registry-gateway.md
+      - "06 · Versioning & Backward Compatibility": level-4/06-versioning-compatibility.md
+      - "07 · Scaling MCP Servers in Production": level-4/07-scaling-production.md
+      - "08 · Enterprise Governance: Audit Logs & Compliance": level-4/08-enterprise-governance-compliance.md
+      - "09 · Where MCP Is Headed": level-4/09-emerging-trends.md
+      - "10 · Capstone Project — A Production-Grade MCP Server Suite": level-4/10-capstone-mcp-server-suite.md

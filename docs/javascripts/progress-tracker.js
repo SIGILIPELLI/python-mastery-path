@@ -222,6 +222,7 @@
       grid.appendChild(tile);
     });
 
+    if (!grid.children.length) return;
     list.parentNode.replaceChild(grid, list);
   }
 

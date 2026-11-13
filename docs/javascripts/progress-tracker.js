@@ -17,6 +17,12 @@
   });
   SIGNATURE_IMG.src = SCRIPT_BASE + "assets/signature-vinod.png";
 
+  // The course's own root path, derived the same way as SCRIPT_BASE rather
+  // than a single-path-segment guess — correct for both a flat repo
+  // ("/repo/") and a course nested under another repo's Pages site
+  // ("/repo/nested-course/").
+  var COURSE_ROOT_PATH = SCRIPT_BASE ? new URL(SCRIPT_BASE, location.href).pathname : "/";
+
   function repoKey() {
     var m = location.pathname.match(/^\/([a-z0-9-]+)\//);
     return m ? m[1] : location.hostname;
@@ -377,6 +383,156 @@
     hero.parentNode.insertBefore(box, hero.nextSibling);
   }
 
+  // ---------- Final quiz ----------
+  var QUIZ_PASS_PCT = 70;
+  var QUIZ_KEY = "mp-quiz:" + REPO;
+
+  function quizStatus() {
+    try {
+      var raw = localStorage.getItem(QUIZ_KEY);
+      if (!raw) return { done: false };
+      var data = JSON.parse(raw);
+      var pct = Math.round((data.score / data.total) * 100);
+      return { done: true, passed: pct >= QUIZ_PASS_PCT, score: data.score, total: data.total, pct: pct };
+    } catch (e) { return { done: false }; }
+  }
+
+  function saveQuizResult(score, total) {
+    try {
+      localStorage.setItem(QUIZ_KEY, JSON.stringify({ score: score, total: total, timestamp: Date.now() }));
+    } catch (e) { /* storage disabled/blocked — fail silently */ }
+  }
+
+  function renderQuiz() {
+    var root = document.getElementById("mp-quiz-root");
+    var dataEl = document.getElementById("mp-quiz-data");
+    if (!root || !dataEl || root.dataset.mpQuiz) return;
+    root.dataset.mpQuiz = "1";
+
+    var questions;
+    try { questions = JSON.parse(dataEl.textContent); } catch (e) { return; }
+    if (!questions || !questions.length) return;
+
+    function renderSummary(result) {
+      root.innerHTML = "";
+      var box = document.createElement("div");
+      box.className = "mp-quiz-summary" + (result.passed ? " is-pass" : " is-fail");
+      box.innerHTML =
+        '<div class="mp-quiz-summary-score">' + result.pct + '%</div>' +
+        '<div class="mp-quiz-summary-text">' +
+        '<strong>' + (result.passed ? "You passed!" : "Not quite — try again.") + '</strong>' +
+        '<span>' + result.score + ' / ' + result.total + ' correct · ' + QUIZ_PASS_PCT + '% needed to pass</span>' +
+        '</div>' +
+        '<button type="button" class="mp-quiz-retake">Retake quiz</button>';
+      box.querySelector(".mp-quiz-retake").addEventListener("click", renderForm);
+      root.appendChild(box);
+    }
+
+    function renderForm() {
+      root.innerHTML = "";
+      var form = document.createElement("form");
+      form.className = "mp-quiz-form";
+      form.setAttribute("novalidate", "");
+
+      questions.forEach(function (q, qi) {
+        var fieldset = document.createElement("fieldset");
+        fieldset.className = "mp-quiz-question";
+        var legend = document.createElement("legend");
+        legend.textContent = (qi + 1) + ". " + q.question;
+        fieldset.appendChild(legend);
+
+        var optList = document.createElement("div");
+        optList.className = "mp-quiz-options";
+        q.options.forEach(function (opt, oi) {
+          var label = document.createElement("label");
+          label.className = "mp-quiz-option";
+          var input = document.createElement("input");
+          input.type = "radio";
+          input.name = "mp-quiz-q" + qi;
+          input.value = String(oi);
+          label.appendChild(input);
+          var span = document.createElement("span");
+          span.textContent = opt;
+          label.appendChild(span);
+          optList.appendChild(label);
+        });
+        fieldset.appendChild(optList);
+
+        var explain = document.createElement("div");
+        explain.className = "mp-quiz-explain";
+        explain.hidden = true;
+        fieldset.appendChild(explain);
+
+        form.appendChild(fieldset);
+      });
+
+      var warning = document.createElement("div");
+      warning.className = "mp-quiz-warning";
+      warning.hidden = true;
+      warning.textContent = "Please answer every question before submitting.";
+      form.appendChild(warning);
+
+      var submitBtn = document.createElement("button");
+      submitBtn.type = "submit";
+      submitBtn.className = "mp-quiz-submit";
+      submitBtn.textContent = "Submit quiz";
+      form.appendChild(submitBtn);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var answers = questions.map(function (q, qi) {
+          var checked = form.querySelector('input[name="mp-quiz-q' + qi + '"]:checked');
+          return checked ? parseInt(checked.value, 10) : -1;
+        });
+        if (answers.indexOf(-1) !== -1) {
+          warning.hidden = false;
+          return;
+        }
+        warning.hidden = true;
+
+        var score = 0;
+        questions.forEach(function (q, qi) {
+          var fieldset = form.querySelectorAll(".mp-quiz-question")[qi];
+          var options = fieldset.querySelectorAll(".mp-quiz-option");
+          var isCorrect = answers[qi] === q.correctIndex;
+          if (isCorrect) score++;
+          options.forEach(function (optEl, oi) {
+            optEl.querySelector("input").disabled = true;
+            if (oi === q.correctIndex) optEl.classList.add("is-correct");
+            else if (oi === answers[qi]) optEl.classList.add("is-wrong");
+          });
+          var explain = fieldset.querySelector(".mp-quiz-explain");
+          explain.textContent = (isCorrect ? "✓ Correct. " : "✗ ") + q.explanation;
+          explain.hidden = false;
+        });
+
+        submitBtn.hidden = true;
+        var total = questions.length;
+        var pct = Math.round((score / total) * 100);
+        saveQuizResult(score, total);
+
+        var resultBanner = document.createElement("div");
+        resultBanner.className = "mp-quiz-summary" + (pct >= QUIZ_PASS_PCT ? " is-pass" : " is-fail");
+        resultBanner.innerHTML =
+          '<div class="mp-quiz-summary-score">' + pct + '%</div>' +
+          '<div class="mp-quiz-summary-text">' +
+          '<strong>' + (pct >= QUIZ_PASS_PCT ? "You passed!" : "Not quite — try again.") + '</strong>' +
+          '<span>' + score + ' / ' + total + ' correct · ' + QUIZ_PASS_PCT + '% needed to pass</span>' +
+          '</div>' +
+          '<button type="button" class="mp-quiz-retake">Retake quiz</button>';
+        resultBanner.querySelector(".mp-quiz-retake").addEventListener("click", renderForm);
+        form.insertBefore(resultBanner, form.firstChild);
+        refreshAll();
+      });
+
+      root.appendChild(form);
+    }
+
+    var existing = quizStatus();
+    if (existing.done) renderSummary(existing);
+    else renderForm();
+  }
+
   // ---------- Certificates ----------
   var COURSE_NAME = (function () {
     var m = document.querySelector('meta[property="og:site_name"]');
@@ -427,11 +583,35 @@
       }
     }
 
-    // Course-wide certificate: on the homepage, once every level is done.
-    if (location.pathname.match(/^\/[a-z0-9-]+\/?$/) && course.levels && course.levelsDone >= course.levels) {
+    // Course-wide certificate: on the homepage, once every level is done
+    // (and, on courses with a final quiz, once it's been passed too).
+    // Compared against the course's own resolved root path rather than a
+    // single-path-segment guess, so this also works for a course nested
+    // under another repo's Pages site, not just a flat "/repo/" one.
+    var normalizePath = function (p) { return (p.replace(/\/index(\.html)?$/, "/").replace(/\/+$/, "")) || "/"; };
+    var isHomepage = normalizePath(location.pathname) === normalizePath(COURSE_ROOT_PATH);
+    if (isHomepage && course.levels && course.levelsDone >= course.levels) {
       var hero = document.querySelector(".mp-hero-lockup");
       var host = hero ? hero.parentNode : document.querySelector(".md-content__inner");
-      if (host) addCertificateButton(host, "course", null);
+      if (!host || host.dataset.mpCert) return;
+
+      var hasQuiz = !!document.querySelector('meta[name="mp-has-quiz"]');
+      var quiz = quizStatus();
+      if (!hasQuiz || quiz.passed) {
+        addCertificateButton(host, "course", null);
+      } else {
+        host.dataset.mpCert = "1";
+        var lockedCard = document.createElement("div");
+        lockedCard.className = "mp-cert-cta mp-cert-cta-locked";
+        lockedCard.innerHTML =
+          '<span class="mp-cert-cta-icon">🔒</span>' +
+          '<span class="mp-cert-cta-text">' +
+          '<strong>All lessons complete!</strong>' +
+          '<span>Pass the final quiz (' + QUIZ_PASS_PCT + '%+) to unlock your course completion certificate.</span>' +
+          '</span>' +
+          '<a class="mp-cert-cta-btn" href="quiz/">Take the quiz</a>';
+        host.appendChild(lockedCard);
+      }
     }
   }
 
@@ -557,12 +737,15 @@
     var today = new Date();
     var dateStr = today.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 
+    var quizResult = kind === "course" ? quizStatus() : { done: false };
+    var quizClause = quizResult.done ? ", scoring " + quizResult.pct + "% on the final quiz" : "";
+
     ctx.font = "400 24px Georgia, 'Times New Roman', serif";
     ctx.fillStyle = "#565f52";
     var line2 = (kind === "course"
       ? "has successfully completed the complete " + COURSE_NAME
       : "has successfully completed " + (levelName || "a level") + " of " + COURSE_NAME)
-      + " on " + dateStr + ". Their dedication and commitment to the learning"
+      + " on " + dateStr + quizClause + ". Their dedication and commitment to the learning"
       + " process are truly commendable.";
     wrapText(ctx, line2, W / 2, 565, W - 340, 34);
 
@@ -652,6 +835,7 @@
     enhanceLevelTable(stats);
     updateBars(stats);
     addHeroSummary(stats);
+    renderQuiz();
     checkCertificates(stats);
   }
 

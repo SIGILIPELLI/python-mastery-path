@@ -781,9 +781,13 @@
     ctx.fillText("F O U N D E R ,   M A S T E R Y   P A T H", W / 2, labelY + 24);
 
     var certId = "MP-" + REPO.replace("-mastery-path", "").toUpperCase().slice(0, 8) + "-" + Date.now().toString(36).toUpperCase();
+    // Built from the script's own resolved URL rather than
+    // "sigilipelli.github.io/" + REPO, which omitted the parent repo's
+    // path segment for a course nested under another repo's Pages site.
+    var displayUrl = (SCRIPT_BASE ? SCRIPT_BASE.replace(/^https?:\/\//, "") : "sigilipelli.github.io/" + REPO + "/").replace(/\/$/, "");
     ctx.font = "400 15px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
     ctx.fillStyle = "#9aa092";
-    ctx.fillText("Certificate ID: " + certId + "  ·  sigilipelli.github.io/" + REPO, W / 2, H - 70);
+    ctx.fillText("Certificate ID: " + certId + "  ·  " + displayUrl, W / 2, H - 70);
 
     var url = canvas.toDataURL("image/png");
     var a = document.createElement("a");

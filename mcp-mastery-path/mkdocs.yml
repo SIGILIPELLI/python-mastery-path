@@ -109,3 +109,4 @@ nav:
       - "08 · Enterprise Governance: Audit Logs & Compliance": level-4/08-enterprise-governance-compliance.md
       - "09 · Where MCP Is Headed": level-4/09-emerging-trends.md
       - "10 · Capstone Project — A Production-Grade MCP Server Suite": level-4/10-capstone-mcp-server-suite.md
+  - "🎯 Final Quiz": quiz.md

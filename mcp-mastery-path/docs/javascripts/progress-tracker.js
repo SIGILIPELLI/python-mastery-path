@@ -508,7 +508,10 @@
           explain.hidden = false;
         });
 
-        submitBtn.hidden = true;
+        // .mp-quiz-submit sets its own `display`, which as an author rule
+        // beats the [hidden] UA style regardless of specificity — an
+        // inline style is needed to actually hide it after grading.
+        submitBtn.style.display = "none";
         var total = questions.length;
         var pct = Math.round((score / total) * 100);
         saveQuizResult(score, total);

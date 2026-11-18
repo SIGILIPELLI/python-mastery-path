@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "\"Improve Engagement\" Is Not a Success Metric",
-  "description": "Every PRD needs its own success metric, and \"improve engagement\" isn't one. This Short walks the four-question checklist from the Product Manager Mastery Path: can you measure it with existing instrumentation, is there a clear baseline, does it plausibly move the North Star, and is the target specific and numeric? We anchor it with the lesson's worked example: a project-management SaaS whose weekly-digest-email initiative set the target \"+8 percentage points in week-3 team retention within 6 weeks of launch, against the current 35% baseline.\"\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n\n#Shorts",
+  "description": "Every PRD needs its own success metric, and \"improve engagement\" isn't one. This Short walks the four-question checklist from the Product Manager Mastery Path: can you measure it with existing instrumentation, is there a clear baseline, does it plausibly move the North Star, and is the target specific and numeric? We anchor it with the lesson's worked example: a project-management SaaS whose weekly-digest-email initiative set the target \"+8 percentage points in week-3 team retention within 6 weeks of launch, against the current 35% baseline.\"\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n\n#Shorts",
   "tags": ["product management", "product manager", "metrics", "KPIs", "success metrics", "PRD", "north star metric", "retention", "product analytics", "pm interview"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"],
   "beats": [
     {
       "narration": "Improve engagement is not a success metric. If nobody can check whether you actually hit it, it doesn't belong in your PRD.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"
       }
     }
   ]

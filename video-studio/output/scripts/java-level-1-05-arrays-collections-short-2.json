@@ -2,7 +2,7 @@
   "type": "short",
   "language": "java",
   "title": "The Java ArrayList.remove() overload trap",
-  "description": "List in Java has two remove methods: remove(Object) and remove(int index). With a list of Integer, calling list.remove(1) runs the by-index overload and deletes the element at position 1 -- not the value 1. This Short shows the unambiguous String-list case first, then the Integer gotcha and the Integer.valueOf fix.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/\n\n#Shorts",
+  "description": "List in Java has two remove methods: remove(Object) and remove(int index). With a list of Integer, calling list.remove(1) runs the by-index overload and deletes the element at position 1 -- not the value 1. This Short shows the unambiguous String-list case first, then the Integer gotcha and the Integer.valueOf fix.\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/\n\n#Shorts",
   "tags": [
     "java",
     "arraylist",
@@ -13,7 +13,7 @@
   ],
   "voice": "en-US-JennyNeural",
   "source_urls": [
-    "https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/"
+    "https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/"
   ],
   "beats": [
     {
@@ -55,7 +55,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/"
       }
     }
   ]

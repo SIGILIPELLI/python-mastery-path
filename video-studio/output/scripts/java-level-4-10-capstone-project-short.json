@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "This Java Class Won't Let You Cancel Twice",
-  "description": "Inside the Java Mastery Path capstone — a real Order Management REST API — the Order entity itself blocks a double-cancel, and a global exception handler turns that violation into the exact HTTP status a REST client expects. It's layered architecture in miniature: domain guards, service translation, and a global handler, each doing one job.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/\n\n#Shorts",
+  "description": "Inside the Java Mastery Path capstone — a real Order Management REST API — the Order entity itself blocks a double-cancel, and a global exception handler turns that violation into the exact HTTP status a REST client expects. It's layered architecture in miniature: domain guards, service translation, and a global handler, each doing one job.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-4/10-capstone-project/\n\n#Shorts",
   "tags": ["java", "spring boot", "rest api", "exception handling", "java mastery path", "programming tutorial", "backend development"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-4/10-capstone-project/"],
   "beats": [
     {
       "narration": "In this capstone Order Management API, you literally cannot cancel the same order twice. Here's the tiny bit of Java that enforces it.",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-4/10-capstone-project/"
       }
     }
   ]

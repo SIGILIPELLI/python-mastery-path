@@ -2,10 +2,10 @@
   "type": "short",
   "language": "javascript",
   "title": "Why a Promise always beats setTimeout(0) in JavaScript",
-  "description": "A zero millisecond setTimeout still runs after every line of synchronous code, and a Promise callback jumps ahead of it every time. This Short walks through the event loop's three lanes: sync code on the call stack, then the microtask queue, then the task queue. Once you can see those lanes, async JavaScript stops feeling like magic.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/\n\n#Shorts",
+  "description": "A zero millisecond setTimeout still runs after every line of synchronous code, and a Promise callback jumps ahead of it every time. This Short walks through the event loop's three lanes: sync code on the call stack, then the microtask queue, then the task queue. Once you can see those lanes, async JavaScript stops feeling like magic.\n\nSource lesson(s):\n- https://learnmasterypath.com/javascript-mastery-path/level-2/03-async-javascript-i/\n\n#Shorts",
   "tags": ["javascript", "async javascript", "event loop", "microtask queue", "setTimeout", "promises", "web development", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/"],
+  "source_urls": ["https://learnmasterypath.com/javascript-mastery-path/level-2/03-async-javascript-i/"],
   "beats": [
     {
       "narration": "This line has a zero millisecond timeout. So it fires immediately, right? Nope. It runs dead last, after every other line.",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/"
+        "subheading": "learnmasterypath.com/javascript-mastery-path/level-2/03-async-javascript-i/"
       }
     }
   ]

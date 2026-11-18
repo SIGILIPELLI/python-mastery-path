@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "A Product Manager's Real Week: One Support Ticket to a Buildable Plan",
-  "description": "What does a product manager actually do all week? We walk through one real Monday-to-Friday on a SaaS product's notifications area: reading support tickets, interviewing a churned user, writing a one-page problem statement, fighting for engineering time, and drafting the spec. Notice what never happens: no code, no final design, no sprint timeline. The PM's job is turning a noisy signal into a defined, prioritized, buildable plan.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
+  "description": "What does a product manager actually do all week? We walk through one real Monday-to-Friday on a SaaS product's notifications area: reading support tickets, interviewing a churned user, writing a one-page problem statement, fighting for engineering time, and drafting the spec. Notice what never happens: no code, no final design, no sprint timeline. The PM's job is turning a noisy signal into a defined, prioritized, buildable plan.\n\nSource lesson(s):\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
   "tags": ["product manager", "product management", "day in the life", "PM career", "tech careers", "SaaS", "product management tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/01-what-is-product-management/"],
   "beats": [
     {
       "narration": "Here's one real week for a product manager. No code, no mockups. Just turning a messy signal into a plan the team can build.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/01-what-is-product-management/"
       }
     }
   ]

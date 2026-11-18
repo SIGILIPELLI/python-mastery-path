@@ -2,13 +2,13 @@
   "type": "longform",
   "language": "python",
   "title": "Python Concurrency Explained: Threading, Multiprocessing & Asyncio (Full Guide)",
-  "description": "Python gives you three different ways to run work concurrently, and each one solves a different problem. This video walks through the full picture: why the Global Interpreter Lock makes threading great for I/O but useless for CPU-heavy code, why multiprocessing is the real fix for CPU-bound work, how asyncio's single-threaded event loop handles thousands of I/O tasks without any threads at all, and how Python 3.11's structured concurrency -- TaskGroup, except*, and asyncio.timeout -- makes async code safe to run in production instead of silently losing failed tasks. Every code example is pulled directly from the Python Mastery Path curriculum, in the order covered below.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/\n- https://sigilipelli.github.io/python-mastery-path/level-4/02-advanced-asyncio/\n\nSource lesson(s):\n- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/\n- https://sigilipelli.github.io/python-mastery-path/level-4/02-advanced-asyncio/",
+  "description": "Python gives you three different ways to run work concurrently, and each one solves a different problem. This video walks through the full picture: why the Global Interpreter Lock makes threading great for I/O but useless for CPU-heavy code, why multiprocessing is the real fix for CPU-bound work, how asyncio's single-threaded event loop handles thousands of I/O tasks without any threads at all, and how Python 3.11's structured concurrency -- TaskGroup, except*, and asyncio.timeout -- makes async code safe to run in production instead of silently losing failed tasks. Every code example is pulled directly from the Python Mastery Path curriculum, in the order covered below.\n\nLessons covered in this video:\n- https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- https://learnmasterypath.com/python-mastery-path/level-3/05-concurrency-asyncio/\n- https://learnmasterypath.com/python-mastery-path/level-4/02-advanced-asyncio/\n\nSource lesson(s):\n- https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- https://learnmasterypath.com/python-mastery-path/level-3/05-concurrency-asyncio/\n- https://learnmasterypath.com/python-mastery-path/level-4/02-advanced-asyncio/",
   "tags": ["python", "python concurrency", "threading", "multiprocessing", "asyncio", "python asyncio tutorial", "GIL", "python tutorial", "structured concurrency", "TaskGroup"],
   "voice": "en-US-JennyNeural",
   "source_urls": [
-    "https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/",
-    "https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/",
-    "https://sigilipelli.github.io/python-mastery-path/level-4/02-advanced-asyncio/"
+    "https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/",
+    "https://learnmasterypath.com/python-mastery-path/level-3/05-concurrency-asyncio/",
+    "https://learnmasterypath.com/python-mastery-path/level-4/02-advanced-asyncio/"
   ],
   "beats": [
     {
@@ -257,7 +257,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lessons + runnable code:",
-        "subheading": "sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/ | .../level-3/05-concurrency-asyncio/ | .../level-4/02-advanced-asyncio/"
+        "subheading": "learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/ | .../level-3/05-concurrency-asyncio/ | .../level-4/02-advanced-asyncio/"
       }
     }
   ]

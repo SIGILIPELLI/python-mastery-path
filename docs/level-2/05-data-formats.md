@@ -190,7 +190,7 @@ Python objects — they differ in what grammar they implement:
 
 ## 🔀 See this in another language
 
-- [PowerShell — 09 · Working with CSV/Excel Data](https://sigilipelli.github.io/powershell-mastery-path/level-2/09-csv-excel-data/)
+- [PowerShell — 09 · Working with CSV/Excel Data](https://learnmasterypath.com/powershell-mastery-path/level-2/09-csv-excel-data/)
 
 ## Exercise
 

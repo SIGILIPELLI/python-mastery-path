@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "Why Your User Story Isn't Actually \"Done\"",
-  "description": "A user story sounds finished the moment the template is filled in -- but without acceptance criteria, \"done\" is just a guess. This Short breaks down the Given/When/Then format for acceptance criteria, straight from the Writing Requirements lesson in the Product Manager Mastery Path, and why skipping it is where scope arguments quietly start.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
+  "description": "A user story sounds finished the moment the template is filled in -- but without acceptance criteria, \"done\" is just a guess. This Short breaks down the Given/When/Then format for acceptance criteria, straight from the Writing Requirements lesson in the Product Manager Mastery Path, and why skipping it is where scope arguments quietly start.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
   "tags": ["product manager", "product management", "user stories", "acceptance criteria", "PRD", "agile", "requirements gathering"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/"],
   "beats": [
     {
       "narration": "Your user story sounds finished. Template filled in, sounds good. But ask three people on your team what 'done' means, and you'll get three different answers.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/"
       }
     }
   ]

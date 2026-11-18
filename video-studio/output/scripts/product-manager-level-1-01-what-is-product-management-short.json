@@ -2,11 +2,11 @@
   "type": "short",
   "language": "product-manager",
   "title": "PM vs Project Manager vs Designer: The Real Difference",
-  "description": "Product Manager, Project Manager, and Designer get confused constantly — even by the companies hiring for them. Here's the one-line distinction for each role: who owns the what, the when, and the how it feels. Straight from the Product Management Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
+  "description": "Product Manager, Project Manager, and Designer get confused constantly — even by the companies hiring for them. Here's the one-line distinction for each role: who owns the what, the when, and the how it feels. Straight from the Product Management Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/01-what-is-product-management/\n\n#Shorts",
   "tags": ["product management", "product manager", "project manager", "PM vs project manager", "PM career", "product management basics", "career advice"],
   "voice": "en-US-JennyNeural",
   "source_urls": [
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/01-what-is-product-management/"
   ],
   "beats": [
     {
@@ -54,7 +54,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/01-what-is-product-management/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/01-what-is-product-management/"
       }
     }
   ]

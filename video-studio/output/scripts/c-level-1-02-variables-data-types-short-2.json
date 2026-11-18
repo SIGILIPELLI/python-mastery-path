@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "Why adding 1 in C can make your number go negative",
-  "description": "In C, integers have a fixed number of bits, so arithmetic that goes past the type's range wraps around silently instead of raising an error. This Short shows INT_MAX plus one flipping straight to the most negative int, why the compiler won't warn you at runtime, and why a wider or unsigned type only moves the boundary instead of fixing it. Pulled from the C Mastery Path Level 1 lesson on variables, data types and operators.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "description": "In C, integers have a fixed number of bits, so arithmetic that goes past the type's range wraps around silently instead of raising an error. This Short shows INT_MAX plus one flipping straight to the most negative int, why the compiler won't warn you at runtime, and why a wider or unsigned type only moves the boundary instead of fixing it. Pulled from the C Mastery Path Level 1 lesson on variables, data types and operators.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
   "tags": ["c", "c programming", "integer overflow", "int max", "undefined behavior", "data types", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/"],
   "beats": [
     {
       "narration": "Set a C int to its maximum value, then add one. No error. No bigger number. You get the most negative value the int can hold.",
@@ -48,7 +48,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/"
       }
     }
   ]

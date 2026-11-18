@@ -782,9 +782,9 @@
 
     var certId = "MP-" + REPO.replace("-mastery-path", "").toUpperCase().slice(0, 8) + "-" + Date.now().toString(36).toUpperCase();
     // Built from the script's own resolved URL rather than
-    // "sigilipelli.github.io/" + REPO, which omitted the parent repo's
+    // "learnmasterypath.com/" + REPO, which omitted the parent repo's
     // path segment for a course nested under another repo's Pages site.
-    var displayUrl = (SCRIPT_BASE ? SCRIPT_BASE.replace(/^https?:\/\//, "") : "sigilipelli.github.io/" + REPO + "/").replace(/\/$/, "");
+    var displayUrl = (SCRIPT_BASE ? SCRIPT_BASE.replace(/^https?:\/\//, "") : "learnmasterypath.com/" + REPO + "/").replace(/\/$/, "");
     ctx.font = "400 15px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
     ctx.fillStyle = "#9aa092";
     ctx.fillText("Certificate ID: " + certId + "  ·  " + displayUrl, W / 2, H - 70);

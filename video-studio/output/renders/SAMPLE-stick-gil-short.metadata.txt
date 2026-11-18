@@ -4,11 +4,11 @@ Description:
 STYLE SAMPLE -- stick-figure animation test. You added threading and got zero speedup. The Global Interpreter Lock is why, and multiprocessing is the fix.
 
 Source lesson:
-- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/
+- https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/
 
 #Shorts
 
 Tags: python, python tutorial, concurrency, threading, multiprocessing, gil
 
 Source lesson(s):
-- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/
+- https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/

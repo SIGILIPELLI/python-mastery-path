@@ -116,9 +116,9 @@ Disassemble an `if`/`else` with `dis.dis` and you'll see it:
 
 ## 🔀 See this in another language
 
-- [Java — Control Flow](https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/)
-- [Go — Control Flow](https://sigilipelli.github.io/go-mastery-path/level-1/03-control-flow/)
-- [Scala — Control Flow](https://sigilipelli.github.io/scala-mastery-path/level-1/03-control-flow/)
+- [Java — Control Flow](https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/)
+- [Go — Control Flow](https://learnmasterypath.com/go-mastery-path/level-1/03-control-flow/)
+- [Scala — Control Flow](https://learnmasterypath.com/scala-mastery-path/level-1/03-control-flow/)
 
 ## Exercise
 

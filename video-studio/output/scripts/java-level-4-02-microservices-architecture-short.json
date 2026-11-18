@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "One Java Annotation Stops Cascading Microservice Failures",
-  "description": "When a downstream microservice starts failing, hammering it with retries just makes things worse. Spring's circuit breaker annotation from Resilience4j trips once failures cross a threshold, skipping the network entirely and routing straight to a fallback -- giving the failing service room to recover. This is one pattern from the microservices architecture lesson in the Java Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/\n\n#Shorts",
+  "description": "When a downstream microservice starts failing, hammering it with retries just makes things worse. Spring's circuit breaker annotation from Resilience4j trips once failures cross a threshold, skipping the network entirely and routing straight to a fallback -- giving the failing service room to recover. This is one pattern from the microservices architecture lesson in the Java Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-4/02-microservices-architecture/\n\n#Shorts",
   "tags": ["java", "microservices", "circuit breaker", "resilience4j", "spring boot", "software architecture", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-4/02-microservices-architecture/"],
   "beats": [
     {
       "narration": "Picture a downstream service going down. Your app keeps calling it, again and again, burning threads while nothing comes back.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/02-microservices-architecture/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-4/02-microservices-architecture/"
       }
     }
   ]

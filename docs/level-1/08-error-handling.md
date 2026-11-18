@@ -111,9 +111,9 @@ occurred".
 
 ## 🔀 See this in another language
 
-- [Java — Exception Handling Basics](https://sigilipelli.github.io/java-mastery-path/level-1/08-exception-handling/)
-- [Go — Error Handling](https://sigilipelli.github.io/go-mastery-path/level-1/08-error-handling/)
-- [Scala — Pattern Matching Intro](https://sigilipelli.github.io/scala-mastery-path/level-1/08-pattern-matching-intro/)
+- [Java — Exception Handling Basics](https://learnmasterypath.com/java-mastery-path/level-1/08-exception-handling/)
+- [Go — Error Handling](https://learnmasterypath.com/go-mastery-path/level-1/08-error-handling/)
+- [Scala — Pattern Matching Intro](https://learnmasterypath.com/scala-mastery-path/level-1/08-pattern-matching-intro/)
 
 ## Exercise
 

@@ -111,9 +111,9 @@ different types.
 
 ## 🔀 See this in another language
 
-- [Java — Variables, Data Types & Operators](https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/)
-- [Go — Variables, Types & Operators](https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/)
-- [Scala — Variables & Types](https://sigilipelli.github.io/scala-mastery-path/level-1/02-variables-types/)
+- [Java — Variables, Data Types & Operators](https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/)
+- [Go — Variables, Types & Operators](https://learnmasterypath.com/go-mastery-path/level-1/02-variables-types-operators/)
+- [Scala — Variables & Types](https://learnmasterypath.com/scala-mastery-path/level-1/02-variables-types/)
 
 ## Exercise
 

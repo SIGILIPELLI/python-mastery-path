@@ -12,7 +12,7 @@ video to `video-studio/output/scripts/<slug>.json`. The render pipeline
   "description": "Full YouTube description text. Must end with a\n\nSource lesson(s):\n- <url>\n- <url>",
   "tags": ["python", "for loops", "programming tutorial"],
   "voice": "en-US-JennyNeural",     // female neural voice, warm/natural
-  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/"],
+  "source_urls": ["https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/"],
   "beats": [
     {
       "narration": "What one or two sentences the voice speaks during this beat. Written to be SAID ALOUD -- contractions, short clauses, no markdown.",
@@ -53,7 +53,7 @@ video to `video-studio/output/scripts/<slug>.json`. The render pipeline
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/"
+        "subheading": "learnmasterypath.com/python-mastery-path/level-1/03-control-flow/"
       }
     }
   ]

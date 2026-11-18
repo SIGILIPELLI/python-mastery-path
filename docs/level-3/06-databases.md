@@ -265,7 +265,7 @@ explicit `UPDATE` call, is enough to persist the change.
 
 ## 🔀 See this in another language
 
-- [Kotlin — 03 · Databases (Exposed/SQLite)](https://sigilipelli.github.io/kotlin-mastery-path/level-3/03-databases-exposed-sqlite/)
+- [Kotlin — 03 · Databases (Exposed/SQLite)](https://learnmasterypath.com/kotlin-mastery-path/level-3/03-databases-exposed-sqlite/)
 
 ## Exercise
 

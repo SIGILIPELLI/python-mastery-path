@@ -5,7 +5,7 @@ adds every already-published video to its matching playlist, sorted oldest
 first (roughly Level 1 -> Level 4 order).
 
 Classification source: each video's description ends with a
-"Source lesson(s): https://sigilipelli.github.io/<language>-mastery-path/..."
+"Source lesson(s): https://learnmasterypath.com/<language>-mastery-path/..."
 link (or, for Product Manager, a product-manager-path URL) -- that's the
 ground truth used to bucket videos, not the title.
 
@@ -60,17 +60,17 @@ LANG_MAP = {
 URL_RE = re.compile(r"sigilipelli\.github\.io/([a-z0-9\-]+)/")
 
 PLAYLIST_DESCRIPTIONS = {
-    "Python Mastery Path": "All Python Mastery Path videos from sigilipelli.github.io/python-mastery-path, in level order.",
-    "Java Mastery Path": "All Java Mastery Path videos from sigilipelli.github.io/java-mastery-path, in level order.",
-    "JavaScript Mastery Path": "All JavaScript Mastery Path videos from sigilipelli.github.io/javascript-mastery-path, in level order.",
-    "Bash/Shell Mastery Path": "All Bash/Shell Mastery Path videos from sigilipelli.github.io/shell-mastery-path, in level order.",
-    "C Mastery Path": "All C Mastery Path videos from sigilipelli.github.io/c-mastery-path, in level order.",
-    "C++ Mastery Path": "All C++ Mastery Path videos from sigilipelli.github.io/cpp-mastery-path, in level order.",
-    "Go Mastery Path": "All Go Mastery Path videos from sigilipelli.github.io/go-mastery-path, in level order.",
-    "SQL Mastery Path": "All SQL Mastery Path videos from sigilipelli.github.io/sql-mastery-path, in level order.",
-    "TypeScript Mastery Path": "All TypeScript Mastery Path videos from sigilipelli.github.io/typescript-mastery-path, in level order.",
-    "Ruby Mastery Path": "All Ruby Mastery Path videos from sigilipelli.github.io/ruby-mastery-path, in level order.",
-    "PHP Mastery Path": "All PHP Mastery Path videos from sigilipelli.github.io/php-mastery-path, in level order.",
+    "Python Mastery Path": "All Python Mastery Path videos from learnmasterypath.com/python-mastery-path, in level order.",
+    "Java Mastery Path": "All Java Mastery Path videos from learnmasterypath.com/java-mastery-path, in level order.",
+    "JavaScript Mastery Path": "All JavaScript Mastery Path videos from learnmasterypath.com/javascript-mastery-path, in level order.",
+    "Bash/Shell Mastery Path": "All Bash/Shell Mastery Path videos from learnmasterypath.com/shell-mastery-path, in level order.",
+    "C Mastery Path": "All C Mastery Path videos from learnmasterypath.com/c-mastery-path, in level order.",
+    "C++ Mastery Path": "All C++ Mastery Path videos from learnmasterypath.com/cpp-mastery-path, in level order.",
+    "Go Mastery Path": "All Go Mastery Path videos from learnmasterypath.com/go-mastery-path, in level order.",
+    "SQL Mastery Path": "All SQL Mastery Path videos from learnmasterypath.com/sql-mastery-path, in level order.",
+    "TypeScript Mastery Path": "All TypeScript Mastery Path videos from learnmasterypath.com/typescript-mastery-path, in level order.",
+    "Ruby Mastery Path": "All Ruby Mastery Path videos from learnmasterypath.com/ruby-mastery-path, in level order.",
+    "PHP Mastery Path": "All PHP Mastery Path videos from learnmasterypath.com/php-mastery-path, in level order.",
     "Product Manager Path": "All Product Manager Path videos, in level order.",
 }
 

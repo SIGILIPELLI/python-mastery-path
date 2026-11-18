@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "PM Pitfall: Sellers Weren't Churning Over a Bug",
-  "description": "Seven support tickets and a churn-exit interview all pointed at the same 'broken' feature -- but the real cause wasn't a bug, it was an undocumented delay nobody told users about. This is the pitfall hiding inside the sample scenario from the Product Manager Mastery Path's Level 1 capstone project: writing a complete PRD. Before you write a single requirement, your problem statement has to name the real problem -- and it's rarely the one users think they're reporting.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/\n\n#Shorts",
+  "description": "Seven support tickets and a churn-exit interview all pointed at the same 'broken' feature -- but the real cause wasn't a bug, it was an undocumented delay nobody told users about. This is the pitfall hiding inside the sample scenario from the Product Manager Mastery Path's Level 1 capstone project: writing a complete PRD. Before you write a single requirement, your problem statement has to name the real problem -- and it's rarely the one users think they're reporting.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/10-project-complete-prd/\n\n#Shorts",
   "tags": ["product management", "PRD", "product manager tutorial", "problem discovery", "customer churn", "product management shorts", "how to write a PRD"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/10-project-complete-prd/"],
   "beats": [
     {
       "narration": "Seven support tickets and one churn interview, all pointing at the same 'bug.'",
@@ -25,7 +25,7 @@
     },
     {
       "narration": "The full complete-PRD capstone project, sample scenario and all, is one link away.",
-      "display": { "kind": "text", "heading": "Full project + source:", "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/" }
+      "display": { "kind": "text", "heading": "Full project + source:", "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/10-project-complete-prd/" }
     }
   ]
 }

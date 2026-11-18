@@ -2,10 +2,10 @@
   "type": "longform",
   "language": "java",
   "title": "Build an Order Management API in Spring Boot — Full Java Capstone Walkthrough (JPA, Postgres, Docker, CI)",
-  "description": "This is the Java Mastery Path capstone, built stage by stage: an Order Management Service — a Spring Boot REST API for creating, confirming, and cancelling orders, backed by JPA and Postgres. We go through the project layout and Maven setup, a validated JPA entity with its own state-transition guards, request and response DTOs that keep the entity off the wire, a Spring Data repository, a centralized @RestControllerAdvice exception handler, the service and controller layers, a Mockito unit test alongside a full @SpringBootTest + MockMvc integration test, and finally a multi-stage Dockerfile, a docker-compose.yml running the app against real Postgres, and a two-job GitHub Actions CI pipeline that tests before it ever builds an image. Every line of code shown is pulled directly from the capstone lesson — nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/",
+  "description": "This is the Java Mastery Path capstone, built stage by stage: an Order Management Service — a Spring Boot REST API for creating, confirming, and cancelling orders, backed by JPA and Postgres. We go through the project layout and Maven setup, a validated JPA entity with its own state-transition guards, request and response DTOs that keep the entity off the wire, a Spring Data repository, a centralized @RestControllerAdvice exception handler, the service and controller layers, a Mockito unit test alongside a full @SpringBootTest + MockMvc integration test, and finally a multi-stage Dockerfile, a docker-compose.yml running the app against real Postgres, and a two-job GitHub Actions CI pipeline that tests before it ever builds an image. Every line of code shown is pulled directly from the capstone lesson — nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://learnmasterypath.com/java-mastery-path/level-4/10-capstone-project/",
   "tags": ["java", "spring boot", "jpa hibernate", "rest api tutorial", "postgresql", "mockito", "mockmvc testing", "docker", "github actions ci/cd", "programming tutorial", "backend development", "microservices"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-4/10-capstone-project/"],
   "beats": [
     {
       "narration": "By the time you reach the capstone of the Java Mastery Path, you've covered Spring's ecosystem, layered architecture, testing at scale, and production concerns like observability and caching. This project pulls all of it together into one real service: an Order Management API built with Spring Boot, JPA, and Postgres, and we're building it stage by stage, exactly the way you'd build it on the job.",
@@ -292,7 +292,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/10-capstone-project/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-4/10-capstone-project/"
       }
     }
   ]

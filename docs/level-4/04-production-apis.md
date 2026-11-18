@@ -285,7 +285,7 @@ table, not any kind of runtime branching inside one shared handler.
 
 ## 🔀 See this in another language
 
-- [Go — 04 · Production-Grade APIs](https://sigilipelli.github.io/go-mastery-path/level-4/04-production-grade-apis/)
+- [Go — 04 · Production-Grade APIs](https://learnmasterypath.com/go-mastery-path/level-4/04-production-grade-apis/)
 
 ## Exercise
 

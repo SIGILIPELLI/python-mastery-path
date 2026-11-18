@@ -2,7 +2,7 @@
   "type": "longform",
   "language": "c",
   "title": "Build a Multi-File CLI Contact Book in C \u2014 Full Project Walkthrough, Header to Binary",
-  "description": "This is the Level 1 project of the C Mastery Path, built end to end as a single narrative: a command-line contact book that adds contacts, lists them, searches by name, and saves everything to a text file so your data survives between runs. We design the shared header first \u2014 include guard, size constants, and the Contact struct \u2014 then write the implementation file function by function (load, save, add, list, find), then the main.c menu loop that reads keyboard input safely with fgets and strcspn, then compile all three files into one binary with gcc, and finish with the lesson's own three stretch goals: delete, sort, and input validation. Every line of code shown is pulled verbatim from the lesson \u2014 nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/",
+  "description": "This is the Level 1 project of the C Mastery Path, built end to end as a single narrative: a command-line contact book that adds contacts, lists them, searches by name, and saves everything to a text file so your data survives between runs. We design the shared header first \u2014 include guard, size constants, and the Contact struct \u2014 then write the implementation file function by function (load, save, add, list, find), then the main.c menu loop that reads keyboard input safely with fgets and strcspn, then compile all three files into one binary with gcc, and finish with the lesson's own three stretch goals: delete, sort, and input validation. Every line of code shown is pulled verbatim from the lesson \u2014 nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://learnmasterypath.com/c-mastery-path/level-1/10-project-contact-book/",
   "tags": [
     "c",
     "c programming",
@@ -18,7 +18,7 @@
     "beginner c"
   ],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/10-project-contact-book/"],
   "beats": [
     {
       "narration": "C's Level 1 gave you variables, pointers, structs, and file input and output one topic at a time. This video spends all ten minutes on the one module that ties them together \u2014 the command-line contact book project \u2014 built from an empty folder to a running program, one file at a time, exactly as the lesson lays it out.",
@@ -259,7 +259,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/10-project-contact-book/"
       }
     }
   ]

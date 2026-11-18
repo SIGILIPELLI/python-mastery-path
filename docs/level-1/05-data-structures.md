@@ -100,9 +100,9 @@ is a required invariant — break it and lookups silently fail.
 
 ## 🔀 See this in another language
 
-- [Java — Arrays & Basic Collections](https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/)
-- [Go — Arrays, Slices & Maps](https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/)
-- [Scala — Collections Basics](https://sigilipelli.github.io/scala-mastery-path/level-1/05-collections-basics/)
+- [Java — Arrays & Basic Collections](https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/)
+- [Go — Arrays, Slices & Maps](https://learnmasterypath.com/go-mastery-path/level-1/05-arrays-slices-maps/)
+- [Scala — Collections Basics](https://learnmasterypath.com/scala-mastery-path/level-1/05-collections-basics/)
 
 ## Exercise
 

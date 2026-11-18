@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Spring Boot Queries With Zero SQL (It's Not Magic)",
-  "description": "Spring Data JPA can generate a real database query just from how you name a Java method — no SQL, no annotations. We break down how findByEmailAndActiveTrue and its siblings get parsed into a real query at startup, and why a typo fails the build instead of hiding in production.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/\n\n#Shorts",
+  "description": "Spring Data JPA can generate a real database query just from how you name a Java method — no SQL, no annotations. We break down how findByEmailAndActiveTrue and its siblings get parsed into a real query at startup, and why a typo fails the build instead of hiding in production.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-4/01-spring-ecosystem-production/\n\n#Shorts",
   "tags": ["java", "spring boot", "spring data jpa", "programming tutorial", "backend development", "java mastery path"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-4/01-spring-ecosystem-production/"],
   "beats": [
     {
       "narration": "You can write a real Spring Boot database query without writing a single line of SQL — just by naming a Java method correctly.",
@@ -36,7 +36,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/01-spring-ecosystem-production/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-4/01-spring-ecosystem-production/"
       }
     }
   ]

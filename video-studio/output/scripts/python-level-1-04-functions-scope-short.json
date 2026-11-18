@@ -2,10 +2,10 @@
   "type": "short",
   "language": "python",
   "title": "Python Scope: Same Variable, 3 Different Values",
-  "description": "One variable name, three totally different printed values -- and it's not a bug. This Short breaks down Python's LEGB scope rule (Local, Enclosing, Global, Built-in) and shows why you need the `global` keyword if you actually want to change an outer variable from inside a function.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
+  "description": "One variable name, three totally different printed values -- and it's not a bug. This Short breaks down Python's LEGB scope rule (Local, Enclosing, Global, Built-in) and shows why you need the `global` keyword if you actually want to change an outer variable from inside a function.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
   "tags": ["python", "python scope", "LEGB", "global keyword", "programming tutorial", "python functions"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/"],
+  "source_urls": ["https://learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/"],
   "beats": [
     {
       "narration": "Same variable name, three completely different values printed in the same run. This is Python's LEGB scope rule at work.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/"
+        "subheading": "learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/"
       }
     }
   ]

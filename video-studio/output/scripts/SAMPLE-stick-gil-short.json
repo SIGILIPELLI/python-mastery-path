@@ -2,10 +2,10 @@
   "type": "short",
   "language": "python",
   "title": "Why adding threads didn't speed up your Python",
-  "description": "STYLE SAMPLE -- stick-figure animation test. You added threading and got zero speedup. The Global Interpreter Lock is why, and multiprocessing is the fix.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n\n#Shorts",
+  "description": "STYLE SAMPLE -- stick-figure animation test. You added threading and got zero speedup. The Global Interpreter Lock is why, and multiprocessing is the fix.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n\n#Shorts",
   "tags": ["python", "python tutorial", "concurrency", "threading", "multiprocessing", "gil"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/"],
+  "source_urls": ["https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/"],
   "beats": [
     {
       "narration": "You added threading to make your Python code faster, and it ran exactly as slowly as before. Here's why that happens.",
@@ -65,7 +65,7 @@
         "kind": "stick",
         "scene": "celebrate",
         "heading": "threading → I/O · multiprocessing → CPU",
-        "subheading": "sigilipelli.github.io/python-mastery-path/level-3/"
+        "subheading": "learnmasterypath.com/python-mastery-path/level-3/"
       }
     }
   ]

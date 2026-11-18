@@ -2,10 +2,10 @@
   "type": "short",
   "language": "javascript",
   "title": "JavaScript classes are just functions in disguise",
-  "description": "JavaScript objects link to a prototype and look up missing properties there — that's why methods \"just work\" on objects you never defined them on. Constructor functions put shared methods on .prototype so every instance points at one function in memory, and the class keyword is syntactic sugar over that exact same mechanism. Ask the engine what a class is and it answers: function.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/\n\n#Shorts",
+  "description": "JavaScript objects link to a prototype and look up missing properties there — that's why methods \"just work\" on objects you never defined them on. Constructor functions put shared methods on .prototype so every instance points at one function in memory, and the class keyword is syntactic sugar over that exact same mechanism. Ask the engine what a class is and it answers: function.\n\nSource lesson(s):\n- https://learnmasterypath.com/javascript-mastery-path/level-2/02-prototypes-classes/\n\n#Shorts",
   "tags": ["javascript", "prototypes", "javascript classes", "prototype chain", "object.create", "constructor functions", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/"],
+  "source_urls": ["https://learnmasterypath.com/javascript-mastery-path/level-2/02-prototypes-classes/"],
   "beats": [
     {
       "narration": "You can call a method on an object you never defined it on, and JavaScript just finds it. That's the prototype chain.",
@@ -56,7 +56,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/"
+        "subheading": "learnmasterypath.com/javascript-mastery-path/level-2/02-prototypes-classes/"
       }
     }
   ]

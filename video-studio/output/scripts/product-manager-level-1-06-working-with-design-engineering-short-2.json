@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "The Design Review Order Most PMs Get Backwards",
-  "description": "Design reviews go wrong two ways: the PM rubber-stamps everything, or relitigates the problem statement at the mockup stage -- way too late, and it wastes the designer's work. This Short breaks down the fixed order that catches real gaps instead: problem fit, acceptance criteria, edge cases, scope creep -- taste last.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n\n#Shorts",
+  "description": "Design reviews go wrong two ways: the PM rubber-stamps everything, or relitigates the problem statement at the mockup stage -- way too late, and it wastes the designer's work. This Short breaks down the fixed order that catches real gaps instead: problem fit, acceptance criteria, edge cases, scope creep -- taste last.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n\n#Shorts",
   "tags": ["product management", "design review", "PM tips", "product manager mastery path", "acceptance criteria", "UX"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/06-working-with-design-engineering/"],
   "beats": [
     {
       "narration": "Ever sat through a design review that turned into an argument about button colors? That's not feedback -- that's the review happening in the wrong order.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/06-working-with-design-engineering/"
       }
     }
   ]

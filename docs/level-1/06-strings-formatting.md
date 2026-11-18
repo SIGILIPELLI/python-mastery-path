@@ -93,9 +93,9 @@ the file is compiled.
 
 ## 🔀 See this in another language
 
-- [Java — Strings & String Formatting](https://sigilipelli.github.io/java-mastery-path/level-1/06-strings-formatting/)
-- [Go — Structs](https://sigilipelli.github.io/go-mastery-path/level-1/06-structs/)
-- [Scala — Classes & Objects Basics](https://sigilipelli.github.io/scala-mastery-path/level-1/06-classes-objects/)
+- [Java — Strings & String Formatting](https://learnmasterypath.com/java-mastery-path/level-1/06-strings-formatting/)
+- [Go — Structs](https://learnmasterypath.com/go-mastery-path/level-1/06-structs/)
+- [Scala — Classes & Objects Basics](https://learnmasterypath.com/scala-mastery-path/level-1/06-classes-objects/)
 
 ## Exercise
 

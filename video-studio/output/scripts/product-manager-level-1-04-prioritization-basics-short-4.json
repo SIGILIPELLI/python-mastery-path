@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "Kill a third of your backlog in 5 minutes, no spreadsheet",
-  "description": "Before you build a RICE spreadsheet, run the fastest prioritization framework there is: a value vs. effort 2x2. Plot every backlog item, then delete the entire low-value, high-effort quadrant with zero further analysis. In the lesson's worked example, a team drops 6 of 20 items that way and only RICE-scores what survives. Rough triage first, precision later.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
+  "description": "Before you build a RICE spreadsheet, run the fastest prioritization framework there is: a value vs. effort 2x2. Plot every backlog item, then delete the entire low-value, high-effort quadrant with zero further analysis. In the lesson's worked example, a team drops 6 of 20 items that way and only RICE-scores what survives. Rough triage first, precision later.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
   "tags": ["product management", "prioritization", "value vs effort", "backlog grooming", "RICE", "roadmap planning", "product manager"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/"],
   "beats": [
     {
       "narration": "You can kill a third of your backlog in five minutes, no spreadsheet. Here's the trick most teams skip.",
@@ -55,7 +55,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/"
       }
     }
   ]

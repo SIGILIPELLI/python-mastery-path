@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "strtok in C eats your string alive",
-  "description": "strtok looks like a friendly string splitter, but it mutates your buffer in place and hides its progress in a static variable. Here's exactly what it does to your array, why a string literal is undefined behavior, and why two strtok loops can't run at once. From the C Mastery Path lesson on multi-dimensional arrays and string manipulation.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/\n\n#Shorts",
+  "description": "strtok looks like a friendly string splitter, but it mutates your buffer in place and hides its progress in a static variable. Here's exactly what it does to your array, why a string literal is undefined behavior, and why two strtok loops can't run at once. From the C Mastery Path lesson on multi-dimensional arrays and string manipulation.\n\nSource lesson(s):\n- https://learnmasterypath.com/c-mastery-path/level-2/03-multidim-arrays-strings/\n\n#Shorts",
   "tags": ["c", "c programming", "strtok", "string manipulation", "c strings", "undefined behavior", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-2/03-multidim-arrays-strings/"],
   "beats": [
     {
       "narration": "You split a string in C with strtok. Every field comes out fine. Then you print the original string, and most of it is gone.",
@@ -56,7 +56,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/03-multidim-arrays-strings/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-2/03-multidim-arrays-strings/"
       }
     }
   ]

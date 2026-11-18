@@ -2,10 +2,10 @@
   "type": "longform",
   "language": "javascript",
   "title": "Build a REST API With a Real SQLite Database — Full Node.js + Express + Jest Capstone Walkthrough",
-  "description": "This is the Level 3 capstone of the JavaScript Mastery Path, built one file at a time: a Book Catalog API with full CRUD, backed by a real SQLite database file, with centralized error handling and a Jest plus supertest suite covering every route. We walk through the project layout, the package.json toolchain, the database setup in db.js, a controller that prepares its SQL once and validates input into an errors array, the Express router that maps every HTTP verb to a controller call and hands failures off to one error handler, the app wiring with its 404 and 500 safety nets, the tiny server entry point, and a test suite that runs against a fresh in-memory database per test. We finish by running it with curl, watching all eight tests pass, and walking through the lesson's stretch goals. Every line of code shown is pulled directly from the lesson — nothing invented.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/",
+  "description": "This is the Level 3 capstone of the JavaScript Mastery Path, built one file at a time: a Book Catalog API with full CRUD, backed by a real SQLite database file, with centralized error handling and a Jest plus supertest suite covering every route. We walk through the project layout, the package.json toolchain, the database setup in db.js, a controller that prepares its SQL once and validates input into an errors array, the Express router that maps every HTTP verb to a controller call and hands failures off to one error handler, the app wiring with its 404 and 500 safety nets, the tiny server entry point, and a test suite that runs against a fresh in-memory database per test. We finish by running it with curl, watching all eight tests pass, and walking through the lesson's stretch goals. Every line of code shown is pulled directly from the lesson — nothing invented.\n\nLessons covered in this video:\n- https://learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/\n\nSource lesson(s):\n- https://learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/",
   "tags": ["javascript", "node.js", "express", "sqlite", "rest api tutorial", "better-sqlite3", "jest testing", "supertest", "crud api", "error handling middleware", "backend development", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/"],
+  "source_urls": ["https://learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/"],
   "beats": [
     {
       "narration": "Welcome to the Level 3 capstone of the JavaScript Mastery Path. Over the last ten modules you've picked up Express, SQLite, input validation, error handling, and testing. In this video we build one project that uses all of it: a Book Catalog REST API backed by a real database, step by step, file by file.",
@@ -239,7 +239,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-3/11-project-rest-api-db/"
+        "subheading": "learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/"
       }
     }
   ]

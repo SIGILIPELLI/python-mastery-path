@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "Your PRD Isn't Done Until It Passes These 5 Questions",
-  "description": "A PRD isn't finished when you've written every section. It's finished when it survives the same review a design and engineering team would put it through. This Short walks the self-review checklist from the Level 1 capstone project: one build interpretation instead of many, testable acceptance criteria, non-goals specific enough to stop a scope-creep fight, a numeric success metric with a baseline, and a problem statement that stands on its own. Run your draft through it before you call it done.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/\n\n#Shorts",
+  "description": "A PRD isn't finished when you've written every section. It's finished when it survives the same review a design and engineering team would put it through. This Short walks the self-review checklist from the Level 1 capstone project: one build interpretation instead of many, testable acceptance criteria, non-goals specific enough to stop a scope-creep fight, a numeric success metric with a baseline, and a problem statement that stands on its own. Run your draft through it before you call it done.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/10-project-complete-prd/\n\n#Shorts",
   "tags": ["product management", "PRD", "product requirements document", "product manager", "writing requirements", "acceptance criteria", "scope creep", "success metrics", "pm skills", "product spec"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/10-project-complete-prd/"],
   "beats": [
     {
       "narration": "Here's why PRDs get stuck in review. It's not done when it's written. It's done when it passes these five questions.",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + PRD template:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/10-project-complete-prd/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/10-project-complete-prd/"
       }
     }
   ]

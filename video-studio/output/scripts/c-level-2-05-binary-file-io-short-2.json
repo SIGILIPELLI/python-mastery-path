@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "Your C binary file works on your laptop and breaks everywhere else",
-  "description": "A single fwrite call is the simplest way to save data in C -- and the fastest way to create a file that only your machine can read. This Short shows the two portability traps in raw binary dumps: byte order (endianness) and compiler-chosen struct padding, plus the fix (write field by field in a fixed byte order, with a magic number and version header).\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/05-binary-file-io/\n\n#Shorts",
+  "description": "A single fwrite call is the simplest way to save data in C -- and the fastest way to create a file that only your machine can read. This Short shows the two portability traps in raw binary dumps: byte order (endianness) and compiler-chosen struct padding, plus the fix (write field by field in a fixed byte order, with a magic number and version header).\n\nSource lesson(s):\n- https://learnmasterypath.com/c-mastery-path/level-2/05-binary-file-io/\n\n#Shorts",
   "tags": ["c", "c programming", "binary file io", "fwrite", "fread", "endianness", "struct padding", "serialization", "file io", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/05-binary-file-io/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-2/05-binary-file-io/"],
   "beats": [
     {
       "narration": "You saved your app's data with one fwrite call. It loads perfectly on your laptop. On a coworker's machine, same file, same code, it comes back as garbage.",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/05-binary-file-io/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-2/05-binary-file-io/"
       }
     }
   ]

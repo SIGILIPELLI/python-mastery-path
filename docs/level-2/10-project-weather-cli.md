@@ -427,6 +427,6 @@ Completing this project means you're ready for **Level 3 · Advanced**.
 
 ## 🔀 See this in another language
 
-- [C# — 10 · Project — Weather CLI](https://sigilipelli.github.io/csharp-mastery-path/level-2/10-project-weather-cli/)
-- [Go — 10 · Project — Weather CLI](https://sigilipelli.github.io/go-mastery-path/level-2/10-project-weather-cli/)
-- [Rust — 10 · Project — Weather CLI](https://sigilipelli.github.io/rust-mastery-path/level-2/10-project-weather-cli/)
+- [C# — 10 · Project — Weather CLI](https://learnmasterypath.com/csharp-mastery-path/level-2/10-project-weather-cli/)
+- [Go — 10 · Project — Weather CLI](https://learnmasterypath.com/go-mastery-path/level-2/10-project-weather-cli/)
+- [Rust — 10 · Project — Weather CLI](https://learnmasterypath.com/rust-mastery-path/level-2/10-project-weather-cli/)

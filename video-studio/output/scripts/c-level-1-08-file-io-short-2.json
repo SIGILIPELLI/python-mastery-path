@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "The C file mode that erases your file instantly",
-  "description": "Opening a file with \"w\" in C truncates it to zero length the instant fopen succeeds -- before fprintf writes a single byte. If your program crashes first, the old data is just gone. Here's how to pick between \"w\" and \"a\" on purpose so you never wipe a file by accident.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/\n\n#Shorts",
+  "description": "Opening a file with \"w\" in C truncates it to zero length the instant fopen succeeds -- before fprintf writes a single byte. If your program crashes first, the old data is just gone. Here's how to pick between \"w\" and \"a\" on purpose so you never wipe a file by accident.\n\nSource lesson(s):\n- https://learnmasterypath.com/c-mastery-path/level-1/08-file-io/\n\n#Shorts",
   "tags": ["c", "file io", "fopen", "file modes", "fprintf", "c programming", "c tutorial", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/08-file-io/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/08-file-io/"],
   "beats": [
     {
       "narration": "You open a file in write mode. Your program crashes before it writes anything. The file is now empty. Not corrupted. Empty.",
@@ -55,7 +55,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/08-file-io/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/08-file-io/"
       }
     }
   ]

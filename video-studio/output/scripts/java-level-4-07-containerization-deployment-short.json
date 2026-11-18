@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Stop Shipping Maven Into Production (Multi-Stage Docker)",
-  "description": "Most Java Dockerfiles accidentally ship the entire Maven build toolchain into production. This Short shows the two-stage fix: compile in a throwaway Maven/JDK stage, then copy just the finished jar into a slim JRE image running as a non-root user. Same app, a fraction of the image size, way less attack surface.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/\n\n#Shorts",
+  "description": "Most Java Dockerfiles accidentally ship the entire Maven build toolchain into production. This Short shows the two-stage fix: compile in a throwaway Maven/JDK stage, then copy just the finished jar into a slim JRE image running as a non-root user. Same app, a fraction of the image size, way less attack surface.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-4/07-containerization-deployment/\n\n#Shorts",
   "tags": ["java", "docker", "multi-stage build", "containerization", "devops", "spring boot", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-4/07-containerization-deployment/"],
   "beats": [
     {
       "narration": "Here's a Docker mistake almost every Java developer makes: shipping the entire Maven toolchain straight into production.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + docker-compose setup:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/07-containerization-deployment/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-4/07-containerization-deployment/"
       }
     }
   ]

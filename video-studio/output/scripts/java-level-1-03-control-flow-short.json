@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Java's switch fall-through bug -- and how to kill it",
-  "description": "One missing `break` in a classic Java switch statement silently falls through to the next case -- a bug that's tripped up developers for decades. Java 14's switch expression with arrow syntax fixes it for good: no fall-through, and it hands back a value directly. Quick look at both, straight from the Control Flow lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+  "description": "One missing `break` in a classic Java switch statement silently falls through to the next case -- a bug that's tripped up developers for decades. Java 14's switch expression with arrow syntax fixes it for good: no fall-through, and it hands back a value directly. Quick look at both, straight from the Control Flow lesson.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/\n\n#Shorts",
   "tags": ["java", "switch statement", "switch expression", "control flow", "java tutorial", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/"],
   "beats": [
     {
       "narration": "Forget a single break in a Java switch statement, and your code doesn't error -- it silently falls through into the next case.",
@@ -45,7 +45,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/03-control-flow/"
       }
     }
   ]

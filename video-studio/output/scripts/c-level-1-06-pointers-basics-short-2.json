@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "C passes everything by value -- so how does swap work?",
-  "description": "C hands every function a copy of your argument, so a normal function can't change a caller's variable. This Short walks through the classic swap: pass the addresses instead of the values, dereference the pointers, and the function reaches back and rewrites x and y in main. Drop the ampersands and you're just swapping two throwaway copies.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/\n\n#Shorts",
+  "description": "C hands every function a copy of your argument, so a normal function can't change a caller's variable. This Short walks through the classic swap: pass the addresses instead of the values, dereference the pointers, and the function reaches back and rewrites x and y in main. Drop the ampersands and you're just swapping two throwaway copies.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/\n\n#Shorts",
   "tags": ["c", "pointers", "pass by reference", "swap function", "c programming", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/"],
   "beats": [
     {
       "narration": "In C, a function can't touch your variable. You pass in x, the function gets a copy, and your original never changes. So how does a swap function actually work?",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/"
       }
     }
   ]

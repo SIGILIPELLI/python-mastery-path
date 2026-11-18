@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "This C macro squares 1+2 and gets 5",
-  "description": "A function-like macro in C is not a function. It is pure text substitution done by the preprocessor before the compiler ever runs. Define SQUARE(x) as x * x with no parentheses and SQUARE(1 + 2) expands to 1 + 2 * 1 + 2, which is 5, not 9. This Short shows the classic unparenthesised macro bug from the C Mastery Path preprocessor lesson and the parenthesised fix.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/\n\n#Shorts",
+  "description": "A function-like macro in C is not a function. It is pure text substitution done by the preprocessor before the compiler ever runs. Define SQUARE(x) as x * x with no parentheses and SQUARE(1 + 2) expands to 1 + 2 * 1 + 2, which is 5, not 9. This Short shows the classic unparenthesised macro bug from the C Mastery Path preprocessor lesson and the parenthesised fix.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/09-preprocessor-multifile/\n\n#Shorts",
   "tags": ["c", "c programming", "preprocessor", "macros", "define", "programming tutorial", "c macro bug", "learn c"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/09-preprocessor-multifile/"],
   "beats": [
     {
       "narration": "This C macro looks harmless. It just squares a number. But feed it one plus two, and you get five, not nine.",
@@ -46,7 +46,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/09-preprocessor-multifile/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/09-preprocessor-multifile/"
       }
     }
   ]

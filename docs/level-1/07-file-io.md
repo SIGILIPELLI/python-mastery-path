@@ -88,9 +88,9 @@ open → read → close cycle in one call.
 
 ## 🔀 See this in another language
 
-- [Java — Classes & Objects Basics](https://sigilipelli.github.io/java-mastery-path/level-1/07-classes-objects/)
-- [Go — Pointers](https://sigilipelli.github.io/go-mastery-path/level-1/07-pointers/)
-- [Scala — Case Classes](https://sigilipelli.github.io/scala-mastery-path/level-1/07-case-classes/)
+- [Java — Classes & Objects Basics](https://learnmasterypath.com/java-mastery-path/level-1/07-classes-objects/)
+- [Go — Pointers](https://learnmasterypath.com/go-mastery-path/level-1/07-pointers/)
+- [Scala — Case Classes](https://learnmasterypath.com/scala-mastery-path/level-1/07-case-classes/)
 
 ## Exercise
 

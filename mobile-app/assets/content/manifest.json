@@ -9,10 +9,10 @@
         {
           "id": "c-level-1-01-setup-short",
           "title": "Your C Code Becomes a Real Binary -- No Class Needed",
-          "description": "Your first C program isn't run by an interpreter -- gcc compiles it straight into a native binary your OS executes directly. In under a minute, see how hello.c turns into ./hello, why return 0 matters, and why C skips the class wrapper you'd expect coming from Java.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "Your first C program isn't run by an interpreter -- gcc compiles it straight into a native binary your OS executes directly. In under a minute, see how hello.c turns into ./hello, why return 0 matters, and why C skips the class wrapper you'd expect coming from Java.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "c-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/c-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/c-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "In `gcc hello.c -o hello`, what does the -o flag do?",
@@ -52,10 +52,10 @@
         {
           "id": "c-level-1-02-variables-data-types-short",
           "title": "C's Sneaky Integer Overflow Bug (No Warning!)",
-          "description": "Add 1 to the largest int C can hold, and something strange happens: no crash, no warning, just a silent flip to the most negative number possible. This is integer overflow, and it's one of the first surprises new C programmers hit once they understand fixed-size types. We walk through INT_MAX and why C won't stop you from wrapping around.\n\nSource lesson:\nhttps://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+          "description": "Add 1 to the largest int C can hold, and something strange happens: no crash, no warning, just a silent flip to the most negative number possible. This is integer overflow, and it's one of the first surprises new C programmers hit once they understand fixed-size types. We walk through INT_MAX and why C won't stop you from wrapping around.\n\nSource lesson:\nhttps://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
           "video": "c-level-1-02-variables-data-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "Why is reading an uninitialized variable in C considered undefined behavior?",
@@ -95,10 +95,10 @@
         {
           "id": "c-level-1-03-control-flow-short",
           "title": "C's switch Fallthrough: The Bug With No Warning",
-          "description": "In C, forgetting a break inside a switch statement doesn't trigger a compiler error -- it just silently changes what your program does. This Short breaks down switch fallthrough: why it happens, how it trips up nearly every C beginner at least once, and when experienced C devs actually use it on purpose.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "In C, forgetting a break inside a switch statement doesn't trigger a compiler error -- it just silently changes what your program does. This Short breaks down switch fallthrough: why it happens, how it trips up nearly every C beginner at least once, and when experienced C devs actually use it on purpose.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "c-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/c-mastery-path/level-1/03-control-flow/",
           "questions": [
             {
               "question": "What happens if you forget a `break` statement inside a switch case?",
@@ -138,10 +138,10 @@
         {
           "id": "c-level-1-04-functions-short",
           "title": "Why Your C Function Can't Change the Original Variable",
-          "description": "C passes every argument by value \u2014 your function gets a copy, not the real thing. In this Short we break down a classic C gotcha: why incrementing a parameter inside a function leaves the caller's variable completely untouched, and what actually fixes it.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/\n\n#Shorts",
+          "description": "C passes every argument by value \u2014 your function gets a copy, not the real thing. In this Short we break down a classic C gotcha: why incrementing a parameter inside a function leaves the caller's variable completely untouched, and what actually fixes it.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/04-functions/\n\n#Shorts",
           "video": "c-level-1-04-functions-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/",
+          "sourceUrl": "https://learnmasterypath.com/c-mastery-path/level-1/04-functions/",
           "questions": [
             {
               "question": "Why does a function often need a prototype declared before it's called earlier in the file, like before main?",
@@ -181,10 +181,10 @@
         {
           "id": "c-level-1-06-pointers-basics-short",
           "title": "The One-Symbol Fix for C's Pass-by-Value Problem",
-          "description": "In C, functions get a copy of whatever you pass them -- so why does swap() actually work? The answer is pointers: pass an address, dereference it, and you're touching the caller's real memory. This is the core idea behind pointers in C, straight from the C Mastery Path curriculum.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/\n\n#Shorts",
+          "description": "In C, functions get a copy of whatever you pass them -- so why does swap() actually work? The answer is pointers: pass an address, dereference it, and you're touching the caller's real memory. This is the core idea behind pointers in C, straight from the C Mastery Path curriculum.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/\n\n#Shorts",
           "video": "c-level-1-06-pointers-basics-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/",
+          "sourceUrl": "https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/",
           "questions": [
             {
               "question": "Why is it good practice to initialize a pointer to NULL and check it before dereferencing?",
@@ -224,10 +224,10 @@
         {
           "id": "c-level-1-fundamentals-longform",
           "title": "C Fundamentals, Start to Finish: Variables, Control Flow, Functions, Pointers & Structs (Level 1)",
-          "description": "This is a complete walkthrough of Level 1 of the C Mastery Path, stitched into one continuous lesson. We start with how C stores values in memory -- variables, types, casting, and the integer overflow bug that catches everyone eventually -- then move through control flow (including the switch-fallthrough trap), functions and recursion, pointers (the concept that makes C feel different from everything else), and finally structs, the building block for every custom data type you'll write. Each section builds on the one before it, so watch in order if you're new to C.\n\nLessons covered in this video:\n- Variables, Data Types & Operators: https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/\n- Control Flow: https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/\n- Functions: https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/\n- Pointers Basics: https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/\n- Structs: https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/\n- https://sigilipelli.github.io/c-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/c-mastery-path/level-1/04-functions/\n- https://sigilipelli.github.io/c-mastery-path/level-1/06-pointers-basics/\n- https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/",
+          "description": "This is a complete walkthrough of Level 1 of the C Mastery Path, stitched into one continuous lesson. We start with how C stores values in memory -- variables, types, casting, and the integer overflow bug that catches everyone eventually -- then move through control flow (including the switch-fallthrough trap), functions and recursion, pointers (the concept that makes C feel different from everything else), and finally structs, the building block for every custom data type you'll write. Each section builds on the one before it, so watch in order if you're new to C.\n\nLessons covered in this video:\n- Variables, Data Types & Operators: https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/\n- Control Flow: https://learnmasterypath.com/c-mastery-path/level-1/03-control-flow/\n- Functions: https://learnmasterypath.com/c-mastery-path/level-1/04-functions/\n- Pointers Basics: https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/\n- Structs: https://learnmasterypath.com/c-mastery-path/level-1/07-structs/\n\nSource lesson(s):\n- https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/\n- https://learnmasterypath.com/c-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/c-mastery-path/level-1/04-functions/\n- https://learnmasterypath.com/c-mastery-path/level-1/06-pointers-basics/\n- https://learnmasterypath.com/c-mastery-path/level-1/07-structs/",
           "video": "c-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/c-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/c-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "What is the purpose of writing `typedef struct {...} Point;` instead of just `struct Point {...};`?",
@@ -274,10 +274,10 @@
         {
           "id": "go-level-1-01-setup-short",
           "title": "Go Programs Run Without Go Installed -- Here's How",
-          "description": "Most languages need their runtime installed everywhere your code runs -- Go doesn't. One `go build` gives you a single static binary you can copy to any machine with the same OS and architecture, and it just runs. This is lesson 1 of the Go Mastery Path: installing Go, writing your first program, and understanding go run vs go build.\n\nSource lesson:\n- https://sigilipelli.github.io/go-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "Most languages need their runtime installed everywhere your code runs -- Go doesn't. One `go build` gives you a single static binary you can copy to any machine with the same OS and architecture, and it just runs. This is lesson 1 of the Go Mastery Path: installing Go, writing your first program, and understanding go run vs go build.\n\nSource lesson:\n- https://learnmasterypath.com/go-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "go-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/go-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/go-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "Why does every runnable Go program need a func main() inside package main?",
@@ -317,10 +317,10 @@
         {
           "id": "go-level-1-02-variables-types-operators-short",
           "title": "Go Refuses to Add an Int and a Float (On Purpose)",
-          "description": "Coming from Python or JavaScript? Go will stop you cold the moment you try to add an int and a float64 without converting first. This isn't a bug \u2014 it's Go's way of making every type conversion, and every bit of lost precision, explicit and visible right in your code.\n\nSource lesson:\n- https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/\n\n#Shorts",
+          "description": "Coming from Python or JavaScript? Go will stop you cold the moment you try to add an int and a float64 without converting first. This isn't a bug \u2014 it's Go's way of making every type conversion, and every bit of lost precision, explicit and visible right in your code.\n\nSource lesson:\n- https://learnmasterypath.com/go-mastery-path/level-1/02-variables-types-operators/\n\n#Shorts",
           "video": "go-level-1-02-variables-types-operators-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/",
+          "sourceUrl": "https://learnmasterypath.com/go-mastery-path/level-1/02-variables-types-operators/",
           "questions": [
             {
               "question": "Why must you write float64(i) + f instead of i + f when i is an int and f is a float64?",
@@ -360,10 +360,10 @@
         {
           "id": "go-level-1-03-control-flow-short",
           "title": "Go's switch Breaks a Classic C Habit -- On Purpose",
-          "description": "In C or Java, forgetting a break in a switch statement is a classic, silent bug. Go flips the default: every case breaks automatically, and you have to opt in with the fallthrough keyword if you actually want execution to spill into the next case. One keyword swap removes a whole class of switch-statement bugs.\n\nSource lesson(s):\n- https://sigilipelli.github.io/go-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "In C or Java, forgetting a break in a switch statement is a classic, silent bug. Go flips the default: every case breaks automatically, and you have to opt in with the fallthrough keyword if you actually want execution to spill into the next case. One keyword swap removes a whole class of switch-statement bugs.\n\nSource lesson(s):\n- https://learnmasterypath.com/go-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "go-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/go-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/go-mastery-path/level-1/03-control-flow/",
           "questions": [
             {
               "question": "Why does Go get by with only one looping keyword, for?",
@@ -403,10 +403,10 @@
         {
           "id": "go-level-1-04-functions-multiple-returns-short",
           "title": "Go Doesn't Have Exceptions -- It Has This Instead",
-          "description": "Go's signature move: a function can hand back two values at once, usually a result and an error, right there in the return type. Watch divide() handle a division-by-zero without a single try/catch, and see why Go won't let you quietly ignore an error you declared.\n\nSource lesson(s):\n- https://sigilipelli.github.io/go-mastery-path/level-1/04-functions-multiple-returns/\n\n#Shorts",
+          "description": "Go's signature move: a function can hand back two values at once, usually a result and an error, right there in the return type. Watch divide() handle a division-by-zero without a single try/catch, and see why Go won't let you quietly ignore an error you declared.\n\nSource lesson(s):\n- https://learnmasterypath.com/go-mastery-path/level-1/04-functions-multiple-returns/\n\n#Shorts",
           "video": "go-level-1-04-functions-multiple-returns-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/go-mastery-path/level-1/04-functions-multiple-returns/",
+          "sourceUrl": "https://learnmasterypath.com/go-mastery-path/level-1/04-functions-multiple-returns/",
           "questions": [
             {
               "question": "Why is the blank identifier _ needed when calling divide(10, 0) and ignoring the numeric result?",
@@ -446,10 +446,10 @@
         {
           "id": "go-level-1-05-arrays-slices-maps-short",
           "title": "This Go Slice Trick Will Silently Corrupt Your Data",
-          "description": "Slicing a slice in Go doesn't copy anything -- it hands you a window into the exact same memory. Change one, and you might silently change the other too. Here's the gotcha, and the one function that actually fixes it.\n\nSource lesson(s):\n- https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/\n\n#Shorts",
+          "description": "Slicing a slice in Go doesn't copy anything -- it hands you a window into the exact same memory. Change one, and you might silently change the other too. Here's the gotcha, and the one function that actually fixes it.\n\nSource lesson(s):\n- https://learnmasterypath.com/go-mastery-path/level-1/05-arrays-slices-maps/\n\n#Shorts",
           "video": "go-level-1-05-arrays-slices-maps-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/",
+          "sourceUrl": "https://learnmasterypath.com/go-mastery-path/level-1/05-arrays-slices-maps/",
           "questions": [
             {
               "question": "Why does modifying view[0] after view := original[1:4] also change original?",
@@ -489,10 +489,10 @@
         {
           "id": "go-level-1-fundamentals-longform",
           "title": "Go Fundamentals in 9 Minutes: Variables to Pointers",
-          "description": "Go is built around one guiding idea: fewer ways to do things, and a compiler that never lets ambiguity slide. This walkthrough moves through six core lessons from Level 1 of the Go Mastery Path, in the order they build on each other -- how Go stores and converts data, how it makes decisions with if and switch and its single for keyword, how functions return multiple values and capture state in closures, how slices and maps actually share memory under the hood, how structs group data as value types, and finally how pointers let you reach back into the caller's original data. Each section pulls real, runnable code straight from the lessons so you can follow along and try it yourself in a local .go file.\n\nLessons covered in this video:\n- Variables, Types & Operators: https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/\n- Control Flow: https://sigilipelli.github.io/go-mastery-path/level-1/03-control-flow/\n- Functions & Multiple Returns: https://sigilipelli.github.io/go-mastery-path/level-1/04-functions-multiple-returns/\n- Arrays, Slices & Maps: https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/\n- Structs: https://sigilipelli.github.io/go-mastery-path/level-1/06-structs/\n- Pointers: https://sigilipelli.github.io/go-mastery-path/level-1/07-pointers/\n\nSource lesson(s):\n- https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/\n- https://sigilipelli.github.io/go-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/go-mastery-path/level-1/04-functions-multiple-returns/\n- https://sigilipelli.github.io/go-mastery-path/level-1/05-arrays-slices-maps/\n- https://sigilipelli.github.io/go-mastery-path/level-1/06-structs/\n- https://sigilipelli.github.io/go-mastery-path/level-1/07-pointers/",
+          "description": "Go is built around one guiding idea: fewer ways to do things, and a compiler that never lets ambiguity slide. This walkthrough moves through six core lessons from Level 1 of the Go Mastery Path, in the order they build on each other -- how Go stores and converts data, how it makes decisions with if and switch and its single for keyword, how functions return multiple values and capture state in closures, how slices and maps actually share memory under the hood, how structs group data as value types, and finally how pointers let you reach back into the caller's original data. Each section pulls real, runnable code straight from the lessons so you can follow along and try it yourself in a local .go file.\n\nLessons covered in this video:\n- Variables, Types & Operators: https://learnmasterypath.com/go-mastery-path/level-1/02-variables-types-operators/\n- Control Flow: https://learnmasterypath.com/go-mastery-path/level-1/03-control-flow/\n- Functions & Multiple Returns: https://learnmasterypath.com/go-mastery-path/level-1/04-functions-multiple-returns/\n- Arrays, Slices & Maps: https://learnmasterypath.com/go-mastery-path/level-1/05-arrays-slices-maps/\n- Structs: https://learnmasterypath.com/go-mastery-path/level-1/06-structs/\n- Pointers: https://learnmasterypath.com/go-mastery-path/level-1/07-pointers/\n\nSource lesson(s):\n- https://learnmasterypath.com/go-mastery-path/level-1/02-variables-types-operators/\n- https://learnmasterypath.com/go-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/go-mastery-path/level-1/04-functions-multiple-returns/\n- https://learnmasterypath.com/go-mastery-path/level-1/05-arrays-slices-maps/\n- https://learnmasterypath.com/go-mastery-path/level-1/06-structs/\n- https://learnmasterypath.com/go-mastery-path/level-1/07-pointers/",
           "video": "go-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/go-mastery-path/level-1/02-variables-types-operators/",
+          "sourceUrl": "https://learnmasterypath.com/go-mastery-path/level-1/02-variables-types-operators/",
           "questions": [
             {
               "question": "Why does original stay {1 2} after calling tryToModify(original) on a Point struct?",
@@ -539,10 +539,10 @@
         {
           "id": "java-level-1-01-setup-short",
           "title": "Java Doesn't Actually Need javac (Since Java 11)",
-          "description": "You've probably heard Java always makes you compile before you can run anything. Since Java 11, that's no longer true -- you can run a .java file directly, no javac step required. This short walks through the classic Hello, world program and shows both ways to run it.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "You've probably heard Java always makes you compile before you can run anything. Since Java 11, that's no longer true -- you can run a .java file directly, no javac step required. This short walks through the classic Hello, world program and shows both ways to run it.\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "java-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "Why is Java's main method declared static?",
@@ -582,10 +582,10 @@
         {
           "id": "java-level-1-02-variables-data-types-short",
           "title": "Why 10 / 3 Isn't 3.33 in Java",
-          "description": "Java's integer division doesn't round -- it silently truncates. If you're dividing two ints and expecting a decimal back, you're in for a surprise the first time it bites you in production math. Here's the one-line cast that fixes it, straight from the Java Mastery Path curriculum.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+          "description": "Java's integer division doesn't round -- it silently truncates. If you're dividing two ints and expecting a decimal back, you're in for a surprise the first time it bites you in production math. Here's the one-line cast that fixes it, straight from the Java Mastery Path curriculum.\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
           "video": "java-level-1-02-variables-data-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "What does declaring a variable as `final`, like `final double PI_APPROX = 3.14159;`, mean?",
@@ -625,10 +625,10 @@
         {
           "id": "java-level-1-03-control-flow-short",
           "title": "Java's Switch Statement Has a Hidden Trap (Here's the Fix)",
-          "description": "Classic Java switch statements fall through to the next case if you forget a `break` -- a bug that's bitten almost every Java developer at least once. This Short shows the old fall-through-prone syntax next to the modern arrow-based switch expression (Java 14+) that removes the footgun entirely and returns a value directly.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "Classic Java switch statements fall through to the next case if you forget a `break` -- a bug that's bitten almost every Java developer at least once. This Short shows the old fall-through-prone syntax next to the modern arrow-based switch expression (Java 14+) that removes the footgun entirely and returns a value directly.\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "java-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/",
           "questions": [
             {
               "question": "Why does a do-while loop always execute its body at least once?",
@@ -668,10 +668,10 @@
         {
           "id": "java-level-1-04-methods-parameters-short",
           "title": "One Method Name, Three Different Behaviors in Java",
-          "description": "Ever wonder how Java lets you call multiply(2, 3) and multiply(2.5, 4.0) and run completely different code each time? It's called method overloading, and Java picks the right version at compile time just by looking at the parameter types and count. This is one of the core ideas from Level 1 of the Java Mastery Path -- methods and parameters.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/\n\n#Shorts",
+          "description": "Ever wonder how Java lets you call multiply(2, 3) and multiply(2.5, 4.0) and run completely different code each time? It's called method overloading, and Java picks the right version at compile time just by looking at the parameter types and count. This is one of the core ideas from Level 1 of the Java Mastery Path -- methods and parameters.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/04-methods-parameters/\n\n#Shorts",
           "video": "java-level-1-04-methods-parameters-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/04-methods-parameters/",
           "questions": [
             {
               "question": "What allows multiply(int,int), multiply(double,double), and multiply(int,int,int) to all share the same method name in one class?",
@@ -711,10 +711,10 @@
         {
           "id": "java-level-1-05-arrays-collections-short",
           "title": "Java's ArrayList.remove() Has a Sneaky Trap",
-          "description": "ArrayList.remove() hides a classic Java gotcha: pass it an Object and it removes by value, pass it an int and it removes by index -- same method name, totally different behavior. This overload mix-up trips up beginners constantly and silently deletes the wrong element. Full breakdown of arrays vs. ArrayLists in the Java Mastery Path Level 1 lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/\n\n#Shorts",
+          "description": "ArrayList.remove() hides a classic Java gotcha: pass it an Object and it removes by value, pass it an int and it removes by index -- same method name, totally different behavior. This overload mix-up trips up beginners constantly and silently deletes the wrong element. Full breakdown of arrays vs. ArrayLists in the Java Mastery Path Level 1 lesson.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/\n\n#Shorts",
           "video": "java-level-1-05-arrays-collections-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/",
           "questions": [
             {
               "question": "Why would you use an ArrayList instead of an array when you don't know how many elements you'll need in advance?",
@@ -754,55 +754,55 @@
         {
           "id": "java-level-1-06-strings-formatting-short",
           "title": "Why == Says Two Equal Strings Aren't Equal in Java",
-          "description": "Two Java strings with the exact same letters, and `==` insists they're not equal. This isn't a bug -- it's `==` comparing object references instead of text, and it's one of the first gotchas every new Java developer hits. See the fix (and when `.equalsIgnoreCase` saves you a step) in the full lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/06-strings-formatting/\n\n#Shorts",
+          "description": "Two Java strings with the exact same letters, and `==` insists they're not equal. This isn't a bug -- it's `==` comparing object references instead of text, and it's one of the first gotchas every new Java developer hits. See the fix (and when `.equalsIgnoreCase` saves you a step) in the full lesson.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/06-strings-formatting/\n\n#Shorts",
           "video": "java-level-1-06-strings-formatting-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/06-strings-formatting/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/06-strings-formatting/",
           "questions": []
         },
         {
           "id": "java-level-1-07-classes-objects-short",
           "title": "Java Won't Let You Break Your Own Bank Account",
-          "description": "One keyword in Java stops any outside code from directly corrupting an object's data -- even your own bank account balance. This Short walks through a real BankAccount class to show how marking a field private, plus validating input in the constructor and methods, makes bad state literally impossible to write.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/07-classes-objects/\n\n#Shorts",
+          "description": "One keyword in Java stops any outside code from directly corrupting an object's data -- even your own bank account balance. This Short walks through a real BankAccount class to show how marking a field private, plus validating input in the constructor and methods, makes bad state literally impossible to write.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/07-classes-objects/\n\n#Shorts",
           "video": "java-level-1-07-classes-objects-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/07-classes-objects/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/07-classes-objects/",
           "questions": []
         },
         {
           "id": "java-level-1-08-exception-handling-short",
           "title": "The Java Line That Runs Even After a Crash",
-          "description": "Your Java code throws an exception mid-calculation -- so what actually happens next? We walk through a real divide-by-zero crash and the one block guaranteed to run no matter what: finally. It's the key to safe cleanup code in any Java program.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/08-exception-handling/\n\n#Shorts",
+          "description": "Your Java code throws an exception mid-calculation -- so what actually happens next? We walk through a real divide-by-zero crash and the one block guaranteed to run no matter what: finally. It's the key to safe cleanup code in any Java program.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/08-exception-handling/\n\n#Shorts",
           "video": "java-level-1-08-exception-handling-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/08-exception-handling/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/08-exception-handling/",
           "questions": []
         },
         {
           "id": "java-level-1-09-packages-build-tools-short",
           "title": "Why 'javac' Alone Doesn't Scale (Maven Fixes This)",
-          "description": "You can compile Java by hand with javac and run it with a classpath -- it works, until your project grows past one class. This Short shows the exact commands that replace manual compiling, the standard folder layout every Maven project follows, and why that structure matters.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/09-packages-build-tools/\n\n#Shorts",
+          "description": "You can compile Java by hand with javac and run it with a classpath -- it works, until your project grows past one class. This Short shows the exact commands that replace manual compiling, the standard folder layout every Maven project follows, and why that structure matters.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/09-packages-build-tools/\n\n#Shorts",
           "video": "java-level-1-09-packages-build-tools-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/09-packages-build-tools/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/09-packages-build-tools/",
           "questions": []
         },
         {
           "id": "java-level-1-10-project-contact-book-short",
           "title": "This Java Program Remembers Your Data After It Closes",
-          "description": "A CLI contact book built from three small Java classes -- and the trick that lets it remember every contact after the program exits. See how a Contact turns itself into a line of text to save, and rebuilds itself from that same line on load.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/\n\n#Shorts",
+          "description": "A CLI contact book built from three small Java classes -- and the trick that lets it remember every contact after the program exits. See how a Contact turns itself into a line of text to save, and rebuilds itself from that same line on load.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/10-project-contact-book/\n\n#Shorts",
           "video": "java-level-1-10-project-contact-book-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/10-project-contact-book/",
           "questions": []
         },
         {
           "id": "java-level-1-fundamentals-longform",
           "title": "Java Fundamentals in 10 Minutes: Variables to Classes (Level 1 Crash Course)",
-          "description": "A guided walk through the five core building blocks of Java, in the order they naturally build on each other. We start with variables, primitive types, and operators, move into control flow with if/else, switch, and loops, then package logic into methods, scale up to arrays and ArrayList, and finish by putting it all together with classes and objects. Each section pulls real, runnable code straight from the Java Mastery Path Level 1 curriculum, so you can pause and try it yourself as you go.\n\nLessons covered in this video:\n- Variables, Data Types & Operators: https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n- Control Flow: https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/\n- Methods & Parameters: https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/\n- Arrays & Basic Collections: https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/\n- Classes & Objects Basics: https://sigilipelli.github.io/java-mastery-path/level-1/07-classes-objects/\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n- https://sigilipelli.github.io/java-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/\n- https://sigilipelli.github.io/java-mastery-path/level-1/05-arrays-collections/\n- https://sigilipelli.github.io/java-mastery-path/level-1/07-classes-objects/",
+          "description": "A guided walk through the five core building blocks of Java, in the order they naturally build on each other. We start with variables, primitive types, and operators, move into control flow with if/else, switch, and loops, then package logic into methods, scale up to arrays and ArrayList, and finish by putting it all together with classes and objects. Each section pulls real, runnable code straight from the Java Mastery Path Level 1 curriculum, so you can pause and try it yourself as you go.\n\nLessons covered in this video:\n- Variables, Data Types & Operators: https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/\n- Control Flow: https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/\n- Methods & Parameters: https://learnmasterypath.com/java-mastery-path/level-1/04-methods-parameters/\n- Arrays & Basic Collections: https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/\n- Classes & Objects Basics: https://learnmasterypath.com/java-mastery-path/level-1/07-classes-objects/\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/\n- https://learnmasterypath.com/java-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/java-mastery-path/level-1/04-methods-parameters/\n- https://learnmasterypath.com/java-mastery-path/level-1/05-arrays-collections/\n- https://learnmasterypath.com/java-mastery-path/level-1/07-classes-objects/",
           "video": "java-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "Why can multiply(2, 3) and multiply(2.5, 4.0) both compile and run correctly in the same program?",
@@ -842,10 +842,10 @@
         {
           "id": "java-level-2-intermediate-longform",
           "title": "Java Level 2 Intermediate: OOP, Collections, Generics, Streams & Exceptions",
-          "description": "Level 2 of the Java Mastery Path is where you stop writing simple scripts and start building real, object-oriented software. In this video we walk through five lessons back to back, in the order they build on each other: inheritance and polymorphism, the Collections Framework, generics, the Streams API, and production-grade exception handling. Every code example is pulled directly from the Java Mastery Path lessons, so you can pause, re-read, and run the code yourself afterward.\n\nLessons covered in this video:\n- OOP Deep Dive: https://sigilipelli.github.io/java-mastery-path/level-2/01-oop-deep-dive/\n- Collections Framework: https://sigilipelli.github.io/java-mastery-path/level-2/02-collections-framework/\n- Generics: https://sigilipelli.github.io/java-mastery-path/level-2/03-generics/\n- Lambdas & Streams API: https://sigilipelli.github.io/java-mastery-path/level-2/04-lambdas-streams/\n- Exception Handling Advanced: https://sigilipelli.github.io/java-mastery-path/level-2/05-exceptions-advanced/\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-2/01-oop-deep-dive/\n- https://sigilipelli.github.io/java-mastery-path/level-2/02-collections-framework/\n- https://sigilipelli.github.io/java-mastery-path/level-2/03-generics/\n- https://sigilipelli.github.io/java-mastery-path/level-2/04-lambdas-streams/\n- https://sigilipelli.github.io/java-mastery-path/level-2/05-exceptions-advanced/",
+          "description": "Level 2 of the Java Mastery Path is where you stop writing simple scripts and start building real, object-oriented software. In this video we walk through five lessons back to back, in the order they build on each other: inheritance and polymorphism, the Collections Framework, generics, the Streams API, and production-grade exception handling. Every code example is pulled directly from the Java Mastery Path lessons, so you can pause, re-read, and run the code yourself afterward.\n\nLessons covered in this video:\n- OOP Deep Dive: https://learnmasterypath.com/java-mastery-path/level-2/01-oop-deep-dive/\n- Collections Framework: https://learnmasterypath.com/java-mastery-path/level-2/02-collections-framework/\n- Generics: https://learnmasterypath.com/java-mastery-path/level-2/03-generics/\n- Lambdas & Streams API: https://learnmasterypath.com/java-mastery-path/level-2/04-lambdas-streams/\n- Exception Handling Advanced: https://learnmasterypath.com/java-mastery-path/level-2/05-exceptions-advanced/\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-2/01-oop-deep-dive/\n- https://learnmasterypath.com/java-mastery-path/level-2/02-collections-framework/\n- https://learnmasterypath.com/java-mastery-path/level-2/03-generics/\n- https://learnmasterypath.com/java-mastery-path/level-2/04-lambdas-streams/\n- https://learnmasterypath.com/java-mastery-path/level-2/05-exceptions-advanced/",
           "video": "java-level-2-intermediate-longform.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/java-mastery-path/level-2/01-oop-deep-dive/",
+          "sourceUrl": "https://learnmasterypath.com/java-mastery-path/level-2/01-oop-deep-dive/",
           "questions": []
         }
       ]
@@ -858,10 +858,10 @@
         {
           "id": "javascript-level-1-01-setup-short",
           "title": "Same JavaScript File Runs in Node AND Your Browser",
-          "description": "One JavaScript file, two completely different runtimes -- no changes, no config. This Short walks through hello.js running in Node from your terminal, then the exact same code loaded straight into a browser tab. It's the first thing you should understand before writing a single line of JS.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "One JavaScript file, two completely different runtimes -- no changes, no config. This Short walks through hello.js running in Node from your terminal, then the exact same code loaded straight into a browser tab. It's the first thing you should understand before writing a single line of JS.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "javascript-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "Why does the hello.js script run correctly in both Node and the browser?",
@@ -901,10 +901,10 @@
         {
           "id": "javascript-level-1-02-variables-data-types-short",
           "title": "The JavaScript Bug That Can Never Be Fixed",
-          "description": "typeof null returns \"object\" -- and it's not a typo, it's a bug from JavaScript's first release in 1995 that's now permanently baked into the language for backwards compatibility. We also break down why 5 == \"5\" is true but 5 === \"5\" is false, and why you should always reach for strict equality. Pulled straight from Level 1 of the JavaScript Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+          "description": "typeof null returns \"object\" -- and it's not a typo, it's a bug from JavaScript's first release in 1995 that's now permanently baked into the language for backwards compatibility. We also break down why 5 == \"5\" is true but 5 === \"5\" is false, and why you should always reach for strict equality. Pulled straight from Level 1 of the JavaScript Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
           "video": "javascript-level-1-02-variables-data-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "Why should you prefer `===` over `==` when comparing values in JavaScript?",
@@ -944,10 +944,10 @@
         {
           "id": "javascript-level-1-03-control-flow-short",
           "title": "The switch fall-through trick every JS dev should know",
-          "description": "Ever seen two case labels stacked with no break between them in a JavaScript switch statement? That's not a mistake -- it's fall-through, and it's how you group multiple values under one result. This Short walks through the describeDay() example from our Control Flow lesson to show exactly how it works.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "Ever seen two case labels stacked with no break between them in a JavaScript switch statement? That's not a mistake -- it's fall-through, and it's how you group multiple values under one result. This Short walks through the describeDay() example from our Control Flow lesson to show exactly how it works.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "javascript-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/03-control-flow/",
           "questions": [
             {
               "question": "Why does the do...while loop in the lesson log \"runs at least once\" even though its condition (n < 0) is false?",
@@ -987,10 +987,10 @@
         {
           "id": "javascript-level-1-04-functions-scope-short",
           "title": "Why This JavaScript Function Runs Before It's Declared",
-          "description": "JavaScript hoists function declarations completely -- but `var`, `let`, and `const` all behave differently when you reference them early. This quick breakdown shows why one gives you `undefined`, another throws a ReferenceError, and the third just works. Straight from Level 1 of the JavaScript Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
+          "description": "JavaScript hoists function declarations completely -- but `var`, `let`, and `const` all behave differently when you reference them early. This quick breakdown shows why one gives you `undefined`, another throws a ReferenceError, and the third just works. Straight from Level 1 of the JavaScript Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
           "video": "javascript-level-1-04-functions-scope-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/04-functions-scope/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/04-functions-scope/",
           "questions": [
             {
               "question": "Why does `console.log(hoisted())` work even though it's called before the function appears in the file?",
@@ -1030,10 +1030,10 @@
         {
           "id": "javascript-level-1-05-arrays-objects-short",
           "title": "JS Optional Chaining: Stop Crashing on Undefined",
-          "description": "Nested objects with a missing piece are a classic source of JavaScript crashes. Optional chaining (?.) and nullish coalescing (??) let you safely reach into deep properties and fall back to a default -- no error, no crash. This is one trick from Level 1's Arrays & Objects lesson, which also covers array methods, destructuring, and spread.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/05-arrays-objects/\n\n#Shorts",
+          "description": "Nested objects with a missing piece are a classic source of JavaScript crashes. Optional chaining (?.) and nullish coalescing (??) let you safely reach into deep properties and fall back to a default -- no error, no crash. This is one trick from Level 1's Arrays & Objects lesson, which also covers array methods, destructuring, and spread.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/05-arrays-objects/\n\n#Shorts",
           "video": "javascript-level-1-05-arrays-objects-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/05-arrays-objects/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/05-arrays-objects/",
           "questions": [
             {
               "question": "Why don't `map`, `filter`, and `reduce` mutate the original array?",
@@ -1073,55 +1073,55 @@
         {
           "id": "javascript-level-1-06-strings-template-literals-short",
           "title": "JS Template Literals: Stop Concatenating Strings",
-          "description": "Backticks and ${} unlock a much cleaner way to build strings in JavaScript -- variable interpolation, inline expressions, and true multi-line strings, all without a single plus sign. This is the formatting habit every JS beginner should pick up on day one.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/06-strings-template-literals/\n\n#Shorts",
+          "description": "Backticks and ${} unlock a much cleaner way to build strings in JavaScript -- variable interpolation, inline expressions, and true multi-line strings, all without a single plus sign. This is the formatting habit every JS beginner should pick up on day one.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/06-strings-template-literals/\n\n#Shorts",
           "video": "javascript-level-1-06-strings-template-literals-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/06-strings-template-literals/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/06-strings-template-literals/",
           "questions": []
         },
         {
           "id": "javascript-level-1-07-dom-events-short",
           "title": "Stop Adding 100 Click Listeners (Do This Instead)",
-          "description": "A to-do list with a hundred delete buttons doesn't need a hundred click listeners. This Short covers event delegation in JavaScript -- attaching one listener to a parent element and checking event.target instead of wiring up every child individually. It scales, and it even works for elements added to the page later.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/07-dom-events/\n\n#Shorts",
+          "description": "A to-do list with a hundred delete buttons doesn't need a hundred click listeners. This Short covers event delegation in JavaScript -- attaching one listener to a parent element and checking event.target instead of wiring up every child individually. It scales, and it even works for elements added to the page later.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/07-dom-events/\n\n#Shorts",
           "video": "javascript-level-1-07-dom-events-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/07-dom-events/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/07-dom-events/",
           "questions": []
         },
         {
           "id": "javascript-level-1-08-error-handling-short",
           "title": "Why try/catch Won't Save You From setTimeout Errors",
-          "description": "Wrapping an async callback in try/catch feels safe -- but it isn't. In this Short we break down a classic JavaScript gotcha: try/catch only catches errors thrown synchronously, in the same call stack. Anything that fires later, like a setTimeout callback, slips right past it. Full lesson with the fix (and how promises change the picture) linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/08-error-handling/\n\n#Shorts",
+          "description": "Wrapping an async callback in try/catch feels safe -- but it isn't. In this Short we break down a classic JavaScript gotcha: try/catch only catches errors thrown synchronously, in the same call stack. Anything that fires later, like a setTimeout callback, slips right past it. Full lesson with the fix (and how promises change the picture) linked below.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/08-error-handling/\n\n#Shorts",
           "video": "javascript-level-1-08-error-handling-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/08-error-handling/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/08-error-handling/",
           "questions": []
         },
         {
           "id": "javascript-level-1-09-modules-npm-short",
           "title": "Why Some JavaScript Imports Use { } and Others Don't",
-          "description": "That curly-brace pattern in JS imports isn't random -- it's telling you exactly how the original file exported its code. This Short breaks down named exports vs. the one default export a file is allowed, and how a single import line can pull in both at once.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/09-modules-npm/\n\n#Shorts",
+          "description": "That curly-brace pattern in JS imports isn't random -- it's telling you exactly how the original file exported its code. This Short breaks down named exports vs. the one default export a file is allowed, and how a single import line can pull in both at once.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/09-modules-npm/\n\n#Shorts",
           "video": "javascript-level-1-09-modules-npm-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/09-modules-npm/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/09-modules-npm/",
           "questions": []
         },
         {
           "id": "javascript-level-1-10-project-todo-app-short",
           "title": "Why Your Todo List Only Needs ONE Click Listener",
-          "description": "Ever wonder how a to-do app can handle clicks on tasks that don't even exist yet? It's event delegation: one listener on the parent list element, and event.target.closest() figures out exactly which list item you clicked -- even ones created after the page loaded. This trick comes straight from the Level 1 capstone project in the JavaScript Mastery Path, a full localStorage-backed to-do app.\n\nSource lesson:\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/10-project-todo-app/\n\n#Shorts",
+          "description": "Ever wonder how a to-do app can handle clicks on tasks that don't even exist yet? It's event delegation: one listener on the parent list element, and event.target.closest() figures out exactly which list item you clicked -- even ones created after the page loaded. This trick comes straight from the Level 1 capstone project in the JavaScript Mastery Path, a full localStorage-backed to-do app.\n\nSource lesson:\n- https://learnmasterypath.com/javascript-mastery-path/level-1/10-project-todo-app/\n\n#Shorts",
           "video": "javascript-level-1-10-project-todo-app-short.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/10-project-todo-app/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/10-project-todo-app/",
           "questions": []
         },
         {
           "id": "javascript-level-1-longform",
           "title": "JavaScript Fundamentals: Variables to Error Handling (Full Level 1 Walkthrough)",
-          "description": "A complete, focused tour through the core of JavaScript Level 1 \u2014 the five modules that turn you from someone who can read JavaScript into someone who can write it. We start with how the language stores and compares data, move into branching and loops, package logic into functions and understand scope, work with the arrays and objects that hold real data, and finish with how to catch and handle errors instead of letting your program crash. Every snippet is pulled directly from the JavaScript Mastery Path so you can pause, copy the code, and run it yourself in Node or a browser console.\n\nLessons covered in this video:\n- Variables, Data Types & Operators: https://sigilipelli.github.io/javascript-mastery-path/level-1/02-variables-data-types/\n- Control Flow: https://sigilipelli.github.io/javascript-mastery-path/level-1/03-control-flow/\n- Functions & Scope: https://sigilipelli.github.io/javascript-mastery-path/level-1/04-functions-scope/\n- Arrays & Objects: https://sigilipelli.github.io/javascript-mastery-path/level-1/05-arrays-objects/\n- Error Handling Basics: https://sigilipelli.github.io/javascript-mastery-path/level-1/08-error-handling/\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/02-variables-data-types/\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/04-functions-scope/\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/05-arrays-objects/\n- https://sigilipelli.github.io/javascript-mastery-path/level-1/08-error-handling/",
+          "description": "A complete, focused tour through the core of JavaScript Level 1 \u2014 the five modules that turn you from someone who can read JavaScript into someone who can write it. We start with how the language stores and compares data, move into branching and loops, package logic into functions and understand scope, work with the arrays and objects that hold real data, and finish with how to catch and handle errors instead of letting your program crash. Every snippet is pulled directly from the JavaScript Mastery Path so you can pause, copy the code, and run it yourself in Node or a browser console.\n\nLessons covered in this video:\n- Variables, Data Types & Operators: https://learnmasterypath.com/javascript-mastery-path/level-1/02-variables-data-types/\n- Control Flow: https://learnmasterypath.com/javascript-mastery-path/level-1/03-control-flow/\n- Functions & Scope: https://learnmasterypath.com/javascript-mastery-path/level-1/04-functions-scope/\n- Arrays & Objects: https://learnmasterypath.com/javascript-mastery-path/level-1/05-arrays-objects/\n- Error Handling Basics: https://learnmasterypath.com/javascript-mastery-path/level-1/08-error-handling/\n\nSource lesson(s):\n- https://learnmasterypath.com/javascript-mastery-path/level-1/02-variables-data-types/\n- https://learnmasterypath.com/javascript-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/javascript-mastery-path/level-1/04-functions-scope/\n- https://learnmasterypath.com/javascript-mastery-path/level-1/05-arrays-objects/\n- https://learnmasterypath.com/javascript-mastery-path/level-1/08-error-handling/",
           "video": "javascript-level-1-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "Why is `var` considered legacy and best avoided in new JavaScript code?",
@@ -1161,10 +1161,10 @@
         {
           "id": "javascript-level-2-intermediate-longform",
           "title": "JavaScript Level 2: Closures, Classes, Async & Fetch Explained",
-          "description": "Level 2 of the JavaScript Mastery Path is where the language stops feeling like a toy and starts feeling like a tool for building real systems. This video walks through five modules back to back: closures and scope (how JavaScript hides private state without classes), prototypes and classes (the mechanism behind every object you've ever used), asynchronous JavaScript I (the call stack, callbacks, and the event loop), Promises and async/await (the modern way to write async code that reads top to bottom), and working with JSON and the Fetch API (talking to real HTTP APIs). Each section pulls runnable code straight from the lesson pages, so you can pause, copy, and try it yourself.\n\nLessons covered in this video:\n- Closures & Scope Deep Dive: https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/\n- Prototypes & Classes: https://sigilipelli.github.io/javascript-mastery-path/level-2/02-prototypes-classes/\n- Asynchronous JavaScript I: https://sigilipelli.github.io/javascript-mastery-path/level-2/03-async-javascript-i/\n- Promises & Async/Await: https://sigilipelli.github.io/javascript-mastery-path/level-2/04-promises-async-await/\n- Working with JSON & Fetch API: https://sigilipelli.github.io/javascript-mastery-path/level-2/05-json-fetch/",
+          "description": "Level 2 of the JavaScript Mastery Path is where the language stops feeling like a toy and starts feeling like a tool for building real systems. This video walks through five modules back to back: closures and scope (how JavaScript hides private state without classes), prototypes and classes (the mechanism behind every object you've ever used), asynchronous JavaScript I (the call stack, callbacks, and the event loop), Promises and async/await (the modern way to write async code that reads top to bottom), and working with JSON and the Fetch API (talking to real HTTP APIs). Each section pulls runnable code straight from the lesson pages, so you can pause, copy, and try it yourself.\n\nLessons covered in this video:\n- Closures & Scope Deep Dive: https://learnmasterypath.com/javascript-mastery-path/level-2/01-closures-scope/\n- Prototypes & Classes: https://learnmasterypath.com/javascript-mastery-path/level-2/02-prototypes-classes/\n- Asynchronous JavaScript I: https://learnmasterypath.com/javascript-mastery-path/level-2/03-async-javascript-i/\n- Promises & Async/Await: https://learnmasterypath.com/javascript-mastery-path/level-2/04-promises-async-await/\n- Working with JSON & Fetch API: https://learnmasterypath.com/javascript-mastery-path/level-2/05-json-fetch/",
           "video": "javascript-level-2-intermediate-longform.mp4",
           "videoAvailable": true,
-          "sourceUrl": "https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/",
+          "sourceUrl": "https://learnmasterypath.com/javascript-mastery-path/level-2/01-closures-scope/",
           "questions": []
         }
       ]
@@ -1177,55 +1177,55 @@
         {
           "id": "php-level-1-01-setup-short",
           "title": "PHP Has a Built-In Web Server (No Apache Needed)",
-          "description": "You don't need Apache or Nginx to test a PHP site locally -- PHP ships with its own development server built right in. This Short walks through writing a first script, running it from the terminal, then spinning up a live local site with one command. It's the fastest way to go from zero to a running PHP app.\n\nSource lesson:\n- https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "You don't need Apache or Nginx to test a PHP site locally -- PHP ships with its own development server built right in. This Short walks through writing a first script, running it from the terminal, then spinning up a live local site with one command. It's the fastest way to go from zero to a running PHP app.\n\nSource lesson:\n- https://learnmasterypath.com/php-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "php-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/php-mastery-path/level-1/01-setup/",
           "questions": []
         },
         {
           "id": "php-level-1-02-variables-types-short",
           "title": "PHP Type Juggling: The Silent Bug PHP 8 Had to Fix",
-          "description": "PHP quietly converts strings to numbers in math expressions -- and for years, that quirk caused real bugs, like `0 == \"abc\"` silently evaluating to true. PHP 8 tightened the rules, but type juggling is still very much alive in everyday code. Here's what it actually looks like, and why the strict `===` operator is almost always the safer bet.\n\nSource lesson:\n- https://sigilipelli.github.io/php-mastery-path/level-1/02-variables-types/\n\n#Shorts",
+          "description": "PHP quietly converts strings to numbers in math expressions -- and for years, that quirk caused real bugs, like `0 == \"abc\"` silently evaluating to true. PHP 8 tightened the rules, but type juggling is still very much alive in everyday code. Here's what it actually looks like, and why the strict `===` operator is almost always the safer bet.\n\nSource lesson:\n- https://learnmasterypath.com/php-mastery-path/level-1/02-variables-types/\n\n#Shorts",
           "video": "php-level-1-02-variables-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/php-mastery-path/level-1/02-variables-types/",
+          "sourceUrl": "https://learnmasterypath.com/php-mastery-path/level-1/02-variables-types/",
           "questions": []
         },
         {
           "id": "php-level-1-03-control-flow-short",
           "title": "PHP's match(true) Trick Looks Like Magic",
-          "description": "PHP's match expression can replace a whole if-elseif ladder with one strict, fallthrough-safe expression -- and the match(true) pattern turns range checks like grading a score into one clean line. See how it stacks up against switch and if/else, plus loops, break/continue, and ternaries in the full Level 1 lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/php-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "PHP's match expression can replace a whole if-elseif ladder with one strict, fallthrough-safe expression -- and the match(true) pattern turns range checks like grading a score into one clean line. See how it stacks up against switch and if/else, plus loops, break/continue, and ternaries in the full Level 1 lesson.\n\nSource lesson:\n- https://learnmasterypath.com/php-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "php-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/php-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/php-mastery-path/level-1/03-control-flow/",
           "questions": []
         },
         {
           "id": "php-level-1-06-strings-short",
           "title": "The PHP Bug Where strpos() Silently Lies to You",
-          "description": "strpos() returns false when it finds nothing, but it also returns 0 when your match sits right at the start of the string, and 0 is falsy in PHP. That means a plain if-check on strpos can silently treat a real match as no match at all. PHP 8's str_contains(), str_starts_with(), and str_ends_with() sidestep the whole problem with a clean true or false.\n\nSource lesson:\n- https://sigilipelli.github.io/php-mastery-path/level-1/06-strings/\n\n#Shorts",
+          "description": "strpos() returns false when it finds nothing, but it also returns 0 when your match sits right at the start of the string, and 0 is falsy in PHP. That means a plain if-check on strpos can silently treat a real match as no match at all. PHP 8's str_contains(), str_starts_with(), and str_ends_with() sidestep the whole problem with a clean true or false.\n\nSource lesson:\n- https://learnmasterypath.com/php-mastery-path/level-1/06-strings/\n\n#Shorts",
           "video": "php-level-1-06-strings-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/php-mastery-path/level-1/06-strings/",
+          "sourceUrl": "https://learnmasterypath.com/php-mastery-path/level-1/06-strings/",
           "questions": []
         },
         {
           "id": "php-level-1-07-classes-objects-short",
           "title": "PHP's One-Line Trick That Deletes Constructor Boilerplate",
-          "description": "Every PHP constructor used to need a property declaration, a parameter, and a manual assignment line for each field. PHP 8's constructor property promotion collapses all three into one -- and it still works cleanly with inheritance. This is the exact pattern from Level 1 of the PHP Mastery Path's Classes & Objects lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/php-mastery-path/level-1/07-classes-objects/\n\n#Shorts",
+          "description": "Every PHP constructor used to need a property declaration, a parameter, and a manual assignment line for each field. PHP 8's constructor property promotion collapses all three into one -- and it still works cleanly with inheritance. This is the exact pattern from Level 1 of the PHP Mastery Path's Classes & Objects lesson.\n\nSource lesson:\n- https://learnmasterypath.com/php-mastery-path/level-1/07-classes-objects/\n\n#Shorts",
           "video": "php-level-1-07-classes-objects-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/php-mastery-path/level-1/07-classes-objects/",
+          "sourceUrl": "https://learnmasterypath.com/php-mastery-path/level-1/07-classes-objects/",
           "questions": []
         },
         {
           "id": "php-level-1-fundamentals-longform",
           "title": "PHP Fundamentals: Setup to Objects & Exceptions (Level 1 Full Walkthrough)",
-          "description": "PHP quietly powers a massive share of the web, and this video walks through six core modules of PHP Level 1 back to back, the way a real course would sequence them: getting PHP installed and running your first script, variables and PHP's dynamic typing, control flow with if/switch/match and loops, string quoting and the built-in string functions you'll use constantly, classes and objects including constructor promotion and encapsulation, and finally proper error handling with try/catch/finally and custom exception classes. Every code example is pulled directly from the PHP Mastery Path lessons, and each lesson's full write-up and exercises are linked below in the order covered.\n\nLessons covered in this video:\n- 01 - Setup & First Program: https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/\n- 02 - Variables & Types: https://sigilipelli.github.io/php-mastery-path/level-1/02-variables-types/\n- 03 - Control Flow: https://sigilipelli.github.io/php-mastery-path/level-1/03-control-flow/\n- 06 - Strings & String Functions: https://sigilipelli.github.io/php-mastery-path/level-1/06-strings/\n- 07 - Classes & Objects Basics: https://sigilipelli.github.io/php-mastery-path/level-1/07-classes-objects/\n- 08 - Error Handling Basics: https://sigilipelli.github.io/php-mastery-path/level-1/08-error-handling/\n\nSource lesson(s):\n- https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/\n- https://sigilipelli.github.io/php-mastery-path/level-1/02-variables-types/\n- https://sigilipelli.github.io/php-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/php-mastery-path/level-1/06-strings/\n- https://sigilipelli.github.io/php-mastery-path/level-1/07-classes-objects/\n- https://sigilipelli.github.io/php-mastery-path/level-1/08-error-handling/",
+          "description": "PHP quietly powers a massive share of the web, and this video walks through six core modules of PHP Level 1 back to back, the way a real course would sequence them: getting PHP installed and running your first script, variables and PHP's dynamic typing, control flow with if/switch/match and loops, string quoting and the built-in string functions you'll use constantly, classes and objects including constructor promotion and encapsulation, and finally proper error handling with try/catch/finally and custom exception classes. Every code example is pulled directly from the PHP Mastery Path lessons, and each lesson's full write-up and exercises are linked below in the order covered.\n\nLessons covered in this video:\n- 01 - Setup & First Program: https://learnmasterypath.com/php-mastery-path/level-1/01-setup/\n- 02 - Variables & Types: https://learnmasterypath.com/php-mastery-path/level-1/02-variables-types/\n- 03 - Control Flow: https://learnmasterypath.com/php-mastery-path/level-1/03-control-flow/\n- 06 - Strings & String Functions: https://learnmasterypath.com/php-mastery-path/level-1/06-strings/\n- 07 - Classes & Objects Basics: https://learnmasterypath.com/php-mastery-path/level-1/07-classes-objects/\n- 08 - Error Handling Basics: https://learnmasterypath.com/php-mastery-path/level-1/08-error-handling/\n\nSource lesson(s):\n- https://learnmasterypath.com/php-mastery-path/level-1/01-setup/\n- https://learnmasterypath.com/php-mastery-path/level-1/02-variables-types/\n- https://learnmasterypath.com/php-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/php-mastery-path/level-1/06-strings/\n- https://learnmasterypath.com/php-mastery-path/level-1/07-classes-objects/\n- https://learnmasterypath.com/php-mastery-path/level-1/08-error-handling/",
           "video": "php-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/php-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/php-mastery-path/level-1/01-setup/",
           "questions": []
         }
       ]
@@ -1238,10 +1238,10 @@
         {
           "id": "python-concurrency-and-performance-longform",
           "title": "Python Concurrency Explained: Threading vs Multiprocessing vs Asyncio (+ How to Measure It)",
-          "description": "Three tools that all promise to make your Python code faster -- threading, multiprocessing, and asyncio -- and they are NOT interchangeable. This video walks through when each one actually helps, with real runnable examples, plus how to measure whether an optimization did anything at all using timeit. Every example is pulled straight from the Python Mastery Path curriculum.\n\nLessons covered in this video:\n- Concurrency I: Threading & Multiprocessing: https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- Concurrency II: Asyncio: https://sigilipelli.github.io/python-mastery-path/level-3/05-concurrency-asyncio/\n- Profiling & Performance: https://sigilipelli.github.io/python-mastery-path/level-3/10-profiling-performance/",
+          "description": "Three tools that all promise to make your Python code faster -- threading, multiprocessing, and asyncio -- and they are NOT interchangeable. This video walks through when each one actually helps, with real runnable examples, plus how to measure whether an optimization did anything at all using timeit. Every example is pulled straight from the Python Mastery Path curriculum.\n\nLessons covered in this video:\n- Concurrency I: Threading & Multiprocessing: https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/\n- Concurrency II: Asyncio: https://learnmasterypath.com/python-mastery-path/level-3/05-concurrency-asyncio/\n- Profiling & Performance: https://learnmasterypath.com/python-mastery-path/level-3/10-profiling-performance/",
           "video": "python-concurrency-and-performance-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-3/04-concurrency-threading-multiprocessing/",
           "questions": [
             {
               "question": "Why can `multiprocessing` achieve true parallel speedup for CPU-bound code while `threading` cannot?",
@@ -1281,10 +1281,10 @@
         {
           "id": "python-control-flow-for-else-short",
           "title": "The Python `for...else` almost nobody uses",
-          "description": "There's a keyword combo in Python's for loop that trips up even experienced developers: an else clause that only runs if the loop finishes without ever hitting break. Full lesson with runnable code below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/",
+          "description": "There's a keyword combo in Python's for loop that trips up even experienced developers: an else clause that only runs if the loop finishes without ever hitting break. Full lesson with runnable code below.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/",
           "video": "python-control-flow-for-else-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/",
           "questions": [
             {
               "question": "What is the purpose of the `else` clause attached to a `for` loop in Python?",
@@ -1324,10 +1324,10 @@
         {
           "id": "python-is-vs-equals-short",
           "title": "Python's `==` and `is` are NOT the same thing",
-          "description": "5 == 5.0 is True, but 5 is 5.0 is False. If you've ever gotten a confusing bug from using `is` where you meant `==`, this is why.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+          "description": "5 == 5.0 is True, but 5 is 5.0 is False. If you've ever gotten a confusing bug from using `is` where you meant `==`, this is why.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
           "video": "python-is-vs-equals-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "Why does `5 is 5.0` evaluate to False even though `5 == 5.0` evaluates to True?",
@@ -1367,10 +1367,10 @@
         {
           "id": "python-legb-scope-short",
           "title": "Why your variable \"disappears\" outside a function",
-          "description": "Python looks up variables in a specific order -- Local, Enclosing, Global, Built-in -- and that order explains a bug almost every beginner hits eventually.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
+          "description": "Python looks up variables in a specific order -- Local, Enclosing, Global, Built-in -- and that order explains a bug almost every beginner hits eventually.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/\n\n#Shorts",
           "video": "python-legb-scope-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/",
           "questions": [
             {
               "question": "What does Python's LEGB rule describe?",
@@ -1410,10 +1410,10 @@
         {
           "id": "python-level-1-07-file-io-short",
           "title": "Python's 'w' Mode Will Silently Delete Your File",
-          "description": "That one-letter file mode in Python -- 'w' vs 'a' -- decides whether your data survives or vanishes. This lesson covers safe file writing with `with open()`, append mode, and how pathlib simplifies reading and writing to a single line each. Watch before you overwrite something you needed.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/07-file-io/\n\n#Shorts",
+          "description": "That one-letter file mode in Python -- 'w' vs 'a' -- decides whether your data survives or vanishes. This lesson covers safe file writing with `with open()`, append mode, and how pathlib simplifies reading and writing to a single line each. Watch before you overwrite something you needed.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/07-file-io/\n\n#Shorts",
           "video": "python-level-1-07-file-io-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/07-file-io/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/07-file-io/",
           "questions": [
             {
               "question": "Why is it recommended to always open files using a `with` statement?",
@@ -1453,10 +1453,10 @@
         {
           "id": "python-level-1-08-error-handling-short",
           "title": "Python try/except Has 2 Hidden Keywords",
-          "description": "Most people stop at try and except in Python -- but else and finally unlock cleaner error handling. else runs only when nothing goes wrong, keeping success logic out of your risky code, while finally guarantees cleanup runs every single time. Watch the full breakdown and grab the runnable code in the source lesson below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/08-error-handling/\n\n#Shorts",
+          "description": "Most people stop at try and except in Python -- but else and finally unlock cleaner error handling. else runs only when nothing goes wrong, keeping success logic out of your risky code, while finally guarantees cleanup runs every single time. Watch the full breakdown and grab the runnable code in the source lesson below.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/08-error-handling/\n\n#Shorts",
           "video": "python-level-1-08-error-handling-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/08-error-handling/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/08-error-handling/",
           "questions": [
             {
               "question": "In a try/except/else/finally block, when does the `else` clause run?",
@@ -1496,10 +1496,10 @@
         {
           "id": "python-level-1-09-modules-packages-short",
           "title": "Why Every Python Project Needs Its Own Virtual Env",
-          "description": "Installing Python packages globally feels fine, until two projects need different versions of the same library and everything breaks. This Short shows you how to create an isolated virtual environment, install packages inside it, and freeze the exact versions with pip so anyone can rebuild your setup perfectly. It's one habit that saves hours of \"works on my machine\" debugging.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/09-modules-packages/\n\n#Shorts",
+          "description": "Installing Python packages globally feels fine, until two projects need different versions of the same library and everything breaks. This Short shows you how to create an isolated virtual environment, install packages inside it, and freeze the exact versions with pip so anyone can rebuild your setup perfectly. It's one habit that saves hours of \"works on my machine\" debugging.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/09-modules-packages/\n\n#Shorts",
           "video": "python-level-1-09-modules-packages-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/09-modules-packages/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/09-modules-packages/",
           "questions": [
             {
               "question": "Why should every Python project use its own virtual environment?",
@@ -1539,10 +1539,10 @@
         {
           "id": "python-level-1-10-project-todo-app-short",
           "title": "Build a Python To-Do App That Actually Remembers Tasks",
-          "description": "Ever wonder how a command-line tool remembers your data between runs? This Short breaks down the persistence pattern behind a simple Python to-do app -- one function to load JSON, one to save it, and a safe way to delete items without ever crashing on a bad task number. It's the CLI To-Do App project from Level 1 of the Python Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/10-project-todo-app/\n\n#Shorts",
+          "description": "Ever wonder how a command-line tool remembers your data between runs? This Short breaks down the persistence pattern behind a simple Python to-do app -- one function to load JSON, one to save it, and a safe way to delete items without ever crashing on a bad task number. It's the CLI To-Do App project from Level 1 of the Python Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/10-project-todo-app/\n\n#Shorts",
           "video": "python-level-1-10-project-todo-app-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/10-project-todo-app/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/10-project-todo-app/",
           "questions": [
             {
               "question": "Why does load_tasks() catch json.JSONDecodeError and return an empty list instead?",
@@ -1582,19 +1582,19 @@
         {
           "id": "python-level-1-fundamentals-longform",
           "title": "Python Fundamentals: Variables, Control Flow, Functions & Error Handling",
-          "description": "Five Level 1 lessons from the Python Mastery Path, stitched into one focused walkthrough of the language core: how variables and operators actually work, how to branch and loop with control flow, how functions and scope fit together, the four built-in data structures you'll reach for constantly, and how to fail gracefully with try/except. This is the exact sequence that takes you from zero to writing real, working Python scripts -- watch it end to end, then go run the code yourself.\n\nLessons covered in this video:\n- 02 - Variables, Data Types & Operators: https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/\n- 03 - Control Flow: https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/\n- 04 - Functions & Scope: https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/\n- 05 - Core Data Structures: https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/\n- 08 - Error Handling Basics: https://sigilipelli.github.io/python-mastery-path/level-1/08-error-handling/\n\nSource lesson(s):\n- https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/\n- https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/python-mastery-path/level-1/04-functions-scope/\n- https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/\n- https://sigilipelli.github.io/python-mastery-path/level-1/08-error-handling/",
+          "description": "Five Level 1 lessons from the Python Mastery Path, stitched into one focused walkthrough of the language core: how variables and operators actually work, how to branch and loop with control flow, how functions and scope fit together, the four built-in data structures you'll reach for constantly, and how to fail gracefully with try/except. This is the exact sequence that takes you from zero to writing real, working Python scripts -- watch it end to end, then go run the code yourself.\n\nLessons covered in this video:\n- 02 - Variables, Data Types & Operators: https://learnmasterypath.com/python-mastery-path/level-1/02-variables-data-types/\n- 03 - Control Flow: https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/\n- 04 - Functions & Scope: https://learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/\n- 05 - Core Data Structures: https://learnmasterypath.com/python-mastery-path/level-1/05-data-structures/\n- 08 - Error Handling Basics: https://learnmasterypath.com/python-mastery-path/level-1/08-error-handling/\n\nSource lesson(s):\n- https://learnmasterypath.com/python-mastery-path/level-1/02-variables-data-types/\n- https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/python-mastery-path/level-1/04-functions-scope/\n- https://learnmasterypath.com/python-mastery-path/level-1/05-data-structures/\n- https://learnmasterypath.com/python-mastery-path/level-1/08-error-handling/",
           "video": "python-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/02-variables-data-types/",
           "questions": []
         },
         {
           "id": "python-level-2-01-oop-short",
           "title": "Python Classes Can Use +, ==, and print() Too",
-          "description": "Ever wonder how Python's built-in types support +, ==, and print() so naturally? You can give your own classes the exact same powers with a handful of dunder methods. This Short walks through a Vector class that adds, compares, and prints itself using nothing but plain Python.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-2/01-oop/\n\n#Shorts",
+          "description": "Ever wonder how Python's built-in types support +, ==, and print() so naturally? You can give your own classes the exact same powers with a handful of dunder methods. This Short walks through a Vector class that adds, compares, and prints itself using nothing but plain Python.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-2/01-oop/\n\n#Shorts",
           "video": "python-level-2-01-oop-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/01-oop/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/01-oop/",
           "questions": [
             {
               "question": "What is the purpose of dunder methods like __add__ and __eq__ on a class?",
@@ -1634,55 +1634,55 @@
         {
           "id": "python-level-2-02-comprehensions-generators-short",
           "title": "Why This Python Line Builds Nothing (On Purpose)",
-          "description": "List comprehensions build everything right away -- generator expressions don't. This Short shows the exact code where swapping brackets for parentheses turns instant computation into pure laziness, one value at a time. Perfect if you've ever wondered why some Python one-liners feel instant and others feel invisible.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-2/02-comprehensions-generators/\n\n#Shorts",
+          "description": "List comprehensions build everything right away -- generator expressions don't. This Short shows the exact code where swapping brackets for parentheses turns instant computation into pure laziness, one value at a time. Perfect if you've ever wondered why some Python one-liners feel instant and others feel invisible.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-2/02-comprehensions-generators/\n\n#Shorts",
           "video": "python-level-2-02-comprehensions-generators-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/02-comprehensions-generators/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/02-comprehensions-generators/",
           "questions": []
         },
         {
           "id": "python-level-2-03-functional-programming-short",
           "title": "How Python decorators secretly work (in one line)",
-          "description": "That `@` symbol above a function isn't magic \u2014 it's just one function wrapping another, made possible because Python treats functions as regular objects. In under a minute we time a function's execution without touching a single line inside it, then reveal the plain Python underneath the decorator syntax. Full section on functional programming \u2014 closures, map/filter, and decorators \u2014 linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-2/03-functional-programming/\n\n#Shorts",
+          "description": "That `@` symbol above a function isn't magic \u2014 it's just one function wrapping another, made possible because Python treats functions as regular objects. In under a minute we time a function's execution without touching a single line inside it, then reveal the plain Python underneath the decorator syntax. Full section on functional programming \u2014 closures, map/filter, and decorators \u2014 linked below.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-2/03-functional-programming/\n\n#Shorts",
           "video": "python-level-2-03-functional-programming-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/03-functional-programming/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/03-functional-programming/",
           "questions": []
         },
         {
           "id": "python-level-2-04-exceptions-context-managers-short",
           "title": "Python's @contextmanager: Cleanup That Always Runs",
-          "description": "You already use `with` to auto-close files -- but you can build the exact same guaranteed-cleanup behavior yourself with one decorator and a single `yield`. No class, no `__enter__`/`__exit__` boilerplate, and the cleanup still fires even if the code inside raises an exception. This is straight from the Custom Exceptions & Context Managers lesson in Python Mastery Path Level 2.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-2/04-exceptions-context-managers/\n\n#Shorts",
+          "description": "You already use `with` to auto-close files -- but you can build the exact same guaranteed-cleanup behavior yourself with one decorator and a single `yield`. No class, no `__enter__`/`__exit__` boilerplate, and the cleanup still fires even if the code inside raises an exception. This is straight from the Custom Exceptions & Context Managers lesson in Python Mastery Path Level 2.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-2/04-exceptions-context-managers/\n\n#Shorts",
           "video": "python-level-2-04-exceptions-context-managers-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/04-exceptions-context-managers/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/04-exceptions-context-managers/",
           "questions": []
         },
         {
           "id": "python-level-2-05-data-formats-short",
           "title": "Turn Any Python Dict Into JSON (And Back) in One Line",
-          "description": "Python's built-in json module turns a dictionary into a JSON string and back again with just one function call each way. In this Short we run json.dumps and json.loads on a real example and see the round trip come back exactly as it started. The full lesson also covers CSV and XML if you want to go deeper.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-2/05-data-formats/\n\n#Shorts",
+          "description": "Python's built-in json module turns a dictionary into a JSON string and back again with just one function call each way. In this Short we run json.dumps and json.loads on a real example and see the round trip come back exactly as it started. The full lesson also covers CSV and XML if you want to go deeper.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-2/05-data-formats/\n\n#Shorts",
           "video": "python-level-2-05-data-formats-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/05-data-formats/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/05-data-formats/",
           "questions": []
         },
         {
           "id": "python-level-2-06-regular-expressions-short",
           "title": "Why re.match() silently returns None (regex trap)",
-          "description": "re.match() only checks the very start of a string -- if your pattern isn't literally at position zero, it fails silently and returns None, even when the text is right there. re.search() is almost always what you actually want. This is one of the most common regex bugs in Python, and it's an easy fix once you see it.\n\nFull lesson on Python regular expressions -- groups, named captures, sub(), and more:\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-2/06-regular-expressions/\n\n#Shorts",
+          "description": "re.match() only checks the very start of a string -- if your pattern isn't literally at position zero, it fails silently and returns None, even when the text is right there. re.search() is almost always what you actually want. This is one of the most common regex bugs in Python, and it's an easy fix once you see it.\n\nFull lesson on Python regular expressions -- groups, named captures, sub(), and more:\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-2/06-regular-expressions/\n\n#Shorts",
           "video": "python-level-2-06-regular-expressions-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/06-regular-expressions/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/06-regular-expressions/",
           "questions": []
         },
         {
           "id": "python-level-4-mastery-longform",
           "title": "Mastering Python Level 4: Design Patterns to Production Security",
-          "description": "You know Python's syntax. This video is about the next jump: the disciplines that separate a script that works from a system you can actually run in production. We follow one arc across five Level 4 lessons from the Python Mastery Path -- Pythonic design patterns, metaprogramming tricks that power real frameworks, building an authenticated FastAPI service, testing it with fixtures, mocks and property-based tests, and closing every common security hole before it ships. Each section builds on the last, so the whole video plays like one connected lecture rather than five disconnected clips.\n\nLessons covered in this video:\n- Design Patterns in Python: https://sigilipelli.github.io/python-mastery-path/level-4/01-design-patterns/\n- Metaprogramming: https://sigilipelli.github.io/python-mastery-path/level-4/03-metaprogramming/\n- Production-Grade APIs: https://sigilipelli.github.io/python-mastery-path/level-4/04-production-apis/\n- Testing at Scale: https://sigilipelli.github.io/python-mastery-path/level-4/05-testing-at-scale/\n- Security Best Practices: https://sigilipelli.github.io/python-mastery-path/level-4/09-security-best-practices/",
+          "description": "You know Python's syntax. This video is about the next jump: the disciplines that separate a script that works from a system you can actually run in production. We follow one arc across five Level 4 lessons from the Python Mastery Path -- Pythonic design patterns, metaprogramming tricks that power real frameworks, building an authenticated FastAPI service, testing it with fixtures, mocks and property-based tests, and closing every common security hole before it ships. Each section builds on the last, so the whole video plays like one connected lecture rather than five disconnected clips.\n\nLessons covered in this video:\n- Design Patterns in Python: https://learnmasterypath.com/python-mastery-path/level-4/01-design-patterns/\n- Metaprogramming: https://learnmasterypath.com/python-mastery-path/level-4/03-metaprogramming/\n- Production-Grade APIs: https://learnmasterypath.com/python-mastery-path/level-4/04-production-apis/\n- Testing at Scale: https://learnmasterypath.com/python-mastery-path/level-4/05-testing-at-scale/\n- Security Best Practices: https://learnmasterypath.com/python-mastery-path/level-4/09-security-best-practices/",
           "video": "python-level-4-mastery-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-4/01-design-patterns/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-4/01-design-patterns/",
           "questions": [
             {
               "question": "Why is a plain Python module often the simplest way to implement a Singleton?",
@@ -1722,10 +1722,10 @@
         {
           "id": "python-level2-pythonic-toolkit-longform",
           "title": "Write More Pythonic Code: Comprehensions, Functional Tools & Clean Error Handling",
-          "description": "A guided tour through three habits that separate code that merely works from code that reads like Python: comprehensions and generators instead of manual loops, functional tools like map, filter, and reduce, and exception handling that actually tells you what went wrong. Every example is real, runnable code pulled straight from the Python Mastery Path curriculum.\n\nLessons covered in this video:\n- Comprehensions & Generators: https://sigilipelli.github.io/python-mastery-path/level-2/02-comprehensions-generators/\n- Functional Programming: https://sigilipelli.github.io/python-mastery-path/level-2/03-functional-programming/\n- Custom Exceptions & Context Managers: https://sigilipelli.github.io/python-mastery-path/level-2/04-exceptions-context-managers/",
+          "description": "A guided tour through three habits that separate code that merely works from code that reads like Python: comprehensions and generators instead of manual loops, functional tools like map, filter, and reduce, and exception handling that actually tells you what went wrong. Every example is real, runnable code pulled straight from the Python Mastery Path curriculum.\n\nLessons covered in this video:\n- Comprehensions & Generators: https://learnmasterypath.com/python-mastery-path/level-2/02-comprehensions-generators/\n- Functional Programming: https://learnmasterypath.com/python-mastery-path/level-2/03-functional-programming/\n- Custom Exceptions & Context Managers: https://learnmasterypath.com/python-mastery-path/level-2/04-exceptions-context-managers/",
           "video": "python-level2-pythonic-toolkit-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-2/02-comprehensions-generators/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-2/02-comprehensions-generators/",
           "questions": [
             {
               "question": "Why does a generator expression use less memory than the equivalent list comprehension?",
@@ -1765,10 +1765,10 @@
         {
           "id": "python-setup-main-guard-short",
           "title": "That weird `if __name__ == \"__main__\"` line, explained",
-          "description": "Every Python script seems to end with this strange line. Here's what it actually does and why it matters the moment your file gets imported somewhere else.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "Every Python script seems to end with this strange line. Here's what it actually does and why it matters the moment your file gets imported somewhere else.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "python-setup-main-guard-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "Why do Python scripts commonly use the `if __name__ == \"__main__\":` guard?",
@@ -1808,10 +1808,10 @@
         {
           "id": "python-string-immutability-short",
           "title": "The #1 Python string bug beginners hit",
-          "description": "Calling s.upper() doesn't change s. Strings in Python are immutable -- every string method returns a brand new string, and if you don't reassign it, nothing happens.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/06-strings-formatting/\n\n#Shorts",
+          "description": "Calling s.upper() doesn't change s. Strings in Python are immutable -- every string method returns a brand new string, and if you don't reassign it, nothing happens.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/06-strings-formatting/\n\n#Shorts",
           "video": "python-string-immutability-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/06-strings-formatting/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/06-strings-formatting/",
           "questions": [
             {
               "question": "Why must you write s = s.upper() instead of just s.upper() to keep the change?",
@@ -1851,10 +1851,10 @@
         {
           "id": "python-tuples-dict-keys-short",
           "title": "The Python data structure trick most tutorials skip",
-          "description": "Tuples aren't just \"immutable lists\" -- being immutable makes them hashable, which means they can be dictionary keys and set members. Lists never can.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/\n\n#Shorts",
+          "description": "Tuples aren't just \"immutable lists\" -- being immutable makes them hashable, which means they can be dictionary keys and set members. Lists never can.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/05-data-structures/\n\n#Shorts",
           "video": "python-tuples-dict-keys-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/",
+          "sourceUrl": "https://learnmasterypath.com/python-mastery-path/level-1/05-data-structures/",
           "questions": [
             {
               "question": "Why can tuples be used as dictionary keys while lists cannot?",
@@ -1901,55 +1901,55 @@
         {
           "id": "rust-level-1-01-setup-short",
           "title": "Rust already wrote your first program for you",
-          "description": "You install Rust, run one command, and a working program is already sitting in your project folder -- you haven't typed a line of code yet. This Short breaks down what `cargo new` actually generates, why `println!` has an exclamation mark, and how `cargo run` compiles and executes in one shot. Full setup walkthrough and the next lesson on ownership are linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/rust-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "You install Rust, run one command, and a working program is already sitting in your project folder -- you haven't typed a line of code yet. This Short breaks down what `cargo new` actually generates, why `println!` has an exclamation mark, and how `cargo run` compiles and executes in one shot. Full setup walkthrough and the next lesson on ownership are linked below.\n\nSource lesson:\n- https://learnmasterypath.com/rust-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "rust-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/rust-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/rust-mastery-path/level-1/01-setup/",
           "questions": []
         },
         {
           "id": "rust-level-1-02-variables-types-ownership-short",
           "title": "Why Rust Refuses to Copy Your String",
-          "description": "Rust doesn't have a garbage collector -- so how does it stop memory bugs before they happen? By enforcing one rule at compile time: every value has exactly one owner. Watch what happens when you assign a String to a second variable, and how `.clone()` gives you an explicit way around it. Part of the Rust Mastery Path Level 1 series on variables, types, and ownership basics.\n\nSource lesson:\n- https://sigilipelli.github.io/rust-mastery-path/level-1/02-variables-types-ownership/\n\n#Shorts",
+          "description": "Rust doesn't have a garbage collector -- so how does it stop memory bugs before they happen? By enforcing one rule at compile time: every value has exactly one owner. Watch what happens when you assign a String to a second variable, and how `.clone()` gives you an explicit way around it. Part of the Rust Mastery Path Level 1 series on variables, types, and ownership basics.\n\nSource lesson:\n- https://learnmasterypath.com/rust-mastery-path/level-1/02-variables-types-ownership/\n\n#Shorts",
           "video": "rust-level-1-02-variables-types-ownership-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/rust-mastery-path/level-1/02-variables-types-ownership/",
+          "sourceUrl": "https://learnmasterypath.com/rust-mastery-path/level-1/02-variables-types-ownership/",
           "questions": []
         },
         {
           "id": "rust-level-1-03-control-flow-short",
           "title": "Rust's loop can literally return a value",
-          "description": "In most languages a loop just... loops. In Rust, `loop` can hand you back a value the moment you `break` with one -- no temp variable, no flag, just a straight assignment. This is one of the small ideas that makes Rust's \"everything is an expression\" philosophy click.\n\nSource lesson:\n- https://sigilipelli.github.io/rust-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "In most languages a loop just... loops. In Rust, `loop` can hand you back a value the moment you `break` with one -- no temp variable, no flag, just a straight assignment. This is one of the small ideas that makes Rust's \"everything is an expression\" philosophy click.\n\nSource lesson:\n- https://learnmasterypath.com/rust-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "rust-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/rust-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/rust-mastery-path/level-1/03-control-flow/",
           "questions": []
         },
         {
           "id": "rust-level-1-04-functions-short",
           "title": "The Sneaky Semicolon That Breaks Rust Functions",
-          "description": "In Rust, the last expression in a function body is automatically returned -- no `return` keyword needed, as long as you leave off the semicolon. Add that semicolon back in and the exact same code silently returns nothing instead of the value you expected. This Short breaks down the statement-vs-expression rule that trips up almost every new Rust developer.\n\nSource lesson:\n- https://sigilipelli.github.io/rust-mastery-path/level-1/04-functions/\n\n#Shorts",
+          "description": "In Rust, the last expression in a function body is automatically returned -- no `return` keyword needed, as long as you leave off the semicolon. Add that semicolon back in and the exact same code silently returns nothing instead of the value you expected. This Short breaks down the statement-vs-expression rule that trips up almost every new Rust developer.\n\nSource lesson:\n- https://learnmasterypath.com/rust-mastery-path/level-1/04-functions/\n\n#Shorts",
           "video": "rust-level-1-04-functions-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/rust-mastery-path/level-1/04-functions/",
+          "sourceUrl": "https://learnmasterypath.com/rust-mastery-path/level-1/04-functions/",
           "questions": []
         },
         {
           "id": "rust-level-1-06-collections-short",
           "title": "Rust's entry().or_insert() Is Basically Magic",
-          "description": "Counting things in a HashMap in Rust doesn't need an if-key-exists check. The entry().or_insert() pattern grabs a mutable handle to a key's value, inserting a default only if it's missing -- perfect for tallying scores, word counts, or votes in one line. Watch it create Charlie with a default score of zero and bump Bob's score, all without ever checking whether the key exists first.\n\nSource lesson:\n- https://sigilipelli.github.io/rust-mastery-path/level-1/06-collections/\n\n#Shorts",
+          "description": "Counting things in a HashMap in Rust doesn't need an if-key-exists check. The entry().or_insert() pattern grabs a mutable handle to a key's value, inserting a default only if it's missing -- perfect for tallying scores, word counts, or votes in one line. Watch it create Charlie with a default score of zero and bump Bob's score, all without ever checking whether the key exists first.\n\nSource lesson:\n- https://learnmasterypath.com/rust-mastery-path/level-1/06-collections/\n\n#Shorts",
           "video": "rust-level-1-06-collections-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/rust-mastery-path/level-1/06-collections/",
+          "sourceUrl": "https://learnmasterypath.com/rust-mastery-path/level-1/06-collections/",
           "questions": []
         },
         {
           "id": "rust-level-1-fundamentals-longform",
           "title": "Rust Level 1 Foundations: From Cargo to Error Handling (Full Walkthrough)",
-          "description": "Rust has a reputation for being hard to learn, but its Level 1 foundations come down to six ideas taught well: how a Cargo project is built and run, how variables and ownership actually work, how to branch and loop, how functions return values, how to store data in Vec/String/HashMap, and how to handle missing or failed values with Option and Result instead of exceptions. This walkthrough covers all six lessons back to back, in the order the Rust Mastery Path teaches them, with real code from every lesson so you can see the full arc from `cargo new` to the `?` operator.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/rust-mastery-path/level-1/01-setup/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/02-variables-types-ownership/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/04-functions/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/06-collections/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/07-error-handling-basics/\n\nSource lesson(s):\n- https://sigilipelli.github.io/rust-mastery-path/level-1/01-setup/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/02-variables-types-ownership/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/04-functions/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/06-collections/\n- https://sigilipelli.github.io/rust-mastery-path/level-1/07-error-handling-basics/",
+          "description": "Rust has a reputation for being hard to learn, but its Level 1 foundations come down to six ideas taught well: how a Cargo project is built and run, how variables and ownership actually work, how to branch and loop, how functions return values, how to store data in Vec/String/HashMap, and how to handle missing or failed values with Option and Result instead of exceptions. This walkthrough covers all six lessons back to back, in the order the Rust Mastery Path teaches them, with real code from every lesson so you can see the full arc from `cargo new` to the `?` operator.\n\nLessons covered in this video:\n- https://learnmasterypath.com/rust-mastery-path/level-1/01-setup/\n- https://learnmasterypath.com/rust-mastery-path/level-1/02-variables-types-ownership/\n- https://learnmasterypath.com/rust-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/rust-mastery-path/level-1/04-functions/\n- https://learnmasterypath.com/rust-mastery-path/level-1/06-collections/\n- https://learnmasterypath.com/rust-mastery-path/level-1/07-error-handling-basics/\n\nSource lesson(s):\n- https://learnmasterypath.com/rust-mastery-path/level-1/01-setup/\n- https://learnmasterypath.com/rust-mastery-path/level-1/02-variables-types-ownership/\n- https://learnmasterypath.com/rust-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/rust-mastery-path/level-1/04-functions/\n- https://learnmasterypath.com/rust-mastery-path/level-1/06-collections/\n- https://learnmasterypath.com/rust-mastery-path/level-1/07-error-handling-basics/",
           "video": "rust-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/rust-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/rust-mastery-path/level-1/01-setup/",
           "questions": []
         }
       ]
@@ -1962,10 +1962,10 @@
         {
           "id": "sql-level-1-01-setup-first-queries-short",
           "title": "SQLite Looks Broken Until You Run These 2 Lines",
-          "description": "SQLite's default output looks like a misaligned mess until you flip two settings. In this lesson we set up sqlite3, create a table, and prove your data survives even after you quit the shell -- because a SQLite database is just a file.\n\nSource lesson(s):\n- https://sigilipelli.github.io/sql-mastery-path/level-1/01-setup-first-queries/\n\n#Shorts",
+          "description": "SQLite's default output looks like a misaligned mess until you flip two settings. In this lesson we set up sqlite3, create a table, and prove your data survives even after you quit the shell -- because a SQLite database is just a file.\n\nSource lesson(s):\n- https://learnmasterypath.com/sql-mastery-path/level-1/01-setup-first-queries/\n\n#Shorts",
           "video": "sql-level-1-01-setup-first-queries-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/sql-mastery-path/level-1/01-setup-first-queries/",
+          "sourceUrl": "https://learnmasterypath.com/sql-mastery-path/level-1/01-setup-first-queries/",
           "questions": [
             {
               "question": "Why doesn't running `sqlite3 school.db` on a brand-new filename create the file right away?",
@@ -2005,10 +2005,10 @@
         {
           "id": "sql-level-1-02-select-basics-data-types-short",
           "title": "SQLite Lets You Put Text in an INTEGER Column (Seriously)",
-          "description": "SQLite doesn't enforce column types the way Postgres or MySQL do -- it uses \"type affinity\" instead, which means a column declared INTEGER will happily store text if you insert it. We create a table with five different declared types, insert mismatched values, and use typeof() to see exactly what SQLite actually stored. Useful to know before you assume your schema is protecting you.\n\nSource lesson:\n- https://sigilipelli.github.io/sql-mastery-path/level-1/02-select-basics-data-types/\n\n#Shorts",
+          "description": "SQLite doesn't enforce column types the way Postgres or MySQL do -- it uses \"type affinity\" instead, which means a column declared INTEGER will happily store text if you insert it. We create a table with five different declared types, insert mismatched values, and use typeof() to see exactly what SQLite actually stored. Useful to know before you assume your schema is protecting you.\n\nSource lesson:\n- https://learnmasterypath.com/sql-mastery-path/level-1/02-select-basics-data-types/\n\n#Shorts",
           "video": "sql-level-1-02-select-basics-data-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/sql-mastery-path/level-1/02-select-basics-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/sql-mastery-path/level-1/02-select-basics-data-types/",
           "questions": [
             {
               "question": "Why is listing exact column names preferred over `SELECT *` in real application code?",
@@ -2048,10 +2048,10 @@
         {
           "id": "sql-level-1-03-filtering-where-short",
           "title": "The SQL NULL Bug That Breaks WHERE Clauses",
-          "description": "Ever run a WHERE genre = NULL query that always returns zero rows, even though the data is right there? This is one of the most common silent bugs in SQL, and it's caused by how NULL actually works. In this Short we break down why equals can't compare to NULL, and the two operators -- IS NULL and IS NOT NULL -- that actually work.\n\nSource lesson:\n- https://sigilipelli.github.io/sql-mastery-path/level-1/03-filtering-where/\n\n#Shorts",
+          "description": "Ever run a WHERE genre = NULL query that always returns zero rows, even though the data is right there? This is one of the most common silent bugs in SQL, and it's caused by how NULL actually works. In this Short we break down why equals can't compare to NULL, and the two operators -- IS NULL and IS NOT NULL -- that actually work.\n\nSource lesson:\n- https://learnmasterypath.com/sql-mastery-path/level-1/03-filtering-where/\n\n#Shorts",
           "video": "sql-level-1-03-filtering-where-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/sql-mastery-path/level-1/03-filtering-where/",
+          "sourceUrl": "https://learnmasterypath.com/sql-mastery-path/level-1/03-filtering-where/",
           "questions": [
             {
               "question": "Why does `WHERE genre = NULL` fail to match rows even when a genre column is actually NULL?",
@@ -2091,10 +2091,10 @@
         {
           "id": "sql-level-1-04-sorting-limiting-short",
           "title": "The SQL Mistake That Makes LIMIT Useless",
-          "description": "LIMIT looks simple, but on its own it doesn't promise you anything -- the database can hand back any rows it feels like. Here's the one keyword you need to pair it with to get the same, predictable top rows every single time.\n\nSource lesson:\n- https://sigilipelli.github.io/sql-mastery-path/level-1/04-sorting-limiting/\n\n#Shorts",
+          "description": "LIMIT looks simple, but on its own it doesn't promise you anything -- the database can hand back any rows it feels like. Here's the one keyword you need to pair it with to get the same, predictable top rows every single time.\n\nSource lesson:\n- https://learnmasterypath.com/sql-mastery-path/level-1/04-sorting-limiting/\n\n#Shorts",
           "video": "sql-level-1-04-sorting-limiting-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/sql-mastery-path/level-1/04-sorting-limiting/",
+          "sourceUrl": "https://learnmasterypath.com/sql-mastery-path/level-1/04-sorting-limiting/",
           "questions": [
             {
               "question": "Why should LIMIT almost always be paired with an ORDER BY clause?",
@@ -2134,10 +2134,10 @@
         {
           "id": "sql-level-1-05-aggregates-group-by-short",
           "title": "SQL's WHERE Can't Filter COUNT(*) -- Here's the Fix",
-          "description": "Ever written WHERE COUNT(*) greater than 2 to filter grouped results and watched SQL reject it outright? It's not a typo problem -- it's about when aggregates actually exist during query evaluation. This clip covers the one-word fix from Level 1 of the SQL Mastery Path's aggregates and GROUP BY lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/sql-mastery-path/level-1/05-aggregates-group-by/\n\n#Shorts",
+          "description": "Ever written WHERE COUNT(*) greater than 2 to filter grouped results and watched SQL reject it outright? It's not a typo problem -- it's about when aggregates actually exist during query evaluation. This clip covers the one-word fix from Level 1 of the SQL Mastery Path's aggregates and GROUP BY lesson.\n\nSource lesson:\n- https://learnmasterypath.com/sql-mastery-path/level-1/05-aggregates-group-by/\n\n#Shorts",
           "video": "sql-level-1-05-aggregates-group-by-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/sql-mastery-path/level-1/05-aggregates-group-by/",
+          "sourceUrl": "https://learnmasterypath.com/sql-mastery-path/level-1/05-aggregates-group-by/",
           "questions": [
             {
               "question": "Why is `SELECT genre, COUNT(*) FROM books WHERE COUNT(*) > 2 GROUP BY genre;` invalid?",
@@ -2177,10 +2177,10 @@
         {
           "id": "sql-level-1-fundamentals-longform",
           "title": "SQL Fundamentals in 9 Minutes: Queries to GROUP BY",
-          "description": "New to SQL? This walkthrough takes you from a blank terminal to writing real, useful queries -- entirely with the free sqlite3 command-line tool, no server or account required. We install SQLite and create a first table, then learn how SELECT actually works (aliases, computed columns, DISTINCT, type casting), how to filter rows precisely with WHERE (comparisons, AND/OR/NOT, BETWEEN, IN, LIKE, NULL checks), how to control result order and size with ORDER BY, LIMIT, and OFFSET, and finally how to summarize data with COUNT, SUM, AVG, GROUP BY, and HAVING. Every query shown is copy-paste runnable against the same small books table, and each section builds directly on the last -- by the end you'll be able to design, filter, sort, and summarize your own tables using nothing but the command line.\n\nLessons covered in this video:\n- 01 - Setup & First Queries: https://sigilipelli.github.io/sql-mastery-path/level-1/01-setup-first-queries/\n- 02 - SELECT Basics & Data Types: https://sigilipelli.github.io/sql-mastery-path/level-1/02-select-basics-data-types/\n- 03 - Filtering with WHERE: https://sigilipelli.github.io/sql-mastery-path/level-1/03-filtering-where/\n- 04 - Sorting & Limiting Results: https://sigilipelli.github.io/sql-mastery-path/level-1/04-sorting-limiting/\n- 05 - Aggregate Functions & GROUP BY: https://sigilipelli.github.io/sql-mastery-path/level-1/05-aggregates-group-by/",
+          "description": "New to SQL? This walkthrough takes you from a blank terminal to writing real, useful queries -- entirely with the free sqlite3 command-line tool, no server or account required. We install SQLite and create a first table, then learn how SELECT actually works (aliases, computed columns, DISTINCT, type casting), how to filter rows precisely with WHERE (comparisons, AND/OR/NOT, BETWEEN, IN, LIKE, NULL checks), how to control result order and size with ORDER BY, LIMIT, and OFFSET, and finally how to summarize data with COUNT, SUM, AVG, GROUP BY, and HAVING. Every query shown is copy-paste runnable against the same small books table, and each section builds directly on the last -- by the end you'll be able to design, filter, sort, and summarize your own tables using nothing but the command line.\n\nLessons covered in this video:\n- 01 - Setup & First Queries: https://learnmasterypath.com/sql-mastery-path/level-1/01-setup-first-queries/\n- 02 - SELECT Basics & Data Types: https://learnmasterypath.com/sql-mastery-path/level-1/02-select-basics-data-types/\n- 03 - Filtering with WHERE: https://learnmasterypath.com/sql-mastery-path/level-1/03-filtering-where/\n- 04 - Sorting & Limiting Results: https://learnmasterypath.com/sql-mastery-path/level-1/04-sorting-limiting/\n- 05 - Aggregate Functions & GROUP BY: https://learnmasterypath.com/sql-mastery-path/level-1/05-aggregates-group-by/",
           "video": "sql-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/sql-mastery-path/level-1/01-setup-first-queries/",
+          "sourceUrl": "https://learnmasterypath.com/sql-mastery-path/level-1/01-setup-first-queries/",
           "questions": [
             {
               "question": "Because a SQLite database is just a plain file, what happens to your data after you `.quit` and then reopen that same file?",
@@ -2227,10 +2227,10 @@
         {
           "id": "shell-level-1-01-setup-short",
           "title": "Why Bash Says 'Command Not Found' For Your Own Script",
-          "description": "You wrote the script, saved it, and bash still refuses to run it -- even though the file is sitting right there. Turns out every shell script needs two tiny things: a shebang line and the executable bit, plus the dot-slash to tell bash \"run the one right here.\" This is the exact first-script walkthrough from Level 1 of the Shell Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/shell-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "You wrote the script, saved it, and bash still refuses to run it -- even though the file is sitting right there. Turns out every shell script needs two tiny things: a shebang line and the executable bit, plus the dot-slash to tell bash \"run the one right here.\" This is the exact first-script walkthrough from Level 1 of the Shell Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/shell-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "shell-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/shell-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/shell-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "Why does plain `hello.sh` (without `./`) fail to run even after `chmod +x hello.sh`?",
@@ -2270,10 +2270,10 @@
         {
           "id": "shell-level-1-02-variables-data-types-short",
           "title": "Bash Quotes Aren't Interchangeable (This Will Bite You)",
-          "description": "In bash, single quotes and double quotes are NOT the same thing -- one expands variables, the other treats everything as literal text. Mix them up and your script can print the wrong value with zero errors to warn you. This is one of the first habits every shell scripter needs to lock in.\n\nSource lesson:\n- https://sigilipelli.github.io/shell-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+          "description": "In bash, single quotes and double quotes are NOT the same thing -- one expands variables, the other treats everything as literal text. Mix them up and your script can print the wrong value with zero errors to warn you. This is one of the first habits every shell scripter needs to lock in.\n\nSource lesson:\n- https://learnmasterypath.com/shell-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
           "video": "shell-level-1-02-variables-data-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/shell-mastery-path/level-1/02-variables-data-types/",
+          "sourceUrl": "https://learnmasterypath.com/shell-mastery-path/level-1/02-variables-data-types/",
           "questions": [
             {
               "question": "Why does writing `name = \"Ada\"` (with spaces around `=`) cause a syntax error in Bash?",
@@ -2313,10 +2313,10 @@
         {
           "id": "shell-level-1-03-control-flow-short",
           "title": "Bash Trick: Skip `if` With && and ||",
-          "description": "Every command in bash already returns a hidden exit status -- and you can react to it directly with && and ||, no if statement required. This Short walks through the exact one-liner pattern from the Shell Mastery Path's control flow lesson, using a real grep-based example. Perfect if you're tired of writing three-line if blocks for a single check.\n\nSource lesson:\n- https://sigilipelli.github.io/shell-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "Every command in bash already returns a hidden exit status -- and you can react to it directly with && and ||, no if statement required. This Short walks through the exact one-liner pattern from the Shell Mastery Path's control flow lesson, using a real grep-based example. Perfect if you're tired of writing three-line if blocks for a single check.\n\nSource lesson:\n- https://learnmasterypath.com/shell-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "shell-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/shell-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/shell-mastery-path/level-1/03-control-flow/",
           "questions": [
             {
               "question": "Why is `[[ ]]` generally preferred over `[ ]` in Bash scripts?",
@@ -2356,10 +2356,10 @@
         {
           "id": "shell-level-1-04-loops-short",
           "title": "The Bash Loop That Silently Breaks on Spaces",
-          "description": "You've written this bash for-loop a hundred times: for x in $(command); do ... done. It works great in every demo -- until a filename or a line of output has a space in it. See the word-splitting trap and the while-read fix that actually holds up on real data.\n\nSource lesson:\n- https://sigilipelli.github.io/shell-mastery-path/level-1/04-loops/\n\n#Shorts",
+          "description": "You've written this bash for-loop a hundred times: for x in $(command); do ... done. It works great in every demo -- until a filename or a line of output has a space in it. See the word-splitting trap and the while-read fix that actually holds up on real data.\n\nSource lesson:\n- https://learnmasterypath.com/shell-mastery-path/level-1/04-loops/\n\n#Shorts",
           "video": "shell-level-1-04-loops-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/shell-mastery-path/level-1/04-loops/",
+          "sourceUrl": "https://learnmasterypath.com/shell-mastery-path/level-1/04-loops/",
           "questions": [
             {
               "question": "Why does the idiomatic file-reading pattern `while IFS= read -r line; do ... done < file` set `IFS=`?",
@@ -2399,10 +2399,10 @@
         {
           "id": "shell-level-1-05-functions-arguments-short",
           "title": "$@ vs $*: One Character That Breaks Your Bash Script",
-          "description": "Quoting your Bash function arguments wrong can silently mangle multi-word arguments without throwing a single error. This Short breaks down the difference between the quoted all-arguments variable and the star variable, and why only one of them is safe to use when forwarding arguments in your scripts.\n\nSource lesson:\n- https://sigilipelli.github.io/shell-mastery-path/level-1/05-functions-arguments/\n\n#Shorts",
+          "description": "Quoting your Bash function arguments wrong can silently mangle multi-word arguments without throwing a single error. This Short breaks down the difference between the quoted all-arguments variable and the star variable, and why only one of them is safe to use when forwarding arguments in your scripts.\n\nSource lesson:\n- https://learnmasterypath.com/shell-mastery-path/level-1/05-functions-arguments/\n\n#Shorts",
           "video": "shell-level-1-05-functions-arguments-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/shell-mastery-path/level-1/05-functions-arguments/",
+          "sourceUrl": "https://learnmasterypath.com/shell-mastery-path/level-1/05-functions-arguments/",
           "questions": [
             {
               "question": "Why should you use `local` for variables assigned inside a Bash function?",
@@ -2442,10 +2442,10 @@
         {
           "id": "shell-level-1-fundamentals-longform",
           "title": "Bash Scripting From Zero: Variables, Control Flow, Loops & Functions (Shell Mastery Path Level 1)",
-          "description": "This is a guided walkthrough of the first five modules in the Shell Mastery Path's Level 1 curriculum, stitched into one sitting so you can watch the language build on itself the way a real course would teach it. We start with the absolute basics -- the shebang line, making a script executable, and reading user input -- then move into variables and the quoting habit that prevents Bash's most common bugs, decision-making with if/elif/case, repetition with for/while/until loops, and finally packaging logic into reusable functions with proper argument handling and local scoping. By the end you'll be able to read and write real bash scripts, not just one-off terminal commands.\n\nLessons covered in this video:\n- 01 \u00b7 Setup & First Script -- https://sigilipelli.github.io/shell-mastery-path/level-1/01-setup/\n- 02 \u00b7 Variables & Data Types -- https://sigilipelli.github.io/shell-mastery-path/level-1/02-variables-data-types/\n- 03 \u00b7 Control Flow -- https://sigilipelli.github.io/shell-mastery-path/level-1/03-control-flow/\n- 04 \u00b7 Loops -- https://sigilipelli.github.io/shell-mastery-path/level-1/04-loops/\n- 05 \u00b7 Functions & Arguments -- https://sigilipelli.github.io/shell-mastery-path/level-1/05-functions-arguments/\n\nSource lesson(s):\n- https://sigilipelli.github.io/shell-mastery-path/level-1/01-setup/\n- https://sigilipelli.github.io/shell-mastery-path/level-1/02-variables-data-types/\n- https://sigilipelli.github.io/shell-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/shell-mastery-path/level-1/04-loops/\n- https://sigilipelli.github.io/shell-mastery-path/level-1/05-functions-arguments/",
+          "description": "This is a guided walkthrough of the first five modules in the Shell Mastery Path's Level 1 curriculum, stitched into one sitting so you can watch the language build on itself the way a real course would teach it. We start with the absolute basics -- the shebang line, making a script executable, and reading user input -- then move into variables and the quoting habit that prevents Bash's most common bugs, decision-making with if/elif/case, repetition with for/while/until loops, and finally packaging logic into reusable functions with proper argument handling and local scoping. By the end you'll be able to read and write real bash scripts, not just one-off terminal commands.\n\nLessons covered in this video:\n- 01 \u00b7 Setup & First Script -- https://learnmasterypath.com/shell-mastery-path/level-1/01-setup/\n- 02 \u00b7 Variables & Data Types -- https://learnmasterypath.com/shell-mastery-path/level-1/02-variables-data-types/\n- 03 \u00b7 Control Flow -- https://learnmasterypath.com/shell-mastery-path/level-1/03-control-flow/\n- 04 \u00b7 Loops -- https://learnmasterypath.com/shell-mastery-path/level-1/04-loops/\n- 05 \u00b7 Functions & Arguments -- https://learnmasterypath.com/shell-mastery-path/level-1/05-functions-arguments/\n\nSource lesson(s):\n- https://learnmasterypath.com/shell-mastery-path/level-1/01-setup/\n- https://learnmasterypath.com/shell-mastery-path/level-1/02-variables-data-types/\n- https://learnmasterypath.com/shell-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/shell-mastery-path/level-1/04-loops/\n- https://learnmasterypath.com/shell-mastery-path/level-1/05-functions-arguments/",
           "video": "shell-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/shell-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/shell-mastery-path/level-1/01-setup/",
           "questions": [
             {
               "question": "What must be true about the shebang line for it to correctly tell the OS which interpreter to use?",
@@ -2492,55 +2492,55 @@
         {
           "id": "typescript-level-1-01-setup-short",
           "title": "TypeScript Catches Bugs Before Your Code Even Runs",
-          "description": "TypeScript type-checks your code, then erases every type it used to do it -- the JavaScript that ships has none of it left. Watch a one-line mistake get caught by the compiler before it ever reaches production, straight from the first lesson of the TypeScript Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/\n\n#Shorts",
+          "description": "TypeScript type-checks your code, then erases every type it used to do it -- the JavaScript that ships has none of it left. Watch a one-line mistake get caught by the compiler before it ever reaches production, straight from the first lesson of the TypeScript Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/typescript-mastery-path/level-1/01-setup/\n\n#Shorts",
           "video": "typescript-level-1-01-setup-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/typescript-mastery-path/level-1/01-setup/",
           "questions": []
         },
         {
           "id": "typescript-level-1-02-basic-types-short",
           "title": "This TypeScript Compiles Fine. Then It Crashes at Runtime.",
-          "description": "TypeScript's `any` type looks harmless -- until it lets you call a number like a function and the compiler says nothing. We break down why `any` is a hole in your safety net, and why `unknown` is the type-safe fix that forces you to check before you touch.\n\nSource lesson:\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/02-basic-types/\n\n#Shorts",
+          "description": "TypeScript's `any` type looks harmless -- until it lets you call a number like a function and the compiler says nothing. We break down why `any` is a hole in your safety net, and why `unknown` is the type-safe fix that forces you to check before you touch.\n\nSource lesson:\n- https://learnmasterypath.com/typescript-mastery-path/level-1/02-basic-types/\n\n#Shorts",
           "video": "typescript-level-1-02-basic-types-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/typescript-mastery-path/level-1/02-basic-types/",
+          "sourceUrl": "https://learnmasterypath.com/typescript-mastery-path/level-1/02-basic-types/",
           "questions": []
         },
         {
           "id": "typescript-level-1-03-control-flow-short",
           "title": "TypeScript Reads Your Mind Inside an if Statement",
-          "description": "Ever notice how TypeScript just knows what type a variable is inside an if block, with zero casts? That's control flow analysis narrowing a string-or-number union down to exactly one type per branch. Watch it happen with a real formatId function, then go try it yourself.\n\nSource lesson:\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+          "description": "Ever notice how TypeScript just knows what type a variable is inside an if block, with zero casts? That's control flow analysis narrowing a string-or-number union down to exactly one type per branch. Watch it happen with a real formatId function, then go try it yourself.\n\nSource lesson:\n- https://learnmasterypath.com/typescript-mastery-path/level-1/03-control-flow/\n\n#Shorts",
           "video": "typescript-level-1-03-control-flow-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/typescript-mastery-path/level-1/03-control-flow/",
+          "sourceUrl": "https://learnmasterypath.com/typescript-mastery-path/level-1/03-control-flow/",
           "questions": []
         },
         {
           "id": "typescript-level-1-04-functions-type-annotations-short",
           "title": "One Function, Two Totally Different Call Signatures",
-          "description": "TypeScript lets a single function accept completely different argument shapes -- and still stops you cold if you mix them up. This Short breaks down function overloads using a makeDate() example: one signature for a timestamp, another for year/month/day, and one implementation underneath that handles both safely.\n\nSource lesson:\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/04-functions-type-annotations/\n\n#Shorts",
+          "description": "TypeScript lets a single function accept completely different argument shapes -- and still stops you cold if you mix them up. This Short breaks down function overloads using a makeDate() example: one signature for a timestamp, another for year/month/day, and one implementation underneath that handles both safely.\n\nSource lesson:\n- https://learnmasterypath.com/typescript-mastery-path/level-1/04-functions-type-annotations/\n\n#Shorts",
           "video": "typescript-level-1-04-functions-type-annotations-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/typescript-mastery-path/level-1/04-functions-type-annotations/",
+          "sourceUrl": "https://learnmasterypath.com/typescript-mastery-path/level-1/04-functions-type-annotations/",
           "questions": []
         },
         {
           "id": "typescript-level-1-05-interfaces-type-aliases-short",
           "title": "TypeScript Checks Shape, Not Name (Structural Typing)",
-          "description": "TypeScript doesn't care whether you explicitly declared an object as a certain interface -- it only cares whether the object has the right shape. This is structural typing, one of the most distinctive (and surprising) parts of TypeScript's type system compared to nominal languages like Java or C#. See the full breakdown, plus optional properties, readonly fields, and interface extension, in the source lesson below.\n\nSource lesson:\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/05-interfaces-type-aliases/\n\n#Shorts",
+          "description": "TypeScript doesn't care whether you explicitly declared an object as a certain interface -- it only cares whether the object has the right shape. This is structural typing, one of the most distinctive (and surprising) parts of TypeScript's type system compared to nominal languages like Java or C#. See the full breakdown, plus optional properties, readonly fields, and interface extension, in the source lesson below.\n\nSource lesson:\n- https://learnmasterypath.com/typescript-mastery-path/level-1/05-interfaces-type-aliases/\n\n#Shorts",
           "video": "typescript-level-1-05-interfaces-type-aliases-short.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/typescript-mastery-path/level-1/05-interfaces-type-aliases/",
+          "sourceUrl": "https://learnmasterypath.com/typescript-mastery-path/level-1/05-interfaces-type-aliases/",
           "questions": []
         },
         {
           "id": "typescript-level-1-fundamentals-longform",
           "title": "TypeScript Level 1, Start to Finish: Setup, Types, Control Flow, Functions & Interfaces",
-          "description": "A complete walkthrough of TypeScript's Level 1 foundations, covered start to finish in one sitting. We go from installing Node and the TypeScript compiler, through the type system's core building blocks (strings, arrays, tuples, any vs. unknown), into type-narrowing control flow, fully-typed functions with optional and rest parameters and overloads, and finally interfaces, type aliases, and TypeScript's distinctive structural typing. If you're brand new to TypeScript or want the whole entry-level toolkit reinforced in one pass, this is that video.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/02-basic-types/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/04-functions-type-annotations/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/05-interfaces-type-aliases/\n\nSource lesson(s):\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/02-basic-types/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/03-control-flow/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/04-functions-type-annotations/\n- https://sigilipelli.github.io/typescript-mastery-path/level-1/05-interfaces-type-aliases/",
+          "description": "A complete walkthrough of TypeScript's Level 1 foundations, covered start to finish in one sitting. We go from installing Node and the TypeScript compiler, through the type system's core building blocks (strings, arrays, tuples, any vs. unknown), into type-narrowing control flow, fully-typed functions with optional and rest parameters and overloads, and finally interfaces, type aliases, and TypeScript's distinctive structural typing. If you're brand new to TypeScript or want the whole entry-level toolkit reinforced in one pass, this is that video.\n\nLessons covered in this video:\n- https://learnmasterypath.com/typescript-mastery-path/level-1/01-setup/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/02-basic-types/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/04-functions-type-annotations/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/05-interfaces-type-aliases/\n\nSource lesson(s):\n- https://learnmasterypath.com/typescript-mastery-path/level-1/01-setup/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/02-basic-types/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/03-control-flow/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/04-functions-type-annotations/\n- https://learnmasterypath.com/typescript-mastery-path/level-1/05-interfaces-type-aliases/",
           "video": "typescript-level-1-fundamentals-longform.mp4",
           "videoAvailable": false,
-          "sourceUrl": "https://sigilipelli.github.io/typescript-mastery-path/level-1/01-setup/",
+          "sourceUrl": "https://learnmasterypath.com/typescript-mastery-path/level-1/01-setup/",
           "questions": []
         }
       ]

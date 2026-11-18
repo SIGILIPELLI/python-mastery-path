@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "Why Watching Quarterly Revenue Is a PM Trap",
-  "description": "Most PMs know what a metric is. Fewer know the difference between a metric they can steer with and one that only confirms the past. This Short breaks down leading vs. lagging metrics -- and the common mistake of obsessing over a lagging number week to week, long after the decisions that moved it are already history.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n\n#Shorts",
+  "description": "Most PMs know what a metric is. Fewer know the difference between a metric they can steer with and one that only confirms the past. This Short breaks down leading vs. lagging metrics -- and the common mistake of obsessing over a lagging number week to week, long after the decisions that moved it are already history.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n\n#Shorts",
   "tags": ["product manager", "product management", "KPIs", "metrics", "leading vs lagging metrics", "PM tips", "career", "Shorts"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"],
   "beats": [
     {
       "narration": "Here's a mistake that quietly wrecks product teams: staring at quarterly revenue every single week, waiting for it to move.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/"
       }
     }
   ]

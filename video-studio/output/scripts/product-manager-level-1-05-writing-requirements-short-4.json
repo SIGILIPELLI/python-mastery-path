@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "If Your User Story Names a Dropdown, It's Not a User Story",
-  "description": "A user story captures a piece of functionality from the user's point of view, focused on why they want it, not a technical implementation spec. The moment it names a specific dropdown, table, or button, it has stopped being a user story and started locking in one solution. This Short shows the weak-versus-strong example straight from the lesson and the template that keeps you honest: as a type of user, I want to do some action, so that a benefit.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
+  "description": "A user story captures a piece of functionality from the user's point of view, focused on why they want it, not a technical implementation spec. The moment it names a specific dropdown, table, or button, it has stopped being a user story and started locking in one solution. This Short shows the weak-versus-strong example straight from the lesson and the template that keeps you honest: as a type of user, I want to do some action, so that a benefit.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
   "tags": ["product management", "user stories", "PRD", "writing requirements", "product manager", "agile", "acceptance criteria", "product owner"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/"],
   "beats": [
     {
       "narration": "If your user story names a dropdown menu, it's not a user story anymore. It's an implementation spec wearing a costume.",
@@ -55,7 +55,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + worked mini-PRD:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/"
       }
     }
   ]

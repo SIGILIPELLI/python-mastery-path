@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "One Roadmap, Four Very Different Conversations",
-  "description": "The same roadmap has to be told differently to every audience, or you promise something you never meant to. Engineering and design need enough specificity to plan capacity a quarter or two out, but no firm commitments on \"Later\" items. Sales need honest themes, never ship dates on unbuilt features. Leadership need the tie to company OKRs, and public customers get quarters, never exact dates. A roadmap is a communication tool, not a contract.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n\n#Shorts",
+  "description": "The same roadmap has to be told differently to every audience, or you promise something you never meant to. Engineering and design need enough specificity to plan capacity a quarter or two out, but no firm commitments on \"Later\" items. Sales need honest themes, never ship dates on unbuilt features. Leadership need the tie to company OKRs, and public customers get quarters, never exact dates. A roadmap is a communication tool, not a contract.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/\n\n#Shorts",
   "tags": ["product management", "roadmapping", "product roadmap", "stakeholder communication", "now next later", "product manager", "pm skills", "career"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/"],
   "beats": [
     {
       "narration": "One roadmap. Four completely different conversations. Tell it the same way to everyone, and you break a promise you never meant to make.",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/"
       }
     }
   ]

@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "The PRD Section Everyone Skips (And Regrets Mid-Sprint)",
-  "description": "Most last-minute sprint blowups trace back to one missing paragraph: the non-goals section of the PRD. This Short walks a real mini-PRD and shows why explicitly writing \"this will NOT support X\" prevents the most common scope-creep argument. A blank non-goals section isn't clean scope, it's a warning sign.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
+  "description": "Most last-minute sprint blowups trace back to one missing paragraph: the non-goals section of the PRD. This Short walks a real mini-PRD and shows why explicitly writing \"this will NOT support X\" prevents the most common scope-creep argument. A blank non-goals section isn't clean scope, it's a warning sign.\n\nSource lesson(s):\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/\n\n#Shorts",
   "tags": ["product management", "PRD", "non-goals", "scope creep", "requirements", "product manager", "agile", "sprint planning"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/"],
   "beats": [
     {
       "narration": "Every argument that blows up a sprint at the last minute starts the same way. Someone assumed a feature was in scope, because nobody ever wrote down that it wasn't.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + worked mini-PRD:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/05-writing-requirements/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/05-writing-requirements/"
       }
     }
   ]

@@ -2,16 +2,16 @@
   "type": "longform",
   "language": "product-manager",
   "title": "6 Product Manager Mistakes That Quietly Sink Products",
-  "description": "Most products don't fail with a bang — they leak. A PM makes a small, reasonable-sounding call, and six months later the team has shipped something nobody uses. This roundup pulls six anti-patterns straight from the Level 1 Product Manager Mastery Path: asking leading, hypothetical questions in customer interviews; solution-jumping from a single signal to a build; using the wrong prioritization framework for the question in front of you; owning design and engineering's jobs instead of your own; publishing a feature-list roadmap with far-future dates; and spending equal time on every stakeholder. For each one we name the mistake, explain why it does damage, and give the fix from the lesson itself.\n\nLessons covered in this video:\n- Understanding Customers & Users: https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/\n- Problem Discovery: https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Working with Design & Engineering: https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n- Roadmapping Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n- Stakeholder Communication Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/",
+  "description": "Most products don't fail with a bang — they leak. A PM makes a small, reasonable-sounding call, and six months later the team has shipped something nobody uses. This roundup pulls six anti-patterns straight from the Level 1 Product Manager Mastery Path: asking leading, hypothetical questions in customer interviews; solution-jumping from a single signal to a build; using the wrong prioritization framework for the question in front of you; owning design and engineering's jobs instead of your own; publishing a feature-list roadmap with far-future dates; and spending equal time on every stakeholder. For each one we name the mistake, explain why it does damage, and give the fix from the lesson itself.\n\nLessons covered in this video:\n- Understanding Customers & Users: https://learnmasterypath.com/product-manager-mastery-path/level-1/02-understanding-customers-users/\n- Problem Discovery: https://learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Working with Design & Engineering: https://learnmasterypath.com/product-manager-mastery-path/level-1/06-working-with-design-engineering/\n- Roadmapping Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/\n- Stakeholder Communication Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/",
   "tags": ["product management", "product manager", "pm mistakes", "product discovery", "prioritization", "rice framework", "moscow", "roadmapping", "stakeholder management", "customer interviews", "associate product manager", "pm career"],
   "voice": "en-US-JennyNeural",
   "source_urls": [
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/02-understanding-customers-users/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/06-working-with-design-engineering/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/02-understanding-customers-users/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/06-working-with-design-engineering/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
   ],
   "beats": [
     {
@@ -348,7 +348,7 @@
       "display": {
         "kind": "text",
         "heading": "Lessons covered (in order)",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path"
       }
     }
   ]

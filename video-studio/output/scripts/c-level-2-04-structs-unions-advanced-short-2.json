@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "This C struct wastes 4 bytes and it's the field order",
-  "description": "Two C structs with the exact same three fields can have different sizes, purely because of declaration order. This Short shows why sizeof surprises you: the compiler inserts invisible padding bytes so each field lands on an aligned address. Reorder wide members first and the struct shrinks for free. Full walkthrough, plus unions and bit-fields, in the lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/\n\n#Shorts",
+  "description": "Two C structs with the exact same three fields can have different sizes, purely because of declaration order. This Short shows why sizeof surprises you: the compiler inserts invisible padding bytes so each field lands on an aligned address. Reorder wide members first and the struct shrinks for free. Full walkthrough, plus unions and bit-fields, in the lesson.\n\nSource lesson(s):\n- https://learnmasterypath.com/c-mastery-path/level-2/04-structs-unions-advanced/\n\n#Shorts",
   "tags": ["c", "c programming", "structs", "memory alignment", "struct padding", "sizeof", "data structures", "systems programming", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-2/04-structs-unions-advanced/"],
   "beats": [
     {
       "narration": "Two structs. Same three fields, same data. One is twelve bytes, the other is eight. You didn't add anything. So where did those extra four bytes come from?",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-2/04-structs-unions-advanced/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-2/04-structs-unions-advanced/"
       }
     }
   ]

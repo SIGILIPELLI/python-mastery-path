@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Java Tests Can Spin Up a Real Database (Then Delete It)",
-  "description": "Mockito fakes your dependencies for millisecond-fast unit tests, but sometimes you need to know your code works against a real database engine. Testcontainers spins up an actual disposable Postgres instance in Docker just for the test run, then tears it down when it's done. See the full breakdown of unit tests, Spring MockMvc integration tests, and Testcontainers in the Java Mastery Path.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/\n\n#Shorts",
+  "description": "Mockito fakes your dependencies for millisecond-fast unit tests, but sometimes you need to know your code works against a real database engine. Testcontainers spins up an actual disposable Postgres instance in Docker just for the test run, then tears it down when it's done. See the full breakdown of unit tests, Spring MockMvc integration tests, and Testcontainers in the Java Mastery Path.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-4/04-testing-at-scale/\n\n#Shorts",
   "tags": ["java", "testing", "mockito", "testcontainers", "spring boot", "unit testing", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-4/04-testing-at-scale/"],
   "beats": [
     {
       "narration": "Real senior engineers don't test against fake databases forever. There's a way to spin up an actual Postgres instance, just for one test, then throw it away.",
@@ -44,7 +44,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-4/04-testing-at-scale/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-4/04-testing-at-scale/"
       }
     }
   ]

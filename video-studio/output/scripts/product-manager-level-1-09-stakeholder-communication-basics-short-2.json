@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "How to Handle Stakeholder Pushback (Without Caving)",
-  "description": "When a stakeholder pushes back hard on your roadmap call, the answer isn't to win the argument or cave on the spot -- it's a specific four-step move. This Short walks through handling disagreement from stakeholders, using a real sales-vs-SSO example straight from the lesson.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/\n\n#Shorts",
+  "description": "When a stakeholder pushes back hard on your roadmap call, the answer isn't to win the argument or cave on the spot -- it's a specific four-step move. This Short walks through handling disagreement from stakeholders, using a real sales-vs-SSO example straight from the lesson.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/\n\n#Shorts",
   "tags": ["product management", "stakeholder management", "PM skills", "product manager", "leadership", "communication skills"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"],
   "beats": [
     {
       "narration": "A sales lead is furious. Your roadmap put 'Enterprise readiness' in Next, not Now -- they swear a deal needs SSO to close. Cave, or dig in?",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
       }
     }
   ]

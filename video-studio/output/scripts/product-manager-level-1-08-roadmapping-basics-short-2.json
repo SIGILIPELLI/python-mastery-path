@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "Why \"When Will This Ship?\" Is a Trap for PMs",
-  "description": "A sales lead puts you on the spot in an all-hands: \"Will SSO be ready by our renewal date?\" The wrong answer turns your roadmap into a broken promise. This Short breaks down the Now/Next/Later confidence structure and the exact line a PM uses to answer honestly without over-committing.\n\nSource lesson:\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n\n#Shorts",
+  "description": "A sales lead puts you on the spot in an all-hands: \"Will SSO be ready by our renewal date?\" The wrong answer turns your roadmap into a broken promise. This Short breaks down the Now/Next/Later confidence structure and the exact line a PM uses to answer honestly without over-committing.\n\nSource lesson:\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/\n\n#Shorts",
   "tags": ["product management", "roadmapping", "product manager", "PM tips", "stakeholder management", "PRD"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/"],
   "beats": [
     {
       "narration": "Picture this: you're in an all-hands, and a sales lead puts you on the spot. \"Will SSO be ready by our renewal date?\" The room goes quiet.",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/"
       }
     }
   ]

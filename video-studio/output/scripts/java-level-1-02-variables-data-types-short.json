@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Java Silently Truncates Integer Division (Here's the Fix)",
-  "description": "Divide two ints in Java and the decimal just disappears -- no warning, no error. In under a minute, see why int / int always truncates, how casting to double fixes it, and why casting a double to int never rounds either.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "description": "Divide two ints in Java and the decimal just disappears -- no warning, no error. In under a minute, see why int / int always truncates, how casting to double fixes it, and why casting a double to int never rounds either.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
   "tags": ["java", "integer division", "casting", "java basics", "programming tutorial", "coding shorts"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/"],
   "beats": [
     {
       "narration": "In Java, dividing two whole numbers doesn't round -- it just throws the decimal away. No warning. No error. Just silence.",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/"
       }
     }
   ]

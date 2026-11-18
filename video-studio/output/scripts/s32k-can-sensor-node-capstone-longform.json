@@ -2,7 +2,7 @@
   "type": "longform",
   "language": "s32k",
   "title": "Design a CAN Sensor Node \u2014 Real-Time Embedded Systems Capstone (S32K, CAN Bus, Watchdog)",
-  "description": "This is the Level 1 capstone of the S32K Mastery Path, walked through step by step: a real automotive-style CAN sensor node built on a hard 10-millisecond cooperative scheduler. We go through the precise requirement, the tick-driven architecture, the exact bit layout of both CAN frames (a 0x310 status frame out and a 0x311 command frame in), the INIT-safe-state-first state machine, the non-blocking main loop, the individual task functions for sensing, transmitting, receiving, and driving PWM with slew limiting, a full bench-test plan using a real CAN adapter, and the lesson's own closing question \u2014 an unguarded race between the CAN RX callback and the main loop's read of the shared command variable. Every line of code and every bit-table value shown is pulled directly from the capstone lesson; nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/s32k-mastery-path/level-1/10-capstone-can-sensor-node/",
+  "description": "This is the Level 1 capstone of the S32K Mastery Path, walked through step by step: a real automotive-style CAN sensor node built on a hard 10-millisecond cooperative scheduler. We go through the precise requirement, the tick-driven architecture, the exact bit layout of both CAN frames (a 0x310 status frame out and a 0x311 command frame in), the INIT-safe-state-first state machine, the non-blocking main loop, the individual task functions for sensing, transmitting, receiving, and driving PWM with slew limiting, a full bench-test plan using a real CAN adapter, and the lesson's own closing question \u2014 an unguarded race between the CAN RX callback and the main loop's read of the shared command variable. Every line of code and every bit-table value shown is pulled directly from the capstone lesson; nothing invented, nothing skipped.\n\nLessons covered in this video:\n- https://learnmasterypath.com/s32k-mastery-path/level-1/10-capstone-can-sensor-node/",
   "tags": [
     "s32k",
     "automotive embedded systems",
@@ -19,7 +19,7 @@
   ],
   "voice": "en-US-JennyNeural",
   "source_urls": [
-    "https://sigilipelli.github.io/s32k-mastery-path/level-1/10-capstone-can-sensor-node/"
+    "https://learnmasterypath.com/s32k-mastery-path/level-1/10-capstone-can-sensor-node/"
   ],
   "beats": [
     {
@@ -211,7 +211,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + source code:",
-        "subheading": "sigilipelli.github.io/s32k-mastery-path/level-1/10-capstone-can-sensor-node/"
+        "subheading": "learnmasterypath.com/s32k-mastery-path/level-1/10-capstone-can-sensor-node/"
       }
     }
   ]

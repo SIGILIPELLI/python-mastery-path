@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "The RICE math that kills your highest-impact feature",
-  "description": "In this lesson's worked example, SSO support scores the maximum on per-user impact and still loses the priority fight. We walk the actual RICE numbers: how low reach and high effort drag a strong bet below a small, cheap fix that reaches everyone. Then the caveat that matters -- RICE informs the call, it doesn't make it.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
+  "description": "In this lesson's worked example, SSO support scores the maximum on per-user impact and still loses the priority fight. We walk the actual RICE numbers: how low reach and high effort drag a strong bet below a small, cheap fix that reaches everyone. Then the caveat that matters -- RICE informs the call, it doesn't make it.\n\nSource lesson(s):\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/\n\n#Shorts",
   "tags": ["product management", "prioritization", "RICE framework", "product manager", "roadmap", "backlog", "product strategy"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/"],
   "beats": [
     {
       "narration": "The feature with the highest impact on every user it touched lost the priority fight. Here's the RICE math that killed it.",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/"
       }
     }
   ]

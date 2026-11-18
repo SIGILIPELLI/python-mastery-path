@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "Why a tiny C project still needs a header file",
-  "description": "This C contact book is split across three files, and the header is the part beginners find confusing. contacts.h holds only the Contact struct and the function prototypes -- no logic. contacts.c holds the bodies. That's the interface/implementation split that every large C codebase is built on.\n\nSource lesson:\n- https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/\n\n#Shorts",
+  "description": "This C contact book is split across three files, and the header is the part beginners find confusing. contacts.h holds only the Contact struct and the function prototypes -- no logic. contacts.c holds the bodies. That's the interface/implementation split that every large C codebase is built on.\n\nSource lesson:\n- https://learnmasterypath.com/c-mastery-path/level-1/10-project-contact-book/\n\n#Shorts",
   "tags": ["c", "c programming", "header files", "multi-file c", "contacts.h", "interface implementation", "programming tutorial", "learn c"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/10-project-contact-book/"],
   "beats": [
     {
       "narration": "One contact book, three files. Feels like overkill, until you see what each file is actually for. The header is the part that trips people up.",
@@ -55,7 +55,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/10-project-contact-book/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/10-project-contact-book/"
       }
     }
   ]

@@ -170,6 +170,6 @@ Completing this project means you're ready for **Level 2 · Intermediate**.
 
 ## 🔀 See this in another language
 
-- [Java — Project — CLI Contact Book](https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/)
-- [Go — Project — CLI To-Do App](https://sigilipelli.github.io/go-mastery-path/level-1/10-project-todo-cli/)
-- [Scala — Project — CLI To-Do App](https://sigilipelli.github.io/scala-mastery-path/level-1/10-project-todo-app/)
+- [Java — Project — CLI Contact Book](https://learnmasterypath.com/java-mastery-path/level-1/10-project-contact-book/)
+- [Go — Project — CLI To-Do App](https://learnmasterypath.com/go-mastery-path/level-1/10-project-todo-cli/)
+- [Scala — Project — CLI To-Do App](https://learnmasterypath.com/scala-mastery-path/level-1/10-project-todo-app/)

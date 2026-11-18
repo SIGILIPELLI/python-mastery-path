@@ -2,10 +2,10 @@
   "type": "short",
   "language": "javascript",
   "title": "Why your fetch() call ignores a 404",
-  "description": "One of the most common JavaScript networking bugs: fetch() does not throw on HTTP errors. A 404 or 500 response still resolves successfully, so a missing check silently passes broken data downstream. This Short shows the gotcha and the one-line fix using response.ok.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/05-json-fetch/\n\n#Shorts",
+  "description": "One of the most common JavaScript networking bugs: fetch() does not throw on HTTP errors. A 404 or 500 response still resolves successfully, so a missing check silently passes broken data downstream. This Short shows the gotcha and the one-line fix using response.ok.\n\nSource lesson(s):\n- https://learnmasterypath.com/javascript-mastery-path/level-2/05-json-fetch/\n\n#Shorts",
   "tags": ["javascript", "fetch api", "http errors", "async await", "json", "web development", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/05-json-fetch/"],
+  "source_urls": ["https://learnmasterypath.com/javascript-mastery-path/level-2/05-json-fetch/"],
   "beats": [
     {
       "narration": "Your fetch call finishes with no error. The server actually sent back a 404. And your code has no idea anything went wrong.",
@@ -46,7 +46,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/05-json-fetch/"
+        "subheading": "learnmasterypath.com/javascript-mastery-path/level-2/05-json-fetch/"
       }
     }
   ]

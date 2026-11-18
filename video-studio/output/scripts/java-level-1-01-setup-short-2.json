@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Why Java's main() method is spelled exactly like that",
-  "description": "Java's entry point isn't arbitrary boilerplate. The public class name must match the file name exactly, case and all, or javac refuses to compile. And every word of public static void main(String[] args) is load-bearing: public lets the JVM call it from outside, static means no object is needed first, void means it returns nothing, and String[] args carries your command-line arguments. This Short breaks down the anatomy of Hello.java from the Java Mastery Path setup lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/\n\n#Shorts",
+  "description": "Java's entry point isn't arbitrary boilerplate. The public class name must match the file name exactly, case and all, or javac refuses to compile. And every word of public static void main(String[] args) is load-bearing: public lets the JVM call it from outside, static means no object is needed first, void means it returns nothing, and String[] args carries your command-line arguments. This Short breaks down the anatomy of Hello.java from the Java Mastery Path setup lesson.\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/01-setup/\n\n#Shorts",
   "tags": ["java", "java tutorial", "main method", "public static void main", "jvm", "javac", "hello world", "programming tutorial", "learn java"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-1/01-setup/"],
   "beats": [
     {
       "narration": "Rename this file from Hello dot java to lowercase hello dot java, and it stops compiling. Java's entry point has rules, and every single word of it means something.",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/01-setup/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/01-setup/"
       }
     }
   ]

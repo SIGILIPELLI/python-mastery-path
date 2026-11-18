@@ -118,9 +118,9 @@ same five steps.
 
 ## 🔀 See this in another language
 
-- [Java — Packages & Build Tools Intro](https://sigilipelli.github.io/java-mastery-path/level-1/09-packages-build-tools/)
-- [Go — Packages & Modules](https://sigilipelli.github.io/go-mastery-path/level-1/09-packages-modules/)
-- [Scala — Traits Basics](https://sigilipelli.github.io/scala-mastery-path/level-1/09-traits-basics/)
+- [Java — Packages & Build Tools Intro](https://learnmasterypath.com/java-mastery-path/level-1/09-packages-build-tools/)
+- [Go — Packages & Modules](https://learnmasterypath.com/go-mastery-path/level-1/09-packages-modules/)
+- [Scala — Traits Basics](https://learnmasterypath.com/scala-mastery-path/level-1/09-traits-basics/)
 
 ## Exercise
 

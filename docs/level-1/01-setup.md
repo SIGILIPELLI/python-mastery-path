@@ -102,9 +102,9 @@ type instead of once per file.
 
 ## 🔀 See this in another language
 
-- [Java — Setup & First Program](https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/)
-- [Go — Setup & First Program](https://sigilipelli.github.io/go-mastery-path/level-1/01-setup/)
-- [Scala — Setup & First Program](https://sigilipelli.github.io/scala-mastery-path/level-1/01-setup/)
+- [Java — Setup & First Program](https://learnmasterypath.com/java-mastery-path/level-1/01-setup/)
+- [Go — Setup & First Program](https://learnmasterypath.com/go-mastery-path/level-1/01-setup/)
+- [Scala — Setup & First Program](https://learnmasterypath.com/scala-mastery-path/level-1/01-setup/)
 
 ## Exercise
 

@@ -2,10 +2,10 @@
   "type": "short",
   "language": "c",
   "title": "C structs pass by value -- your function edits a copy",
-  "description": "In C, handing a struct to a function copies the whole thing, member by member. So when the function changes its parameter, the caller's struct never moves. This Short shows the classic tryToMove gotcha from the Structs lesson and the one-line fix: pass a pointer instead.\n\nSource lesson(s):\n- https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/\n\n#Shorts",
+  "description": "In C, handing a struct to a function copies the whole thing, member by member. So when the function changes its parameter, the caller's struct never moves. This Short shows the classic tryToMove gotcha from the Structs lesson and the one-line fix: pass a pointer instead.\n\nSource lesson(s):\n- https://learnmasterypath.com/c-mastery-path/level-1/07-structs/\n\n#Shorts",
   "tags": ["c", "c programming", "structs", "pass by value", "pointers", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/c-mastery-path/level-1/07-structs/"],
+  "source_urls": ["https://learnmasterypath.com/c-mastery-path/level-1/07-structs/"],
   "beats": [
     {
       "narration": "You pass your struct into a function, the function changes it, and back in main it's completely unchanged. Like the function ignored you. Here's why.",
@@ -56,7 +56,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/c-mastery-path/level-1/07-structs/"
+        "subheading": "learnmasterypath.com/c-mastery-path/level-1/07-structs/"
       }
     }
   ]

@@ -2,10 +2,10 @@
   "type": "short",
   "language": "product-manager",
   "title": "Why Product Teams Ship Features Nobody Uses (The Discovery Fix)",
-  "description": "The fastest way to waste a quarter: a stakeholder says \"build X,\" and two weeks later an engineer is building X, with nobody checking whether X solves a real problem. This Short walks through the discovery workflow that stops solution-jumping: collect signals for a week or two, cluster them, validate the top clusters with interviews, and only then write the problem statement. Includes the analytics-team worked example from the lesson.\n\nSource lesson(s):\n- https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n\n#Shorts",
+  "description": "The fastest way to waste a quarter: a stakeholder says \"build X,\" and two weeks later an engineer is building X, with nobody checking whether X solves a real problem. This Short walks through the discovery workflow that stops solution-jumping: collect signals for a week or two, cluster them, validate the top clusters with interviews, and only then write the problem statement. Includes the analytics-team worked example from the lesson.\n\nSource lesson(s):\n- https://learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/\n\n#Shorts",
   "tags": ["product management", "product discovery", "problem discovery", "solution jumping", "user research", "pm skills", "product manager"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"],
+  "source_urls": ["https://learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/"],
   "beats": [
     {
       "narration": "Here's how product teams ship features nobody uses. A stakeholder says build this, and two weeks later an engineer is building it. Nobody validated it's a real problem.",
@@ -52,7 +52,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson:",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/"
       }
     }
   ]

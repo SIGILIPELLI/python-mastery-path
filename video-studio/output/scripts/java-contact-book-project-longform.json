@@ -2,10 +2,10 @@
   "type": "longform",
   "language": "java",
   "title": "Build a CLI Contact Book in Java — Full Multi-Class Project Walkthrough With File Persistence",
-  "description": "This is the Java Mastery Path Level 1 capstone, built end to end: a command-line contact book that adds, lists, finds, and deletes contacts, and persists them all to a plain-text file between runs. We go section by section through the project's own layout — Contact.java as an immutable data class with CSV serialization and a fromCsvLine factory that fails loudly on a malformed line, ContactStorage.java handling file persistence with Path, Files.exists, try-with-resources readers and writers, and graceful IOException handling, and ContactBook.java as the CLI layer that loads on start, dispatches commands through an arrow switch, validates argument counts, matches names with equalsIgnoreCase, uses a rebuild-the-list delete pattern, and saves after every mutation. Then we compile with javac, run a real add/list/find/delete session, and finish with the lesson's stretch goals. Every code block shown is pulled verbatim from the lesson — nothing invented.\n\nLessons covered in this video:\n- https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/",
+  "description": "This is the Java Mastery Path Level 1 capstone, built end to end: a command-line contact book that adds, lists, finds, and deletes contacts, and persists them all to a plain-text file between runs. We go section by section through the project's own layout — Contact.java as an immutable data class with CSV serialization and a fromCsvLine factory that fails loudly on a malformed line, ContactStorage.java handling file persistence with Path, Files.exists, try-with-resources readers and writers, and graceful IOException handling, and ContactBook.java as the CLI layer that loads on start, dispatches commands through an arrow switch, validates argument counts, matches names with equalsIgnoreCase, uses a rebuild-the-list delete pattern, and saves after every mutation. Then we compile with javac, run a real add/list/find/delete session, and finish with the lesson's stretch goals. Every code block shown is pulled verbatim from the lesson — nothing invented.\n\nLessons covered in this video:\n- https://learnmasterypath.com/java-mastery-path/level-1/10-project-contact-book/",
   "tags": ["java", "java project", "cli application", "file io", "csv parsing", "object oriented programming", "beginner java", "java tutorial", "contact book", "programming project", "java mastery path", "level 1 capstone"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-1/10-project-contact-book/"],
   "beats": [
     {
       "narration": "This is the final project of Java Mastery Path Level One, and it's where everything you've learned so far clicks into place. We're building a command-line contact book, from an empty folder to a working program that saves your data to disk. Classes, constructors, exceptions, file input and output, arrays and loops. It's all here, in one small but real application. Let's build it step by step.",
@@ -261,7 +261,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/10-project-contact-book/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/10-project-contact-book/"
       }
     }
   ]

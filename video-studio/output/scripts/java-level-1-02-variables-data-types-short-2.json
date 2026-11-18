@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Why Java rejects a 10-billion literal (the L suffix)",
-  "description": "Ten billion is a perfectly valid long value, so why won't Java compile it? Because a bare whole-number literal is a 32-bit int, and ten billion overflows that before your long ever sees it. This Short shows the fix from the Variables lesson: the trailing L, the f suffix for floats, and underscores as digit separators.\n\nSource lesson(s):\n- https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
+  "description": "Ten billion is a perfectly valid long value, so why won't Java compile it? Because a bare whole-number literal is a 32-bit int, and ten billion overflows that before your long ever sees it. This Short shows the fix from the Variables lesson: the trailing L, the f suffix for floats, and underscores as digit separators.\n\nSource lesson(s):\n- https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/\n\n#Shorts",
   "tags": ["java", "java literals", "long suffix", "primitive types", "data types", "java tutorial", "programming"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/"],
   "beats": [
     {
       "narration": "Type ten billion into a Java long and the compiler stops you cold. The number's valid, the variable's big enough, and it still won't build.",
@@ -54,7 +54,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/02-variables-data-types/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/02-variables-data-types/"
       }
     }
   ]

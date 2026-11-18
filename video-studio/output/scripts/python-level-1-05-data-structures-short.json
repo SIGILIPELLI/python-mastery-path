@@ -2,10 +2,10 @@
   "type": "short",
   "language": "python",
   "title": "Python Sets: Union, Intersection & Difference in 1 Line",
-  "description": "Lists and dicts get all the attention, but Python sets quietly do math-class set operations with a single symbol -- no loops required. In this Short we compare two sets with |, &, and -, then show why membership checks on a set beat scanning a list every time.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/\n\n#Shorts",
+  "description": "Lists and dicts get all the attention, but Python sets quietly do math-class set operations with a single symbol -- no loops required. In this Short we compare two sets with |, &, and -, then show why membership checks on a set beat scanning a list every time.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/05-data-structures/\n\n#Shorts",
   "tags": ["python", "sets", "data structures", "python tips", "set operations", "programming tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/"],
+  "source_urls": ["https://learnmasterypath.com/python-mastery-path/level-1/05-data-structures/"],
   "beats": [
     {
       "narration": "Ever needed to compare two lists for what's shared, what's unique, or what's different? Python sets can do all of that with one single symbol, and zero loops.",
@@ -46,7 +46,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/05-data-structures/"
+        "subheading": "learnmasterypath.com/python-mastery-path/level-1/05-data-structures/"
       }
     }
   ]

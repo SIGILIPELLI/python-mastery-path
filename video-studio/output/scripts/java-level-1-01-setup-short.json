@@ -2,10 +2,10 @@
   "type": "short",
   "language": "java",
   "title": "Java Doesn't Need a Build Step Anymore",
-  "description": "Think Java always means compile-then-run? Since Java 11, you can launch a .java file directly with a single command -- no javac step required. This is lesson 1 of the Java Mastery Path: install the JDK, write your first Hello World, and use the single-file launch shortcut for quick tests.\n\nSource lesson:\n- https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/\n\n#Shorts",
+  "description": "Think Java always means compile-then-run? Since Java 11, you can launch a .java file directly with a single command -- no javac step required. This is lesson 1 of the Java Mastery Path: install the JDK, write your first Hello World, and use the single-file launch shortcut for quick tests.\n\nSource lesson:\n- https://learnmasterypath.com/java-mastery-path/level-1/01-setup/\n\n#Shorts",
   "tags": ["java", "java tutorial", "learn java", "java hello world", "programming tutorial", "coding for beginners"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/java-mastery-path/level-1/01-setup/"],
+  "source_urls": ["https://learnmasterypath.com/java-mastery-path/level-1/01-setup/"],
   "beats": [
     {
       "narration": "Everyone thinks Java needs a build step before you can run a single line of code. It doesn't anymore.",
@@ -46,7 +46,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/java-mastery-path/level-1/01-setup/"
+        "subheading": "learnmasterypath.com/java-mastery-path/level-1/01-setup/"
       }
     }
   ]

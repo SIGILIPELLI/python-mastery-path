@@ -246,9 +246,9 @@ order until a match or the end.
 
 ## 🔀 See this in another language
 
-- [Java — 10 · Performance Profiling & Optimization](https://sigilipelli.github.io/java-mastery-path/level-3/10-profiling-optimization/)
-- [C++ — 09 · Performance Profiling](https://sigilipelli.github.io/cpp-mastery-path/level-3/09-performance-profiling/)
-- [Ruby — 06 · Performance & Profiling](https://sigilipelli.github.io/ruby-mastery-path/level-3/06-performance-profiling/)
+- [Java — 10 · Performance Profiling & Optimization](https://learnmasterypath.com/java-mastery-path/level-3/10-profiling-optimization/)
+- [C++ — 09 · Performance Profiling](https://learnmasterypath.com/cpp-mastery-path/level-3/09-performance-profiling/)
+- [Ruby — 06 · Performance & Profiling](https://learnmasterypath.com/ruby-mastery-path/level-3/06-performance-profiling/)
 
 ## Exercise
 

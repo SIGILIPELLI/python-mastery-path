@@ -2,10 +2,10 @@
   "type": "short",
   "language": "python",
   "title": "The Secret else Clause Hiding in Python's for Loop",
-  "description": "Python's for loops can have an else clause -- and it does something most developers never expect. It only fires if the loop finishes without ever hitting break, which makes it perfect for \"did I actually find it?\" search patterns. Full lesson on Python control flow, loops, and the match statement is linked below.\n\nSource lesson:\n- https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/\n\n#Shorts",
+  "description": "Python's for loops can have an else clause -- and it does something most developers never expect. It only fires if the loop finishes without ever hitting break, which makes it perfect for \"did I actually find it?\" search patterns. Full lesson on Python control flow, loops, and the match statement is linked below.\n\nSource lesson:\n- https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/\n\n#Shorts",
   "tags": ["python", "for loop", "for else", "control flow", "python tips", "programming shorts", "coding tutorial"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/"],
+  "source_urls": ["https://learnmasterypath.com/python-mastery-path/level-1/03-control-flow/"],
   "beats": [
     {
       "narration": "Every Python for loop can have a secret else clause -- and most developers have never used it.",
@@ -45,7 +45,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/python-mastery-path/level-1/03-control-flow/"
+        "subheading": "learnmasterypath.com/python-mastery-path/level-1/03-control-flow/"
       }
     }
   ]

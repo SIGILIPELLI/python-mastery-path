@@ -139,9 +139,9 @@ the call sequence.
 
 ## 🔀 See this in another language
 
-- [Java — Methods & Parameters](https://sigilipelli.github.io/java-mastery-path/level-1/04-methods-parameters/)
-- [Go — Functions & Multiple Returns](https://sigilipelli.github.io/go-mastery-path/level-1/04-functions-multiple-returns/)
-- [Scala — Functions](https://sigilipelli.github.io/scala-mastery-path/level-1/04-functions/)
+- [Java — Methods & Parameters](https://learnmasterypath.com/java-mastery-path/level-1/04-methods-parameters/)
+- [Go — Functions & Multiple Returns](https://learnmasterypath.com/go-mastery-path/level-1/04-functions-multiple-returns/)
+- [Scala — Functions](https://learnmasterypath.com/scala-mastery-path/level-1/04-functions/)
 
 ## Exercise
 

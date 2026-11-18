@@ -2,15 +2,15 @@
   "type": "longform",
   "language": "product-manager",
   "title": "A PM's Full Workflow: From Discovery to Roadmap",
-  "description": "Five Product Manager Mastery Path lessons, followed as one continuous workflow instead of five separate topics. This video traces a single thread — from spotting a raw signal, through validating it into a real problem, ranking it against everything else on the backlog, defining the metric that proves it worked, putting it on an honest roadmap, and defending that roadmap when a stakeholder pushes back. If you've already watched the Level 1 survey or the PRD deep-dive, this is the version that shows how discovery, prioritization, metrics, roadmapping, and stakeholder communication actually chain together in real PM work.\n\nLessons covered in this video:\n- Problem Discovery: https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Metrics & KPIs Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n- Roadmapping Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/\n- Stakeholder Communication Basics: https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/",
+  "description": "Five Product Manager Mastery Path lessons, followed as one continuous workflow instead of five separate topics. This video traces a single thread — from spotting a raw signal, through validating it into a real problem, ranking it against everything else on the backlog, defining the metric that proves it worked, putting it on an honest roadmap, and defending that roadmap when a stakeholder pushes back. If you've already watched the Level 1 survey or the PRD deep-dive, this is the version that shows how discovery, prioritization, metrics, roadmapping, and stakeholder communication actually chain together in real PM work.\n\nLessons covered in this video:\n- Problem Discovery: https://learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/\n- Prioritization Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/\n- Metrics & KPIs Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/\n- Roadmapping Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/\n- Stakeholder Communication Basics: https://learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/",
   "tags": ["product management", "product manager", "prioritization", "roadmapping", "stakeholder management", "metrics", "KPIs", "RICE framework", "product discovery", "PM workflow"],
   "voice": "en-US-JennyNeural",
   "source_urls": [
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/03-problem-discovery/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/04-prioritization-basics/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/07-metrics-kpis-basics/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/08-roadmapping-basics/",
-    "https://sigilipelli.github.io/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/03-problem-discovery/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/04-prioritization-basics/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/07-metrics-kpis-basics/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/08-roadmapping-basics/",
+    "https://learnmasterypath.com/product-manager-mastery-path/level-1/09-stakeholder-communication-basics/"
   ],
   "beats": [
     {
@@ -274,7 +274,7 @@
       "display": {
         "kind": "text",
         "heading": "Sources for every lesson covered",
-        "subheading": "sigilipelli.github.io/product-manager-mastery-path/level-1/ — modules 03, 04, 07, 08, 09"
+        "subheading": "learnmasterypath.com/product-manager-mastery-path/level-1/ — modules 03, 04, 07, 08, 09"
       }
     }
   ]

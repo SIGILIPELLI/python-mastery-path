@@ -2,10 +2,10 @@
   "type": "short",
   "language": "javascript",
   "title": "Why this JavaScript loop prints 3, 3, 3",
-  "description": "A classic JavaScript gotcha: a loop that looks like it counts 0, 1, 2 actually logs 3, 3, 3. The reason is that var is function-scoped, so every callback closes over the same single variable. Swap in let and each iteration gets a fresh binding. This is the heart of how closures work -- they capture variables, not values.\n\nSource lesson(s):\n- https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/\n\n#Shorts",
+  "description": "A classic JavaScript gotcha: a loop that looks like it counts 0, 1, 2 actually logs 3, 3, 3. The reason is that var is function-scoped, so every callback closes over the same single variable. Swap in let and each iteration gets a fresh binding. This is the heart of how closures work -- they capture variables, not values.\n\nSource lesson(s):\n- https://learnmasterypath.com/javascript-mastery-path/level-2/01-closures-scope/\n\n#Shorts",
   "tags": ["javascript", "closures", "scope", "var vs let", "hoisting", "programming tutorial", "js interview"],
   "voice": "en-US-JennyNeural",
-  "source_urls": ["https://sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/"],
+  "source_urls": ["https://learnmasterypath.com/javascript-mastery-path/level-2/01-closures-scope/"],
   "beats": [
     {
       "narration": "Here's a classic JavaScript trick question. This loop counts from zero to two and schedules three callbacks. You'd expect zero, one, two. It actually prints three, three, three.",
@@ -47,7 +47,7 @@
       "display": {
         "kind": "text",
         "heading": "Full lesson + runnable code:",
-        "subheading": "sigilipelli.github.io/javascript-mastery-path/level-2/01-closures-scope/"
+        "subheading": "learnmasterypath.com/javascript-mastery-path/level-2/01-closures-scope/"
       }
     }
   ]

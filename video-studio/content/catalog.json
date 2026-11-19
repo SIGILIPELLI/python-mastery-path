@@ -21,7 +21,7 @@
       },
       {
         "heading": "What you'll need",
-        "prose": "A [Creative Cloud](https://www.adobe.com/creativecloud.html) subscription (or trial) that includes Photoshop, Illustrator, and Premiere Pro at minimum \u2014 After Effects, Lightroom Classic, and InDesign are used starting in Level 1 Module 5 and Level 3. Any recent version of each app works; menu names are stable across recent releases, though panel layouts can shift slightly between versions. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "A [Creative Cloud](https://www.adobe.com/creativecloud.html) subscription (or trial) that includes Photoshop, Illustrator, and Premiere Pro at minimum \u2014 After Effects, Lightroom Classic, and InDesign are used starting in Level 1 Module 5 and Level 3. Any recent version of each app works; menu names are stable across recent releases, though panel layouts can shift slightly between versions. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -1273,7 +1273,7 @@
       },
       {
         "heading": "Who this is for",
-        "prose": "Engineering managers moving into AI/ML team leadership, product managers taking on AI features, technical program managers coordinating AI initiatives, and anyone who needs to plan, staff, budget, or govern AI work without necessarily writing the models themselves. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "Engineering managers moving into AI/ML team leadership, product managers taking on AI features, technical program managers coordinating AI initiatives, and anyone who needs to plan, staff, budget, or govern AI work without necessarily writing the models themselves. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -2078,7 +2078,7 @@
       },
       {
         "heading": "Where to go after this track",
-        "prose": "This site deliberately focuses on the classical-ML + deep-learning foundation. Two sibling sites pick up where it leaves off: - [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/) \u2014 retrieval-augmented generation pipelines - [LLM Development Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/) \u2014 building applications on large language models \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "This site deliberately focuses on the classical-ML + deep-learning foundation. Two sibling sites pick up where it leaves off: - [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/) \u2014 retrieval-augmented generation pipelines - [LLM Development Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/) \u2014 building applications on large language models \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -3339,7 +3339,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable AWS CLI commands and config snippets \u2014 copy them into your own terminal (with `aws configure` already set up) to follow along. - Each level ends with a project that combines everything learned in that level. - Many Level 1 modules provision real AWS resources. **Free tier covers most of it, but always tear down what you create** \u2014 the capstone module has an explicit cleanup checklist, and it's worth forming that habit early. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable AWS CLI commands and config snippets \u2014 copy them into your own terminal (with `aws configure` already set up) to follow along. - Each level ends with a project that combines everything learned in that level. - Many Level 1 modules provision real AWS resources. **Free tier covers most of it, but always tear down what you create** \u2014 the capstone module has an explicit cleanup checklist, and it's worth forming that habit early. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -5529,7 +5529,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable `az` CLI commands and config snippets \u2014 try them in [Azure Cloud Shell](https://shell.azure.com/) or a local terminal with the `az` CLI installed. - Each level ends with a project that combines everything learned in that level. - This site is written for Azure's **free account / free-tier services** where possible. Watch for the cost callouts in each module, and always clean up resource groups you create while practicing. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable `az` CLI commands and config snippets \u2014 try them in [Azure Cloud Shell](https://shell.azure.com/) or a local terminal with the `az` CLI installed. - Each level ends with a project that combines everything learned in that level. - This site is written for Azure's **free account / free-tier services** where possible. Watch for the cost callouts in each module, and always clean up resource groups you create while practicing. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -7553,7 +7553,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.c` file and compile with `gcc` or `clang`, then run the resulting binary. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.c` file and compile with `gcc` or `clang`, then run the resulting binary. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -9926,7 +9926,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.cpp` file and compile with `g++`/`clang++`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.cpp` file and compile with `g++`/`clang++`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -12542,7 +12542,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - The manual-testing modules give you real templates (test cases, bug reports, traceability matrices) you can copy straight into your own project. - The automation modules have runnable C/C++ code \u2014 copy them into local files and build them with `g++`/`clang++` and CMake. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - The manual-testing modules give you real templates (test cases, bug reports, traceability matrices) you can copy straight into your own project. - The automation modules have runnable C/C++ code \u2014 copy them into local files and build them with `g++`/`clang++` and CMake. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -14044,7 +14044,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.dart` file and run with `dart run`, or paste into [DartPad](https://dartpad.dev). - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.dart` file and run with `dart run`, or paste into [DartPad](https://dartpad.dev). - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -16065,7 +16065,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every Level 1 topic page has real, runnable code \u2014 Python you can run in any environment with TensorFlow installed, and C/C++ you can compile on your own machine before ever touching a board. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. New to machine learning itself? The [AI & ML Mastery Path](https://learnmasterypath.com/ai-ml-mastery-path/) covers model training fundamentals. New to microcontrollers? The [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) covers Arduino/ESP32 basics. Neither is strictly required to start here. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every Level 1 topic page has real, runnable code \u2014 Python you can run in any environment with TensorFlow installed, and C/C++ you can compile on your own machine before ever touching a board. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. New to machine learning itself? The [AI & ML Mastery Path](https://learnmasterypath.com/ai-ml-mastery-path/) covers model training fundamentals. New to microcontrollers? The [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) covers Arduino/ESP32 basics. Neither is strictly required to start here. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -17165,7 +17165,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real commands with expected output \u2014 run them in your own terminal and QEMU guest as you read. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real commands with expected output \u2014 run them in your own terminal and QEMU guest as you read. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -18340,7 +18340,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real, compilable Arduino C/C++ sketches \u2014 paste them into the [Wokwi simulator](https://wokwi.com/) (or the Arduino IDE with a real board) and run them as you read. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real, compilable Arduino C/C++ sketches \u2014 paste them into the [Wokwi simulator](https://wokwi.com/) (or the Arduino IDE with a real board) and run them as you read. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -19568,7 +19568,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real, runnable MicroPython code \u2014 paste it into a [Wokwi](https://wokwi.com/) *MicroPython on ESP32* project (or onto a real board with Thonny/`mpremote`) and run it as you read. - Each level ends with a project that combines everything learned in that level. - New to Python itself? Do [Python Mastery Path \u2014 Level 1](https://learnmasterypath.com/python-mastery-path/) first; this site assumes basic Python syntax and jumps straight to the embedded parts. - Prefer C/C++ on microcontrollers? That's the sibling [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) \u2014 the two tracks cover the same hardware from two languages. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real, runnable MicroPython code \u2014 paste it into a [Wokwi](https://wokwi.com/) *MicroPython on ESP32* project (or onto a real board with Thonny/`mpremote`) and run it as you read. - Each level ends with a project that combines everything learned in that level. - New to Python itself? Do [Python Mastery Path \u2014 Level 1](https://learnmasterypath.com/python-mastery-path/) first; this site assumes basic Python syntax and jumps straight to the embedded parts. - Prefer C/C++ on microcontrollers? That's the sibling [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) \u2014 the two tracks cover the same hardware from two languages. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -20661,7 +20661,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real, compilable C/C++ code using genuine FreeRTOS APIs (`xTaskCreate`, `vTaskDelay`, `xQueueSend`, ...) \u2014 paste the sketches into the [Wokwi simulator](https://wokwi.com/) as an ESP32 project and run them as you read. - New to Arduino or the ESP32 itself? The sibling [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) covers boards, GPIO, serial, and sensors from scratch \u2014 this site focuses on the RTOS layer. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has real, compilable C/C++ code using genuine FreeRTOS APIs (`xTaskCreate`, `vTaskDelay`, `xQueueSend`, ...) \u2014 paste the sketches into the [Wokwi simulator](https://wokwi.com/) as an ESP32 project and run them as you read. - New to Arduino or the ESP32 itself? The sibling [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) covers boards, GPIO, serial, and sensors from scratch \u2014 this site focuses on the RTOS layer. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -21691,7 +21691,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable `gcloud` commands and config snippets \u2014 try them in a real (free-tier) GCP project, or in [Cloud Shell](https://cloud.google.com/shell) which needs no local install. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Level 1's capstone includes explicit teardown steps \u2014 always clean up resources when you're done practicing so a free-tier project doesn't accidentally start incurring charges. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable `gcloud` commands and config snippets \u2014 try them in a real (free-tier) GCP project, or in [Cloud Shell](https://cloud.google.com/shell) which needs no local install. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Level 1's capstone includes explicit teardown steps \u2014 always clean up resources when you're done practicing so a free-tier project doesn't accidentally start incurring charges. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -24199,7 +24199,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.go` file and run with `go run`, or `go build` a binary. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.go` file and run with `go run`, or `go build` a binary. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -26522,7 +26522,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable CLI commands and config snippets \u2014 copy them into a terminal with the `ibmcloud` CLI installed, or into your own project. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Level 1 is built entirely around the **Lite (free) account tier** \u2014 the capstone project includes explicit teardown steps so nothing keeps billing after you're done. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable CLI commands and config snippets \u2014 copy them into a terminal with the `ibmcloud` CLI installed, or into your own project. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Level 1 is built entirely around the **Lite (free) account tier** \u2014 the capstone project includes explicit teardown steps so nothing keeps billing after you're done. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -28509,7 +28509,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.java` file and compile/run with `javac`/`java`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.java` file and compile/run with `javac`/`java`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -31888,7 +31888,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - The manual-testing modules give you real templates (test cases, bug reports, traceability matrices) you can reuse on a live project immediately. - The automation modules have runnable Java code \u2014 copy them into a Maven project and run with `mvn test`, or paste them into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - The manual-testing modules give you real templates (test cases, bug reports, traceability matrices) you can reuse on a live project immediately. - The automation modules have runnable Java code \u2014 copy them into a Maven project and run with `mvn test`, or paste them into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -33263,7 +33263,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.js` file or a browser console and experiment. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.js` file or a browser console and experiment. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -37219,7 +37219,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.kt` file and run with `kotlinc`/`kotlin`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.kt` file and run with `kotlinc`/`kotlin`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -39586,7 +39586,7 @@
       },
       {
         "heading": "Sibling tracks",
-        "prose": "- [AI/ML Mastery Path](https://learnmasterypath.com/ai-ml-mastery-path/) \u2014 classical machine learning foundations - [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/) \u2014 retrieval-augmented generation pipelines (this site links there instead of duplicating RAG content) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- [AI/ML Mastery Path](https://learnmasterypath.com/ai-ml-mastery-path/) \u2014 classical machine learning foundations - [RAG Mastery Path](https://learnmasterypath.com/rag-mastery-path/) \u2014 retrieval-augmented generation pipelines (this site links there instead of duplicating RAG content) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -40799,7 +40799,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.php` file and run with `php` or `php -S localhost:8000`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.php` file and run with `php` or `php -S localhost:8000`, or paste into your IDE. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -43207,7 +43207,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.ps1` file and run with `pwsh`, or paste into your terminal. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Examples target PowerShell 7+ (`pwsh`), cross-platform on Windows, macOS, and Linux. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.ps1` file and run with `pwsh`, or paste into your terminal. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Examples target PowerShell 7+ (`pwsh`), cross-platform on Windows, macOS, and Linux. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -45804,7 +45804,7 @@
       },
       {
         "heading": "What you'll need",
-        "prose": "No tools or subscriptions \u2014 just a willingness to draft real documents (team charters, org charts, hiring plans, strategy memos) as you go. Every exercise produces something you could genuinely hand to your own team or manager. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "No tools or subscriptions \u2014 just a willingness to draft real documents (team charters, org charts, hiring plans, strategy memos) as you go. Every exercise produces something you could genuinely hand to your own team or manager. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -46654,7 +46654,7 @@
       },
       {
         "heading": "What you'll need",
-        "prose": "No software, no subscriptions \u2014 just a document editor (Google Docs, Notion, or plain text all work fine) to write the exercises and projects in. Every framework in this course is presented as a table or template you can copy directly into your own notes. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "No software, no subscriptions \u2014 just a document editor (Google Docs, Notion, or plain text all work fine) to write the exercises and projects in. Every framework in this course is presented as a table or template you can copy directly into your own notes. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -47519,7 +47519,7 @@
       },
       {
         "heading": "What you'll need",
-        "prose": "No special software is required \u2014 every template in this course is built around plain documents, spreadsheets, and diagrams you can create in any office suite (Google Docs/Sheets, Microsoft Office, or equivalents). Module 9 of Level 1 introduces dedicated PM tools (Jira, Microsoft Project, Asana) as optional next steps once you understand the underlying concepts they automate. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "No special software is required \u2014 every template in this course is built around plain documents, spreadsheets, and diagrams you can create in any office suite (Google Docs/Sheets, Microsoft Office, or equivalents). Module 9 of Level 1 introduces dedicated PM tools (Jira, Microsoft Project, Asana) as optional next steps once you understand the underlying concepts they automate. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -48338,7 +48338,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Manual-testing modules give you templates and worked examples you can reuse on a real project; automation modules give you runnable code \u2014 copy them into a local `.py` file and run them. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Manual-testing modules give you templates and worked examples you can reuse on a real project; automation modules give you runnable code \u2014 copy them into a local `.py` file and run them. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -49974,7 +49974,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.R` file and run with `Rscript`, or paste into the RStudio console. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.R` file and run with `Rscript`, or paste into the RStudio console. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -52261,7 +52261,7 @@
       },
       {
         "heading": "Related tracks",
-        "prose": "RAG sits between machine learning and LLM application development. Two sister sites cover the neighboring ground: - [AI/ML Mastery Path](https://learnmasterypath.com/ai-ml-mastery-path/) \u2014 machine-learning foundations - [LLM Development Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/) \u2014 building LLM applications \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "RAG sits between machine learning and LLM application development. Two sister sites cover the neighboring ground: - [AI/ML Mastery Path](https://learnmasterypath.com/ai-ml-mastery-path/) \u2014 machine-learning foundations - [LLM Development Mastery Path](https://learnmasterypath.com/llm-dev-mastery-path/) \u2014 building LLM applications \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -53409,7 +53409,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.rb` file and run with `ruby`, or paste into `irb`. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.rb` file and run with `ruby`, or paste into `irb`. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -55664,7 +55664,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local Cargo project (`cargo new my_project`) and run with `cargo run`, or paste into the Rust Playground. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local Cargo project (`cargo new my_project`) and run with `cargo run`, or paste into the Rust Playground. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -58103,7 +58103,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Code is real C targeting the S32K family: examples are labeled **SDK-style** (NXP S32 SDK / RTD API shapes) or **register-level** (straight out of the reference manual) so you always know what layer you're looking at. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. New to microcontrollers entirely? The [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) covers general MCU basics with a free browser simulator, and the [C Mastery Path](https://learnmasterypath.com/c-mastery-path/) covers the C language itself \u2014 both pair well with this course. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Code is real C targeting the S32K family: examples are labeled **SDK-style** (NXP S32 SDK / RTD API shapes) or **register-level** (straight out of the reference manual) so you always know what layer you're looking at. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. New to microcontrollers entirely? The [Embedded Systems Mastery Path](https://learnmasterypath.com/embedded-mastery-path/) covers general MCU basics with a free browser simulator, and the [C Mastery Path](https://learnmasterypath.com/c-mastery-path/) covers the C language itself \u2014 both pair well with this course. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -59159,7 +59159,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.scala` file and run with `scala` / `sbt run`, or paste into the Scala REPL. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.scala` file and run with `scala` / `sbt run`, or paste into the Scala REPL. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -61128,7 +61128,7 @@
       },
       {
         "heading": "What you'll need",
-        "prose": "Nothing but a notebook (physical or digital) and a willingness to reflect honestly \u2014 most exercises ask you to apply a framework to your own team, manager relationship, or a real situation you're navigating, so the more specific and honest your answers, the more useful the exercise becomes. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "Nothing but a notebook (physical or digital) and a willingness to reflect honestly \u2014 most exercises ask you to apply a framework to your own team, manager relationship, or a real situation you're navigating, so the more specific and honest your answers, the more useful the exercise becomes. \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -61953,7 +61953,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.sh` file or a terminal and experiment. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Examples target Bash; notes call out POSIX `sh` differences where they matter. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.sh` file or a terminal and experiment. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. - Examples target Bash; notes call out POSIX `sh` differences where they matter. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -66098,7 +66098,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable SQL snippets \u2014 copy them into the `sqlite3` command-line shell (no database server to install or configure) and run them yourself. - Where SQLite diverges from standard/portable SQL (used by Postgres, MySQL, SQL Server, etc.), the pages call it out so you know what will and won't carry over. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable SQL snippets \u2014 copy them into the `sqlite3` command-line shell (no database server to install or configure) and run them yourself. - Where SQLite diverges from standard/portable SQL (used by Postgres, MySQL, SQL Server, etc.), the pages call it out so you know what will and won't carry over. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -68737,7 +68737,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 paste them into a Swift Playground, run with `swift` on the command line, or drop them into Xcode. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 paste them into a Swift Playground, run with `swift` on the command line, or drop them into Xcode. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -70870,7 +70870,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.ts` file and run with `ts-node`, or compile with `tsc` and run with `node`. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.ts` file and run with `ts-node`, or compile with `tsc` and run with `node`. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {
@@ -73348,7 +73348,7 @@
       },
       {
         "heading": "How to use this site",
-        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.py` file or a REPL and experiment. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@sigilipelli) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
+        "prose": "- Work through each level in order \u2014 later modules assume earlier ones. - Every topic page has runnable code snippets \u2014 copy them into a local `.py` file or a REPL and experiment. - Each level ends with a project that combines everything learned in that level. - Use the search bar (top of the page) to jump straight to a topic. Start here \u2192 [Level 1 \u00b7 Entry](level-1/index.md) \ud83c\udfa5 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube \u2014 Shorts and full walkthroughs of these lessons.",
         "code_blocks": []
       },
       {

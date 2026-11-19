@@ -49,7 +49,7 @@ runnable code in every module and a hands-on project at the end of each level.
 
 Start here → [Level 1 · Entry](level-1/index.md)
 
-🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube — Shorts and full walkthroughs of these lessons.
+🎥 **Prefer video?** Watch the [Mastery Path video series](https://youtube.com/@learnmasterypath) on YouTube — Shorts and full walkthroughs of these lessons. [▶ Subscribe free](https://www.youtube.com/@learnmasterypath?sub_confirmation=1)
 
 ## Why vector databases, and why now
 

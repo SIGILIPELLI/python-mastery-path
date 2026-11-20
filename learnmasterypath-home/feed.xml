@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Mastery Path — What's New</title>
+  <link>https://learnmasterypath.com/</link>
+  <description>Updates, new lessons and features across the Mastery Path network of 102 free courses.</description>
+  <language>en-us</language>
+  <atom:link href="https://learnmasterypath.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>New course: Digital Marketing &amp; SEO Mastery Path</title>
+    <link>https://learnmasterypath.com/digital-marketing-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-11-19-digital-marketing</guid>
+    <pubDate>Thu, 19 Nov 2026 05:00:00 GMT</pubDate>
+    <description>Free digital marketing course: SEO, keyword research, Google Ads, Meta Ads, email marketing, GA4 analytics and growth strategy, beginner to advanced, with hands-on projects.</description>
+  </item>
+
+  <item>
+    <title>New course: Tally Prime &amp; GST Mastery Path</title>
+    <link>https://learnmasterypath.com/tally-gst-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-11-19-tally-gst</guid>
+    <pubDate>Thu, 19 Nov 2026 05:00:00 GMT</pubDate>
+    <description>Free TallyPrime and GST course: accounting basics, vouchers, inventory, GST invoicing, GSTR-1 and GSTR-3B, ITC, e-invoicing, TDS, payroll and year-end closing, with practice projects.</description>
+  </item>
+
+  <item>
+    <title>New course: MCP Mastery Path</title>
+    <link>https://learnmasterypath.com/python-mastery-path/mcp-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-11-01-mcp</guid>
+    <pubDate>Sun, 01 Nov 2026 05:00:00 GMT</pubDate>
+    <description>Free Model Context Protocol (MCP) course: the JSON-RPC wire protocol and host/client/server architecture, building production servers with the Python and TypeScript SDKs, OAuth 2.1 auth, multi-server orchestration, prompt-injection and tool-poisoning security, and a capstone production-grade server suite.</description>
+  </item>
+
+  <item>
+    <title>New course: Vector Databases Mastery Path</title>
+    <link>https://learnmasterypath.com/python-mastery-path/vector-databases-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-31-vector-databases</guid>
+    <pubDate>Sat, 31 Oct 2026 18:00:00 GMT</pubDate>
+    <description>Free Vector Databases course: embeddings and ANN search fundamentals, Pinecone/Weaviate/Qdrant/pgvector, HNSW and IVF+PQ internals, hybrid search and re-ranking, and a production-grade RAG platform capstone.</description>
+  </item>
+
+  <item>
+    <title>New course: Cypress Mastery Path</title>
+    <link>https://learnmasterypath.com/cypress-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-29-cypress</guid>
+    <pubDate>Thu, 29 Oct 2026 00:30:00 GMT</pubDate>
+    <description>Free Cypress course: DOM querying, auto-waiting, cy.intercept network stubbing, the command queue, component testing, cy.origin, and real Cypress vs Selenium/Playwright comparisons.</description>
+  </item>
+
+  <item>
+    <title>New course: Selenium Mastery Path</title>
+    <link>https://learnmasterypath.com/selenium-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-28-selenium</guid>
+    <pubDate>Wed, 28 Oct 2026 22:30:00 GMT</pubDate>
+    <description>Free Selenium WebDriver course: locators, waits, Page Object Model, pytest, Selenium Grid, shadow DOM, CI integration and a real Selenium vs Playwright comparison.</description>
+  </item>
+
+  <item>
+    <title>New course: Computer Vision Mastery Path</title>
+    <link>https://learnmasterypath.com/computer-vision-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-28-computer-vision</guid>
+    <pubDate>Wed, 28 Oct 2026 07:00:00 GMT</pubDate>
+    <description>Free Computer Vision course: OpenCV, CNNs, object detection, segmentation, tracking, OCR and vision transformers.</description>
+  </item>
+
+  <item>
+    <title>New course: MLOps Mastery Path</title>
+    <link>https://learnmasterypath.com/mlops-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-27-mlops</guid>
+    <pubDate>Tue, 27 Oct 2026 21:30:00 GMT</pubDate>
+    <description>Free MLOps course: experiment tracking, model registry, CI/CD pipelines for ML, and monitoring/drift detection.</description>
+  </item>
+
+  <item>
+    <title>New course: Observability Mastery Path</title>
+    <link>https://learnmasterypath.com/observability-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-26-observability</guid>
+    <pubDate>Mon, 26 Oct 2026 15:30:00 GMT</pubDate>
+    <description>Free Observability course: Prometheus, PromQL, Grafana dashboards, alerting, OpenTelemetry tracing, and SLOs.</description>
+  </item>
+
+  <item>
+    <title>New course: Microservices Mastery Path</title>
+    <link>https://learnmasterypath.com/microservices-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-26-microservices</guid>
+    <pubDate>Mon, 26 Oct 2026 00:00:00 GMT</pubDate>
+    <description>Free Microservices Architecture course: decomposition, service communication, data ownership and sagas, resilience patterns, service mesh, and migrating a monolith.</description>
+  </item>
+
+  <item>
+    <title>New course: Kafka Mastery Path</title>
+    <link>https://learnmasterypath.com/kafka-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-25-kafka</guid>
+    <pubDate>Sun, 25 Oct 2026 13:00:00 GMT</pubDate>
+    <description>Free Apache Kafka course: topics/partitions, producers/consumers, delivery semantics, replication, Connect, Streams and KRaft.</description>
+  </item>
+
+  <item>
+    <title>New course: Ansible Mastery Path</title>
+    <link>https://learnmasterypath.com/ansible-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-23-ansible</guid>
+    <pubDate>Fri, 23 Oct 2026 02:03:18 GMT</pubDate>
+    <description>Free Ansible course: inventory, playbooks, idempotency, roles, Vault, custom modules, rolling updates and operating automation.</description>
+  </item>
+
+  <item>
+    <title>New course: CI/CD Mastery Path</title>
+    <link>https://learnmasterypath.com/cicd-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-23-cicd</guid>
+    <pubDate>Fri, 23 Oct 2026 01:14:42 GMT</pubDate>
+    <description>Free CI/CD course: pipelines, GitHub Actions, Jenkins, testing gates, deployment strategies, GitOps and supply-chain security.</description>
+  </item>
+
+  <item>
+    <title>New course: Linux Mastery Path</title>
+    <link>https://learnmasterypath.com/linux-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-22-linux</guid>
+    <pubDate>Thu, 22 Oct 2026 17:30:48 GMT</pubDate>
+    <description>A 40-lesson Linux course: the filesystem, permissions, processes, systemd, disks, networking, firewalls and SSH, memory and the OOM killer, /proc, scheduling, namespaces and cgroups, performance, backups and troubleshooting. Written on macOS with Linux-only features clearly labelled as described, not run.</description>
+  </item>
+
+  <item>
+    <title>New course: Databricks Mastery Path</title>
+    <link>https://learnmasterypath.com/databricks-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-21-databricks</guid>
+    <pubDate>Wed, 21 Oct 2026 19:45:00 GMT</pubDate>
+    <description>A 40-lesson Databricks course: the lakehouse, Spark and Delta Lake (run locally), MERGE, clustering and skew, streaming and Auto Loader, Unity Catalog, declarative pipelines and jobs, OpenSharing, SQL warehouses, MLflow, bundles and CI/CD, cost and table maintenance. Platform-only features are labelled as documented, not run.</description>
+  </item>
+
+  <item>
+    <title>New course: Snowflake Mastery Path</title>
+    <link>https://learnmasterypath.com/snowflake-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-14-snowflake</guid>
+    <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
+    <description>A 40-lesson Snowflake course: architecture and credits, loading with COPY, Snowflake SQL and JSON, Time Travel and cloning, pruning and clustering, the Query Profile, Snowpipe, streams, tasks and dynamic tables, roles and policies, data sharing, Snowpark, Cortex AI functions, cost management, scaling, replication, dbt CI/CD and migration, with a tested project in every level.</description>
+  </item>
+
+  <item>
+    <title>New course: Redis Mastery Path</title>
+    <link>https://learnmasterypath.com/redis-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-13-redis</guid>
+    <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
+    <description>A 40-lesson Redis course: a local lab and the one-command-thread model, redis-cli and the RESP protocol, strings and expiry, safe keyspace iteration, hashes with per-field expiry, lists, sets, sorted sets, redis-py and node-redis, and a URL-shortener project — then memory encodings, bitmaps, HyperLogLog and Bloom filters, geospatial indexes, streams and consumer groups, Pub/Sub, transactions with WATCH, Lua and Functions, and a leaderboard project — then caching patterns and stampedes, eviction, rate limiting, distributed locks with fencing tokens, sessions and client-side caching, reliable job queues, JSON and vector search, and a FastAPI caching and rate-limiting project — and production: RDB and AOF, replication, Sentinel, Cluster and atomic slot migration, ACLs and TLS, monitoring, Redis versus Valkey, and a capstone cluster accepted by an automated failover test. Every example was run on Redis 8.10.2 and the outputs shown are real, including the failures.</description>
+  </item>
+
+  <item>
+    <title>New course: MongoDB Mastery Path</title>
+    <link>https://learnmasterypath.com/mongodb-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-13-mongodb</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson MongoDB course: a local lab and its data directory, mongosh, BSON types, queries and update operators, arrays, bulk writes, PyMongo and the Node.js driver, the dump and import tools, and a recipe-app project — then embedding versus referencing, schema design patterns, $jsonSchema validation, compound index design measured with explain(), the query planner, time series collections, and a store-catalog project — then the aggregation pipeline, $lookup joins, window functions, $merge rollups, multi-document transactions, change streams, geospatial and text search, and an order-analytics project — and production: replica set failover and a real rollback, write and read concerns, sharding and shard-key choice, authentication, roles and TLS, point-in-time recovery, monitoring, tuning, rolling upgrades and online migrations, with a capstone secured sharded cluster accepted by an automated test script. Every example was run on MongoDB 9.0.2 and the outputs shown are real, including the errors.</description>
+  </item>
+
+  <item>
+    <title>New course: PostgreSQL Mastery Path</title>
+    <link>https://learnmasterypath.com/postgresql-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-11-postgresql</guid>
+    <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on PostgreSQL itself, beyond basic SQL: the process model and data directory, psql, data types, schemas and search_path, roles and pg_hba.conf, exclusion and deferrable constraints, isolation levels reproduced with concurrent sessions, upserts and MERGE, pg_dump and pg_restore, and an event-ticketing project — then MVCC row versions read from raw pages, VACUUM and wraparound, TOAST and HOT updates, B-tree, GIN, GiST, BRIN and hash indexes, EXPLAIN ANALYZE, planner statistics, locking and deadlocks, the write-ahead log, and a slow-database diagnosis project — then JSONB, full-text search, PL/pgSQL, triggers and audit logs, LATERAL and recursive queries, partitioning, row-level security, extensions including pgvector, a SKIP LOCKED job queue, and a multi-tenant SaaS project — and production: configuration, PgBouncer pooling, streaming and logical replication, point-in-time recovery, monitoring, zero-downtime migrations, security hardening, pg_upgrade and high availability, with a capstone proven by recovery and failover drills. Every example was run on PostgreSQL 18.6 and the outputs shown are real, including the errors.</description>
+  </item>
+
+  <item>
+    <title>New course: React Native Mastery Path</title>
+    <link>https://learnmasterypath.com/react-native-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-11-react-native</guid>
+    <pubDate>Sun, 11 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on React Native with Expo and TypeScript, from first screen to store release: how React Native renders native views, core components, StyleSheet and Flexbox, Pressable, TextInput, FlatList, safe areas and platform differences, debugging, a habit tracker project, then navigation with Expo Router, params and deep links, Context and Zustand, TanStack Query, AsyncStorage, SecureStore and SQLite with migrations, forms with React Hook Form and Zod, images and fonts, the keyboard and modals, and an offline-friendly recipe book — then the New Architecture (JSI, Fabric, TurboModules), camera, location and haptics, permissions, notifications, Reanimated, Gesture Handler, accessibility, a native module with the Expo Modules API, development builds and config plugins, and an offline-sync field-notes app — and production: profiling, FlashList, Jest and React Native Testing Library, Maestro and Detox, mobile security, EAS Build and signing, store submission, OTA updates with fingerprints, Sentry monitoring, and a release-candidate capstone. Code was type-checked and tested with Jest in a real Expo SDK 57 project; device- and account-only steps are labelled as such.</description>
+  </item>
+
+  <item>
+    <title>New course: Ethical Hacking Mastery Path</title>
+    <link>https://learnmasterypath.com/ethical-hacking-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-10-ethical-hacking</guid>
+    <pubDate>Sat, 10 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on ethical hacking taught strictly for authorized, lab-only use: what authorization, scope and the law require, building an isolated practice lab, the penetration-testing lifecycle, the Linux command line, networking for testers, passive OSINT, active scanning with Nmap, service enumeration, CVE and CVSS, then web application testing against deliberately vulnerable practice apps — the testing mindset and intercepting proxies, SQL injection, XSS, broken authentication and sessions, broken access control and IDOR, SSRF, file upload and path traversal, misconfiguration and vulnerable components, API security — then infrastructure testing in the lab: vulnerability scanning and validation, exploitation with Metasploit, password cracking, Linux and Windows privilege escalation, Active Directory attack paths, pivoting, wireless, and authorized phishing simulation — and the professional craft: post-exploitation ethics, report writing, scoping and rules of engagement, threat modeling, cloud and mobile basics, red team vs bug bounty, certifications and careers, the law and responsible disclosure, and a full end-to-end engagement capstone. Runnable demonstrations (SQL injection, output encoding, path traversal and password cracking) were verified locally; everything else is clearly labelled lab-only.</description>
+  </item>
+
+  <item>
+    <title>New course: Flutter Mastery Path</title>
+    <link>https://learnmasterypath.com/flutter-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-09-flutter</guid>
+    <pubDate>Fri, 09 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on Flutter from first widget to shipped app: the engine and widget tree, the constraints layout model, stateful widgets and their lifecycle, forms, lists and keys, Material 3 theming, navigation and go_router, InheritedWidget, Provider, Riverpod and Bloc with measured rebuilds, async UI, a typed HTTP client, local persistence with migrations, unit, widget and golden tests, elements and BuildContext, implicit and explicit animations, CustomPainter, responsive layouts, platform channels, isolates, accessibility and localization, integration tests, an offline-first habit tracker, the rendering pipeline and a custom RenderObject, performance, layered architecture, flavors and --dart-define, CI, store publishing, JS and Wasm web builds, plugins and dart:ffi, upgrades, and a production-ready expense tracker capstone. Examples were verified with real test runs on Flutter 3.44.</description>
+  </item>
+
+  <item>
+    <title>New course: GraphQL Mastery Path</title>
+    <link>https://learnmasterypath.com/graphql-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-09-graphql</guid>
+    <pubDate>Fri, 09 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on GraphQL from first schema to federated graph: the type system, queries, resolvers, mutations, Apollo Server over HTTP, errors and null propagation, client-driven schema design, interfaces and unions, custom scalars, the N+1 problem measured and fixed with DataLoader, cursor pagination, mutation payloads, testing, JWT authentication, authorization on every path, schema directives, subscriptions over WebSockets, query cost limits, caching and persisted queries, Apollo Client's normalized cache, code generation, graphql-js internals, tracing, Apollo Federation with real query plans, schema evolution, error masking, code-first schemas, graphql-js 17 and a federated storefront capstone. Every example was run on Node.js 26 with graphql 16.</description>
+  </item>
+
+  <item>
+    <title>New course: FastAPI Mastery Path</title>
+    <link>https://learnmasterypath.com/fastapi-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-08-fastapi</guid>
+    <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on FastAPI from first endpoint to production: ASGI and the request lifecycle, path and query parameters, Pydantic v2 request and response models, error handling, forms and uploads, routers, dependency injection and yield-dependency teardown, async vs sync measured under load, SQLAlchemy 2.x sync and async, N+1 queries, Alembic, pydantic-settings, isolated database tests, pagination, Argon2 password hashing, OAuth2 and JWT with rotating refresh tokens, scopes and object-level authorization, middleware and CORS, lifespan and background tasks, WebSockets and Server-Sent Events, OpenAPI and generated clients, caching, ETags and rate limits, profiling, workers and graceful shutdown, reverse proxies, structured logs, metrics and built-in OpenTelemetry, OWASP API hardening, versioning, job queues, upgrades, and a booking API that never overbooks across four worker processes, with outputs checked against real runs.</description>
+  </item>
+
+  <item>
+    <title>New course: Django Mastery Path</title>
+    <link>https://learnmasterypath.com/django-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-08-django</guid>
+    <pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on Django 6 from first view to production: the request/response cycle, URLs and views, templates and autoescaping, models and migrations, the ORM, admin, forms and CSRF, static and media files, relationships, Q/F/annotate, finding N+1 queries, class-based views, authentication, permissions, the custom user model, middleware, testing, Django REST Framework serializers, viewsets, API auth and throttling, signals, transactions and race conditions, zero-downtime migrations, caching, the Tasks framework and Celery, async Django, security, production settings, deployment with Gunicorn/Uvicorn and PostgreSQL, query performance, management commands, template partials, logging, i18n and time zones, and upgrading, with outputs checked against real Django runs.</description>
+  </item>
+
+  <item>
+    <title>New course: Tailwind CSS Mastery Path</title>
+    <link>https://learnmasterypath.com/tailwind-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-10-02-tailwind</guid>
+    <pubDate>Fri, 02 Oct 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on Tailwind CSS v4 from first utility to production: what the compiler generates, installation and source detection, spacing, typography, colour, Flexbox and Grid, state variants with group and peer, responsive breakpoints, @theme design tokens, dark mode, arbitrary values, @apply and @utility, aria/data/has variants, container queries, forms, motion, cascade layers and Preflight, custom utilities and plugins, accessibility with measured contrast, the Typography plugin, tailwind-merge and cva, design systems, v3 to v4 migration, production performance, linting, multi-brand theming, RTL, media variants, legacy CSS, server templates, debugging and Playwright testing, with compiled output and measurements taken in real browsers.</description>
+  </item>
+  <item>
+    <title>New course: HTML &amp; CSS Mastery Path</title>
+    <link>https://learnmasterypath.com/html-css-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-30-html-css</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on HTML and CSS from first page to production: how browsers render, document structure, semantic text, images, tables, forms, selectors, the cascade and box model, typography, colour and contrast, Flexbox and Grid in depth, positioning and stacking contexts, responsive design, custom properties, the accessibility tree, landmarks, keyboard and focus, ARIA, accessible forms, container queries, :has(), nesting, cascade layers, motion, dialog and popover, rendering and loading performance, CSS architecture, design tokens, RTL and i18n, metadata and structured data, print, progressive enhancement and automated testing, with examples checked in real browsers.</description>
+  </item>
+  <item>
+    <title>New course: Vue.js Mastery Path</title>
+    <link>https://learnmasterypath.com/vue-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-30-vue</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on Vue 3.5 with the Composition API: templates and directives, ref, reactive and computed, watchers, props and emits, v-model, slots, composables, provide/inject, Vue Router 5, Pinia 4, async data, form validation, TypeScript, reactivity and rendering internals, directives and plugins, code splitting, performance, Vitest testing, accessibility, security, SSR from scratch, Nuxt 4, production builds, component libraries, architecture, Vue 2 migration, i18n, deployment and observability, with code verified against real builds.</description>
+  </item>
+  <item>
+    <title>New course: Angular Mastery Path</title>
+    <link>https://learnmasterypath.com/angular-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-29-angular</guid>
+    <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on modern Angular 22: standalone components, signals, template control flow, services and dependency injection, routing, HttpClient, reactive and signal forms, RxJS interop, resource and httpResource, guards, interceptors, zoneless change detection, @defer, performance, SSR and hydration, Vitest testing, accessibility with @angular/aria, security, i18n, libraries, Angular Elements, migrations, deployment and observability, with code verified against real builds.</description>
+  </item>
+  <item>
+    <title>New course: Next.js Mastery Path</title>
+    <link>https://learnmasterypath.com/nextjs-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-28-nextjs</guid>
+    <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A 40-lesson course on Next.js 16 with the App Router: file-based routing and layouts, Server and Client Components, data fetching, dynamic routes, loading and error UI, Server Actions and forms, caching with and without Cache Components, Route Handlers, Proxy, authentication, Drizzle with SQLite, streaming, parallel and intercepting routes, i18n, SEO, Core Web Vitals, Vitest and Playwright, security and CSP, self-hosted deployment, observability, upgrades and accessibility, with code verified against a real build.</description>
+  </item>
+  <item>
+    <title>New course: AI Agents Mastery Path</title>
+    <link>https://learnmasterypath.com/ai-agents-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-27-ai-agents</guid>
+    <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A vendor-neutral course on building AI agents in 40 lessons: the agent loop written from scratch in plain Python, tool calling and tool design, error handling, stopping conditions, tracing, frameworks and state graphs, memory, ReAct and plan-and-execute, reflection, retrieval as a tool, human approvals, streaming, multi-agent supervisors and handoffs, MCP, sandboxing, task and trajectory evals, cost, reliability, prompt-injection defense, least privilege, policy as code, testing, ethics and rollout, with runnable offline code throughout.</description>
+  </item>
+  <item>
+    <title>New course: Prompt Engineering Mastery Path</title>
+    <link>https://learnmasterypath.com/prompt-engineering-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-27-prompt-engineering</guid>
+    <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A vendor-neutral prompt engineering course in 40 lessons: how models read prompts, clarity, context, few-shot examples, output formats, reasoning prompts, chaining, JSON output, system prompts, extraction and summarization, test sets and rubrics, LLM-as-judge biases, A/B tests, prompt-injection defense, guardrails, tool calling, long context, versioning, regression tests, cost, agents and ethics, with a runnable offline eval harness.</description>
+  </item>
+  <item>
+    <title>New course: Power BI Mastery Path</title>
+    <link>https://learnmasterypath.com/power-bi-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-27-power-bi</guid>
+    <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A Power BI course in 40 lessons: Power Query, data types and cleaning, star schemas, relationships, DAX with CALCULATE and context transition, time intelligence, row-level security, VertiPaq performance, calculation groups, field parameters, Fabric, governance, PBIP and Git, accessibility and model testing, with every DAX result checked against hand-computed sample data.</description>
+  </item>
+  <item>
+    <title>New course: Spring Boot Mastery Path</title>
+    <link>https://learnmasterypath.com/spring-boot-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-27-spring-boot</guid>
+    <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A Spring Boot backend course for Java developers: 40 lessons from dependency injection, REST controllers, validation and ProblemDetail errors through Spring Data JPA, Flyway, testing and JWT security, to auto-configuration and proxy internals, Kafka, resilience, observability, containers and deployment, with three projects and a capstone.</description>
+  </item>
+  <item>
+    <title>New course: Node.js Mastery Path</title>
+    <link>https://learnmasterypath.com/nodejs-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-26-nodejs</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A Node.js runtime and backend course: 40 lessons from V8, libuv and ES modules through Express 5 APIs with PostgreSQL, auth and tests, to the event loop, streams, workers, WebSockets, profiling, observability and graceful shutdown, with a CLI, REST API, real-time chat and capstone.</description>
+  </item>
+  <item>
+    <title>New course: System Design Mastery Path</title>
+    <link>https://learnmasterypath.com/system-design-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-26-system-design</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A system design course: 40 lessons on estimation, caching, replication, sharding, consensus, sagas, idempotency and reliability, with URL shortener, news feed and chat projects, case studies and a design-doc capstone.</description>
+  </item>
+  <item>
+    <title>New course: DSA &amp; Coding Interviews Mastery Path</title>
+    <link>https://learnmasterypath.com/dsa-interview-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-26-dsa-interview</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A data structures, algorithms and coding interview course: 40 lessons with tested Python solutions, from Big-O and hashing through graphs, DP and segment trees to mock interviews, online assessments and study plans.</description>
+  </item>
+  <item>
+    <title>New course: React Mastery Path</title>
+    <link>https://learnmasterypath.com/react-mastery-path/</link>
+    <guid isPermaLink="false">mp-2026-09-26-react</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A hooks-first React course: 40 lessons across four levels, from a first Vite component to Server Components, concurrent rendering, security and large-app architecture, with a project closing each level.</description>
+  </item>
+  <item>
+    <title>Cross-site search and lesson progress tracking added network-wide</title>
+    <link>https://learnmasterypath.com/</link>
+    <guid isPermaLink="false">mp-2026-09-15-search-progress</guid>
+    <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A fuzzy search bar on the hub now searches all 2,565 lessons across every course at once. Every one of the 64 sites also got lesson-completion checkboxes and a per-level progress bar, saved locally in your browser — no account needed.</description>
+  </item>
+  <item>
+    <title>YouTube video walkthroughs embedded across the network</title>
+    <link>https://learnmasterypath.com/</link>
+    <guid isPermaLink="false">mp-2026-09-14-videos</guid>
+    <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Matching video walkthroughs from the Mastery Path YouTube channel are now embedded directly on 99+ lesson pages across python, javascript, shell, typescript, sql, c, java, cpp, go, ruby, php and rust.</description>
+  </item>
+  <item>
+    <title>Full Level 2-4 content backfilled on 7 course sites</title>
+    <link>https://learnmasterypath.com/</link>
+    <guid isPermaLink="false">mp-2026-09-14-backfill</guid>
+    <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+    <description>ai-ml, docker, github, kubernetes, llm-dev, terraform and workday now have complete Level 2 through Level 4 content — real, mechanism-level lessons in place of every remaining placeholder page.</description>
+  </item>
+  <item>
+    <title>"How It Actually Works" sections added to every real lesson, network-wide</title>
+    <link>https://learnmasterypath.com/</link>
+    <guid isPermaLink="false">mp-2026-09-11-mechanism-sections</guid>
+    <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+    <description>Every existing topic module across all 64 sites now includes a dedicated section explaining the underlying mechanism — not just how to use a feature, but why it behaves the way it does.</description>
+  </item>
+  <item>
+    <title>Content license published: CC BY 4.0 for lessons, MIT for code</title>
+    <link>https://learnmasterypath.com/license.html</link>
+    <guid isPermaLink="false">mp-2026-09-04-license</guid>
+    <pubDate>Fri, 04 Sep 2026 00:00:00 GMT</pubDate>
+    <description>All written lessons across the network are licensed CC BY 4.0, and every code snippet is additionally released under the MIT License — free to share, adapt and reuse.</description>
+  </item>
+  <item>
+    <title>Mastery Path hub page launched</title>
+    <link>https://learnmasterypath.com/</link>
+    <guid isPermaLink="false">mp-2026-09-02-hub</guid>
+    <pubDate>Wed, 02 Sep 2026 00:00:00 GMT</pubDate>
+    <description>A real hub page replaced the old redirect stub — a categorized directory of all 64 free courses, in one place.</description>
+  </item>
+</channel>
+</rss>

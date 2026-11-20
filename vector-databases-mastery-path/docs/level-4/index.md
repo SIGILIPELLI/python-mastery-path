@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free Vector Databases Mastery Path. Design and operate complete, production-grade retrieval systems — architecture, evaluation…"
+---
+
 # Level 4 · Master <span class="level-badge">Production RAG</span>
 
 Goal: design and operate complete, production-grade retrieval systems —

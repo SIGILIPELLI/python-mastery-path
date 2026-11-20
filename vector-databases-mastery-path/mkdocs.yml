@@ -8,6 +8,7 @@ site_dir: ../site/vector-databases-mastery-path
 
 theme:
   name: material
+  font: false
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   palette:
@@ -26,6 +27,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.path
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -56,6 +58,22 @@ extra_css:
 
 extra_javascript:
   - javascripts/progress-tracker.js
+
+
+
+
+extra:
+  related:
+    - name: "PostgreSQL"
+      url: https://learnmasterypath.com/postgresql-mastery-path/
+    - name: "MongoDB"
+      url: https://learnmasterypath.com/mongodb-mastery-path/
+    - name: "Redis"
+      url: https://learnmasterypath.com/redis-mastery-path/
+    - name: "Snowflake"
+      url: https://learnmasterypath.com/snowflake-mastery-path/
+    - name: "Databricks"
+      url: https://learnmasterypath.com/databricks-mastery-path/
 
 nav:
   - Home: index.md

@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free Python Mastery Path. Operate like a senior engineer — design patterns, metaprogramming, production-grade APIs, deployment, and…"
+---
+
 # Level 4 · Master <span class="level-badge">Production Mastery</span>
 
 Goal: operate like a senior engineer — design patterns, metaprogramming,

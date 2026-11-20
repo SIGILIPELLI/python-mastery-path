@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free MCP Mastery Path. Move past a local stdio server and build something you could actually ship — remote transport, real…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Production Servers</span>
 
 Goal: move past a local stdio server and build something you could actually

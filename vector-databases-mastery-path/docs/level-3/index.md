@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free Vector Databases Mastery Path. Go from \"it returns results\" to \"it returns the right results, fast, under real load\" — the…"
+---
+
 # Level 3 · Advanced <span class="level-badge">Scale & Quality</span>
 
 Goal: go from "it returns results" to "it returns the *right* results, fast,

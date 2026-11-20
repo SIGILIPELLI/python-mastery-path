@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free MCP Mastery Path. Go from \"one server works\" to \"several servers work together reliably, safely, and observably\" — the…"
+---
+
 # Level 3 · Advanced <span class="level-badge">Scale &amp; Security</span>
 
 Goal: go from "one server works" to "several servers work together reliably,

@@ -1,3 +1,7 @@
+---
+description: "Privacy policy for the free MCP Mastery Path: how Google Analytics and AdSense cookies are used, what is not collected, and how to opt out."
+---
+
 # Privacy Policy
 
 _Last updated: 2026-11-01_

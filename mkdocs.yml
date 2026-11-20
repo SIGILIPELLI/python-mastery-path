@@ -6,6 +6,7 @@ repo_name: python-mastery-path
 
 theme:
   name: material
+  font: false
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   palette:
@@ -24,6 +25,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.path
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -54,6 +56,22 @@ extra_css:
 
 extra_javascript:
   - javascripts/progress-tracker.js
+
+
+
+
+extra:
+  related:
+    - name: "Java"
+      url: https://learnmasterypath.com/java-mastery-path/
+    - name: "JavaScript"
+      url: https://learnmasterypath.com/javascript-mastery-path/
+    - name: "TypeScript"
+      url: https://learnmasterypath.com/typescript-mastery-path/
+    - name: "C#"
+      url: https://learnmasterypath.com/csharp-mastery-path/
+    - name: "Shell/Bash"
+      url: https://learnmasterypath.com/shell-mastery-path/
 
 nav:
   - Home: index.md

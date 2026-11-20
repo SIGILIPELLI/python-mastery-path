@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free Vector Databases Mastery Path. Move past toy examples and get hands-on with the vector databases teams actually run in…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Production DBs</span>
 
 Goal: move past toy examples and get hands-on with the vector databases teams

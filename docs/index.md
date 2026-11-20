@@ -1,6 +1,6 @@
 ---
 title: "Learn Python Free: Beginner to Master Course"
-description: "Free Python course from beginner to advanced -- 40 hands-on lessons with runnable code and 4 real capstone projects. Part of a 37-course free learning library."
+description: "Free Python course from beginner to advanced -- 40 hands-on lessons with runnable code and 4 real capstone projects. Part of a 100+ course free learning library."
 ---
 
 # Python Mastery Path

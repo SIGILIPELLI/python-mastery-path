@@ -8,6 +8,7 @@ site_dir: ../site/mcp-mastery-path
 
 theme:
   name: material
+  font: false
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   palette:
@@ -26,6 +27,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.path
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -56,6 +58,22 @@ extra_css:
 
 extra_javascript:
   - javascripts/progress-tracker.js
+
+
+
+
+extra:
+  related:
+    - name: "AI/ML"
+      url: https://learnmasterypath.com/ai-ml-mastery-path/
+    - name: "LLM Dev"
+      url: https://learnmasterypath.com/llm-dev-mastery-path/
+    - name: "RAG"
+      url: https://learnmasterypath.com/rag-mastery-path/
+    - name: "Edge AI"
+      url: https://learnmasterypath.com/edge-ai-mastery-path/
+    - name: "Claude Training"
+      url: https://learnmasterypath.com/claude-training-mastery-path/
 
 nav:
   - Home: index.md

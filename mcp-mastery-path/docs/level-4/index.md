@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free MCP Mastery Path. Operate MCP at scale, place it correctly against the other tool-use patterns it's often confused with, and…"
+---
+
 # Level 4 · Master <span class="level-badge">Enterprise &amp; Ecosystem</span>
 
 Goal: operate MCP at scale, place it correctly against the other tool-use

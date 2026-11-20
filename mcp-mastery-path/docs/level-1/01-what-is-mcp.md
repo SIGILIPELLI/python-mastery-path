@@ -73,8 +73,8 @@ and a separate MCP server that exposes `post_message(channel, text)` against
 Slack's API.
 
 An AI assistant connected to both servers can be asked, in plain language,
-"Check my calendar for conflicts tomorrow afternoon and post a summary to
-#team-standup" — and it will call `list_events`, reason about the results,
+"Check my calendar for conflicts tomorrow afternoon and post a summary
+to #team-standup" — and it will call `list_events`, reason about the results,
 then call `post_message`, without the assistant's own codebase containing a
 single line of calendar-specific or Slack-specific code. All of that logic
 lives in the two servers, where it was written once.

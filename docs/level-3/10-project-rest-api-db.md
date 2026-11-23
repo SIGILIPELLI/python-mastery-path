@@ -410,7 +410,7 @@ by anything baked into the route definitions themselves.
 - Add pagination (`?limit=&offset=`) to `GET /books`.
 - Add a `genre` field with an enum-constrained value in the Pydantic schema.
 - Package the app (tying back to
-  [Packaging & Distribution](09-packaging-distribution.md)) with a console
+  [Packaging & Distribution](08-packaging-distribution.md)) with a console
   script that starts the server.
 
 Completing this project means you're ready for **Level 4 · Master**.

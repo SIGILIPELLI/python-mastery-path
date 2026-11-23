@@ -1125,7 +1125,7 @@ Join then aggregate per group. Verified by running it.
 
 Know the SQL it generates.
 
-### [07 · Consuming APIs](level-3/07-consuming-apis.md)
+### [07 · Consuming & Building APIs — Part 1: Consuming](level-3/07-consuming-building-apis.md#part-1-consuming-apis)
 
 **Q105.** How do you build query strings safely?
 
@@ -1172,7 +1172,7 @@ Double the wait each retry up to a cap, usually with jitter. Verified by running
 
 requests.get(url, timeout=5).
 
-### [08 · Building APIs (Flask/FastAPI)](level-3/08-building-apis.md)
+### [07 · Consuming & Building APIs — Part 2: Building (FastAPI)](level-3/07-consuming-building-apis.md#part-2-building-apis-fastapi)
 
 **Q109.** What does this Flask-like route table model do?
 
@@ -1219,7 +1219,7 @@ GET /users/1 not /getUser?id=1.
 
 Be precise with status codes.
 
-### [09 · Packaging &amp; Distribution](level-3/09-packaging-distribution.md)
+### [08 · Packaging &amp; Distribution](level-3/08-packaging-distribution.md)
 
 **Q113.** What does pyproject.toml hold?
 
@@ -1255,7 +1255,7 @@ The block runs only when executed as a script, not when imported. Verified by ru
 
 Wheels install faster.
 
-### [10 · Profiling &amp; Performance](level-3/10-profiling-performance.md)
+### [09 · Profiling &amp; Performance](level-3/09-profiling-performance.md)
 
 **Q117.** What does timeit show about list vs set membership?
 
@@ -1299,7 +1299,7 @@ Don't optimise blind.
 
 Big-O dominates for large inputs.
 
-### [11 · Project — REST API + Database](level-3/11-project-rest-api-db.md)
+### [10 · Project — REST API + Database](level-3/10-project-rest-api-db.md)
 
 **Q121.** What does this repository pattern return?
 

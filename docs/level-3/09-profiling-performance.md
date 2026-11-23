@@ -2,7 +2,7 @@
 description: "Profiling & Performance — timeit runs a snippet many times and reports the average, avoiding the noise of a single time.time() measurement."
 ---
 
-# 10 · Profiling & Performance
+# 09 · Profiling & Performance
 
 ## 🎥 Video walkthrough
 

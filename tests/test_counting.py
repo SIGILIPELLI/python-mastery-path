@@ -39,11 +39,11 @@ class RepoCourses(unittest.TestCase):
         for d in ("mcp-mastery-path", "vector-databases-mastery-path"):
             r = cc.from_local(self.root / d / "docs")
             self.assertEqual((r["lessons"], r["projects"]), (36, 4), d)
-    def test_python_matches_documented_counts(self):
+    def test_python_is_36_plus_4(self):
         r = cc.from_local(self.root / "docs")
-        self.assertEqual((r["lessons"], r["projects"]), (37, 4))
+        self.assertEqual((r["lessons"], r["projects"]), (36, 4))
         idx = (self.root / "docs/index.md").read_text()
-        self.assertIn("37 hands-on lessons", idx)
+        self.assertIn("36 hands-on lessons", idx)
         self.assertNotIn("40 hands-on lessons", idx)
 
 if __name__ == "__main__":

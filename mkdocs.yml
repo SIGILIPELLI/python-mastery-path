@@ -117,11 +117,10 @@ nav:
       - "04 · Concurrency I — Threading & Multiprocessing": level-3/04-concurrency-threading-multiprocessing.md
       - "05 · Concurrency II — Asyncio": level-3/05-concurrency-asyncio.md
       - "06 · Databases (SQLite & SQLAlchemy)": level-3/06-databases.md
-      - "07 · Consuming APIs": level-3/07-consuming-apis.md
-      - "08 · Building APIs (Flask/FastAPI)": level-3/08-building-apis.md
-      - "09 · Packaging & Distribution": level-3/09-packaging-distribution.md
-      - "10 · Profiling & Performance": level-3/10-profiling-performance.md
-      - "11 · Project — REST API + Database": level-3/11-project-rest-api-db.md
+      - "07 · Consuming & Building APIs": level-3/07-consuming-building-apis.md
+      - "08 · Packaging & Distribution": level-3/08-packaging-distribution.md
+      - "09 · Profiling & Performance": level-3/09-profiling-performance.md
+      - "10 · Project — REST API + Database": level-3/10-project-rest-api-db.md
   - "Level 4 · Master":
       - Overview: level-4/index.md
       - "01 · Design Patterns in Python": level-4/01-design-patterns.md

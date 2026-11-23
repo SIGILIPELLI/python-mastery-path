@@ -5,7 +5,7 @@ description: "A free Python cheat sheet: 18 quick-reference tables from every le
 
 # Python Cheat Sheet
 
-Quick-reference tables from **18 lessons** of the free Python Mastery Path, in course order from beginner to advanced. Each section links to the full lesson with explanations and runnable examples.
+Quick-reference tables from **17 lessons** of the free Python Mastery Path, in course order from beginner to advanced. Each section links to the full lesson with explanations and runnable examples.
 
 ## Level 1 · Entry
 
@@ -84,7 +84,9 @@ Quick-reference tables from **18 lessons** of the free Python Mastery Path, in c
 | `__get__`/`__set__`/`__set_name__` | descriptor protocol — reusable validated attributes |
 | `@property` | the most common descriptor, built into Python |
 
-### [07 · Consuming & Building APIs — Part 1: Consuming](level-3/07-consuming-building-apis.md#part-1-consuming-apis)
+### [07 · Consuming &amp; Building APIs](level-3/07-consuming-building-apis.md)
+
+*Part 1 · Consuming APIs*
 
 | Task | Code |
 |------|------|
@@ -94,7 +96,7 @@ Quick-reference tables from **18 lessons** of the free Python Mastery Path, in c
 | Reusable session + retries | `requests.Session()` + `HTTPAdapter` |
 | Read a secret safely | `os.environ.get("API_TOKEN")` |
 
-### [07 · Consuming & Building APIs — Part 2: Building (FastAPI)](level-3/07-consuming-building-apis.md#part-2-building-apis-fastapi)
+*Part 2 · Building APIs (FastAPI)*
 
 | Concept | Syntax |
 |---------|--------|

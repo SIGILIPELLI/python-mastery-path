@@ -1125,7 +1125,7 @@ Join then aggregate per group. Verified by running it.
 
 Know the SQL it generates.
 
-### [07 · Consuming & Building APIs — Part 1: Consuming](level-3/07-consuming-building-apis.md#part-1-consuming-apis)
+### [07 · Consuming &amp; Building APIs](level-3/07-consuming-building-apis.md)
 
 **Q105.** How do you build query strings safely?
 
@@ -1171,8 +1171,6 @@ Double the wait each retry up to a cap, usually with jitter. Verified by running
 **Answer:** Without one a hung server can block your program forever
 
 requests.get(url, timeout=5).
-
-### [07 · Consuming & Building APIs — Part 2: Building (FastAPI)](level-3/07-consuming-building-apis.md#part-2-building-apis-fastapi)
 
 **Q109.** What does this Flask-like route table model do?
 

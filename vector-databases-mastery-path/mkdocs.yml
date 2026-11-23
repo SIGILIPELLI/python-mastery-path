@@ -131,4 +131,4 @@ nav:
       - "08 · Cost-Performance Tradeoffs at Enterprise Scale": level-4/08-cost-performance-tradeoffs.md
       - "09 · Emerging Trends — Matryoshka & Binary Quantization": level-4/09-emerging-trends.md
       - "10 · Capstone Project — Production-Grade RAG Platform": level-4/10-capstone-rag-platform.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md

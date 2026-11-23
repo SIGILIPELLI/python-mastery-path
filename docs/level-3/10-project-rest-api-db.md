@@ -417,6 +417,6 @@ Completing this project means you're ready for **Level 4 · Master**.
 
 ## 🔀 See this in another language
 
-- [Java — 11 · Project — REST API + Database CRUD Service](https://learnmasterypath.com/java-mastery-path/level-3/11-project-rest-api-db/)
-- [JavaScript — 11 · Project — REST API + Database](https://learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/)
+- [Java — 11 · Project — REST API + Database CRUD Service](https://learnmasterypath.com/java-mastery-path/level-3/10-project-rest-api-db/)
+- [JavaScript — 11 · Project — REST API + Database](https://learnmasterypath.com/javascript-mastery-path/level-3/10-project-rest-api-db/)
 - [Swift — 10 · Project — REST API + Database Service](https://learnmasterypath.com/swift-mastery-path/level-3/10-project-rest-api-db/)

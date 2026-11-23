@@ -30750,7 +30750,7 @@
     "level": "level-3",
     "slug": "level-3/09-jvm-internals-gc",
     "title": "09 \u00b7 JVM Internals & Garbage Collection Basics",
-    "url": "https://learnmasterypath.com/java-mastery-path/level-3/09-jvm-internals-gc/",
+    "url": "https://learnmasterypath.com/java-mastery-path/level-3/09-jvm-internals-gc-profiling-optimization/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -30835,7 +30835,7 @@
     "level": "level-3",
     "slug": "level-3/10-profiling-optimization",
     "title": "10 \u00b7 Performance Profiling & Optimization",
-    "url": "https://learnmasterypath.com/java-mastery-path/level-3/10-profiling-optimization/",
+    "url": "https://learnmasterypath.com/java-mastery-path/level-3/09-jvm-internals-gc-profiling-optimization/#part-2-performance-profiling-optimization",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -30917,7 +30917,7 @@
     "level": "level-3",
     "slug": "level-3/11-project-rest-api-db",
     "title": "11 \u00b7 Project \u2014 REST API + Database CRUD Service",
-    "url": "https://learnmasterypath.com/java-mastery-path/level-3/11-project-rest-api-db/",
+    "url": "https://learnmasterypath.com/java-mastery-path/level-3/10-project-rest-api-db/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35161,7 +35161,7 @@
     "level": "level-3",
     "slug": "level-3/02-nodejs-fundamentals",
     "title": "02 \u00b7 Node.js Fundamentals",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/02-nodejs-fundamentals/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/02-nodejs-express-rest-api/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35273,7 +35273,7 @@
     "level": "level-3",
     "slug": "level-3/03-rest-api-express",
     "title": "03 \u00b7 Building a REST API with Express",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/03-rest-api-express/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/02-nodejs-express-rest-api/#part-2-building-a-rest-api-with-express",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35371,7 +35371,7 @@
     "level": "level-3",
     "slug": "level-3/04-databases",
     "title": "04 \u00b7 Working with Databases",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/04-databases/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/03-databases/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35476,7 +35476,7 @@
     "level": "level-3",
     "slug": "level-3/05-design-patterns",
     "title": "05 \u00b7 Design Patterns in JavaScript",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/05-design-patterns/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/04-design-patterns/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35554,7 +35554,7 @@
     "level": "level-3",
     "slug": "level-3/06-intro-typescript",
     "title": "06 \u00b7 Introduction to TypeScript",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/06-intro-typescript/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/05-intro-typescript/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35653,7 +35653,7 @@
     "level": "level-3",
     "slug": "level-3/07-testing-deep-dive",
     "title": "07 \u00b7 Testing Frameworks Deep Dive",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/07-testing-deep-dive/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/06-testing-deep-dive/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35759,7 +35759,7 @@
     "level": "level-3",
     "slug": "level-3/08-performance-memory",
     "title": "08 \u00b7 Performance & Memory",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/08-performance-memory/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/07-performance-memory/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35865,7 +35865,7 @@
     "level": "level-3",
     "slug": "level-3/09-security-basics",
     "title": "09 \u00b7 Security Basics",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/09-security-basics/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/08-security-basics/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -35959,7 +35959,7 @@
     "level": "level-3",
     "slug": "level-3/10-build-bundling",
     "title": "10 \u00b7 Build & Bundling Deep Dive",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/10-build-bundling/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/09-build-bundling/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -36065,7 +36065,7 @@
     "level": "level-3",
     "slug": "level-3/11-project-rest-api-db",
     "title": "11 \u00b7 Project \u2014 REST API + Database",
-    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/",
+    "url": "https://learnmasterypath.com/javascript-mastery-path/level-3/10-project-rest-api-db/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -75640,7 +75640,7 @@
     "level": "level-3",
     "slug": "level-3/07-consuming-apis",
     "title": "07 \u00b7 Consuming APIs",
-    "url": "https://learnmasterypath.com/python-mastery-path/level-3/07-consuming-apis/",
+    "url": "https://learnmasterypath.com/python-mastery-path/level-3/07-consuming-building-apis/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -75774,7 +75774,7 @@
     "level": "level-3",
     "slug": "level-3/08-building-apis",
     "title": "08 \u00b7 Building APIs (Flask/FastAPI)",
-    "url": "https://learnmasterypath.com/python-mastery-path/level-3/08-building-apis/",
+    "url": "https://learnmasterypath.com/python-mastery-path/level-3/07-consuming-building-apis/#part-2-building-apis-fastapi",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -75870,7 +75870,7 @@
     "level": "level-3",
     "slug": "level-3/09-packaging-distribution",
     "title": "09 \u00b7 Packaging & Distribution",
-    "url": "https://learnmasterypath.com/python-mastery-path/level-3/09-packaging-distribution/",
+    "url": "https://learnmasterypath.com/python-mastery-path/level-3/08-packaging-distribution/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -75981,7 +75981,7 @@
     "level": "level-3",
     "slug": "level-3/10-profiling-performance",
     "title": "10 \u00b7 Profiling & Performance",
-    "url": "https://learnmasterypath.com/python-mastery-path/level-3/10-profiling-performance/",
+    "url": "https://learnmasterypath.com/python-mastery-path/level-3/09-profiling-performance/",
     "is_overview": false,
     "has_code": true,
     "sections": [
@@ -76107,7 +76107,7 @@
     "level": "level-3",
     "slug": "level-3/11-project-rest-api-db",
     "title": "11 \u00b7 Project \u2014 REST API + Database",
-    "url": "https://learnmasterypath.com/python-mastery-path/level-3/11-project-rest-api-db/",
+    "url": "https://learnmasterypath.com/python-mastery-path/level-3/10-project-rest-api-db/",
     "is_overview": false,
     "has_code": true,
     "sections": [

@@ -1,0 +1,103 @@
+course,catalogue_lessons,catalogue_projects,structural_lessons,structural_projects,status
+adobe-mastery-path,36,4,36,4,ok
+agile-mastery-path,36,4,36,4,ok
+ai-agents-mastery-path,36,4,36,4,ok
+ai-manager-mastery-path,33,7,36,4,misclassified by catalogue
+ai-ml-mastery-path,36,4,36,4,ok
+ai-tools-mastery-path,36,4,36,4,ok
+angular-mastery-path,34,6,36,4,misclassified by catalogue
+ansible-mastery-path,36,4,36,4,ok
+automotive-testing-mastery-path,36,4,36,4,ok
+aws-mastery-path,36,4,36,4,ok
+azure-mastery-path,36,4,36,4,ok
+c-mastery-path,36,4,36,4,ok
+cicd-mastery-path,36,4,36,4,ok
+claude-training-mastery-path,36,4,36,4,ok
+computer-vision-mastery-path,36,4,36,4,ok
+cpp-mastery-path,36,4,36,4,ok
+cpp-testing-mastery-path,36,4,36,4,ok
+csharp-mastery-path,35,5,36,4,misclassified by catalogue
+cybersecurity-mastery-path,36,4,36,4,ok
+cypress-mastery-path,36,4,36,4,ok
+dart-mastery-path,36,4,36,4,ok
+data-engineering-mastery-path,36,4,36,4,ok
+data-science-mastery-path,36,4,36,4,ok
+databricks-mastery-path,36,4,36,4,ok
+digital-marketing-mastery-path,36,4,36,4,ok
+django-mastery-path,35,5,36,4,misclassified by catalogue
+docker-mastery-path,37,4,37,4,genuine 37-lesson level
+dsa-interview-mastery-path,36,4,36,4,ok
+edge-ai-mastery-path,35,5,36,4,misclassified by catalogue
+embedded-linux-mastery-path,36,4,36,4,ok
+embedded-mastery-path,36,4,36,4,ok
+embedded-python-mastery-path,36,4,36,4,ok
+english-fluency-mastery-path,36,4,36,4,ok
+ethical-hacking-mastery-path,36,4,36,4,ok
+etl-datalake-mastery-path,36,4,36,4,ok
+excel-mastery-path,36,4,36,4,ok
+fastapi-mastery-path,36,4,36,4,ok
+flutter-mastery-path,36,4,36,4,ok
+freertos-mastery-path,36,4,36,4,ok
+gcp-mastery-path,35,5,36,4,misclassified by catalogue
+github-mastery-path,35,5,36,4,misclassified by catalogue
+go-mastery-path,36,4,36,4,ok
+graphql-mastery-path,36,4,36,4,ok
+html-css-mastery-path,36,4,36,4,ok
+ibm-cloud-mastery-path,36,4,36,4,ok
+java-mastery-path,37,4,37,4,genuine 37-lesson level
+java-testing-mastery-path,35,5,36,4,misclassified by catalogue
+javascript-mastery-path,37,4,37,4,genuine 37-lesson level
+kafka-mastery-path,36,4,36,4,ok
+kotlin-mastery-path,36,4,36,4,ok
+kubernetes-mastery-path,36,4,36,4,ok
+linux-mastery-path,36,4,36,4,ok
+llm-dev-mastery-path,36,4,36,4,ok
+matlab-mastery-path,36,4,36,4,ok
+microservices-mastery-path,36,4,36,4,ok
+ml-math-mastery-path,36,4,36,4,ok
+mlops-mastery-path,36,4,36,4,ok
+mongodb-mastery-path,36,4,36,4,ok
+nextjs-mastery-path,36,4,36,4,ok
+nodejs-mastery-path,36,4,36,4,ok
+nodemcu-mastery-path,36,4,36,4,ok
+observability-mastery-path,36,4,36,4,ok
+php-mastery-path,36,4,36,4,ok
+playwright-mastery-path,36,4,36,4,ok
+postgresql-mastery-path,36,4,36,4,ok
+power-bi-mastery-path,36,4,36,4,ok
+powershell-mastery-path,36,4,36,4,ok
+product-lead-mastery-path,36,4,36,4,ok
+product-manager-mastery-path,36,4,36,4,ok
+project-manager-mastery-path,32,8,36,4,misclassified by catalogue
+prompt-engineering-mastery-path,36,4,36,4,ok
+pyspark-mastery-path,36,4,36,4,ok
+python-mastery-path,37,4,37,4,genuine 37-lesson level
+python-mastery-path/mcp-mastery-path,,,36,4,ok
+python-mastery-path/vector-databases-mastery-path,,,36,4,ok
+python-testing-mastery-path,36,4,36,4,ok
+r-mastery-path,36,4,36,4,ok
+rag-mastery-path,36,4,36,4,ok
+react-mastery-path,36,4,36,4,ok
+react-native-mastery-path,36,4,36,4,ok
+redis-mastery-path,36,4,36,4,ok
+rest-api-mastery-path,36,4,36,4,ok
+ruby-mastery-path,36,4,36,4,ok
+rust-mastery-path,36,4,36,4,ok
+s32k-mastery-path,36,4,36,4,ok
+scala-mastery-path,36,4,36,4,ok
+selenium-mastery-path,36,4,36,4,ok
+servant-leadership-mastery-path,36,4,36,4,ok
+server-ops-mastery-path,36,4,36,4,ok
+shell-mastery-path,36,4,36,4,ok
+snowflake-mastery-path,36,4,36,4,ok
+spring-boot-mastery-path,35,5,36,4,misclassified by catalogue
+sql-mastery-path,36,4,36,4,ok
+swift-mastery-path,36,4,36,4,ok
+system-design-mastery-path,36,4,36,4,ok
+tableau-mastery-path,36,4,36,4,ok
+tailwind-mastery-path,36,4,36,4,ok
+tally-gst-mastery-path,36,4,36,4,ok
+terraform-mastery-path,37,4,37,4,genuine 37-lesson level
+typescript-mastery-path,36,4,36,4,ok
+vue-mastery-path,35,5,36,4,misclassified by catalogue
+workday-mastery-path,36,4,36,4,ok

@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free Python Mastery Path. Move past scripts — write idiomatic, object-oriented Python, work with real-world data formats, and…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Core Craft</span>
 
 Goal: move past scripts — write idiomatic, object-oriented Python, work with

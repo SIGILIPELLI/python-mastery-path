@@ -8,6 +8,7 @@ site_dir: ../site/mcp-mastery-path
 
 theme:
   name: material
+  font: false
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   palette:
@@ -26,6 +27,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.path
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -57,10 +59,30 @@ extra_css:
 extra_javascript:
   - javascripts/progress-tracker.js
 
+
+
+
+
+
+extra:
+  related:
+    - name: "AI/ML"
+      url: https://learnmasterypath.com/ai-ml-mastery-path/
+    - name: "LLM Dev"
+      url: https://learnmasterypath.com/llm-dev-mastery-path/
+    - name: "RAG"
+      url: https://learnmasterypath.com/rag-mastery-path/
+    - name: "Edge AI"
+      url: https://learnmasterypath.com/edge-ai-mastery-path/
+    - name: "Claude Training"
+      url: https://learnmasterypath.com/claude-training-mastery-path/
+
+not_in_nav: |
+  privacy.md
+  license.md
+
 nav:
   - Home: index.md
-  - Privacy Policy: privacy.md
-  - License: license.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · What Is MCP & Why It Exists": level-1/01-what-is-mcp.md
@@ -109,4 +131,4 @@ nav:
       - "08 · Enterprise Governance: Audit Logs & Compliance": level-4/08-enterprise-governance-compliance.md
       - "09 · Where MCP Is Headed": level-4/09-emerging-trends.md
       - "10 · Capstone Project — A Production-Grade MCP Server Suite": level-4/10-capstone-mcp-server-suite.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md

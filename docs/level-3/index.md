@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free Python Mastery Path. Build and ship real backend systems — concurrent code, databases, and both sides of an API — plus the…"
+---
+
 # Level 3 · Advanced <span class="level-badge">Systems &amp; APIs</span>
 
 Goal: build and ship real backend systems — concurrent code, databases, and

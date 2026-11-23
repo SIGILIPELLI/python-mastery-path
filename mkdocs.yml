@@ -6,6 +6,7 @@ repo_name: python-mastery-path
 
 theme:
   name: material
+  font: false
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   palette:
@@ -24,6 +25,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.path
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -51,14 +53,38 @@ markdown_extensions:
 extra_css:
   - stylesheets/extra.css
   - stylesheets/progress-tracker.css
+  - stylesheets/final-quiz.css
 
 extra_javascript:
   - javascripts/progress-tracker.js
+  - javascripts/final-quiz.js
+
+
+
+
+
+
+extra:
+  related:
+    - name: "Java"
+      url: https://learnmasterypath.com/java-mastery-path/
+    - name: "JavaScript"
+      url: https://learnmasterypath.com/javascript-mastery-path/
+    - name: "TypeScript"
+      url: https://learnmasterypath.com/typescript-mastery-path/
+    - name: "C#"
+      url: https://learnmasterypath.com/csharp-mastery-path/
+    - name: "Shell/Bash"
+      url: https://learnmasterypath.com/shell-mastery-path/
+
+not_in_nav: |
+  privacy.md
+  license.md
 
 nav:
   - Home: index.md
-  - Privacy Policy: privacy.md
-  - License: license.md
+  - Interview Questions: interview-questions.md
+  - Cheat Sheet: cheat-sheet.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · Setup & First Program": level-1/01-setup.md
@@ -108,4 +134,4 @@ nav:
       - "08 · Deployment & DevOps": level-4/08-deployment-devops.md
       - "09 · Security Best Practices": level-4/09-security-best-practices.md
       - "10 · Capstone Project": level-4/10-capstone-project.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md

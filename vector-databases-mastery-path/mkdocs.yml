@@ -8,6 +8,7 @@ site_dir: ../site/vector-databases-mastery-path
 
 theme:
   name: material
+  font: false
   favicon: assets/favicon.svg
   custom_dir: docs/overrides
   palette:
@@ -26,6 +27,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.path
     - navigation.tabs
     - navigation.sections
     - navigation.expand
@@ -57,10 +59,30 @@ extra_css:
 extra_javascript:
   - javascripts/progress-tracker.js
 
+
+
+
+
+
+extra:
+  related:
+    - name: "PostgreSQL"
+      url: https://learnmasterypath.com/postgresql-mastery-path/
+    - name: "MongoDB"
+      url: https://learnmasterypath.com/mongodb-mastery-path/
+    - name: "Redis"
+      url: https://learnmasterypath.com/redis-mastery-path/
+    - name: "Snowflake"
+      url: https://learnmasterypath.com/snowflake-mastery-path/
+    - name: "Databricks"
+      url: https://learnmasterypath.com/databricks-mastery-path/
+
+not_in_nav: |
+  privacy.md
+  license.md
+
 nav:
   - Home: index.md
-  - Privacy Policy: privacy.md
-  - License: license.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · What Are Embeddings & Why Vector Search": level-1/01-embeddings-intro.md
@@ -109,4 +131,4 @@ nav:
       - "08 · Cost-Performance Tradeoffs at Enterprise Scale": level-4/08-cost-performance-tradeoffs.md
       - "09 · Emerging Trends — Matryoshka & Binary Quantization": level-4/09-emerging-trends.md
       - "10 · Capstone Project — Production-Grade RAG Platform": level-4/10-capstone-rag-platform.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md

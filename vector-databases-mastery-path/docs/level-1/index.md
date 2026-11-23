@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free Vector Databases Mastery Path. Understand what embeddings actually are, how similarity search works under the hood, and get…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: understand what embeddings actually are, how similarity search works under

@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free MCP Mastery Path. Understand what MCP actually is and how the pieces fit together, then build and connect a real, working MCP…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: understand what MCP actually is and how the pieces fit together, then

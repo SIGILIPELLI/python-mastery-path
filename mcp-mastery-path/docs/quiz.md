@@ -1,12 +1,12 @@
 ---
 title: "Final Quiz"
-description: "Test what you have learned across all four levels of this course with a 10-question final quiz."
+description: "Quiz for the free MCP Mastery Path: check what you learned across all four levels, with answers and explanations."
 ---
 
 # Final Quiz
 
-Ten questions drawn from all four levels of this course. You need **70% (7 out of 10)** to pass
-and unlock your course completion certificate — you can retake it as many times as you like.
+Ten questions drawn from all four levels of this course. You need **70% (7 out of 10)** to pass —
+you can retake it as many times as you like. Your best result is saved in this browser.
 
 <div id="mp-quiz-root"></div>
 

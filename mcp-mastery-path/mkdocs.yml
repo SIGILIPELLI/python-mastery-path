@@ -77,10 +77,12 @@ extra:
     - name: "Claude Training"
       url: https://learnmasterypath.com/claude-training-mastery-path/
 
+not_in_nav: |
+  privacy.md
+  license.md
+
 nav:
   - Home: index.md
-  - Privacy Policy: privacy.md
-  - License: license.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · What Is MCP & Why It Exists": level-1/01-what-is-mcp.md

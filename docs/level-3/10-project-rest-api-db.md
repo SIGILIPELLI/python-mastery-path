@@ -2,7 +2,7 @@
 description: "Project — REST API + Database — Keeping schemas.py (API shape) separate from models.py (database shape) is deliberate: it lets the API contract evolve…"
 ---
 
-# 11 · Project — REST API + Database
+# 10 · Project — REST API + Database
 
 ## 🎥 Video walkthrough
 
@@ -410,13 +410,13 @@ by anything baked into the route definitions themselves.
 - Add pagination (`?limit=&offset=`) to `GET /books`.
 - Add a `genre` field with an enum-constrained value in the Pydantic schema.
 - Package the app (tying back to
-  [Packaging & Distribution](09-packaging-distribution.md)) with a console
+  [Packaging & Distribution](08-packaging-distribution.md)) with a console
   script that starts the server.
 
 Completing this project means you're ready for **Level 4 · Master**.
 
 ## 🔀 See this in another language
 
-- [Java — 11 · Project — REST API + Database CRUD Service](https://learnmasterypath.com/java-mastery-path/level-3/11-project-rest-api-db/)
-- [JavaScript — 11 · Project — REST API + Database](https://learnmasterypath.com/javascript-mastery-path/level-3/11-project-rest-api-db/)
+- [Java — 11 · Project — REST API + Database CRUD Service](https://learnmasterypath.com/java-mastery-path/level-3/10-project-rest-api-db/)
+- [JavaScript — 11 · Project — REST API + Database](https://learnmasterypath.com/javascript-mastery-path/level-3/10-project-rest-api-db/)
 - [Swift — 10 · Project — REST API + Database Service](https://learnmasterypath.com/swift-mastery-path/level-3/10-project-rest-api-db/)

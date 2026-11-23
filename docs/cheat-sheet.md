@@ -5,7 +5,7 @@ description: "A free Python cheat sheet: 18 quick-reference tables from every le
 
 # Python Cheat Sheet
 
-Quick-reference tables from **18 lessons** of the free Python Mastery Path, in course order from beginner to advanced. Each section links to the full lesson with explanations and runnable examples.
+Quick-reference tables from **17 lessons** of the free Python Mastery Path, in course order from beginner to advanced. Each section links to the full lesson with explanations and runnable examples.
 
 ## Level 1 · Entry
 
@@ -84,7 +84,9 @@ Quick-reference tables from **18 lessons** of the free Python Mastery Path, in c
 | `__get__`/`__set__`/`__set_name__` | descriptor protocol — reusable validated attributes |
 | `@property` | the most common descriptor, built into Python |
 
-### [07 · Consuming APIs](level-3/07-consuming-apis.md)
+### [07 · Consuming &amp; Building APIs](level-3/07-consuming-building-apis.md)
+
+*Part 1 · Consuming APIs*
 
 | Task | Code |
 |------|------|
@@ -94,7 +96,7 @@ Quick-reference tables from **18 lessons** of the free Python Mastery Path, in c
 | Reusable session + retries | `requests.Session()` + `HTTPAdapter` |
 | Read a secret safely | `os.environ.get("API_TOKEN")` |
 
-### [08 · Building APIs (Flask/FastAPI)](level-3/08-building-apis.md)
+*Part 2 · Building APIs (FastAPI)*
 
 | Concept | Syntax |
 |---------|--------|
@@ -105,7 +107,7 @@ Quick-reference tables from **18 lessons** of the free Python Mastery Path, in c
 | Error response | `raise HTTPException(status_code=..., detail=...)` |
 | Shared logic | `Depends(dependency_function)` |
 
-### [09 · Packaging &amp; Distribution](level-3/09-packaging-distribution.md)
+### [08 · Packaging &amp; Distribution](level-3/08-packaging-distribution.md)
 
 | Task | Command |
 |------|---------|
@@ -114,7 +116,7 @@ Quick-reference tables from **18 lessons** of the free Python Mastery Path, in c
 | Upload to TestPyPI | `twine upload --repository testpypi dist/*` |
 | Upload to real PyPI | `twine upload dist/*` |
 
-### [10 · Profiling &amp; Performance](level-3/10-profiling-performance.md)
+### [09 · Profiling &amp; Performance](level-3/09-profiling-performance.md)
 
 | Question | Tool |
 |----------|------|

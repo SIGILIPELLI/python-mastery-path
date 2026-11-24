@@ -16,14 +16,16 @@ Progress reporting is opt-in per request. The client attaches a
 `progressToken` to the request's metadata when it wants updates:
 
 ```python
-import uuid
-
 async def call_long_tool_with_progress(session, tool_name, arguments):
-    token = str(uuid.uuid4())
-    # the Python SDK exposes this via the session's request metadata;
-    # conceptually, you're attaching: {"_meta": {"progressToken": token}}
+    # In the Python SDK you do not create the token yourself: passing a
+    # progress_callback makes the session attach a progressToken to the request
+    # (conceptually {"_meta": {"progressToken": ...}}) and route the matching
+    # notifications/progress messages to your callback.
+    async def on_progress(progress, total, message):
+        print(f"{progress}/{total}")
+
     result = await session.call_tool(
-        tool_name, arguments, progress_token=token
+        tool_name, arguments, progress_callback=on_progress
     )
     return result
 ```
@@ -64,15 +66,9 @@ still in flight.
 
 ```python
 async def call_with_progress_handler(session, tool_name, arguments, on_progress):
-    token = str(uuid.uuid4())
-
-    def progress_callback(progress: float, total: float | None, message: str | None):
-        on_progress(progress, total, message)
-
     result = await session.call_tool(
         tool_name, arguments,
-        progress_token=token,
-        progress_callback=progress_callback,
+        progress_callback=on_progress,   # async (progress, total, message) callback
     )
     return result
 
@@ -84,9 +80,9 @@ async def print_progress(progress, total, message):
 await call_with_progress_handler(session, "crawl_site", {"urls": urls}, print_progress)
 ```
 
-The exact SDK call signature for wiring a progress callback can differ
-slightly between SDK versions — check your installed version's docs for the
-precise parameter name — but the protocol-level shape is fixed: a
+In the 1.x Python SDK the parameter is `progress_callback` (checked against
+`mcp` 1.30); other SDKs and versions may name it differently, but the
+protocol-level shape is fixed: a
 `progressToken` goes out with the request, and zero or more
 `notifications/progress` messages carrying that same token come back before
 the final result.

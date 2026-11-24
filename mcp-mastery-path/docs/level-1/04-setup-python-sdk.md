@@ -10,8 +10,15 @@ The official Python SDK is published as the `mcp` package, and it ships the
 `FastMCP` helper class that this entire course uses to build servers.
 
 ```bash
-pip install mcp
+pip install "mcp<2"
 ```
+
+!!! note "Version"
+    This course uses the 1.x Python SDK (the examples were checked against `mcp` 1.30).
+    In `mcp` 2.x, `FastMCP` was renamed `MCPServer` and `mcp.server.fastmcp` no longer
+    exists, so a plain `pip install mcp` today installs a version that cannot run the code
+    here. Pin `mcp<2` (as above) to follow along, or see the SDK's migration guide before
+    moving to 2.x.
 
 You'll also want the MCP Inspector, a browser-based tool for poking at a
 server interactively without needing a full host application like Claude

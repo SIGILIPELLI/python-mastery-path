@@ -13,7 +13,7 @@ rate limits, pagination).
 ## Setup
 
 ```bash
-pip install "mcp[cli]" httpx
+pip install "mcp[cli]<2" httpx
 export GITHUB_TOKEN="ghp_..."   # a personal access token with repo scope
 ```
 

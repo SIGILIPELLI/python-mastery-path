@@ -60,8 +60,8 @@ for text, vec in vectors.items():
 ```text
 my laptop won't turn on            distance=0.000
 device fails to power up           distance=0.071
-apple released a new phone         distance=1.517
-apple pie recipe                   distance=2.102
+apple released a new phone         distance=1.530
+apple pie recipe                   distance=2.202
 ```
 
 "device fails to power up" lands almost on top of the laptop complaint —

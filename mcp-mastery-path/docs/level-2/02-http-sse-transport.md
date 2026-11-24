@@ -45,7 +45,7 @@ equivalent of "the same stdio pipe."
 ## A minimal HTTP server (Python)
 
 ```bash
-pip install "mcp[cli]"
+pip install "mcp[cli]<2"
 ```
 
 ```python

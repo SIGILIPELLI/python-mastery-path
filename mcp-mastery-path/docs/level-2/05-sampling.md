@@ -29,6 +29,7 @@ has, under the user's own approval.
 ```python
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.server import Context
+from mcp.types import SamplingMessage, TextContent
 
 mcp = FastMCP("summarizer")
 
@@ -39,13 +40,13 @@ async def summarize_url(url: str, ctx: Context) -> str:
 
     result = await ctx.session.create_message(
         messages=[
-            {
-                "role": "user",
-                "content": {
-                    "type": "text",
-                    "text": f"Summarize this in two sentences:\n\n{page_text[:4000]}",
-                },
-            }
+            SamplingMessage(
+                role="user",
+                content=TextContent(
+                    type="text",
+                    text=f"Summarize this in two sentences:\n\n{page_text[:4000]}",
+                ),
+            )
         ],
         max_tokens=200,
     )

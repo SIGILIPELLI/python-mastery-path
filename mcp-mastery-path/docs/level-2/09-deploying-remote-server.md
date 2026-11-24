@@ -27,23 +27,30 @@ CMD ["python", "http_server.py"]
 
 ```text
 # requirements.txt
-mcp[cli]
+mcp[cli]<2
 httpx
 ```
 
 Make sure `http_server.py` reads the port from the environment instead of
 hardcoding it, so the same image works regardless of what port the hosting
-platform assigns:
+platform assigns. In the 1.x SDK the host and port are settings of the `FastMCP`
+object (`run()` itself only takes the transport), and inside a container the
+server must listen on `0.0.0.0`, not the default `127.0.0.1`, or nothing outside
+the container can reach it:
 
 ```python
 import os
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("github-tools")
+mcp = FastMCP(
+    "github-tools",
+    host="0.0.0.0",
+    port=int(os.environ.get("PORT", 8000)),
+)
 # ... tools from Lesson 7 ...
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http", port=int(os.environ.get("PORT", 8000)))
+    mcp.run(transport="streamable-http")
 ```
 
 ```bash

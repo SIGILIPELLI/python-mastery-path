@@ -83,7 +83,7 @@ print(magnitude)   # 5.0   (3-4-5 right triangle)
 
 ```python
 v = np.array([0.2, 0.9, -0.1, 0.4, -0.6])
-print(np.linalg.norm(v))   # sqrt(0.04+0.81+0.01+0.16+0.36) ≈ 1.095
+print(np.linalg.norm(v))   # sqrt(0.04+0.81+0.01+0.16+0.36) = sqrt(1.38) ≈ 1.175
 ```
 
 You'll use this constantly: normalizing a vector (dividing it by its own

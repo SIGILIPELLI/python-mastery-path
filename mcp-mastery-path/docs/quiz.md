@@ -1,11 +1,11 @@
 ---
 title: "Final Quiz"
-description: "Quiz for the free MCP Mastery Path: check what you learned across all four levels, with answers and explanations."
+description: "Test what you have learned across all four levels of MCP Mastery Path with a 21-question final quiz."
 ---
 
 # Final Quiz
 
-Ten questions drawn from all four levels of this course. You need **70% (7 out of 10)** to pass —
+21 questions drawn from all four levels of this course. You need **70% (15 out of 21)** to pass —
 you can retake it as many times as you like. Your best result is saved in this browser.
 
 <div id="mp-quiz-root"></div>
@@ -13,134 +13,484 @@ you can retake it as many times as you like. Your best result is saved in this b
 <script type="application/json" id="mp-quiz-data">
 [
   {
-    "level": 1,
-    "topic": "What Is MCP & Why It Exists",
-    "question": "Without a shared protocol, an AI application that needs to use N different tools must write N bespoke integrations, and this cost repeats for every new application. How does MCP change that math?",
+    "question": "6 AI applications and 9 tools: how many integrations are needed without MCP and with MCP?\n```python\napps, tools = 6, 9\nprint(apps * tools, apps + tools)\n```\n",
     "options": [
-      "It eliminates the need for any integration code at all, since every tool becomes self-describing.",
-      "It turns the M applications \u00d7 N tools problem into M + N: each application implements the client side once, each tool implements the server side once, and any client can talk to any server.",
-      "It requires exactly one application to own every integration, which all other applications then call through that one app's API.",
-      "It reduces the problem to N integrations total by having tool vendors agree on a single shared application to target."
-    ],
-    "correctIndex": 1,
-    "explanation": "MCP standardizes discovery and calling so a tool's integration is written once as a server and reused by any MCP-compatible client \u2014 the same M\u00d7N-to-M+N shift the Language Server Protocol made for editors and languages."
-  },
-  {
-    "level": 1,
-    "topic": "JSON-RPC 2.0: The Wire Protocol Underneath",
-    "question": "A client sends `{\"jsonrpc\":\"2.0\",\"method\":\"notifications/initialized\",\"params\":{}}` to a server. What does the server do with it?",
-    "options": [
-      "It replies with a response whose `id` is null, since no `id` was provided in the request.",
-      "It treats the message as malformed, since every JSON-RPC message must include an `id`.",
-      "It processes the message but sends no reply at all \u2014 the absence of `id` is itself the signal that this is a one-way notification.",
-      "It waits for the client to resend the same message with an `id` attached before acting on it."
+      "9 6",
+      "15 54",
+      "54 15",
+      "54 54"
     ],
     "correctIndex": 2,
-    "explanation": "JSON-RPC 2.0 has no separate 'type' field distinguishing requests from notifications \u2014 an `id` present means a reply is required; an absent `id` means it's a notification, and the receiver must not respond to it."
+    "explanation": "Without a shared protocol each app integrates each tool (M x N); with MCP each side implements the protocol once (M + N). Verified by running it."
   },
   {
-    "level": 1,
-    "topic": "The stdio Transport & Local Servers",
-    "question": "A tool handler in a stdio-transport MCP server calls `print(\"debug info\")` for troubleshooting. What actually happens?",
+    "question": "Which of these three messages is a notification?\n```python\nmsgs = [{'id': 1, 'method': 'tools/list'}, {'id': 1, 'result': {}}, {'method': 'notifications/initialized'}]\nprint([i for i, m in enumerate(msgs) if 'method' in m and 'id' not in m])\n```\n",
     "options": [
-      "Nothing harmful \u2014 stdout output is automatically filtered out before the client parses the stream.",
-      "The debug text is written into the same stream the client is parsing as newline-delimited JSON-RPC, corrupting the protocol framing and likely causing a parse failure on that message or the next one.",
-      "The MCP SDK redirects all `print()` calls to stderr automatically, so this is safe by default.",
-      "The server crashes immediately with a clear 'stdout is reserved' exception."
-    ],
-    "correctIndex": 1,
-    "explanation": "For a stdio server, stdout IS the protocol channel \u2014 the host reads it expecting only newline-delimited JSON-RPC messages. Anything else written there (a stray print, a library's own logging) corrupts the stream. Debug output must go to stderr instead."
-  },
-  {
-    "level": 2,
-    "topic": "Authentication & OAuth 2.1 for Remote Servers",
-    "question": "Why does a local stdio MCP server need no authentication step at all, while a remote Streamable HTTP server is specified to require OAuth 2.1?",
-    "options": [
-      "stdio is a faster transport, and OAuth would slow it down below an acceptable latency threshold.",
-      "The trust decision for a stdio server already happened when the user put its launch command in their own config file \u2014 there's no network boundary, since the user's own machine chose to spawn it. A remote server is reachable by anyone who has its URL, with no equivalent built-in trust decision.",
-      "stdio servers are incapable of handling the cryptographic operations OAuth requires.",
-      "OAuth 2.1 is only defined for HTTP-based protocols as a matter of spec versioning, unrelated to trust boundaries."
-    ],
-    "correctIndex": 1,
-    "explanation": "A stdio server only runs because the user explicitly configured their own host to launch it \u2014 there's no network involved and no unknown caller. A remote server has no such built-in gate, so MCP requires real authorization (OAuth 2.1 with bearer tokens) before it will let a caller invoke tools."
-  },
-  {
-    "level": 2,
-    "topic": "Sampling: Letting a Server Ask the LLM for Completions",
-    "question": "A tool handler needs to summarize a long fetched web page before returning a result. Using `sampling/createMessage` to do this instead of calling a separate LLM API directly means what, specifically?",
-    "options": [
-      "The server is asking the CLIENT's own LLM \u2014 the same model the user is already talking to \u2014 to generate the summary, rather than using its own API key and model access.",
-      "The request is automatically cached so the same URL is never summarized twice by any server.",
-      "The server delegates the summarization to whichever MCP server was connected first in the session.",
-      "The client blocks all further tool calls until the sampling request resolves, as a safety measure."
+      "[2]",
+      "[0]",
+      "[1]",
+      "[0, 2]"
     ],
     "correctIndex": 0,
-    "explanation": "Sampling flows in the opposite direction from a normal tool call: the server asks the client's connected LLM to generate text on its behalf, over the same session, so the server never needs its own model access, API key, or bill \u2014 and the client stays in control of which model actually answers."
+    "explanation": "A notification has a method but no id, so no reply is expected. Verified by running it."
   },
   {
-    "level": 3,
-    "topic": "Roots: Scoping a Server to a Workspace",
-    "question": "A client declares a root at `/home/user/project` to a filesystem-capable MCP server. What actually stops that server from reading a file outside that directory?",
+    "question": "A host connects to four MCP servers. How many MCP client instances does it hold?",
     "options": [
-      "The MCP protocol itself blocks any filesystem call whose resolved path falls outside the declared roots, regardless of server implementation.",
-      "Nothing in the protocol enforces this \u2014 roots are advisory; only a well-behaved server that explicitly checks every operation against the declared roots actually respects the boundary. A malicious or buggy server can simply ignore them.",
-      "The operating system automatically revokes the server process's filesystem permissions outside the declared root the moment roots are sent.",
-      "The client intercepts and re-validates every file path before the server receives the request, so the server's own behavior doesn't matter."
+      "Four servers share one pipe, so one client",
+      "Two",
+      "One shared client",
+      "Four, one per server, because each client has a strict 1:1 relationship with one server"
+    ],
+    "correctIndex": 3,
+    "explanation": "The aggregation of capabilities is host-layer code above the clients."
+  },
+  {
+    "question": "What does list_tools report for this tool's required arguments?\n```python\nimport asyncio\nfrom mcp.server.fastmcp import FastMCP\nmcp = FastMCP('demo')\n@mcp.tool()\ndef add(a: int, b: int = 2) -> int:\n    \"\"\"Add two numbers.\"\"\"\n    return a + b\nprint(asyncio.run(mcp.list_tools())[0].inputSchema['required'])\n```\n",
+    "options": [
+      "['b']",
+      "['a']",
+      "[]",
+      "['a', 'b']"
     ],
     "correctIndex": 1,
-    "explanation": "Roots are a cooperative scoping signal between a trusted client and a trusted server, not a protocol-enforced sandbox. A server has to do its own resolved-path containment check (and reject path-traversal attempts like `../`) for roots to mean anything in practice \u2014 the protocol has no mechanism that forces it to."
+    "explanation": "Only parameters without defaults are required, and the schema is generated from the type hints. Verified by running it against the real MCP Python SDK (mcp 1.30)."
   },
   {
-    "level": 3,
-    "topic": "Security: Prompt Injection & Tool Poisoning Risks",
-    "question": "An assistant is asked to \"summarize this webpage\" for a URL. The page contains hidden text instructing the model to instead email the user's recent messages to an attacker. Why does this attack succeed without the attacker ever interacting with the user's system directly?",
+    "question": "Who normally triggers an MCP prompt?",
     "options": [
-      "The MCP server that fetched the page automatically executes any instruction-like text it finds before returning the result.",
-      "The hidden text arrives in the model's context as part of an ordinary tool result, and the model has no reliable way to distinguish that from a genuine user instruction \u2014 if the model acts on it, it issues a new, unauthorized tool call using whatever permissions the session already has.",
-      "The attacker must have already compromised the MCP server's source code for this to work.",
-      "This only works if the webpage itself is served over an insecure (non-HTTPS) connection."
+      "The model on its own",
+      "The user, who picks it by name such as a slash command",
+      "The transport",
+      "The server on a timer"
     ],
     "correctIndex": 1,
-    "explanation": "Prompt injection via data doesn't require talking to the model directly \u2014 it only requires getting malicious text into something the model will read, like a tool result. The model can't reliably tell 'the user told me this' apart from 'this text, which looks like an instruction, was sitting inside a fetched document.'"
+    "explanation": "Tools are model-controlled and resources application-controlled; prompts are user-triggered."
   },
   {
-    "level": 3,
-    "topic": "Error Handling & Resilience Patterns",
-    "question": "A `tools/call` for `read_file` returns a normal, successful JSON-RPC response whose result has `isError: true` and content reading \"File not found: notes/missing.md\". What is the correct way to interpret and handle this?",
+    "question": "Why must a stdio server never print() to stdout?",
     "options": [
-      "This is a JSON-RPC protocol-level error (like 'method not found') and should be retried automatically with backoff.",
-      "The tool ran correctly and is reporting that the requested operation itself failed \u2014 this should flow back to the model as information, not be treated as a crash or a retryable transport fault.",
-      "This indicates the client's request was malformed and must be resent with corrected parameters.",
-      "This means the connection to the server has silently dropped and needs to be re-established."
+      "stdout is the JSON-RPC channel, so stray text corrupts the stream; log to stderr instead",
+      "stdout is closed",
+      "It would be shown to the user twice",
+      "print is slow"
     ],
-    "correctIndex": 1,
-    "explanation": "`isError: true` is MCP's tool-level failure signal layered on top of JSON-RPC, distinct from a JSON-RPC error object. The protocol exchange itself succeeded; the tool is just reporting that the operation it represents didn't succeed \u2014 not something retrying will fix, and not a crash."
+    "correctIndex": 0,
+    "explanation": "The client fails to parse the stray line and can lose sync on the next message."
   },
   {
-    "level": 4,
-    "topic": "MCP vs. Function Calling vs. LangChain Tools",
-    "question": "An LLM API's \"function calling\" feature and MCP's `tools/list` + `tools/call` both involve tool definitions and tool invocation. What is the actual relationship between them?",
+    "question": "How is a local server registered with Claude Desktop?",
     "options": [
-      "MCP replaces function calling entirely \u2014 a host using MCP no longer needs the model API's function-calling feature at all.",
-      "They are competing, mutually exclusive standards, and a host must choose one or the other.",
-      "Function calling is a model-API-level feature for emitting and receiving structured tool calls; MCP standardizes how an application discovers tool definitions and executes the calls behind the scenes, then hands the results to that same function-calling mechanism \u2014 MCP is the plumbing, function calling is still what the model API does.",
-      "MCP is a wrapper specifically around LangChain's Tool abstraction, so it only works inside LangChain-based applications."
+      "Through the model's settings",
+      "In a .env file",
+      "Under mcpServers in claude_desktop_config.json with a command and args, using an absolute path, then fully restarting the app",
+      "With a URL only"
     ],
     "correctIndex": 2,
-    "explanation": "MCP doesn't replace function calling \u2014 a host still uses the model API's normal function-calling flow. MCP standardizes the discovery-and-execution side (what tools exist, what they do, how to call them) so that plumbing doesn't need bespoke code per integration per model provider."
+    "explanation": "The host spawns it exactly as the Inspector would."
   },
   {
-    "level": 4,
-    "topic": "Versioning & Backward Compatibility",
-    "question": "During the `initialize` handshake, a client proposes protocol version \"2025-06-18\" and the server responds with a different version it supports instead. What should the client do next?",
+    "question": "What is the default Streamable HTTP endpoint of a Python FastMCP server?\n```python\nfrom mcp.server.fastmcp import FastMCP\ns = FastMCP('x').settings\nprint(f'http://{s.host}:{s.port}{s.streamable_http_path}')\n```\n",
     "options": [
-      "Proceed as if its originally proposed version was accepted, since protocol version mismatches rarely cause real problems.",
-      "Validate whether it actually supports the version the server returned, and close the connection rather than proceed if it doesn't \u2014 never just assume the exchange succeeded.",
-      "Automatically rewrite its own SDK code at runtime to match whatever version the server specified.",
-      "Ignore the server's response entirely and retry `initialize` with the same proposed version until the server accepts it."
+      "http://0.0.0.0:80/",
+      "http://localhost:8080/rpc",
+      "http://127.0.0.1:8000/mcp",
+      "http://127.0.0.1:3000/sse"
+    ],
+    "correctIndex": 2,
+    "explanation": "A single endpoint handles POST for client messages and GET for the SSE stream. Verified by running it against the real MCP Python SDK (mcp 1.30)."
+  },
+  {
+    "question": "How does a remote MCP server authenticate its callers per the spec?",
+    "options": [
+      "OAuth 2.1, with the client sending Authorization: Bearer <token> on every request",
+      "It does not, since the user trusts it",
+      "Basic auth in the URL",
+      "A model-generated password"
+    ],
+    "correctIndex": 0,
+    "explanation": "A stdio server is trusted because the user chose to launch it; a remote one has no such guarantee."
+  },
+  {
+    "question": "How does a resource template appear to a client?\n```python\nimport asyncio\nfrom mcp.server.fastmcp import FastMCP\nmcp = FastMCP('n')\n@mcp.resource('notes://{note_id}')\ndef get_note(note_id: str) -> str:\n    \"\"\"One note.\"\"\"\n    return 'text'\nprint([t.uriTemplate for t in asyncio.run(mcp.list_resource_templates())], asyncio.run(mcp.list_resources()))\n```\n",
+    "options": [
+      "['notes://{note_id}'] ['notes://{note_id}']",
+      "[] ['notes://1']",
+      "['notes://{note_id}'] []",
+      "[] []"
+    ],
+    "correctIndex": 2,
+    "explanation": "A template shows up in resources/templates/list as a pattern, not in resources/list. Verified by running it against the real MCP Python SDK (mcp 1.30)."
+  },
+  {
+    "question": "What is distinctive about sampling?",
+    "options": [
+      "The server asks the client's LLM to generate text, so the server needs no model or key of its own, and the user stays in the loop",
+      "It runs only in the Inspector",
+      "It replaces authentication",
+      "The client asks the server for a tool"
+    ],
+    "correctIndex": 0,
+    "explanation": "sampling/createMessage flips the usual direction."
+  },
+  {
+    "question": "What does a Literal type become in a tool's input schema?\n```python\nimport asyncio\nfrom typing import Literal\nfrom mcp.server.fastmcp import FastMCP\nmcp = FastMCP('t')\n@mcp.tool()\ndef create_ticket(priority: Literal['low', 'high']) -> str:\n    \"\"\"Create.\"\"\"\n    return 'ok'\nprint(asyncio.run(mcp.list_tools())[0].inputSchema['properties']['priority']['enum'])\n```\n",
+    "options": [
+      "['low', 'high']",
+      "['priority']",
+      "[]",
+      "['string']"
+    ],
+    "correctIndex": 0,
+    "explanation": "An enum stops the model sending a value that was never valid. Verified by running it against the real MCP Python SDK (mcp 1.30)."
+  },
+  {
+    "question": "What is the fastest way to unit-test a tool handler?\n```python\nfrom mcp.server.fastmcp import FastMCP\nmcp = FastMCP('t')\n@mcp.tool()\ndef add(a: int, b: int) -> int:\n    \"\"\"Add.\"\"\"\n    return a + b\nassert add(2, 3) == 5\nprint('plain function call, no protocol')\n```\n",
+    "options": [
+      "open a browser",
+      "plain function call, no protocol",
+      "run a subprocess",
+      "start the Inspector"
     ],
     "correctIndex": 1,
-    "explanation": "Protocol version negotiation happens once, before any normal operation begins, and the client must validate the server's answer rather than assume success \u2014 proceeding on a version the client's own code doesn't actually implement leads to confusing runtime errors later instead of a clean failure at startup."
+    "explanation": "The decorator returns the original function, so ordinary pytest can call it directly. Verified by running it against the real MCP Python SDK (mcp 1.30)."
+  },
+  {
+    "question": "Two servers both expose search. How do you keep both reachable?\n```python\ncatalog = {'docs': ['search'], 'tickets': ['search']}\nprint(sorted(f'{s}__{t}' for s, ts in catalog.items() for t in ts))\n```\n",
+    "options": [
+      "['search']",
+      "['docs', 'tickets']",
+      "['search__docs', 'search__tickets']",
+      "['docs__search', 'tickets__search']"
+    ],
+    "correctIndex": 3,
+    "explanation": "Prefixing each tool with its server name avoids a silent overwrite. Verified by running it."
+  },
+  {
+    "question": "What does the client see when a tool raises an exception?\n```python\nimport asyncio\nfrom mcp.server.fastmcp import FastMCP\nfrom mcp.shared.memory import create_connected_server_and_client_session as connect\nmcp = FastMCP('t')\n@mcp.tool()\ndef boom() -> str:\n    \"\"\"Fails.\"\"\"\n    raise RuntimeError('no such file')\nasync def main():\n    async with connect(mcp._mcp_server) as c:\n        r = await c.call_tool('boom', {})\n        print(r.isError)\nasyncio.run(main())\n```\n",
+    "options": [
+      "It raises in the client",
+      "None",
+      "False",
+      "True"
+    ],
+    "correctIndex": 3,
+    "explanation": "The failure comes back as a normal result with isError true so the model can read it and decide what to do. Verified by running it against the real MCP Python SDK (mcp 1.30)."
+  },
+  {
+    "question": "Who chooses the progressToken for a progress notification?",
+    "options": [
+      "The client; the server echoes it back so progress can be matched to the call",
+      "The server",
+      "The model",
+      "The transport"
+    ],
+    "correctIndex": 0,
+    "explanation": "report_progress sends notifications/progress with the client's token."
+  },
+  {
+    "question": "Are roots enforced by the protocol?",
+    "options": [
+      "Only on Windows",
+      "No, they are advisory; a well-behaved server checks them, so also restrict the process at the operating-system level",
+      "Yes, the transport enforces them",
+      "Yes, the client enforces them"
+    ],
+    "correctIndex": 1,
+    "explanation": "A malicious server can ignore them."
+  },
+  {
+    "question": "A tool's description tells the model to also read .env files. What is this attack called?",
+    "options": [
+      "Session affinity",
+      "Rate limiting",
+      "Elicitation",
+      "Tool poisoning, delivered through the tool's own description"
+    ],
+    "correctIndex": 3,
+    "explanation": "Connecting to a server is a trust decision about its author."
+  },
+  {
+    "question": "Which design best limits the damage of a successful injection?",
+    "options": [
+      "Separate read and write tools with separate least-privilege credentials, and an approval gate on state-changing tools",
+      "Hiding tool names",
+      "Removing all descriptions",
+      "One admin token for everything"
+    ],
+    "correctIndex": 0,
+    "explanation": "Least privilege is the structural defence."
+  },
+  {
+    "question": "Which tool calls are safe to cache?",
+    "options": [
+      "create_issue",
+      "Read-only, idempotent ones such as get_issue or search, with an explicit allow-list and a short TTL",
+      "Only tools with side effects",
+      "Everything by default"
+    ],
+    "correctIndex": 1,
+    "explanation": "A cached create_issue is a bug, not an optimisation."
+  },
+  {
+    "question": "Why do the lessons tell you to install the SDK as mcp<2?",
+    "options": [
+      "Because mcp<2 is faster",
+      "mcp 2.x removes stdio",
+      "Pip refuses newer versions",
+      "In mcp 2.x the module mcp.server.fastmcp no longer exists (FastMCP was renamed MCPServer), so the course's 1.x code raises ModuleNotFoundError"
+    ],
+    "correctIndex": 3,
+    "explanation": "The code in this course and the verification of these quizzes use the 1.x API (tested with 1.30)."
   }
 ]
 </script>
+
+## Coding challenges
+
+Try these on your own computer, then compare your output. Nothing you write is sent anywhere.
+
+### A notes MCP server tested with a real in-memory client
+
+Build the Level 1 notes server with the real MCP Python SDK: three tools and a resource that renders the notes as a markdown checklist. Unknown ids are returned as data, not raised. The script talks to its own server through an in-memory client, so it runs with no Inspector and no network. Install with pip install "mcp<2" (written against the 1.x API and tested with mcp 1.30).
+
+**Starter code**
+
+```python
+import asyncio, json
+from mcp.server.fastmcp import FastMCP
+from mcp.shared.memory import create_connected_server_and_client_session as connect
+
+mcp = FastMCP("notes-server")
+NOTES = []
+
+# TODO: add_note(text) -> dict {"id", "text", "done": False}; the id is the highest existing id + 1 (1 when empty)
+# TODO: list_notes(include_done=True) -> list of notes, hiding done ones when include_done is False
+# TODO: complete_note(note_id) -> the updated note, or {"error": "No note with id N"} (return it, do not raise)
+# TODO: a resource notes://all returning a markdown checklist: "- [ ] text (#id)" or "- [x] text (#id)"
+
+async def call(client, name, args):
+    result = await client.call_tool(name, args)
+    return [json.loads(block.text) for block in result.content]   # one JSON block per returned item
+
+async def main():
+    async with connect(mcp._mcp_server) as client:
+        print([t.name for t in (await client.list_tools()).tools])
+        print(await call(client, "add_note", {"text": "Buy groceries"}))
+        print(await call(client, "add_note", {"text": "Call the dentist"}))
+        print(await call(client, "complete_note", {"note_id": 2}))
+        print(await call(client, "complete_note", {"note_id": 9}))
+        print(await call(client, "list_notes", {"include_done": False}))
+        print((await client.read_resource("notes://all")).contents[0].text)
+
+asyncio.run(main())
+```
+
+**Expected output**
+
+```text
+['add_note', 'list_notes', 'complete_note']
+[{'id': 1, 'text': 'Buy groceries', 'done': False}]
+[{'id': 2, 'text': 'Call the dentist', 'done': False}]
+[{'id': 2, 'text': 'Call the dentist', 'done': True}]
+[{'error': 'No note with id 9'}]
+[{'id': 1, 'text': 'Buy groceries', 'done': False}]
+- [ ] Buy groceries (#1)
+- [x] Call the dentist (#2)
+```
+
+<details><summary>Show solution and explanation</summary>
+
+<pre><code>import asyncio, json
+from mcp.server.fastmcp import FastMCP
+from mcp.shared.memory import create_connected_server_and_client_session as connect
+
+mcp = FastMCP(&quot;notes-server&quot;)
+NOTES = []
+
+@mcp.tool()
+def add_note(text: str) -&gt; dict:
+    &quot;&quot;&quot;Add a note and return the stored record.&quot;&quot;&quot;
+    note = {&quot;id&quot;: max((n[&quot;id&quot;] for n in NOTES), default=0) + 1, &quot;text&quot;: text, &quot;done&quot;: False}
+    NOTES.append(note)
+    return note
+
+@mcp.tool()
+def list_notes(include_done: bool = True) -&gt; list[dict]:
+    &quot;&quot;&quot;List notes, optionally hiding the ones already done.&quot;&quot;&quot;
+    return [n for n in NOTES if include_done or not n[&quot;done&quot;]]
+
+@mcp.tool()
+def complete_note(note_id: int) -&gt; dict:
+    &quot;&quot;&quot;Mark a note as done. Unknown ids are reported as data, not raised.&quot;&quot;&quot;
+    for n in NOTES:
+        if n[&quot;id&quot;] == note_id:
+            n[&quot;done&quot;] = True
+            return n
+    return {&quot;error&quot;: f&quot;No note with id {note_id}&quot;}
+
+@mcp.resource(&quot;notes://all&quot;)
+def all_notes() -&gt; str:
+    &quot;&quot;&quot;Every note as a markdown checklist.&quot;&quot;&quot;
+    return &quot;\n&quot;.join(f&quot;- [{&#x27;x&#x27; if n[&#x27;done&#x27;] else &#x27; &#x27;}] {n[&#x27;text&#x27;]} (#{n[&#x27;id&#x27;]})&quot; for n in NOTES)
+
+async def call(client, name, args):
+    result = await client.call_tool(name, args)
+    return [json.loads(block.text) for block in result.content]   # one JSON block per returned item
+
+async def main():
+    async with connect(mcp._mcp_server) as client:
+        print([t.name for t in (await client.list_tools()).tools])
+        print(await call(client, &quot;add_note&quot;, {&quot;text&quot;: &quot;Buy groceries&quot;}))
+        print(await call(client, &quot;add_note&quot;, {&quot;text&quot;: &quot;Call the dentist&quot;}))
+        print(await call(client, &quot;complete_note&quot;, {&quot;note_id&quot;: 2}))
+        print(await call(client, &quot;complete_note&quot;, {&quot;note_id&quot;: 9}))
+        print(await call(client, &quot;list_notes&quot;, {&quot;include_done&quot;: False}))
+        print((await client.read_resource(&quot;notes://all&quot;)).contents[0].text)
+
+asyncio.run(main())
+</code></pre>
+
+<p>The highest id plus one keeps ids unique, complete_note reports a missing id as a normal result the model can read, and list_notes(include_done=False) hides finished notes. The resource turns the same state into a markdown checklist. Run against the real MCP Python SDK 1.30 and its output checked.</p>
+</details>
+
+### A gateway with namespacing, an approval gate and an audit log
+
+Build the core of the Level 4 gateway in front of two real in-memory MCP servers that both expose a tool called search. Register every tool as server__tool, deny a sensitive tool unless approved without calling the backend, report a failing backend call as an error outcome and record every outcome in an audit list. Install with pip install "mcp<2" (tested with mcp 1.30).
+
+**Starter code**
+
+```python
+import asyncio
+from mcp.server.fastmcp import FastMCP
+from mcp.shared.memory import create_connected_server_and_client_session as connect
+
+docs = FastMCP("docs")
+@docs.tool()
+def search(query: str) -> str:
+    """Search the documentation."""
+    return f"3 results for {query}"
+
+tickets = FastMCP("tickets")
+@tickets.tool()
+def search(query: str) -> str:
+    """Search tickets."""
+    return f"1 ticket matching {query}"
+@tickets.tool()
+def close_ticket(ticket_id: int) -> str:
+    """Close a ticket."""
+    if ticket_id != 7:
+        raise ValueError(f"no ticket {ticket_id}")
+    return "closed 7"
+
+SENSITIVE = {"tickets__close_ticket"}
+
+class Gateway:
+    # TODO: load(): for every session, list its tools and register them as "<server>__<tool>" -> (server, tool)
+    # TODO: call(full_name, arguments, caller, approved=False):
+    #   unknown name        -> log "error" with text "unknown tool"
+    #   name in SENSITIVE and not approved -> log "denied" with text "approval required" (do not call the backend)
+    #   otherwise call the backend tool; log "success", or "error" when the result has isError
+    #   every outcome is appended to self.audit as "<caller> <name> <outcome>" and returned as "<outcome>: <text>"
+    pass
+
+async def main():
+    async with connect(docs._mcp_server) as d, connect(tickets._mcp_server) as t:
+        gw = Gateway({"docs": d, "tickets": t})
+        await gw.load()
+        print(sorted(gw.catalog))
+        print(await gw.call("docs__search", {"query": "oauth"}, "alice"))
+        print(await gw.call("tickets__search", {"query": "vpn"}, "alice"))
+        print(await gw.call("tickets__close_ticket", {"ticket_id": 7}, "bob"))
+        print(await gw.call("tickets__close_ticket", {"ticket_id": 7}, "bob", approved=True))
+        print(await gw.call("tickets__close_ticket", {"ticket_id": 99}, "bob", approved=True))
+        print(await gw.call("search", {"query": "x"}, "carol"))
+        print(*gw.audit, sep="\n")
+
+asyncio.run(main())
+```
+
+**Expected output**
+
+```text
+['docs__search', 'tickets__close_ticket', 'tickets__search']
+success: 3 results for oauth
+success: 1 ticket matching vpn
+denied: approval required
+success: closed 7
+error: Error executing tool close_ticket: no ticket 99
+error: unknown tool
+alice docs__search success
+alice tickets__search success
+bob tickets__close_ticket denied
+bob tickets__close_ticket success
+bob tickets__close_ticket error
+carol search error
+```
+
+<details><summary>Show solution and explanation</summary>
+
+<pre><code>import asyncio
+from mcp.server.fastmcp import FastMCP
+from mcp.shared.memory import create_connected_server_and_client_session as connect
+
+docs = FastMCP(&quot;docs&quot;)
+@docs.tool()
+def search(query: str) -&gt; str:
+    &quot;&quot;&quot;Search the documentation.&quot;&quot;&quot;
+    return f&quot;3 results for {query}&quot;
+
+tickets = FastMCP(&quot;tickets&quot;)
+@tickets.tool()
+def search(query: str) -&gt; str:
+    &quot;&quot;&quot;Search tickets.&quot;&quot;&quot;
+    return f&quot;1 ticket matching {query}&quot;
+@tickets.tool()
+def close_ticket(ticket_id: int) -&gt; str:
+    &quot;&quot;&quot;Close a ticket.&quot;&quot;&quot;
+    if ticket_id != 7:
+        raise ValueError(f&quot;no ticket {ticket_id}&quot;)
+    return &quot;closed 7&quot;
+
+SENSITIVE = {&quot;tickets__close_ticket&quot;}
+
+class Gateway:
+    def __init__(self, sessions):
+        self.sessions, self.catalog, self.audit = sessions, {}, []
+
+    async def load(self):
+        for server, session in self.sessions.items():
+            for tool in (await session.list_tools()).tools:
+                self.catalog[f&quot;{server}__{tool.name}&quot;] = (server, tool.name)
+
+    def _log(self, name, caller, text, outcome):
+        self.audit.append(f&quot;{caller} {name} {outcome}&quot;)
+        return f&quot;{outcome}: {text}&quot;
+
+    async def call(self, full_name, arguments, caller, approved=False):
+        if full_name not in self.catalog:
+            return self._log(full_name, caller, &quot;unknown tool&quot;, &quot;error&quot;)
+        if full_name in SENSITIVE and not approved:
+            return self._log(full_name, caller, &quot;approval required&quot;, &quot;denied&quot;)
+        server, tool = self.catalog[full_name]
+        result = await self.sessions[server].call_tool(tool, arguments)
+        return self._log(full_name, caller, result.content[0].text, &quot;error&quot; if result.isError else &quot;success&quot;)
+
+async def main():
+    async with connect(docs._mcp_server) as d, connect(tickets._mcp_server) as t:
+        gw = Gateway({&quot;docs&quot;: d, &quot;tickets&quot;: t})
+        await gw.load()
+        print(sorted(gw.catalog))
+        print(await gw.call(&quot;docs__search&quot;, {&quot;query&quot;: &quot;oauth&quot;}, &quot;alice&quot;))
+        print(await gw.call(&quot;tickets__search&quot;, {&quot;query&quot;: &quot;vpn&quot;}, &quot;alice&quot;))
+        print(await gw.call(&quot;tickets__close_ticket&quot;, {&quot;ticket_id&quot;: 7}, &quot;bob&quot;))
+        print(await gw.call(&quot;tickets__close_ticket&quot;, {&quot;ticket_id&quot;: 7}, &quot;bob&quot;, approved=True))
+        print(await gw.call(&quot;tickets__close_ticket&quot;, {&quot;ticket_id&quot;: 99}, &quot;bob&quot;, approved=True))
+        print(await gw.call(&quot;search&quot;, {&quot;query&quot;: &quot;x&quot;}, &quot;carol&quot;))
+        print(*gw.audit, sep=&quot;\n&quot;)
+
+asyncio.run(main())
+</code></pre>
+
+<p>Namespacing keeps both search tools reachable and lets the gateway route to the right backend with the original tool name. The approval gate runs before any backend call, the isError result becomes an error outcome instead of a crash, and every decision lands in the audit list with who asked. Run against the real MCP Python SDK 1.30 and its output checked.</p>
+</details>

@@ -39,9 +39,9 @@ for name, score in results:
 ```
 
 ```text
-doc5: 0.9999
-doc1: 0.9937
-doc2: 0.9802
+doc1: 0.9997
+doc5: 0.9976
+doc2: 0.9868
 ```
 
 That's it — this is a real, correct nearest-neighbor search. Every vector

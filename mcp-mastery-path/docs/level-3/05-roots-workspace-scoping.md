@@ -19,16 +19,28 @@ right after the `initialize` handshake, and can update them later (e.g. the
 user switches which project folder they're working in).
 
 ```python
-from mcp.types import Root
+from mcp import ClientSession
+from mcp.types import ListRootsResult, Root
 
-async def set_workspace_roots(session, workspace_paths: list[str]):
-    roots = [Root(uri=f"file://{path}", name=path.split("/")[-1]) for path in workspace_paths]
-    await session.send_roots_list_changed(roots)
+workspace_paths = ["/home/user/project"]
+
+async def list_roots_callback(context) -> ListRootsResult:
+    # called whenever the server asks for roots/list
+    return ListRootsResult(roots=[
+        Root(uri=f"file://{path}", name=path.split("/")[-1]) for path in workspace_paths
+    ])
+
+# the client supplies its roots through this callback when the session is created:
+#   ClientSession(read, write, list_roots_callback=list_roots_callback)
+
+async def workspace_changed(session: ClientSession, new_paths: list[str]):
+    workspace_paths[:] = new_paths
+    await session.send_roots_list_changed()   # tells the server to ask again
 ```
 
-A server that supports roots declares that capability during `initialize`,
-and the client only bothers sending roots to servers that said they'd use
-them.
+The *client* declares the `roots` capability during `initialize` (in the Python
+SDK, by supplying a `list_roots_callback`), and a server may only ask for
+`roots/list` from a client that did.
 
 ## Consuming roots on the server side
 
@@ -52,8 +64,8 @@ def is_within_roots(path: Path, roots: list[Path]) -> bool:
 @mcp.tool()
 async def read_workspace_file(relative_path: str, ctx: Context) -> str:
     """Read a file, but only if it falls within one of the client's declared roots."""
-    roots = await ctx.list_roots()  # URIs the client declared, e.g. file:///home/user/project
-    root_paths = [Path(r.uri.removeprefix("file://")) for r in roots]
+    result = await ctx.session.list_roots()  # URIs the client declared, e.g. file:///home/user/project
+    root_paths = [Path(str(r.uri).removeprefix("file://")) for r in result.roots]
 
     # resolve relative to the first root, then verify it didn't escape via ../..
     candidate = (root_paths[0] / relative_path).resolve()
@@ -96,13 +108,25 @@ A user switching projects mid-session should update the server's effective
 scope without requiring a reconnect:
 
 ```python
-@mcp.on_roots_list_changed()
-async def handle_roots_changed(ctx: Context):
-    new_roots = await ctx.list_roots()
-    # invalidate any cached file listings, in-memory indexes, etc.
-    # built against the previous root set
-    file_index_cache.clear()
+file_index_cache: dict = {}
+_last_roots: tuple[str, ...] = ()
+
+async def current_roots(ctx: Context) -> list[Path]:
+    """Ask the client for its roots and drop caches if they changed since last time."""
+    global _last_roots
+    result = await ctx.session.list_roots()
+    uris = tuple(str(r.uri) for r in result.roots)
+    if uris != _last_roots:           # the user switched workspace
+        file_index_cache.clear()      # file listings, indexes... built against the old roots
+        _last_roots = uris
+    return [Path(u.removeprefix("file://")) for u in uris]
 ```
+
+Call `current_roots(ctx)` at the start of every tool that touches the filesystem
+(it is a cheap request). The client's `roots/list_changed` notification is what
+tells a server the answer may have moved; the FastMCP helper in the 1.x SDK has
+no decorator for it, so re-reading the roots per call (as above) is the simplest
+way to stay correct.
 
 Servers that cache anything derived from the filesystem (a search index, a
 directory listing) need to treat a roots-changed notification as "the

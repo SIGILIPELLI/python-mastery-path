@@ -20,6 +20,12 @@ pip install "mcp<2"
     here. Pin `mcp<2` (as above) to follow along, or see the SDK's migration guide before
     moving to 2.x.
 
+    If you do use 2.x, the tool, resource and prompt decorators work the same way;
+    only the names change. Checked against `mcp` 2.3.0: import
+    `from mcp.server.mcpserver import MCPServer` instead of `FastMCP`, and result
+    objects use snake_case fields (`input_schema`, `uri_template`, `structured_content`,
+    `is_error`) instead of `inputSchema`, `uriTemplate`, `structuredContent`, `isError`.
+
 You'll also want the MCP Inspector, a browser-based tool for poking at a
 server interactively without needing a full host application like Claude
 Desktop. It's a Node package, run directly with `npx` (no install needed):

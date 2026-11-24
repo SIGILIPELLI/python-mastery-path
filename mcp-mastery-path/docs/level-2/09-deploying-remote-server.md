@@ -53,6 +53,10 @@ if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
 
+On `mcp` 2.x (`MCPServer`, checked against 2.3.0) the host and port move the other way:
+they are keyword arguments of `run()`, for example
+`mcp.run(transport="streamable-http", host="0.0.0.0", port=...)`.
+
 ```bash
 docker build -t github-mcp-server .
 docker run -p 8000:8000 -e GITHUB_TOKEN=ghp_xxx github-mcp-server

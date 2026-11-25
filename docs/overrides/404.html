@@ -1,4 +1,9 @@
 {% extends "main.html" %}
+{#- mp-redirects: lessons renamed by the count standardisation (counts/python-url-redirects.csv). GitHub Pages cannot send 301s, so this course 404 page forwards old URLs. -#}
+{% block extrahead %}
+  {{ super() }}
+  <script>(function(){var m={"/python-mastery-path/level-3/07-consuming-apis/":"/python-mastery-path/level-3/07-consuming-building-apis/","/python-mastery-path/level-3/08-building-apis/":"/python-mastery-path/level-3/07-consuming-building-apis/#part-2-building-apis-fastapi","/python-mastery-path/level-3/09-packaging-distribution/":"/python-mastery-path/level-3/08-packaging-distribution/","/python-mastery-path/level-3/10-profiling-performance/":"/python-mastery-path/level-3/09-profiling-performance/","/python-mastery-path/level-3/11-project-rest-api-db/":"/python-mastery-path/level-3/10-project-rest-api-db/"};var p=location.pathname.replace(/\/?$/,"/");var t=m[p];if(t){var h=location.hash;location.replace(t.indexOf("#")>=0||!h?t:t+h);}})();</script>
+{% endblock %}
 {% block content %}
 <div class="mp-404">
   <div class="mp-404-code">404</div>

@@ -1,6 +1,6 @@
 ---
 title: "Learn MCP Free: Beginner to Master Course"
-description: "Free Model Context Protocol (MCP) course from beginner to advanced -- 36 hands-on lessons with runnable code, 3 projects and 1 capstone. Part of a 100-course free learning library."
+description: "Free Model Context Protocol (MCP) course from beginner to advanced -- 36 hands-on lessons with runnable code, 3 projects and 1 capstone. Part of the free Mastery Path library."
 ---
 
 # MCP Mastery Path
